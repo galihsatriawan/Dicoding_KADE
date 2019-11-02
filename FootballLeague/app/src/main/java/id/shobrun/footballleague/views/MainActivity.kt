@@ -1,7 +1,8 @@
-package id.shobrun.footballleague
+package id.shobrun.footballleague.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import id.shobrun.footballleague.R
 
 class MainActivity : AppCompatActivity() {
 
