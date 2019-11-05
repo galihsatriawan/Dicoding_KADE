@@ -2,4 +2,7 @@
 <resources>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_padding_horizontal">8dp</dimen>
+    <dimen name="adapter_vertical_margin">8dp</dimen>
+    <dimen name="adapter_horizontal_margin">8dp</dimen>
 </resources>

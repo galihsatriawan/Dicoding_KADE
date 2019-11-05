@@ -25,7 +25,7 @@ class FootballClubsViewModel : ViewModel() {
         val image = context.resources.obtainTypedArray(R.array.club_image)
 
         for(i in name.indices){
-            clubs.add(Club(i,name[i],image.getResourceId(i,0)))
+            clubs.add(Club(i,name[i],image.getResourceId(i,0),"-"))
         }
         image.recycle()
         this.clubs.postValue(clubs)
