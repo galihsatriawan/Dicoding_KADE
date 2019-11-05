@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <item name="img_club" type="id"/>
-    <item name="tv_club_name" type="id"/>
-    <item name="tv_club_desc" type="id"/>
+    <item name="tv_league_name" type="id"/>
+    <item name="tv_league_desc" type="id"/>
+    <item name="banner_league" type="id"/>
+    <item name="main_frame" type="id"/>
+    <item name="recycler_league" type="id"/>
 </resources>

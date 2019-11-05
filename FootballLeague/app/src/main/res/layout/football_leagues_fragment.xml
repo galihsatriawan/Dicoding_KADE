@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".views.fragments.FootballClubsFragment">
+    tools:context=".views.fragments.FootballLeaguesFragment">
     <ProgressBar
         android:id="@+id/progressBar"
         style="@android:style/Widget.ProgressBar"
@@ -20,10 +20,9 @@
         android:visibility="gone"
         >
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_club_list"
+            android:id="@+id/recycler_league_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/item_club"/>
+            android:layout_height="wrap_content"/>
     </androidx.core.widget.NestedScrollView>
     <RelativeLayout
         android:layout_width="match_parent"

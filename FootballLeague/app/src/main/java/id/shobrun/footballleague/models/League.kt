@@ -4,4 +4,4 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Club(var id:Int,var name:String?, var image:Int,var description:String?) :Parcelable
+data class League(var id:Int, var name:String, var banner:Int, var description:String) :Parcelable
