@@ -10,20 +10,20 @@ import org.jetbrains.anko.*
 
 class MainActivity : AppCompatActivity() {
     companion object{
-        const val _MAIN_FRAME = R.id.main_frame
+        const val ID_MAIN_FRAME = R.id.main_frame
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         MainActivityUI().setContentView(this)
         val mClubFragment = FootballLeaguesFragment.getInstance()
-        supportFragmentManager.commitNow(allowStateLoss = true){  ->
-            add(_MAIN_FRAME,mClubFragment,FootballLeaguesFragment::class.java.simpleName)
+        supportFragmentManager.commitNow(allowStateLoss = true){
+            add(ID_MAIN_FRAME,mClubFragment,FootballLeaguesFragment::class.java.simpleName)
         }
     }
     class MainActivityUI : AnkoComponent<MainActivity>{
         override fun createView(ui: AnkoContext<MainActivity>): View = with(ui) {
             return frameLayout {
-                id = _MAIN_FRAME
+                id = ID_MAIN_FRAME
                 lparams(matchParent, matchParent)
             }
         }

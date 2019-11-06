@@ -17,12 +17,13 @@ import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
 
 
-class RecyclerLeaguesAdapter(private val context: Context, private var items: List<League>) :
-    RecyclerView.Adapter<RecyclerLeaguesAdapter.LeagueViewHolder>() {
+
+class RecyclerLeaguesAdapter(private var items: List<League>) :
+    RecyclerView.Adapter<RecyclerLeaguesAdapter.LeagueViewHolder>(),AnkoLogger{
     companion object {
-        val _BANNER_LEAGUE = R.id.banner_league
-        val _LEAGUE_NAME = R.id.tv_league_name
-        val _LEAGUE_DESC = R.id.tv_league_desc
+        const val ID_LEAGUE_BANNER = R.id.banner_league
+        const val ID_LEAGUE_NAME = R.id.tv_league_name
+        const val ID_LEAGUE_DESC = R.id.tv_league_desc
     }
 
     private lateinit var itemListener: (League) -> Unit
@@ -41,62 +42,69 @@ class RecyclerLeaguesAdapter(private val context: Context, private var items: Li
     override fun getItemCount() = items.size
 
     override fun onBindViewHolder(holder: LeagueViewHolder, position: Int) {
-        holder.bind(items[position], itemListener)
-    }
-
-
-    class LeagueViewHolder(override val containerView: View) :
-        RecyclerView.ViewHolder(containerView), LayoutContainer {
-        val imgLeague = containerView.find<ImageView>(_BANNER_LEAGUE)
-        val tvName = containerView.find<TextView>(_LEAGUE_NAME)
-        val tvDesc = containerView.find<TextView>(_LEAGUE_DESC)
-        fun bind(league: League, itemListener: (League) -> Unit) {
-            tvName.text = league.name
-            tvDesc.text = league.description
-            Glide.with(containerView.context)
-                .load(league.banner)
-                .apply(RequestOptions().override(300, 300))
-                .into(imgLeague)
-
-            containerView.setOnClickListener { itemListener(league) }
+        holder.bind(items[position])
+        holder.listen { position->
+            itemListener(items[position])
         }
     }
 
-    class ItemViewUI : AnkoComponent<ViewGroup> {
+    fun <T : RecyclerView.ViewHolder> T.listen(event: (position: Int) -> Unit): T {
+        itemView.setOnClickListener {
+            event.invoke(adapterPosition)
+        }
+        return this
+    }
+    class LeagueViewHolder(override val containerView: View) :
+        RecyclerView.ViewHolder(containerView), LayoutContainer,AnkoLogger  {
+        val imgLeague = containerView.find<ImageView>(ID_LEAGUE_BANNER)
+        val tvName = containerView.find<TextView>(ID_LEAGUE_NAME)
+        val tvDesc = containerView.find<TextView>(ID_LEAGUE_DESC)
+        fun bind(league: League) {
+            tvName.text = league.name
+            tvDesc.text = "${league.description.subSequence(0,10)} [...]"
+            Glide.with(containerView.context)
+                .load(league.banner)
+                .apply(RequestOptions().override(110, 110))
+                .into(imgLeague)
+
+        }
+    }
+
+    class ItemViewUI : AnkoComponent<ViewGroup>,AnkoLogger {
         override fun createView(ui: AnkoContext<ViewGroup>): View = with(ui) {
             return cardView {
                 useCompatPadding = true
                 preventCornerOverlap = true
+                isClickable = true
                 lparams(matchParent, wrapContent)
                 relativeLayout {
                     lparams(matchParent, wrapContent)
                     padding = dip(resources.getDimension(R.dimen.activity_padding_horizontal))
-                    isClickable = true
                     background =
                         context.obtainStyledAttributes(arrayOf(R.attr.selectableItemBackground).toIntArray())
                             .getDrawable(0)
 
                     imageView {
-                        id = R.id.banner_league;
-                    }.lparams(width = dip(50), height = dip(50)) {
-                        rightMargin =
-                            (dip(resources.getDimension(R.dimen.adapter_horizontal_margin)))
+                        id = R.id.banner_league
+                    }.lparams(width = dip(50), height = dip(80)) {
+                        centerHorizontally()
                     }
 
                     textView {
-                        id = _LEAGUE_NAME
+                        id = ID_LEAGUE_NAME
 
                     }.lparams(width = wrapContent, height = wrapContent) {
                         bottomMargin =
                             (dip(resources.getDimension(R.dimen.adapter_vertical_margin)))
-                        rightOf(_BANNER_LEAGUE)
+                        below(ID_LEAGUE_BANNER)
+                        centerHorizontally()
                     }
 
                     textView {
-                        id = _LEAGUE_DESC
+                        id = ID_LEAGUE_DESC
                     }.lparams(width = wrapContent, height = wrapContent) {
-                        rightOf(_BANNER_LEAGUE)
-                        below(_LEAGUE_NAME)
+                        below(ID_LEAGUE_NAME)
+                        centerHorizontally()
                     }
                 }
             }

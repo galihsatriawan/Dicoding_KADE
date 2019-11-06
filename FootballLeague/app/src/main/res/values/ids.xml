@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <item name="tv_league_name" type="id"/>
     <item name="tv_league_desc" type="id"/>
     <item name="banner_league" type="id"/>
     <item name="main_frame" type="id"/>
     <item name="recycler_league" type="id"/>
+    <item name="container_banner" type="id" />
+    <item name="tv_title_league_desc" type="id" />
 </resources>

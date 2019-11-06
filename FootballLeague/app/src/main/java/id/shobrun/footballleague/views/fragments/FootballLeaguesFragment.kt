@@ -1,36 +1,34 @@
 package id.shobrun.footballleague.views.fragments
 
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
-
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.models.League
 import id.shobrun.footballleague.viewmodels.FootballLeaguesViewModel
-import id.shobrun.footballleague.views.iviews.IFootballLeaguesFragment
+import id.shobrun.footballleague.views.DetailLeaguesActivity
 import id.shobrun.footballleague.views.adapters.RecyclerLeaguesAdapter
-import kotlinx.android.synthetic.main.football_leagues_fragment.*
+import id.shobrun.footballleague.views.iviews.IFootballLeaguesFragment
 import org.jetbrains.anko.*
-import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.recyclerview.v7.recyclerView
+import org.jetbrains.anko.support.v4.intentFor
 import org.jetbrains.anko.support.v4.nestedScrollView
-import org.jetbrains.anko.support.v4.toast
 
 
-class FootballLeaguesFragment : Fragment(), IFootballLeaguesFragment {
+class FootballLeaguesFragment : Fragment(), IFootballLeaguesFragment,AnkoLogger {
     lateinit var leaguesAdapter: RecyclerLeaguesAdapter
 
     companion object {
-        const val _RV_LEAGUE = R.id.recycler_league
+        const val ID_RV_LEAGUE = R.id.recycler_league
         private var INSTANCE : FootballLeaguesFragment? = null
         private lateinit var ankoContext : AnkoContext<FootballLeaguesFragment>
-        private var instance = {  ->
+        private var instance = {
             INSTANCE =FootballLeaguesFragment()
             INSTANCE
         }
@@ -46,16 +44,15 @@ class FootballLeaguesFragment : Fragment(), IFootballLeaguesFragment {
             return relativeLayout{
                 lparams(width = matchParent, height = matchParent)
 
-                val cont_list =
-                    nestedScrollView{
-                    lparams(width = matchParent,height =  wrapContent)
-                    val list = recyclerView{
-                        id = _RV_LEAGUE
-                        lparams(width = matchParent, height = wrapContent)
-                        layoutManager = LinearLayoutManager(ctx)
-                        adapter = mAdapter
-                    }
+                nestedScrollView{
+                lparams(width = matchParent,height =  wrapContent)
+                val list = recyclerView{
+                    id = ID_RV_LEAGUE
+                    lparams(width = matchParent, height = wrapContent)
+                    layoutManager = GridLayoutManager(ctx,2)
+                    adapter = mAdapter
                 }
+            }
             }
         }
     }
@@ -63,9 +60,10 @@ class FootballLeaguesFragment : Fragment(), IFootballLeaguesFragment {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        leaguesAdapter = RecyclerLeaguesAdapter(requireContext(),ArrayList<League>())
-        leaguesAdapter.setItemListener {
-
+        leaguesAdapter = RecyclerLeaguesAdapter(ArrayList())
+        leaguesAdapter.setItemListener { league ->
+            val detail = intentFor<DetailLeaguesActivity>(DetailLeaguesActivity.EXTRA_LEAGUE to league)
+            startActivity(detail)
         }
         return FootballLeaguesUI(leaguesAdapter).createView(AnkoContext.create(inflater.context,this,false))
     }
@@ -80,17 +78,8 @@ class FootballLeaguesFragment : Fragment(), IFootballLeaguesFragment {
         })
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
-
     override fun showListLeagues(leagues: List<League>) {
-
         leaguesAdapter.setItems(leagues)
-        leaguesAdapter.setItemListener { league ->
-            toast(league?.name)
-        }
     }
 
 }
