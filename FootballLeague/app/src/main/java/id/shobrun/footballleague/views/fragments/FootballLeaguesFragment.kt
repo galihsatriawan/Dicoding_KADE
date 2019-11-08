@@ -22,18 +22,12 @@ import org.jetbrains.anko.support.v4.nestedScrollView
 
 
 class FootballLeaguesFragment : Fragment(), IFootballLeaguesFragment,AnkoLogger {
-    lateinit var leaguesAdapter: RecyclerLeaguesAdapter
+    private lateinit var leaguesAdapter: RecyclerLeaguesAdapter
 
     companion object {
         const val ID_RV_LEAGUE = R.id.recycler_league
-        private var INSTANCE : FootballLeaguesFragment? = null
         private lateinit var ankoContext : AnkoContext<FootballLeaguesFragment>
-        private var instance = {
-            INSTANCE =FootballLeaguesFragment()
-            INSTANCE
-        }
-
-        fun getInstance() = (INSTANCE ?: instance() ) as FootballLeaguesFragment
+        fun getInstance() = FootballLeaguesFragment()
     }
 
     private lateinit var viewModel: FootballLeaguesViewModel
@@ -71,10 +65,13 @@ class FootballLeaguesFragment : Fragment(), IFootballLeaguesFragment,AnkoLogger 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(FootballLeaguesViewModel::class.java)
-        viewModel.setAppView(requireContext(),this)
+        viewModel.setAppView(this)
         viewModel.setLeagues()
-        viewModel.getLeagues().observe(this, Observer { items ->
-            showListLeagues(items)
+        viewModel.getLeagues().observe(this.viewLifecycleOwner, Observer { items ->
+            if(items!=null){
+                showListLeagues(items)
+            }
+
         })
     }
 

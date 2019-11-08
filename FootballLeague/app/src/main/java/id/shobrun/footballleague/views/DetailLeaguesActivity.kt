@@ -46,7 +46,7 @@ class DetailLeaguesActivity : AppCompatActivity(),IDetailLeagueActivity {
 
 
         viewModel = ViewModelProviders.of(this).get(DetailLeagueViewModel::class.java)
-        viewModel.setAppView(applicationContext,this)
+        viewModel.setAppView(this)
         viewModel.setLeague(league)
         viewModel.getLeague().observe(this, Observer {
             showDetail(league)

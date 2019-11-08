@@ -36,16 +36,19 @@ class RecyclerLeaguesAdapter(private var items: List<League>) :
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        LeagueViewHolder(ItemViewUI().createView(AnkoContext.create(parent.context, parent)))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : LeagueViewHolder {
+        val view = LeagueViewHolder(ItemViewUI().createView(AnkoContext.create(parent.context, parent)))
+        view.listen { pos->
+            itemListener(items[pos])
+        }
+        return view
+    }
+
 
     override fun getItemCount() = items.size
 
     override fun onBindViewHolder(holder: LeagueViewHolder, position: Int) {
         holder.bind(items[position])
-        holder.listen { position->
-            itemListener(items[position])
-        }
     }
 
     fun <T : RecyclerView.ViewHolder> T.listen(event: (position: Int) -> Unit): T {
