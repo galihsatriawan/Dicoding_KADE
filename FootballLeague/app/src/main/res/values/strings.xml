@@ -2,6 +2,7 @@
     <string name="app_name">Football League</string>
     <string name="description">Description</string>
     <string name="detail_league">Detail League</string>
+    <string name="no_leagues_image_content_description">No Leagues Found</string>
 
     <!--  Data League   -->
     <string-array name="league_id">

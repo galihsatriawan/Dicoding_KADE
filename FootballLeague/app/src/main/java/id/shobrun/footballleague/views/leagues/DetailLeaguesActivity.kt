@@ -1,4 +1,4 @@
-package id.shobrun.footballleague.views
+package id.shobrun.footballleague.views.leagues
 
 import android.os.Bundle
 import id.shobrun.footballleague.R
@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import id.shobrun.footballleague.models.League
-import id.shobrun.footballleague.viewmodels.DetailLeagueViewModel
 import id.shobrun.footballleague.views.iviews.IDetailLeagueActivity
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
@@ -34,7 +33,8 @@ class DetailLeaguesActivity : AppCompatActivity(),IDetailLeagueActivity {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        DetailLeagueUI().setContentView(this)
+        DetailLeagueUI()
+            .setContentView(this)
 
         var league:League? = null
         if(intent.getParcelableExtra<League>(EXTRA_LEAGUE) != null)
@@ -63,13 +63,15 @@ class DetailLeaguesActivity : AppCompatActivity(),IDetailLeagueActivity {
                         id = R.id.container_banner
                         relativeLayout {
                             val banner = imageView{
-                                id = ID_LEAGUE_BANNER
+                                id =
+                                    ID_LEAGUE_BANNER
                                 padding =dip(resources.getDimension(R.dimen.activity_padding_horizontal))
                             }.lparams(width = dip(110),height = dip(110)){
                                 centerHorizontally()
                             }
                             val title = textView {
-                                id = ID_LEAGUE_NAME
+                                id =
+                                    ID_LEAGUE_NAME
                                 textAppearance = R.style.TextAppearance_AppCompat_Headline
                             }.lparams(width = wrapContent,height = wrapContent){
                                 centerHorizontally()
@@ -92,7 +94,8 @@ class DetailLeaguesActivity : AppCompatActivity(),IDetailLeagueActivity {
                         below(cont)
                     }
                     val desc = textView{
-                        id = ID_LEAGUE_DESC
+                        id =
+                            ID_LEAGUE_DESC
 
                     }.lparams(width = wrapContent,height = wrapContent){
                         margin = dip(resources.getDimension(R.dimen.activity_vertical_margin_8dp))

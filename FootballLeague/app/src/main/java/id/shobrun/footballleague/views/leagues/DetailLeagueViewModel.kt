@@ -1,4 +1,4 @@
-package id.shobrun.footballleague.viewmodels
+package id.shobrun.footballleague.views.leagues
 
 import android.content.Context
 import androidx.lifecycle.LiveData
