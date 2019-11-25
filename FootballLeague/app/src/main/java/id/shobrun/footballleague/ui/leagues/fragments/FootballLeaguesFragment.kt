@@ -30,9 +30,10 @@ class FootballLeaguesFragment : DaggerFragment(), IFootballLeaguesFragment,AnkoL
         fun getInstance() = FootballLeaguesFragment()
     }
 
-
+    @Inject
+    lateinit var viewModelProvider : ViewModelProvider.Factory
     private val viewModel by lazy {
-         ViewModelProviders.of(this).get(FootballLeaguesViewModel::class.java)
+         ViewModelProviders.of(this,viewModelProvider).get(FootballLeaguesViewModel::class.java)
 
     }
     override fun onCreateView(

@@ -10,20 +10,20 @@ import id.shobrun.footballleague.repositories.LeagueRepository
 import id.shobrun.footballleague.views.iviews.IFootballLeaguesFragment
 import javax.inject.Inject
 
-class FootballLeaguesViewModel @Inject constructor( ) : ViewModel() {
+class FootballLeaguesViewModel @Inject constructor(private val repository: LeagueRepository) : ViewModel() {
     // TODO: Implement the ViewModel
     companion object{
         val TAG = FootballLeaguesViewModel.javaClass.name
     }
-    private var _leagues = MutableLiveData<ArrayList<League>>()
-    var leagues:LiveData<ArrayList<League>> = _leagues
+    private var _leagues = MutableLiveData<List<League>>()
+    var leagues:LiveData<List<League>> = _leagues
     init {
-        Log.d(TAG, "VM work")
+        val mLeagues = repository.getLeagues()
+        _leagues.postValue(mLeagues)
+        Log.d(TAG, "VM work"+mLeagues.size)
     }
     val empty:LiveData<Boolean> = Transformations.map(_leagues){
         it.isEmpty()
     }
-    init {
 
-    }
 }
