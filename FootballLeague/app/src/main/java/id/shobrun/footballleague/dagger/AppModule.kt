@@ -6,6 +6,8 @@ import com.bumptech.glide.RequestManager
 import com.bumptech.glide.request.RequestOptions
 import dagger.Module
 import dagger.Provides
+import retrofit2.Retrofit
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -22,4 +24,13 @@ class AppModule {
         return Glide.with(application)
             .setDefaultRequestOptions(requestOptions)
     }
+
+    @Singleton
+    @Provides
+    internal fun someString():String = "test"
+
+    // Can access application from App Component so the return is false (is not null)
+    @Singleton
+    @Provides @Named("isAppNull")
+    internal fun getApp(application: Application) : Boolean = application==null
 }

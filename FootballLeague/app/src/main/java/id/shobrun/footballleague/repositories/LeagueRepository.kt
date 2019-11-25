@@ -1,16 +1,12 @@
 package id.shobrun.footballleague.repositories
 
-import android.content.Context
-import id.shobrun.footballleague.repositories.local.LeagueLocalData
-import id.shobrun.footballleague.repositories.remote.LeagueRemoteData
+
+import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class LeagueRepository() {
-    private val localData:LeagueLocalData
-    private val remoteData:LeagueRemoteData
+class LeagueRepository @Inject constructor() {
+
     init {
-        localData = LeagueLocalData()
-        remoteData = LeagueRemoteData()
     }
 }

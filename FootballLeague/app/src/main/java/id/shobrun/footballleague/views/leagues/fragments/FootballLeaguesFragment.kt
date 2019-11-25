@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import dagger.android.support.DaggerFragment
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.databinding.FragmentFootballLeagueBinding
 import id.shobrun.footballleague.models.League
@@ -17,14 +19,17 @@ import id.shobrun.footballleague.views.adapters.RecyclerLeaguesAdapter
 import id.shobrun.footballleague.views.iviews.IFootballLeaguesFragment
 import org.jetbrains.anko.*
 import org.jetbrains.anko.support.v4.intentFor
+import javax.inject.Inject
 
 
-class FootballLeaguesFragment : Fragment(), IFootballLeaguesFragment,AnkoLogger {
+class FootballLeaguesFragment : DaggerFragment(), IFootballLeaguesFragment,AnkoLogger {
+
     private lateinit var leaguesAdapter: RecyclerLeaguesAdapter
     private lateinit var binding: FragmentFootballLeagueBinding
     companion object {
         fun getInstance() = FootballLeaguesFragment()
     }
+
 
     private val viewModel by lazy {
          ViewModelProviders.of(this).get(FootballLeaguesViewModel::class.java)

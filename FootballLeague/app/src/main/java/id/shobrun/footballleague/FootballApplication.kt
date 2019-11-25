@@ -2,11 +2,12 @@ package id.shobrun.footballleague
 
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
+import id.shobrun.footballleague.dagger.AppComponent
 import id.shobrun.footballleague.dagger.DaggerAppComponent
 
 
 class FootballApplication : DaggerApplication(){
-    val component by lazy{
+    private val component : AppComponent by lazy {
         DaggerAppComponent.builder()
             .application(this)
             .build()
@@ -14,5 +15,6 @@ class FootballApplication : DaggerApplication(){
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
         return component
     }
+
 
 }

@@ -7,15 +7,18 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import dagger.android.support.DaggerAppCompatActivity
 import id.shobrun.footballleague.models.League
 import id.shobrun.footballleague.views.iviews.IDetailLeagueActivity
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
 import org.jetbrains.anko.support.v4.nestedScrollView
+import javax.inject.Inject
 
-class DetailLeaguesActivity : AppCompatActivity(),IDetailLeagueActivity {
-    private lateinit var viewModel : DetailLeagueViewModel
+class DetailLeaguesActivity : DaggerAppCompatActivity(),IDetailLeagueActivity {
+
     override fun showDetail(league: League?) {
         val nameLeague = find<TextView>(ID_LEAGUE_NAME)
         val descLeague = find<TextView>(ID_LEAGUE_DESC)
@@ -31,6 +34,9 @@ class DetailLeaguesActivity : AppCompatActivity(),IDetailLeagueActivity {
         const val ID_LEAGUE_NAME = R.id.tv_league_name
         const val ID_LEAGUE_DESC = R.id.tv_league_desc
     }
+
+
+    private lateinit var viewModel : DetailLeagueViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DetailLeagueUI()
@@ -46,7 +52,7 @@ class DetailLeaguesActivity : AppCompatActivity(),IDetailLeagueActivity {
 
 
         viewModel = ViewModelProviders.of(this).get(DetailLeagueViewModel::class.java)
-        viewModel.setAppView(this)
+
         viewModel.setLeague(league)
         viewModel.getLeague().observe(this, Observer {
             showDetail(league)
