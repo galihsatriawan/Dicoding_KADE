@@ -1,0 +1,62 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="id.shobrun.footballleague"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/src/main/AndroidManifest.xml
+10
+11    <application
+11-->/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/src/main/AndroidManifest.xml:5:5-21:19
+12        android:name="id.shobrun.footballleague.BaseApplication"
+12-->/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/src/main/AndroidManifest.xml:6:9-65
+13        android:allowBackup="true"
+13-->/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/src/main/AndroidManifest.xml:7:9-35
+14        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+14-->[androidx.core:core:1.2.0-beta01] /home/sh0brun/.gradle/caches/transforms-2/files-2.1/c75a7fe7b2ee93d73ee36071b849e46b/core-1.2.0-beta01/AndroidManifest.xml:24:18-86
+15        android:debuggable="true"
+16        android:icon="@mipmap/ic_launcher"
+16-->/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/src/main/AndroidManifest.xml:8:9-43
+17        android:label="@string/app_name"
+17-->/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/src/main/AndroidManifest.xml:9:9-41
+18        android:roundIcon="@mipmap/ic_launcher_round"
+18-->/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/src/main/AndroidManifest.xml:10:9-54
+19        android:supportsRtl="true"
+19-->/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/src/main/AndroidManifest.xml:11:9-35
+20        android:theme="@style/AppTheme" >
+20-->/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/src/main/AndroidManifest.xml:12:9-40
+21        <activity android:name="id.shobrun.footballleague.MainActivity" >
+21-->/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/src/main/AndroidManifest.xml:13:9-19:20
+21-->/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/src/main/AndroidManifest.xml:13:19-47
+22            <intent-filter>
+22-->/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/src/main/AndroidManifest.xml:14:13-18:29
+23                <action android:name="android.intent.action.MAIN" />
+23-->/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/src/main/AndroidManifest.xml:15:17-69
+23-->/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/src/main/AndroidManifest.xml:15:25-66
+24
+25                <category android:name="android.intent.category.LAUNCHER" />
+25-->/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/src/main/AndroidManifest.xml:17:17-77
+25-->/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/src/main/AndroidManifest.xml:17:27-74
+26            </intent-filter>
+27        </activity>
+28        <activity android:name="id.shobrun.footballleague.ui.auth.AuthActivity" />
+28-->/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/src/main/AndroidManifest.xml:20:9-82
+28-->/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/src/main/AndroidManifest.xml:20:19-80
+29
+30        <provider
+30-->[androidx.lifecycle:lifecycle-process:2.1.0] /home/sh0brun/.gradle/caches/transforms-2/files-2.1/22c1ccbd4e83665b81cc6d4d748f863b/lifecycle-process-2.1.0/AndroidManifest.xml:23:9-27:43
+31            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+31-->[androidx.lifecycle:lifecycle-process:2.1.0] /home/sh0brun/.gradle/caches/transforms-2/files-2.1/22c1ccbd4e83665b81cc6d4d748f863b/lifecycle-process-2.1.0/AndroidManifest.xml:24:13-79
+32            android:authorities="id.shobrun.footballleague.lifecycle-process"
+32-->[androidx.lifecycle:lifecycle-process:2.1.0] /home/sh0brun/.gradle/caches/transforms-2/files-2.1/22c1ccbd4e83665b81cc6d4d748f863b/lifecycle-process-2.1.0/AndroidManifest.xml:25:13-69
+33            android:exported="false"
+33-->[androidx.lifecycle:lifecycle-process:2.1.0] /home/sh0brun/.gradle/caches/transforms-2/files-2.1/22c1ccbd4e83665b81cc6d4d748f863b/lifecycle-process-2.1.0/AndroidManifest.xml:26:13-37
+34            android:multiprocess="true" />
+34-->[androidx.lifecycle:lifecycle-process:2.1.0] /home/sh0brun/.gradle/caches/transforms-2/files-2.1/22c1ccbd4e83665b81cc6d4d748f863b/lifecycle-process-2.1.0/AndroidManifest.xml:27:13-40
+35    </application>
+36
+37</manifest>

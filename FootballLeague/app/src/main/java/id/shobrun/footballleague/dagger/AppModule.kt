@@ -1,12 +1,12 @@
 package id.shobrun.footballleague.dagger
 
 import android.app.Application
-import com.bumptech.glide.Glide
-import com.bumptech.glide.RequestManager
-import com.bumptech.glide.request.RequestOptions
 import dagger.Module
 import dagger.Provides
+import id.shobrun.footballleague.utils.Constant
 import retrofit2.Retrofit
+
+import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -14,15 +14,11 @@ import javax.inject.Singleton
 class AppModule {
     @Singleton
     @Provides
-    fun provideRequestOptions():RequestOptions{
-        return RequestOptions().placeholder(android.R.drawable.screen_background_light)
-            .error(android.R.drawable.screen_background_light)
-    }
-    @Singleton
-    @Provides
-    fun provideGlideInstance(application: Application,requestOptions: RequestOptions):RequestManager{
-        return Glide.with(application)
-            .setDefaultRequestOptions(requestOptions)
+    internal fun provideRetrofitInstance() : Retrofit{
+        return Retrofit.Builder()
+            .baseUrl(Constant.BASE_URL)
+            .addConverterFactory(MoshiConverterFactory.create())
+            .build()
     }
 
     @Singleton
@@ -33,4 +29,5 @@ class AppModule {
     @Singleton
     @Provides @Named("isAppNull")
     internal fun getApp(application: Application) : Boolean = application==null
+
 }
