@@ -15,14 +15,15 @@ class FootballLeaguesViewModel @Inject constructor(private val repository: Leagu
     companion object{
         val TAG = FootballLeaguesViewModel.javaClass.name
     }
+
     private var _leagues = MutableLiveData<List<League>>()
     var leagues:LiveData<List<League>> = _leagues
     init {
         val mLeagues = repository.getLeagues()
-        _leagues.postValue(mLeagues)
+        _leagues.value = mLeagues
         Log.d(TAG, "VM work"+mLeagues.size)
     }
-    val empty:LiveData<Boolean> = Transformations.map(_leagues){
+    val empty:LiveData<Boolean> = Transformations.map(leagues){
         it.isEmpty()
     }
 

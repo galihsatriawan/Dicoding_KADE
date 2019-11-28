@@ -3,7 +3,7 @@ package id.shobrun.footballleague.dagger
 import android.app.Application
 import dagger.Module
 import dagger.Provides
-import id.shobrun.footballleague.utils.Constant
+import id.shobrun.footballleague.utils.Constants
 import retrofit2.Retrofit
 
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -16,7 +16,7 @@ class AppModule {
     @Provides
     internal fun provideRetrofitInstance() : Retrofit{
         return Retrofit.Builder()
-            .baseUrl(Constant.BASE_URL)
+            .baseUrl(Constants.BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
     }

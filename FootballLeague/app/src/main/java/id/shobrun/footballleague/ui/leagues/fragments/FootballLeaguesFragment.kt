@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DividerItemDecoration
 import dagger.android.support.DaggerFragment
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.databinding.FragmentFootballLeagueBinding
@@ -46,6 +47,7 @@ class FootballLeaguesFragment : DaggerFragment(), IFootballLeaguesFragment,AnkoL
                 DetailLeaguesActivity.EXTRA_LEAGUE to league)
             startActivity(detail)
         }
+
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_football_league,container,false)
         binding.lifecycleOwner = this
         binding.vm = viewModel
@@ -54,7 +56,7 @@ class FootballLeaguesFragment : DaggerFragment(), IFootballLeaguesFragment,AnkoL
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
+        binding.rvLeagues.adapter = leaguesAdapter
         viewModel.leagues.observe(this.viewLifecycleOwner, Observer { items ->
             if(items!=null){
                 showListLeagues(items)

@@ -8,6 +8,8 @@ import id.shobrun.footballleague.dagger.auth.AuthViewModelModule
 import id.shobrun.footballleague.dagger.league.LeagueScope
 import id.shobrun.footballleague.ui.auth.AuthActivity
 import id.shobrun.footballleague.views.LeagueActivity
+import id.shobrun.footballleague.views.leagues.DetailLeagueViewModel
+import id.shobrun.footballleague.views.leagues.DetailLeaguesActivity
 
 @Module
 abstract class ActivityBuildersModule {
@@ -19,4 +21,7 @@ abstract class ActivityBuildersModule {
     @LeagueScope
     @ContributesAndroidInjector
     abstract fun leagueActivity() : LeagueActivity
+
+    @ContributesAndroidInjector (modules = [DetailLeagueViewModel::class])
+    abstract fun detailLeagueActivity (): DetailLeaguesActivity
 }
