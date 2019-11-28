@@ -5,11 +5,13 @@ import dagger.android.ContributesAndroidInjector
 import id.shobrun.footballleague.dagger.auth.AuthModule
 import id.shobrun.footballleague.dagger.auth.AuthScope
 import id.shobrun.footballleague.dagger.auth.AuthViewModelModule
+import id.shobrun.footballleague.dagger.league.LeagueFragmentModule
 import id.shobrun.footballleague.dagger.league.LeagueScope
+import id.shobrun.footballleague.dagger.league.detail.DetailLeagueModule
+import id.shobrun.footballleague.dagger.league.detail.DetailLeagueViewModelModule
 import id.shobrun.footballleague.ui.auth.AuthActivity
+import id.shobrun.footballleague.ui.leagues.detail.DetailLeagueActivity
 import id.shobrun.footballleague.views.LeagueActivity
-import id.shobrun.footballleague.views.leagues.DetailLeagueViewModel
-import id.shobrun.footballleague.views.leagues.DetailLeaguesActivity
 
 @Module
 abstract class ActivityBuildersModule {
@@ -22,6 +24,6 @@ abstract class ActivityBuildersModule {
     @ContributesAndroidInjector
     abstract fun leagueActivity() : LeagueActivity
 
-    @ContributesAndroidInjector (modules = [DetailLeagueViewModel::class])
-    abstract fun detailLeagueActivity (): DetailLeaguesActivity
+    @ContributesAndroidInjector (modules = [LeagueFragmentModule::class,DetailLeagueModule::class,DetailLeagueViewModelModule::class])
+    abstract fun detailLeagueActivity (): DetailLeagueActivity
 }

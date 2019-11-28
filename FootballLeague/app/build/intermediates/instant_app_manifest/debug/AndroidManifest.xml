@@ -20,8 +20,11 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
-        <activity android:name="id.shobrun.footballleague.MainActivity" >
-        </activity>
+        <activity
+            android:name="id.shobrun.footballleague.ui.leagues.detail.DetailLeagueActivity"
+            android:label="@string/title_activity_detail_league"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="id.shobrun.footballleague.MainActivity" />
         <activity android:name="id.shobrun.footballleague.ui.auth.AuthActivity" />
         <activity android:name="id.shobrun.footballleague.views.LeagueActivity" >
             <intent-filter>

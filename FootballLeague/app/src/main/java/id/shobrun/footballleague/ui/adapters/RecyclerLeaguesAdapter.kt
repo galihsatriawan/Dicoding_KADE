@@ -3,6 +3,7 @@ package id.shobrun.footballleague.views.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.DiffUtil
 
 import androidx.recyclerview.widget.RecyclerView
@@ -28,11 +29,12 @@ class RecyclerLeaguesAdapter(private var items: List<League>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : LeagueViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val itemBinding = ItemLeagueBinding.inflate(layoutInflater,parent,false)
+
         val view = LeagueViewHolder(itemBinding)
         view.listen { pos->
             itemListener(items[pos])
         }
-        return view
+            return view
     }
 
 
@@ -57,7 +59,6 @@ class RecyclerLeaguesAdapter(private var items: List<League>) :
             viewModel.bind(league)
             binding.vm = viewModel
             binding.executePendingBindings()
-
 
         }
     }

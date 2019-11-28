@@ -4,6 +4,14 @@
         "source": "/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/src/main/res/layout/item_league.xml"
     },
     {
+        "merged": "/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_detail_league.xml",
+        "source": "/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/src/main/res/layout/activity_detail_league.xml"
+    },
+    {
+        "merged": "/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_detail_leagues.xml",
+        "source": "/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/src/main/res/layout/activity_detail_leagues.xml"
+    },
+    {
         "merged": "/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_football_league.xml",
         "source": "/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/src/main/res/layout/fragment_football_league.xml"
     }

@@ -24,6 +24,7 @@ class FootballLeaguesViewModel @Inject constructor(private val repository: Leagu
         Log.d(TAG, "VM work"+mLeagues.size)
     }
     val empty:LiveData<Boolean> = Transformations.map(leagues){
+        Log.d(TAG,"${it.isEmpty()}")
         it.isEmpty()
     }
 

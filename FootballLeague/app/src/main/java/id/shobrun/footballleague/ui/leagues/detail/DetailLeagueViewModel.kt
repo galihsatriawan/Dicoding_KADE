@@ -6,21 +6,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import id.shobrun.footballleague.models.League
+import id.shobrun.footballleague.repositories.LeagueRepository
 import id.shobrun.footballleague.views.iviews.IDetailLeagueActivity
 import javax.inject.Inject
 
-class DetailLeagueViewModel @Inject constructor() : ViewModel(){
+class DetailLeagueViewModel @Inject constructor(val repository: LeagueRepository) : ViewModel(){
     companion object{
-        val TAG = DetailLeagueViewModel::class.simpleName
+        val TAG = this.javaClass.name
     }
-    private var league : MutableLiveData<League> = MutableLiveData()
-    lateinit var view : IDetailLeagueActivity
+    private var _league : MutableLiveData<League> = MutableLiveData()
+    var league = _league
     init {
         Log.d(TAG,"VM work")
     }
     fun setLeague(league: League?){
-        this.league.postValue(league)
+        _league.value =league
     }
-    fun getLeague():LiveData<League> = league
 
 }
