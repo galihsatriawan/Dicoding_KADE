@@ -23,6 +23,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'META-INF/atomicfu.kotlin_module'
+    }
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -35,26 +38,27 @@ android {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     //anko
-    implementation "org.jetbrains.anko:anko:$anko_version"
-    implementation "org.jetbrains.anko:anko-design:$anko_version"
-    implementation "org.jetbrains.anko:anko-recyclerview-v7:$anko_version"
-    implementation "org.jetbrains.anko:anko-recyclerview-v7-coroutines:$anko_version"
+    implementation "org.jetbrains.anko:anko:$ankoVersion"
+    implementation "org.jetbrains.anko:anko-design:$ankoVersion"
+    implementation "org.jetbrains.anko:anko-recyclerview-v7:$ankoVersion"
+    implementation "org.jetbrains.anko:anko-recyclerview-v7-coroutines:$ankoVersion"
     // Anko Commons
-    implementation "org.jetbrains.anko:anko-commons:$anko_version"
+    implementation "org.jetbrains.anko:anko-commons:$ankoVersion"
     // CardView-v7
-    implementation "org.jetbrains.anko:anko-cardview-v7:$anko_version"
+    implementation "org.jetbrains.anko:anko-cardview-v7:$ankoVersion"
 
     /*
         LifeCycle
      */
-    implementation "androidx.lifecycle:lifecycle-extensions:$life_cycle"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifeCycle"
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$life_cycle"
-    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$life_cycle"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$life_cycle"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycle"
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifeCycle"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifeCycle"
+    androidTestImplementation "androidx.arch.core:core-testing:$androidArchVersion"
     /*
         Design View
      */
@@ -62,18 +66,18 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.0.1'
     implementation 'com.google.android.material:material:1.2.0-alpha01'
     // Network library
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     /**
      * Dagger Dependencies
      */
-    implementation "com.google.dagger:dagger:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
-    implementation "com.google.dagger:dagger-android:$dagger_version"
-    implementation "com.google.dagger:dagger-android-support:$dagger_version"
-    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+    implementation "com.google.dagger:dagger-android:$daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
 
 
     //Rx
@@ -83,11 +87,18 @@ dependencies {
         Image Loader
      */
     implementation 'com.github.bumptech.glide:glide:4.10.0'
-
+    /**
+     * Room
+     */
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    // Coroutines
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
     /**
      * Tools
      */
-    implementation "com.jakewharton.timber:timber:$timber_version"
+    implementation "com.jakewharton.timber:timber:$timberVersion"
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'androidx.core:core-ktx:1.2.0-beta01'
     implementation 'androidx.fragment:fragment-ktx:1.2.0-rc01'

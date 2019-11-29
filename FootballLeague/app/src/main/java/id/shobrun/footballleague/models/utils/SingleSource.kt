@@ -26,7 +26,7 @@ fun <T, A> resultLiveData(databaseQuery: () -> LiveData<T>,
         val responseStatus = networkCall.invoke()
         if (responseStatus.status == Status.SUCCESS) {
             saveCallResult(responseStatus.data!!)
-        } else if (responseStatus.status == id.shobrun.footballleague.models.Result.Status.ERROR) {
+        } else if (responseStatus.status == Status.ERROR) {
             emit(Result.error<T>(responseStatus.message!!))
             emitSource(source)
         }
