@@ -50,10 +50,11 @@ dependencies {
     /*
         LifeCycle
      */
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc01'
-    annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.1.0'
+    implementation "androidx.lifecycle:lifecycle-extensions:$life_cycle"
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$life_cycle"
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$life_cycle"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$life_cycle"
     /*
         Design View
      */
@@ -63,7 +64,7 @@ dependencies {
     // Network library
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     /**
      * Dagger Dependencies
      */
@@ -83,6 +84,10 @@ dependencies {
      */
     implementation 'com.github.bumptech.glide:glide:4.10.0'
 
+    /**
+     * Tools
+     */
+    implementation "com.jakewharton.timber:timber:$timber_version"
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'androidx.core:core-ktx:1.2.0-beta01'
     implementation 'androidx.fragment:fragment-ktx:1.2.0-rc01'

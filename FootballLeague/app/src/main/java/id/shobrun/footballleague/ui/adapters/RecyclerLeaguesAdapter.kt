@@ -2,15 +2,12 @@ package id.shobrun.footballleague.views.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.LifecycleOwner
-import androidx.recyclerview.widget.DiffUtil
-
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
-import id.shobrun.footballleague.R
 import id.shobrun.footballleague.databinding.ItemLeagueBinding
 import id.shobrun.footballleague.models.League
-import id.shobrun.footballleague.ui.adapters.LeagueViewModel
 import org.jetbrains.anko.*
 
 class RecyclerLeaguesAdapter(private var items: List<League>) :
@@ -56,12 +53,23 @@ class RecyclerLeaguesAdapter(private var items: List<League>) :
 
         fun bind(league: League) {
             league.name = "${league.description.subSequence(0,10)} [...]"
-            viewModel.bind(league)
             binding.vm = viewModel
+            viewModel.bind(league)
             binding.executePendingBindings()
 
         }
     }
 
+    class LeagueViewModel: ViewModel(){
+        var _img_league  : MutableLiveData<Int> = MutableLiveData()
+        var img_league : LiveData<Int> = _img_league
 
+        var _tv_league_name : MutableLiveData<String> = MutableLiveData()
+        var tv_league_name : LiveData<String> = _tv_league_name
+
+        fun bind(league : League){
+            _img_league.value = league.banner
+            _tv_league_name.value = league.name
+        }
+    }
 }

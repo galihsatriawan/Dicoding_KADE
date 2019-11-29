@@ -1848,12 +1848,12 @@
         "source": "/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/src/main/res/drawable/english_premier_league.png"
     },
     {
-        "merged": "/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/build/intermediates/res/merged/debug/color_design_error.xml.flat",
-        "source": "/home/sh0brun/.gradle/caches/transforms-2/files-2.1/934b39771f9aba739bdd0747b6fa7d1d/material-1.2.0-alpha01/res/color/design_error.xml"
-    },
-    {
         "merged": "/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/build/intermediates/res/merged/debug/menu_menu_detail_league.xml.flat",
         "source": "/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/src/main/res/menu/menu_detail_league.xml"
+    },
+    {
+        "merged": "/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/build/intermediates/res/merged/debug/color_design_error.xml.flat",
+        "source": "/home/sh0brun/.gradle/caches/transforms-2/files-2.1/934b39771f9aba739bdd0747b6fa7d1d/material-1.2.0-alpha01/res/color/design_error.xml"
     },
     {
         "merged": "/home/sh0brun/AndroidStudioProjects/HacktoberFest/Dicoding_KADE/FootballLeague/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_textfield_search_default_mtrl_alpha.9.png.flat",

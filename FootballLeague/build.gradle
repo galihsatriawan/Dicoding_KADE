@@ -6,6 +6,8 @@ buildscript {
         anko_version = '0.10.8'
         dagger_version = '2.24'
         retrofit_version = "2.6.1"
+        timber_version = '4.7.1'
+        life_cycle = "2.2.0-alpha02"
     }
     repositories {
         google()

@@ -19,7 +19,7 @@ class FootballLeaguesViewModel @Inject constructor(private val repository: Leagu
     private var _leagues = MutableLiveData<List<League>>()
     var leagues:LiveData<List<League>> = _leagues
     init {
-        val mLeagues = repository.getLeagues()
+        val mLeagues = repository.getResourceLeagues()
         _leagues.value = mLeagues
         Log.d(TAG, "VM work"+mLeagues.size)
     }

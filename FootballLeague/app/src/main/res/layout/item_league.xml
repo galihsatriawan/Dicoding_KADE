@@ -6,7 +6,7 @@
         <import type="android.view.View"/>
         <variable
             name="vm"
-            type="id.shobrun.footballleague.ui.adapters.LeagueViewModel" />
+            type="id.shobrun.footballleague.views.adapters.RecyclerLeaguesAdapter.LeagueViewModel" />
     </data>
 <LinearLayout
     android:layout_width="match_parent"
