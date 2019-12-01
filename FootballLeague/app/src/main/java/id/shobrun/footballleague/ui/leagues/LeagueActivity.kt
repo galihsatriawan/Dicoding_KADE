@@ -11,7 +11,7 @@ class LeagueActivity : DaggerAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_leagues)
 
         val mClubFragment = FootballLeaguesFragment.getInstance()
         supportFragmentManager.commitNow(allowStateLoss = true){

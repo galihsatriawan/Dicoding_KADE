@@ -56,6 +56,11 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifeCycle"
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycle"
+    implementation 'androidx.navigation:navigation-fragment:2.0.0'
+    implementation 'androidx.navigation:navigation-ui:2.0.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.0.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.0.0'
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifeCycle"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifeCycle"
     androidTestImplementation "androidx.arch.core:core-testing:$androidArchVersion"
