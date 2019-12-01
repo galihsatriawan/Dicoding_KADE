@@ -1,0 +1,3 @@
+package id.shobrun.footballleague.models
+
+interface NetworkResponseModel

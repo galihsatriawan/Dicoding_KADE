@@ -5,7 +5,7 @@
     <string name="no_leagues_image_content_description">No Leagues Found</string>
 
     <!--  Data League   -->
-    <string-array name="league_id">
+    <integer-array name="league_id">
         <item>4328</item>
         <item>4334</item>
         <item>4331</item>
@@ -16,7 +16,7 @@
         <item>4356</item>
         <item>4330</item>
         <item>4396</item>
-    </string-array>
+    </integer-array>
     <string-array name="league_name">
         <item>English Premier League</item>
         <item>French Ligue 1</item>

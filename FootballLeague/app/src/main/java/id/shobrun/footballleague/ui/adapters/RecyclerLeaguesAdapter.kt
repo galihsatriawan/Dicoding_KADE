@@ -7,12 +7,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
 import id.shobrun.footballleague.databinding.ItemLeagueBinding
-import id.shobrun.footballleague.models.League
+import id.shobrun.footballleague.models.entity.League
 import org.jetbrains.anko.*
+import timber.log.Timber
 
 class RecyclerLeaguesAdapter(private var items: List<League>) :
     RecyclerView.Adapter<RecyclerLeaguesAdapter.LeagueViewHolder>(),AnkoLogger{
-
+    companion object{
+        val TAG = RecyclerLeaguesAdapter.javaClass.name
+    }
     private lateinit var itemListener: (League) -> Unit
     fun setItemListener(listener: (League) -> Unit) {
         this.itemListener = listener
@@ -29,7 +32,8 @@ class RecyclerLeaguesAdapter(private var items: List<League>) :
 
         val view = LeagueViewHolder(itemBinding)
         view.listen { pos->
-            itemListener(items[pos])
+            itemListener(this.items[pos])
+            Timber.d("$TAG id = ${this.items[pos]._id}")
         }
             return view
     }

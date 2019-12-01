@@ -6,7 +6,7 @@
     >
     <data>
         <variable
-            name="vm"
+            name="viewModel"
             type="id.shobrun.footballleague.views.leagues.DetailLeagueViewModel" />
     </data>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -43,19 +43,17 @@
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:context=".ui.leagues.detail.DetailLeagueActivity"
-            tools:showIn="@layout/activity_detail_league">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <TextView
+                android:id="@+id/tv_league_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/text_margin"
+                app:descriptionLeague="@{viewModel.leagueLiveData}"
                  />
 
         </androidx.core.widget.NestedScrollView>

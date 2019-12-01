@@ -1,12 +1,10 @@
 package id.shobrun.footballleague.ui.adapters
 
-import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.Resource
-import id.shobrun.footballleague.models.League
+import id.shobrun.footballleague.models.entity.League
 import id.shobrun.footballleague.views.adapters.RecyclerLeaguesAdapter
 
 @BindingAdapter("loadImage")
