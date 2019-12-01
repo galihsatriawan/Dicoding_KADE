@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     >
     <data>
+        <import type="android.view.View"/>
         <variable
             name="viewModel"
             type="id.shobrun.footballleague.views.leagues.DetailLeagueViewModel" />
@@ -17,10 +18,9 @@
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/app_bar_height"
+            android:layout_height="@dimen/app_bar_height_detail_league"
             android:fitsSystemWindows="true"
             android:theme="@style/AppTheme.AppBarOverlay"
-            android:background="@drawable/english_league_1"
             >
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -31,13 +31,19 @@
                 app:contentScrim="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:toolbarId="@+id/toolbar">
-
+                <ImageView
+                    android:id="@+id/banner_league"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    app:bannerLeague="@{viewModel.leagueLiveData}"
+                    />
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"
-                    app:popupTheme="@style/AppTheme.PopupOverlayDark"
+                    app:popupTheme="@style/AppTheme.PopupOverlay"
                     />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -47,14 +53,34 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE}"
+                    android:layout_centerInParent="true"
+                    />
 
-            <TextView
-                android:id="@+id/tv_league_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin"
-                app:descriptionLeague="@{viewModel.leagueLiveData}"
-                 />
+                <TextView
+                    android:id="@+id/tv_league_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    app:nameLeague="@{viewModel.leagueLiveData}"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    />
+                <TextView
+                    android:id="@+id/tv_league_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/text_margin"
+                    android:layout_below="@id/tv_league_name"
+                    app:descriptionLeague="@{viewModel.leagueLiveData}"
+                    />
+
+            </RelativeLayout>
 
         </androidx.core.widget.NestedScrollView>
 

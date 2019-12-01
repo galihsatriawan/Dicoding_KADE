@@ -3,7 +3,7 @@
     <string name="description">Description</string>
     <string name="detail_league">Detail League</string>
     <string name="no_leagues_image_content_description">No Leagues Found</string>
-
+    <string name="failed_load">Failed to load data</string>
     <!--  Data League   -->
     <integer-array name="league_id">
         <item>4328</item>

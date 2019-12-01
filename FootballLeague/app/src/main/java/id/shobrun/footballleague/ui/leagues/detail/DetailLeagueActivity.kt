@@ -9,6 +9,7 @@ import id.shobrun.footballleague.R
 import id.shobrun.footballleague.compose.ViewModelActivity
 import id.shobrun.footballleague.databinding.ActivityDetailLeagueBinding
 import id.shobrun.footballleague.extensions.observeLiveData
+import id.shobrun.footballleague.extensions.simpleToolbarWithHome
 import id.shobrun.footballleague.models.entity.League
 import id.shobrun.footballleague.models.Resource
 import id.shobrun.footballleague.views.leagues.DetailLeagueViewModel
@@ -27,7 +28,7 @@ class DetailLeagueActivity : ViewModelActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setSupportActionBar(toolbar)
+
         var league: League? = null
         if (intent.getParcelableExtra<League>(EXTRA_LEAGUE) != null) {
             league = intent.getParcelableExtra(EXTRA_LEAGUE)
@@ -35,14 +36,12 @@ class DetailLeagueActivity : ViewModelActivity() {
             vm.postLeagueId(league._id)
         }
 
-
-
         with(binding){
             lifecycleOwner = this@DetailLeagueActivity
             viewModel = vm
         }
 
-
+        simpleToolbarWithHome(toolbar,(league?.name ?: "Detail League" ))
 
     }
 

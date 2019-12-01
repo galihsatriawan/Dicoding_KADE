@@ -56,7 +56,6 @@ class RecyclerLeaguesAdapter(private var items: List<League>) :
         private val viewModel = LeagueViewModel()
 
         fun bind(league: League) {
-            league.name = "${league.description.subSequence(0,10)} [...]"
             binding.vm = viewModel
             viewModel.bind(league)
             binding.executePendingBindings()

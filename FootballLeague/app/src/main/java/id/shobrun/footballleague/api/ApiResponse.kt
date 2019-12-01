@@ -21,12 +21,16 @@ class ApiResponse<T> {
     }
 
     constructor(response: Response<T>) {
+        Timber.d("Api Response Header : ${response.headers()}")
+        Timber.d("Api Response Raw : ${response.raw()}")
+
         this.code = response.code()
 
         if (response.isSuccessful) {
             this.body = response.body()
             this.message = null
             this.isFailure = false
+            Timber.d("Api Response : ${this.body}")
         } else {
             var errorMessage: String? = null
             response.errorBody()?.let {

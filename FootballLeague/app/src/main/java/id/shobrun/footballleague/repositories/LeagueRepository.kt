@@ -12,6 +12,7 @@ import id.shobrun.footballleague.api.LeagueApi
 import id.shobrun.footballleague.mapper.LeagueDetailResponseMapper
 import id.shobrun.footballleague.models.Resource
 import id.shobrun.footballleague.models.entity.League
+import id.shobrun.footballleague.models.network.LeaguesResponse
 import id.shobrun.footballleague.room.LeagueDao
 import id.shobrun.footballleague.utils.AbsentLiveData
 import timber.log.Timber
@@ -25,15 +26,14 @@ class LeagueRepository @Inject constructor(private val webservice : LeagueApi,pr
         val TAG = LeagueRepository.javaClass.name
     }
     fun loadLeagueDetail(id : Int) : LiveData<Resource<League>> {
-        return object : NetworkBoundRepository< League ,League ,LeagueDetailResponseMapper>(){
-            override fun saveFetchData(items: League) {
-                leagueDao.updateLeague(items)
+        return object : NetworkBoundRepository< League,LeaguesResponse,LeagueDetailResponseMapper>(){
+            override fun saveFetchData(items: LeaguesResponse) {
+                leagueDao.insert(items.leagues[0])
 
             }
 
             override fun shouldFetch(data: League?): Boolean {
-                Timber.d("$TAG ${data?._id}")
-                return data==null || data?.description.isEmpty()
+                return data==null || data?.name.isEmpty()
             }
 
             override fun loadFromDb(): LiveData<League> {
@@ -42,7 +42,8 @@ class LeagueRepository @Inject constructor(private val webservice : LeagueApi,pr
                 return (league)
             }
 
-            override fun fetchService(): LiveData<ApiResponse<League>> {
+            override fun fetchService(): LiveData<ApiResponse<LeaguesResponse>> {
+                Timber.d("$TAG id Fetch : $id")
                 return webservice.getLeagueById(id)
             }
 
