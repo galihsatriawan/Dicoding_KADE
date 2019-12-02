@@ -5,12 +5,14 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.extensions.bindResource
 import id.shobrun.footballleague.extensions.visible
 import id.shobrun.footballleague.models.Resource
 import id.shobrun.footballleague.models.Status
+import id.shobrun.footballleague.models.entity.Event
 import id.shobrun.footballleague.models.entity.League
 import timber.log.Timber
 

@@ -32,8 +32,8 @@ class DetailLeagueActivity : ViewModelActivity() {
         var league: League? = null
         if (intent.getParcelableExtra<League>(EXTRA_LEAGUE) != null) {
             league = intent.getParcelableExtra(EXTRA_LEAGUE)
-            Timber.d("$TAG id: ${league?._id}")
-            vm.postLeagueId(league._id)
+            Timber.d("$TAG id: ${league?.idLeague}")
+            vm.postLeagueId(league.idLeague)
         }
 
         with(binding){

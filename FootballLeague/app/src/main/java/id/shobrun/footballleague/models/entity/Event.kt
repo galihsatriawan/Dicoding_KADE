@@ -8,13 +8,14 @@ import com.google.gson.annotations.SerializedName
 import id.shobrun.footballleague.room.AppDatabase.Companion.TABLE_EVENT
 import kotlinx.android.parcel.Parcelize
 
-@Entity(tableName = TABLE_EVENT)
 @Parcelize
+@Entity(tableName = TABLE_EVENT)
 data class Event(
-    @PrimaryKey @field:SerializedName("idEvent") val _id : Int,
+    @PrimaryKey val idEvent : Int,
     @field:SerializedName("strEvent") val eventName : String,
     @field:SerializedName("strSport") val sportCategory : String,
-    @Embedded val league: League? =null ,
+    val idLeague : Int,
+    @field:SerializedName("strLeague") val leagueName : String,
     @field:SerializedName("strHomeTeam") val homeTeam : String,
     @field:SerializedName("strAwayTeam") val awayTeam : String,
     @field:SerializedName("intHomeScore") val homeScore : Int,
@@ -28,5 +29,6 @@ data class Event(
     val dateEvent : String,
     @field:SerializedName("strTime") val timeEvent : String,
     val idHomeTeam : Int,
-    val idAwayTeam : Int
+    val idAwayTeam : Int,
+    val tags : String
 ):Parcelable

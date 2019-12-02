@@ -5,19 +5,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import dagger.android.support.DaggerFragment
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.compose.ViewModelFragment
 import id.shobrun.footballleague.databinding.FragmentFootballLeagueBinding
+
 import id.shobrun.footballleague.ui.leagues.detail.DetailLeagueActivity
 import id.shobrun.footballleague.views.adapters.RecyclerLeaguesAdapter
 import org.jetbrains.anko.*
 import org.jetbrains.anko.support.v4.intentFor
 import timber.log.Timber
-import javax.inject.Inject
+
 
 
 class FootballLeaguesFragment : ViewModelFragment(),AnkoLogger {
@@ -39,7 +36,7 @@ class FootballLeaguesFragment : ViewModelFragment(),AnkoLogger {
         leaguesAdapter.setItemListener { league ->
             val detail = intentFor<DetailLeagueActivity>(
                 DetailLeagueActivity.EXTRA_LEAGUE to league)
-            Timber.d("$TAG id = ${league._id}")
+            Timber.d("$TAG id = ${league.idLeague}")
             startActivity(detail)
         }
         binding.lifecycleOwner = this

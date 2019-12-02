@@ -33,7 +33,7 @@ class RecyclerLeaguesAdapter(private var items: List<League>) :
         val view = LeagueViewHolder(itemBinding)
         view.listen { pos->
             itemListener(this.items[pos])
-            Timber.d("$TAG id = ${this.items[pos]._id}")
+            Timber.d("$TAG id = ${this.items[pos].idLeague}")
         }
             return view
     }

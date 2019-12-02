@@ -6,5 +6,4 @@ class EventResponseMapper : NetworkResponseMapper<EventsResponse>{
     override fun onLastPage(response: EventsResponse): Boolean {
         return true
     }
-
 }

@@ -14,7 +14,7 @@ import kotlinx.android.parcel.Parcelize
 @Entity(tableName = TABLE_LEAGUE)
 data class League(
 
-    @PrimaryKey @field:SerializedName("idLeague") var _id:Int,
+    @PrimaryKey var idLeague:Int,
     @field:SerializedName("strLeague")var name:String,
     @field:SerializedName("strBanner") var bannerUrl : String,
     @field:SerializedName("strLogo") var logoUrl : String,

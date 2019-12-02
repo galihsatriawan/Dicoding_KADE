@@ -4,6 +4,9 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import id.shobrun.footballleague.extensions.bindResource
+import id.shobrun.footballleague.models.Resource
+import id.shobrun.footballleague.models.entity.Event
 import id.shobrun.footballleague.models.entity.League
 import id.shobrun.footballleague.views.adapters.RecyclerLeaguesAdapter
 
@@ -23,6 +26,18 @@ fun bindAdapter(view : RecyclerView, items : List<League>){
                 (view.adapter as RecyclerLeaguesAdapter).setItems(items)
             }
 
+        }
+    }
+}
+
+
+@BindingAdapter("eventItems")
+fun bindEvents(view : RecyclerView, resource: Resource<List<Event>>?){
+    when(view.adapter){
+        is RecyclerEventsAdapter ->{
+            view.bindResource(resource){
+                (view.adapter as RecyclerEventsAdapter).setItems(it?.data)
+            }
         }
     }
 
