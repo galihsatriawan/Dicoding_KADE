@@ -1,10 +1,8 @@
-package id.shobrun.footballleague.repositories
+package id.shobrun.footballleague.repository
 
 
 import android.app.Application
-import android.app.Person
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.api.ApiResponse
@@ -14,7 +12,6 @@ import id.shobrun.footballleague.models.Resource
 import id.shobrun.footballleague.models.entity.League
 import id.shobrun.footballleague.models.network.LeaguesResponse
 import id.shobrun.footballleague.room.LeagueDao
-import id.shobrun.footballleague.utils.AbsentLiveData
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton

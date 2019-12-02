@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.switchMap
 import id.shobrun.footballleague.models.Resource
 import id.shobrun.footballleague.models.entity.Event
-import id.shobrun.footballleague.repositories.EventRepository
+import id.shobrun.footballleague.repository.EventRepository
 import id.shobrun.footballleague.utils.AbsentLiveData
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package id.shobrun.footballleague.repositories
+package id.shobrun.footballleague.repository
 
 import androidx.lifecycle.LiveData
 import id.shobrun.footballleague.api.ApiResponse
@@ -9,7 +9,6 @@ import id.shobrun.footballleague.models.entity.Event
 import id.shobrun.footballleague.models.network.EventsResponse
 import id.shobrun.footballleague.room.AppDatabase
 import id.shobrun.footballleague.room.EventDao
-import org.jetbrains.anko.design.snackbar
 import timber.log.Timber
 import javax.inject.Inject
 

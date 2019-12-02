@@ -3,7 +3,7 @@ package id.shobrun.footballleague.views.leagues.fragments
 import android.util.Log
 import androidx.lifecycle.*
 import id.shobrun.footballleague.models.entity.League
-import id.shobrun.footballleague.repositories.LeagueRepository
+import id.shobrun.footballleague.repository.LeagueRepository
 import javax.inject.Inject
 
 class FootballLeaguesViewModel @Inject constructor(private val repository: LeagueRepository) : ViewModel() {

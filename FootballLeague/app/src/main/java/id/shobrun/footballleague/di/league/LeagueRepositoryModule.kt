@@ -4,7 +4,7 @@ import android.app.Application
 import dagger.Module
 import dagger.Provides
 import id.shobrun.footballleague.api.LeagueApi
-import id.shobrun.footballleague.repositories.LeagueRepository
+import id.shobrun.footballleague.repository.LeagueRepository
 import id.shobrun.footballleague.room.LeagueDao
 
 @Module
