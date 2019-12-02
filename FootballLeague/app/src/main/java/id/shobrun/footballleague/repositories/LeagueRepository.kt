@@ -72,6 +72,7 @@ class LeagueRepository @Inject constructor(private val webservice : LeagueApi,pr
                         id[i],
                         name[i],
                         "",
+                        "",
                         image.getResourceId(i, 0),
                         desc[i]
                     )

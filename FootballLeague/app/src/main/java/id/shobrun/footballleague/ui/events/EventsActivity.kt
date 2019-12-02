@@ -1,10 +1,7 @@
 package id.shobrun.footballleague.ui.events
 
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -12,31 +9,25 @@ import com.google.android.material.tabs.TabLayout
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.ui.adapters.SectionsPagerAdapter
 
+class EventsActivity : AppCompatActivity() {
 
-class EventsFragment : Fragment() {
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        val root = inflater.inflate(R.layout.fragment_event, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_events)
         val sectionsPagerAdapter =
             SectionsPagerAdapter(
-                requireContext(),
-                childFragmentManager
+                applicationContext,
+                supportFragmentManager
             )
-        val viewPager: ViewPager = root.findViewById(R.id.view_pager)
+        val viewPager: ViewPager = findViewById(R.id.view_pager)
         viewPager.adapter = sectionsPagerAdapter
-        val tabs: TabLayout = root.findViewById(R.id.tabs)
+        val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
-        val fab: FloatingActionButton = root.findViewById(R.id.fab)
+        val fab: FloatingActionButton = findViewById(R.id.fab)
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
-        return root
     }
 }

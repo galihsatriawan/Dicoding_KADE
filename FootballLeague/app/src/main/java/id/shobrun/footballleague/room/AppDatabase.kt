@@ -18,6 +18,9 @@ abstract class AppDatabase : RoomDatabase(){
         const val TABLE_LEAGUE = "league_table"
         const val ID_LEAGUE = "_id"
 
+        const val TABLE_EVENT = "event_table"
+        const val ID_EVENT = "_id"
+
         // For Singleton instantiation
         @Volatile
         private var instance: AppDatabase? = null

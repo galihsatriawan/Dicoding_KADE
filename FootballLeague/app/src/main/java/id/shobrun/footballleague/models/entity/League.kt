@@ -17,7 +17,8 @@ data class League(
     @PrimaryKey @field:SerializedName("idLeague") var _id:Int,
     @field:SerializedName("strLeague")var name:String,
     @field:SerializedName("strBanner") var bannerUrl : String,
+    @field:SerializedName("strLogo") var logoUrl : String,
     var banner:Int,
-    @field:SerializedName("strDescriptionEN")var description:String) : Parcelable, NetworkResponseModel{
+    @field:SerializedName("strDescriptionEN")var description:String) : Parcelable{
 
 }
