@@ -5,9 +5,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import id.shobrun.footballleague.R
-import id.shobrun.footballleague.ui.match.next.NextMatchFragment
-import id.shobrun.footballleague.ui.match.previous.PreviousMatchFragment
-import id.shobrun.footballleague.ui.match.ui.exampletab.PlaceholderFragment
+import id.shobrun.footballleague.ui.events.next.NextEventFragment
+import id.shobrun.footballleague.ui.events.previous.PreviousEventFragment
 
 private val TAB_TITLES = arrayOf(
     R.string.tab_text_1,
@@ -23,9 +22,9 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
 
     override fun getItem(position: Int): Fragment {
         if(position == 0 )
-            return PreviousMatchFragment.newInstance()
+            return PreviousEventFragment.newInstance()
         else
-            return NextMatchFragment.newInstance()
+            return NextEventFragment.newInstance()
     }
 
     override fun getPageTitle(position: Int): CharSequence? {

@@ -1,4 +1,4 @@
-package id.shobrun.footballleague.ui.match.next
+package id.shobrun.footballleague.ui.events.next
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -9,24 +9,24 @@ import android.view.ViewGroup
 
 import id.shobrun.footballleague.R
 
-class NextMatchFragment : Fragment() {
+class NextEventFragment : Fragment() {
 
     companion object {
-        fun newInstance() = NextMatchFragment()
+        fun newInstance() = NextEventFragment()
     }
 
-    private lateinit var viewModel: NextMatchViewModel
+    private lateinit var viewModel: NextEventViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.next_match_fragment, container, false)
+        return inflater.inflate(R.layout.next_event_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(NextMatchViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(NextEventViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

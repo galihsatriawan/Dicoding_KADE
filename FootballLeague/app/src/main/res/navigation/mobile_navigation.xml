@@ -13,8 +13,8 @@
 
     <fragment
         android:id="@+id/navigation_match"
-        android:name="id.shobrun.footballleague.ui.match.MatchFragment"
+        android:name="id.shobrun.footballleague.ui.events.EventsFragment"
         android:label="@string/title_match"
-        tools:layout="@layout/fragment_match" />
+        tools:layout="@layout/fragment_event" />
 
 </navigation>

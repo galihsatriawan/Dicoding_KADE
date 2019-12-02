@@ -1,4 +1,4 @@
-package id.shobrun.footballleague.ui.match.ui.exampletab
+package id.shobrun.footballleague.ui.events.ui.exampletab
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
