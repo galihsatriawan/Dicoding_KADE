@@ -12,8 +12,8 @@ import kotlinx.android.parcel.Parcelize
 @Entity(tableName = TABLE_EVENT)
 data class Event(
     @PrimaryKey val idEvent : Int,
-    @field:SerializedName("strEvent") val eventName : String,
-    @field:SerializedName("strSport") val sportCategory : String,
+    @field:SerializedName("strEvent") var eventName : String,
+    @field:SerializedName("strSport") var sportCategory : String,
     val idLeague : Int,
     @field:SerializedName("strLeague") val leagueName : String,
     @field:SerializedName("strHomeTeam") val homeTeam : String,
@@ -25,10 +25,10 @@ data class Event(
     @field:SerializedName("strHomeYellowCards") val homeYellowCards : String,
     @field:SerializedName("strAwayGoalDetails") val awayGoalDetails : String,
     @field:SerializedName("strAwayRedCards") val awayRedCards : String,
-    @field:SerializedName("strAwayYellowCards") val awayYellowCards : String,
-    val dateEvent : String,
+    @field:SerializedName("strAwayYellowCards") var awayYellowCards : String,
+    var dateEvent : String,
     @field:SerializedName("strTime") val timeEvent : String,
-    val idHomeTeam : Int,
-    val idAwayTeam : Int,
-    val tags : String
+    var idHomeTeam : Int,
+    var idAwayTeam : Int,
+    var tags : String
 ):Parcelable
