@@ -13,6 +13,34 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class EventRepository @Inject constructor(val webservice : EventApi, val eventDao : EventDao) : Repository{
+    fun getDetailEvent(idEvent : Int) : LiveData<Resource<Event>>{
+        return object : NetworkBoundRepository<Event, EventsResponse , EventResponseMapper>(){
+            override fun saveFetchData(items: EventsResponse) {
+                val item = items.events[0]
+                eventDao.insert(item)
+            }
+
+            override fun shouldFetch(data: Event?): Boolean {
+                return data == null || data?.leagueName.isEmpty()
+            }
+
+            override fun loadFromDb(): LiveData<Event> {
+                return eventDao.getEventById(idEvent)
+            }
+
+            override fun fetchService(): LiveData<ApiResponse<EventsResponse>> {
+                return webservice.getDetailEvents(idEvent)
+            }
+
+            override fun mapper(): EventResponseMapper {
+                return EventResponseMapper()
+            }
+
+            override fun onFetchFailed(message: String?) {
+                Timber.d("$TAG Fetch Detail Event Failed : $message")
+            }
+        }.asLiveData()
+    }
     fun getPreviousEvents(idLeague: Int) : LiveData<Resource<List<Event>>>{
         return object : NetworkBoundRepository<List<Event>,EventsResponse , EventResponseMapper>(){
             override fun saveFetchData(items: EventsResponse) {

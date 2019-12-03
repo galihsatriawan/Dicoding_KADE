@@ -7,6 +7,8 @@ import id.shobrun.footballleague.di.event.EventPersistenceModule
 import id.shobrun.footballleague.di.event.EventRepositoryModule
 import id.shobrun.footballleague.di.event.next.NextEventFragmentModule
 import id.shobrun.footballleague.di.event.next.NextEventViewModelModule
+import id.shobrun.footballleague.di.event.prev.PrevEventFragmentModule
+import id.shobrun.footballleague.di.event.prev.PrevEventViewModelModule
 import id.shobrun.footballleague.di.league.LeagueNetworkModule
 import id.shobrun.footballleague.di.league.LeaguePersistenceModule
 import id.shobrun.footballleague.di.league.LeagueRepositoryModule
@@ -14,6 +16,7 @@ import id.shobrun.footballleague.di.league.list.LeagueFragmentModule
 import id.shobrun.footballleague.di.league.list.LeagueFragmentViewModelModule
 import id.shobrun.footballleague.di.league.list.LeagueScope
 import id.shobrun.footballleague.ui.events.next.NextEventFragment
+import id.shobrun.footballleague.ui.events.previous.PreviousEventFragment
 import id.shobrun.footballleague.views.leagues.fragments.FootballLeaguesFragment
 
 @Module
@@ -36,4 +39,13 @@ abstract class FragmentBuildersModule {
         EventPersistenceModule::class
     ])
     abstract fun injectNextEventFragment() : NextEventFragment
+
+    @ContributesAndroidInjector(modules = [
+        PrevEventFragmentModule::class,
+        PrevEventViewModelModule::class,
+        EventRepositoryModule::class,
+        EventNetworkModule::class,
+        EventPersistenceModule::class
+    ])
+    abstract fun injectPrevEventFragment() : PreviousEventFragment
 }

@@ -1,4 +1,4 @@
-package id.shobrun.footballleague.ui.adapters
+package id.shobrun.footballleague.binding
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
@@ -8,6 +8,7 @@ import id.shobrun.footballleague.extensions.bindResource
 import id.shobrun.footballleague.models.Resource
 import id.shobrun.footballleague.models.entity.Event
 import id.shobrun.footballleague.models.entity.League
+import id.shobrun.footballleague.ui.adapters.RecyclerEventsAdapter
 import id.shobrun.footballleague.views.adapters.RecyclerLeaguesAdapter
 
 @BindingAdapter("loadImage")

@@ -56,3 +56,16 @@ fun bindDescription(view: TextView, resource: Resource<League>?) {
         view.text = it.data?.description
     }
 }
+
+@BindingAdapter("nameEvent")
+fun bindNameEvent(view: TextView, resource: Resource<Event>?){
+    view.bindResource(resource){
+        view.text = it.data?.eventName
+    }
+}
+@BindingAdapter("nameLeagueInEvent")
+fun bindNameLeague(view: TextView, resource: Resource<Event>?){
+    view.bindResource(resource){
+        view.text = it.data?.leagueName
+    }
+}
