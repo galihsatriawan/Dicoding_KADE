@@ -12,7 +12,7 @@ class LeagueNetworkModule {
      */
 
     @Provides
-    fun provideInstanceRetrofit(retrofit: Retrofit) : LeagueApi {
+    fun provideLeagueApi(retrofit: Retrofit) : LeagueApi {
         return retrofit.create(LeagueApi::class.java)
     }
 }

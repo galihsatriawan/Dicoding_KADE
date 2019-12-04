@@ -7,13 +7,15 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import id.shobrun.footballleague.models.entity.Event
 import id.shobrun.footballleague.models.entity.League
+import id.shobrun.footballleague.models.entity.Team
 import id.shobrun.footballleague.utils.DateConverter
 
-@Database(entities = [League::class, Event::class],version = 1, exportSchema = false)
+@Database(entities = [League::class, Event::class, Team::class],version = 3, exportSchema = false)
 @TypeConverters(DateConverter::class)
 abstract class AppDatabase : RoomDatabase(){
     abstract fun leagueDao() : LeagueDao
     abstract fun eventDao() : EventDao
+    abstract fun teamDao() : TeamDao
     companion object{
         const val DB_FOOTBALL = "football-db"
 
@@ -24,6 +26,9 @@ abstract class AppDatabase : RoomDatabase(){
         const val TAG_NEXT_MATCH = "[next_macth]"
         const val TAG_PAST_MATCH = "[past_macth]"
         const val ID_EVENT = "idEvent"
+
+        const val TABLE_TEAM = "team_table"
+        const val ID_TEAM = "idTeam"
 
         // For Singleton instantiation
         @Volatile

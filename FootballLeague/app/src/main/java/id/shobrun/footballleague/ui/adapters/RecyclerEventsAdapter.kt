@@ -24,11 +24,11 @@ class RecyclerEventsAdapter(private var items: List<Event>) :
     }
 
     fun setItems(items: List<Event>?) {
+        Timber.d("$TAG set Item Recycler Event")
         if(items!=null){
             this.items = items
             notifyDataSetChanged()
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : EventViewHolder {
@@ -69,15 +69,29 @@ class RecyclerEventsAdapter(private var items: List<Event>) :
     }
 
     class EventViewModel: ViewModel(){
-        var _img_league  : MutableLiveData<Int> = MutableLiveData()
-        var img_league : LiveData<Int> = _img_league
 
-        var _tv_league_name : MutableLiveData<String> = MutableLiveData()
-        var tv_league_name : LiveData<String> = _tv_league_name
+        var _tv_home_name : MutableLiveData<String> = MutableLiveData()
+        var tv_home_name : LiveData<String> = _tv_home_name
+
+        var _tv_away_name : MutableLiveData<String> = MutableLiveData()
+        var tv_away_name : LiveData<String> = _tv_away_name
+
+        var _tv_home_score : MutableLiveData<String> = MutableLiveData()
+        var tv_home_score : LiveData<String> = _tv_home_score
+
+        var _tv_away_score : MutableLiveData<String> = MutableLiveData()
+        var tv_away_score : LiveData<String> = _tv_away_score
+
+        var _tv_event_date : MutableLiveData<String> = MutableLiveData()
+        var tv_event_date : LiveData<String> = _tv_event_date
 
         fun bind(event : Event){
-            _img_league.value = event.idAwayTeam
-            _tv_league_name.value = event.homeTeam
+            _tv_home_name.value = event.homeTeam
+            _tv_away_name.value = event.awayTeam
+            _tv_home_score.value = "${event.homeScore?:"?"}"
+            _tv_away_score.value = "${event.awayScore?:"?"}"
+            _tv_event_date.value = "Match Date : ${event.dateEvent}"
+
         }
     }
 }

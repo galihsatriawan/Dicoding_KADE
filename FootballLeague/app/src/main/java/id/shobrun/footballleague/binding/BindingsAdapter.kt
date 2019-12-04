@@ -41,6 +41,6 @@ fun bindEvents(view : RecyclerView, resource: Resource<List<Event>>?){
             }
         }
     }
-
 }
+
 

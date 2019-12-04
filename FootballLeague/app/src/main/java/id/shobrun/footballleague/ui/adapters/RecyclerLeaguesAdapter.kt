@@ -1,41 +1,68 @@
 package id.shobrun.footballleague.views.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
 import id.shobrun.footballleague.databinding.ItemLeagueBinding
+import id.shobrun.footballleague.extensions.gone
+import id.shobrun.footballleague.extensions.visible
 import id.shobrun.footballleague.models.entity.League
-import org.jetbrains.anko.*
+import kotlinx.android.synthetic.main.item_league.view.*
+import org.jetbrains.anko.AnkoLogger
 import timber.log.Timber
+
 
 class RecyclerLeaguesAdapter(private var items: List<League>) :
     RecyclerView.Adapter<RecyclerLeaguesAdapter.LeagueViewHolder>(),AnkoLogger{
     companion object{
         val TAG = RecyclerLeaguesAdapter.javaClass.name
     }
-    private lateinit var itemListener: (League) -> Unit
-    fun setItemListener(listener: (League) -> Unit) {
-        this.itemListener = listener
+    private lateinit var detailListener: (League) -> Unit
+    private lateinit var matchListener : (League) -> Unit
+    fun setDetailListener(listener: (League) -> Unit) {
+        this.detailListener = listener
+    }
+    fun setMatchListener(listener: (League) -> Unit){
+        this.matchListener = listener
     }
 
     fun setItems(items: List<League>) {
         this.items = items
         notifyDataSetChanged()
     }
-
+    fun expandableView(v : View){
+        if(v.isVisible)
+            v.gone()
+        else v.visible()
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : LeagueViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val itemBinding = ItemLeagueBinding.inflate(layoutInflater,parent,false)
 
+
         val view = LeagueViewHolder(itemBinding)
-        view.listen { pos->
-            itemListener(this.items[pos])
-            Timber.d("$TAG id = ${this.items[pos].idLeague}")
+
+        with(view.itemView){
+            this.setOnClickListener {
+                Timber.d("$TAG Click item")
+                expandableView(this.container_btn_league)
+            }
+            btn_detail_league.setOnClickListener{
+                Timber.d("$TAG Click Detail")
+                detailListener(items[view.adapterPosition])
+            }
+            btn_view_events.setOnClickListener{
+                Timber.d("$TAG Click Event")
+                matchListener(items[view.adapterPosition])
+            }
         }
-            return view
+
+        return view
     }
 
 
@@ -51,7 +78,7 @@ class RecyclerLeaguesAdapter(private var items: List<League>) :
         }
         return this
     }
-    class LeagueViewHolder(private val binding: ItemLeagueBinding   ) :
+    class LeagueViewHolder(private val binding: ItemLeagueBinding ) :
         RecyclerView.ViewHolder(binding.root),AnkoLogger  {
         private val viewModel = LeagueViewModel()
 
@@ -75,4 +102,5 @@ class RecyclerLeaguesAdapter(private var items: List<League>) :
             _tv_league_name.value = league.name
         }
     }
+
 }

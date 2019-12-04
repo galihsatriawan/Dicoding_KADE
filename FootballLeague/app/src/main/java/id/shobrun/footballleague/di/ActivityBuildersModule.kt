@@ -13,6 +13,9 @@ import id.shobrun.footballleague.di.league.LeagueRepositoryModule
 import id.shobrun.footballleague.di.league.detail.DetailLeagueModule
 import id.shobrun.footballleague.di.league.detail.DetailLeagueScope
 import id.shobrun.footballleague.di.league.detail.DetailLeagueViewModelModule
+import id.shobrun.footballleague.di.team.TeamNetworkModule
+import id.shobrun.footballleague.di.team.TeamPersistenceModule
+import id.shobrun.footballleague.di.team.TeamRepositoryModule
 import id.shobrun.footballleague.ui.events.detail.DetailEventActivity
 import id.shobrun.footballleague.ui.leagues.detail.DetailLeagueActivity
 
@@ -34,7 +37,10 @@ abstract class ActivityBuildersModule {
         DetailEventViewModelModule::class,
         EventRepositoryModule::class,
         EventNetworkModule::class,
-        EventPersistenceModule::class
+        EventPersistenceModule::class,
+        TeamNetworkModule::class,
+        TeamPersistenceModule::class,
+        TeamRepositoryModule::class
     ])
     abstract fun detailEventActivity() : DetailEventActivity
 }

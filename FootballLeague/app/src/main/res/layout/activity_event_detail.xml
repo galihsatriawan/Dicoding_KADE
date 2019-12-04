@@ -32,13 +32,30 @@
                 app:contentScrim="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:toolbarId="@+id/toolbar">
-                <ImageView
-                    android:id="@+id/banner_league"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/english_league_1"
-                    />
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_home_team"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        />
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_fifa"
+                        />
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_away_team"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        />
+                </LinearLayout>
+
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
@@ -57,31 +74,214 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/tv_event_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    app:eventName="@{vm.eventLiveData}"
+                    tools:text="@string/title_match"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    />
+                <LinearLayout
+                    android:id="@+id/container_board_event"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_event_name"
+                    android:padding="@dimen/activity_horizontal_margin_8dp"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:orientation="horizontal">
+                    <TableLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        >
+                        <TableRow>
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_weight="1"
+                                >
+                                <ImageView
+                                    android:id="@+id/img_team_home"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    tools:src="@drawable/ic_home_team"
+                                    android:layout_gravity="center"
+                                    app:homeBadge = "@{vm.homeTeamLiveData}"
+                                    />
+                                <TextView
+                                    android:id="@+id/tv_team_name_home"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    tools:text = "@string/title_match"
+                                    app:homeName="@{vm.eventLiveData}"
+                                    />
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                >
+                                <TextView
+                                    android:id="@+id/tv_score_home"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="@dimen/activity_horizontal_margin_8dp"
+                                    style="@style/TextAppearance.AppCompat.Title"
+                                    app:homeScore="@{vm.eventLiveData}"
+                                    tools:text="1"
+                                    />
+                                <ImageView
+                                    android:id="@+id/img_trophy"
+                                    android:layout_width="30dp"
+                                    android:layout_height="50dp"
+                                    android:src="@drawable/ic_trophy"
+                                    android:layout_gravity="center"
+                                    />
+                                <TextView
+                                    android:id="@+id/tv_score_away"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/activity_horizontal_margin_8dp"
+                                    app:awayScore="@{vm.eventLiveData}"
+                                    style="@style/TextAppearance.AppCompat.Title"
+                                    tools:text="1"
+                                    />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_weight="1"
+                                >
+                                <ImageView
+                                    android:id="@+id/img_team_away"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    tools:src="@drawable/ic_away_team"
+                                    android:layout_gravity="center"
+                                    app:awayBadge = "@{vm.awayTeamLiveData}"
+                                    />
+                                <TextView
+                                    android:id="@+id/tv_team_name_away"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    tools:text = "@string/title_match"
+                                    app:awayName="@{vm.eventLiveData}"
+                                    />
+                            </LinearLayout>
+                        </TableRow>
+                        <TableRow
+                            android:weightSum="1"
+                            >
+                            <TextView
+                                android:id="@+id/tv_event_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_span="3"
+                                android:layout_weight="1"
+                                android:gravity="center_horizontal"
+                                android:textStyle="italic"
+                                style="@style/TextAppearance.AppCompat.Caption"
+                                app:eventDate="@{vm.eventLiveData}"
+                                tools:text = "Match time : 12-12-2019"
+                                />
+                        </TableRow>
+                    </TableLayout>
+                </LinearLayout>
                 <ProgressBar
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="@{vm.loading ? View.VISIBLE : View.GONE}"
                     android:layout_centerInParent="true"
                     />
-
                 <TextView
-                    android:id="@+id/tv_league_name"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/title_summary"
+                    android:layout_below="@id/container_board_event"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    app:nameEvent="@{vm.eventLiveData}"
+                    android:gravity="center"
                     style="@style/TextAppearance.AppCompat.Title"
+                    android:text="@string/title_summary"
                     />
-                <TextView
-                    android:id="@+id/tv_league_desc"
-                    android:layout_width="wrap_content"
+                <TableLayout
+                    android:id="@+id/table_summary"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/text_margin"
-                    android:layout_below="@id/tv_league_name"
-                    app:nameLeagueInEvent="@{vm.eventLiveData}"
-                    />
+                    android:layout_below="@id/title_summary"
+                    android:layout_margin="@dimen/activity_horizontal_margin_8dp"
+                    >
+                    <TableRow
+                        android:weightSum="@dimen/table_weight_board_event_sum"
+                        android:layout_marginBottom="@dimen/activity_vertical_margin"
+                        >
+                        <TextView
+                            android:gravity="center"
+                            android:layout_weight="@dimen/table_weight_1"
+                            tools:text="@string/title_match"
+                            app:homeGoals="@{vm.eventLiveData}"
+                            />
+                        <TextView
+                            android:gravity="center"
+                            android:layout_weight="@dimen/table_weight_1"
+                            android:text="@string/title_goal_details"
+                            />
+                        <TextView
+                            android:gravity="center"
+                            android:layout_weight="@dimen/table_weight_1"
+                            tools:text="@string/title_match"
+                            app:awayGoals="@{vm.eventLiveData}"
+                            />
+                    </TableRow>
+                    <TableRow
+                        android:weightSum="@dimen/table_weight_board_event_sum"
+                        android:layout_marginBottom="@dimen/activity_vertical_margin"
+                        >
+                        <TextView
+                            android:gravity="center"
+                            android:layout_weight="@dimen/table_weight_1"
+                            tools:text="@string/title_match"
+                            app:homeYellowCards="@{vm.eventLiveData}"
+                            />
+                        <TextView
+                            android:gravity="center"
+                            android:layout_weight="@dimen/table_weight_1"
+                            android:text="@string/title_yellow_cards"
+                            />
+                        <TextView
+                            android:gravity="center"
+                            android:layout_weight="@dimen/table_weight_1"
+                            tools:text="@string/title_match"
+                            app:awayYellowCards="@{vm.eventLiveData}"
+                            />
+                    </TableRow>
+                    <TableRow
+                        android:weightSum="@dimen/table_weight_board_event_sum"
+                        android:layout_marginBottom="@dimen/activity_vertical_margin"
+                        >
+                        <TextView
+                            android:gravity="center"
+                            android:layout_weight="@dimen/table_weight_1"
+                            tools:text="@string/title_match"
+                            app:homeRedCards="@{vm.eventLiveData}"
+                            />
+                        <TextView
+                            android:gravity="center"
+                            android:layout_weight="@dimen/table_weight_1"
+                            android:text="@string/title_red_cards"
+                            />
+                        <TextView
+                            android:gravity="center"
+                            android:layout_weight="@dimen/table_weight_1"
+                            tools:text="@string/title_match"
+                            app:awayRedCards="@{vm.eventLiveData}"
+                            />
+                    </TableRow>
 
+                </TableLayout>
             </RelativeLayout>
+
 
         </androidx.core.widget.NestedScrollView>
 
