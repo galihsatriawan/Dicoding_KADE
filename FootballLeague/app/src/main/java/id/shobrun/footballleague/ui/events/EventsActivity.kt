@@ -16,6 +16,7 @@ import id.shobrun.footballleague.R
 import id.shobrun.footballleague.extensions.simpleToolbarWithHome
 import id.shobrun.footballleague.models.entity.League
 import id.shobrun.footballleague.ui.adapters.SectionsPagerAdapter
+import id.shobrun.footballleague.ui.events.favorite.FavoriteEventsActivity
 import id.shobrun.footballleague.ui.events.search.SearchEventsActivity
 import kotlinx.android.synthetic.main.activity_events.*
 import org.jetbrains.anko.design.snackbar
@@ -26,10 +27,11 @@ class EventsActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_LEAGUE = "extra_league"
     }
+    var league : League? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_events)
-        var league : League? = null
+
         if(intent.getParcelableExtra<League>(EXTRA_LEAGUE) != null){
             league = intent.getParcelableExtra<League>(EXTRA_LEAGUE)
         }
@@ -66,6 +68,12 @@ class EventsActivity : AppCompatActivity() {
             R.id.search ->{
                 val intSearch = intentFor<SearchEventsActivity>()
                 startActivity(intSearch)
+            }
+            R.id.favorite ->{
+                val intFavorite = intentFor<FavoriteEventsActivity>(
+                    FavoriteEventsActivity.EXTRA_LEAGUE to league
+                )
+                startActivity(intFavorite)
             }
         }
         return super.onOptionsItemSelected(item)

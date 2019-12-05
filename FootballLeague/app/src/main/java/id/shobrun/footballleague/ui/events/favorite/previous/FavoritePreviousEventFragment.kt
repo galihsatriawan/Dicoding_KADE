@@ -1,4 +1,4 @@
-package id.shobrun.footballleague.ui.events.favorite.next
+package id.shobrun.footballleague.ui.events.favorite.previous
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,36 +8,34 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.compose.ViewModelFragment
-import id.shobrun.footballleague.databinding.FavoriteNextEventFragmentBinding
-import id.shobrun.footballleague.databinding.NextEventFragmentBinding
+import id.shobrun.footballleague.databinding.FavoritePreviousEventFragmentBinding
+import id.shobrun.footballleague.databinding.PreviousEventFragmentBinding
 import id.shobrun.footballleague.models.entity.League
 import id.shobrun.footballleague.ui.adapters.RecyclerEventsAdapter
 import id.shobrun.footballleague.ui.events.detail.DetailEventActivity
-
+import id.shobrun.footballleague.ui.events.previous.PreviousEventViewModel
 import org.jetbrains.anko.support.v4.intentFor
 
-class FavoriteNextEventFragment : ViewModelFragment() {
-    lateinit var eventRecyclerAdapter: RecyclerEventsAdapter
+class FavoritePreviousEventFragment : ViewModelFragment() {
+    lateinit var eventsAdapter: RecyclerEventsAdapter
     companion object {
         const val EXTRA_EVENT = "extra_event"
-        fun newInstance() = FavoriteNextEventFragment()
+        fun newInstance() = FavoritePreviousEventFragment()
     }
 
-    private val viewModel by viewModel<FavoriteNextEventViewModel>()
-    private lateinit var binding : FavoriteNextEventFragmentBinding
+    private  val viewModel by viewModel<FavoritePreviousEventViewModel>()
+    private lateinit var binding : FavoritePreviousEventFragmentBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = binding(inflater, R.layout.favorite_next_event_fragment,container)
-
+        binding = binding(inflater, R.layout.favorite_previous_event_fragment,container)
         with(binding){
-            lifecycleOwner = this@FavoriteNextEventFragment
+            lifecycleOwner = this@FavoritePreviousEventFragment
             vm = viewModel
         }
-
-        eventRecyclerAdapter = RecyclerEventsAdapter(ArrayList())
-        eventRecyclerAdapter.setItemListener {event ->
+        eventsAdapter = RecyclerEventsAdapter(ArrayList())
+        eventsAdapter.setItemListener { event ->
             val detail = intentFor<DetailEventActivity>(
                 DetailEventActivity.EXTRA_EVENT to event
             )
@@ -45,9 +43,8 @@ class FavoriteNextEventFragment : ViewModelFragment() {
         }
         var league : League? = null
         if(requireArguments().getParcelable<League>(EXTRA_EVENT) != null){
-            league = requireArguments().getParcelable<League>(EXTRA_EVENT)
+            league = requireArguments().getParcelable(EXTRA_EVENT)
         }
-
 
         viewModel.postLeagueId(league?.idLeague?:-1)
         return binding.root
@@ -56,8 +53,7 @@ class FavoriteNextEventFragment : ViewModelFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val dividerItemDecoration = DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
-        binding.recyclerNextEvent.addItemDecoration(dividerItemDecoration)
-        binding.recyclerNextEvent.adapter = eventRecyclerAdapter
+        binding.rvPreviousEvent.addItemDecoration(dividerItemDecoration)
+        binding.rvPreviousEvent.adapter = eventsAdapter
     }
-
 }
