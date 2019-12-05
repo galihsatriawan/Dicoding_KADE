@@ -1,6 +1,7 @@
 package id.shobrun.footballleague.api
 
 import androidx.lifecycle.LiveData
+import id.shobrun.footballleague.models.network.EventSearchResponse
 import id.shobrun.footballleague.models.network.EventsResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -16,5 +17,5 @@ interface EventApi {
     fun getDetailEvents(@Query("id") idEvent : Int) : LiveData<ApiResponse<EventsResponse>>
 
     @GET("searchevents.php")
-    fun getSearchEvents(@Query("e") query:String) : LiveData<ApiResponse<EventsResponse>>
+    fun getSearchEvents(@Query("e") query:String) : LiveData<ApiResponse<EventSearchResponse>>
 }

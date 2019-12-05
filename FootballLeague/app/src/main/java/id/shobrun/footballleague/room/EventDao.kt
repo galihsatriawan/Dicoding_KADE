@@ -17,6 +17,9 @@ interface EventDao {
     @Query("SELECT * FROM $TABLE_EVENT WHERE tags = '$TAG_PAST_MATCH' AND $ID_LEAGUE = :idLeague")
     fun getPastEvents(idLeague: Int) : LiveData<List<Event>>
 
+    @Query("SELECT * FROM $TABLE_EVENT WHERE tags = :qry ")
+    fun getSearchEvent(qry : String) : LiveData<List<Event>>
+
     @Query("SELECT * FROM $TABLE_EVENT WHERE $ID_EVENT = :idEvent")
     fun getEventById(idEvent : Int) : LiveData<Event>
 

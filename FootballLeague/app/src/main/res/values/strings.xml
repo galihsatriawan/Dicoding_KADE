@@ -197,13 +197,19 @@ Sky Sports currently show live League One matches with highlights shown on BBC O
     <string name="title_match">Match</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_match">MatchActivity</string>
-    <string name="tab_text_1">Previous Match</string>
-    <string name="tab_text_2">Next Match</string>
+    <string name="tab_previous">Previous Match</string>
+    <string name="tab_next">Next Match</string>
     <string name="title_activity_matches">MatchesActivity</string>
     <string name="events">MATCH</string>
     <string name="title_goal_details">Goals</string>
     <string name="title_summary">Summary</string>
     <string name="title_yellow_cards">Yellow Cards</string>
     <string name="title_red_cards">Red Cards</string>
+    <string name="search">Search</string>
+    <string name="search_hint">Search</string>
+    <string name="title_activity_favorite_events">FavoriteEventsActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+
 
 </resources>

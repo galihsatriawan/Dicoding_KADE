@@ -18,7 +18,7 @@
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/app_bar_height_detail_league"
+            android:layout_height="@dimen/app_bar_height_detail_event"
             android:fitsSystemWindows="true"
             android:theme="@style/AppTheme.AppBarOverlay"
             android:background="@android:color/transparent"
@@ -97,6 +97,7 @@
                         >
                         <TableRow>
                             <LinearLayout
+                                android:layout_width="0dp"
                                 android:orientation="vertical"
                                 android:layout_weight="1"
                                 >
@@ -121,6 +122,7 @@
                             <LinearLayout
                                 android:orientation="horizontal"
                                 android:layout_weight="1"
+                                android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:gravity="center"
                                 >
@@ -153,6 +155,7 @@
                             <LinearLayout
                                 android:orientation="vertical"
                                 android:layout_weight="1"
+                                android:layout_width="0dp"
                                 >
                                 <ImageView
                                     android:id="@+id/img_team_away"
@@ -213,23 +216,28 @@
                     android:layout_margin="@dimen/activity_horizontal_margin_8dp"
                     >
                     <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:weightSum="@dimen/table_weight_board_event_sum"
                         android:layout_marginBottom="@dimen/activity_vertical_margin"
                         >
                         <TextView
                             android:gravity="center"
+                            android:width="0dp"
                             android:layout_weight="@dimen/table_weight_1"
-                            tools:text="@string/title_match"
+                            tools:text = "@string/title_match"
                             app:homeGoals="@{vm.eventLiveData}"
                             />
                         <TextView
                             android:gravity="center"
+                            android:width="0dp"
                             android:layout_weight="@dimen/table_weight_1"
                             android:text="@string/title_goal_details"
                             />
                         <TextView
                             android:gravity="center"
                             android:layout_weight="@dimen/table_weight_1"
+                            android:width="0dp"
                             tools:text="@string/title_match"
                             app:awayGoals="@{vm.eventLiveData}"
                             />
@@ -241,17 +249,20 @@
                         <TextView
                             android:gravity="center"
                             android:layout_weight="@dimen/table_weight_1"
+                            android:width="0dp"
                             tools:text="@string/title_match"
                             app:homeYellowCards="@{vm.eventLiveData}"
                             />
                         <TextView
                             android:gravity="center"
                             android:layout_weight="@dimen/table_weight_1"
+                            android:width="0dp"
                             android:text="@string/title_yellow_cards"
                             />
                         <TextView
                             android:gravity="center"
                             android:layout_weight="@dimen/table_weight_1"
+                            android:width="0dp"
                             tools:text="@string/title_match"
                             app:awayYellowCards="@{vm.eventLiveData}"
                             />
@@ -263,17 +274,20 @@
                         <TextView
                             android:gravity="center"
                             android:layout_weight="@dimen/table_weight_1"
+                            android:width="0dp"
                             tools:text="@string/title_match"
                             app:homeRedCards="@{vm.eventLiveData}"
                             />
                         <TextView
                             android:gravity="center"
                             android:layout_weight="@dimen/table_weight_1"
+                            android:width="0dp"
                             android:text="@string/title_red_cards"
                             />
                         <TextView
                             android:gravity="center"
                             android:layout_weight="@dimen/table_weight_1"
+                            android:width="0dp"
                             tools:text="@string/title_match"
                             app:awayRedCards="@{vm.eventLiveData}"
                             />

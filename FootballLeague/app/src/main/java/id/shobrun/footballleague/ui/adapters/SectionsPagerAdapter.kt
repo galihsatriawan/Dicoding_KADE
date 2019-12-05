@@ -11,8 +11,8 @@ import id.shobrun.footballleague.ui.events.next.NextEventFragment
 import id.shobrun.footballleague.ui.events.previous.PreviousEventFragment
 
 private val TAB_TITLES = arrayOf(
-    R.string.tab_text_1,
-    R.string.tab_text_2
+    R.string.tab_previous,
+    R.string.tab_next
 )
 
 /**

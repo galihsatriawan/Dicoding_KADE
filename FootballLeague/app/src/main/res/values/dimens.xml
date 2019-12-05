@@ -6,6 +6,7 @@
     <dimen name="adapter_vertical_margin">8dp</dimen>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="app_bar_height_detail_league">120dp</dimen>
+    <dimen name="app_bar_height_detail_event">180dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>

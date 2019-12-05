@@ -1,14 +1,26 @@
 package id.shobrun.footballleague.ui.events
 
+import android.app.SearchManager
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import androidx.appcompat.widget.SearchView
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import id.shobrun.footballleague.R
+import id.shobrun.footballleague.extensions.simpleToolbarWithHome
 import id.shobrun.footballleague.models.entity.League
 import id.shobrun.footballleague.ui.adapters.SectionsPagerAdapter
+import id.shobrun.footballleague.ui.events.search.SearchEventsActivity
+import kotlinx.android.synthetic.main.activity_events.*
+import org.jetbrains.anko.design.snackbar
+import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.toast
 
 class EventsActivity : AppCompatActivity() {
     companion object {
@@ -32,12 +44,31 @@ class EventsActivity : AppCompatActivity() {
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
-        val fab: FloatingActionButton = findViewById(R.id.fab)
+        simpleToolbarWithHome(toolbar,"${league?.name ?: "Match"}")
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
+    }
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        return super.onPrepareOptionsMenu(menu)
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        val inflater = menuInflater
+        inflater.inflate(R.menu.options_menu,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.search ->{
+                val intSearch = intentFor<SearchEventsActivity>()
+                startActivity(intSearch)
+            }
         }
+        return super.onOptionsItemSelected(item)
     }
 
 }

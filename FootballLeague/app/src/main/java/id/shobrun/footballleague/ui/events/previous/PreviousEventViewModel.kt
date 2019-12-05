@@ -12,12 +12,16 @@ import javax.inject.Inject
 
 class PreviousEventViewModel @Inject constructor(repository: EventRepository): ViewModel() {
     private val leagueIdLiveData : MutableLiveData<Int> = MutableLiveData()
-    val previousEventLiveData: LiveData<Resource<List<Event>>>
-
+    var previousEventLiveData: LiveData<Resource<List<Event>>>
+    private val eventFilter : MutableLiveData<String> = MutableLiveData()
     init {
         previousEventLiveData = leagueIdLiveData.switchMap {
             leagueIdLiveData.value?.let { repository.getPreviousEvents(it)}
                 ?: AbsentLiveData.create()
+        }
+        eventFilter.switchMap {
+            previousEventLiveData = it?.let { repository.getSearchEvent(it) }?: AbsentLiveData.create()
+            previousEventLiveData
         }
     }
 

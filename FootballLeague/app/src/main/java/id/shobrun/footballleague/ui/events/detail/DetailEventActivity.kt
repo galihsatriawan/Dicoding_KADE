@@ -1,6 +1,7 @@
 package id.shobrun.footballleague.ui.events.detail
 
 import android.os.Bundle
+import android.view.Menu
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.compose.ViewModelActivity
 import id.shobrun.footballleague.databinding.ActivityEventDetailBinding
@@ -34,4 +35,11 @@ class DetailEventActivity : ViewModelActivity() {
         return super.onSupportNavigateUp()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+
+
+        return super.onCreateOptionsMenu(menu)
+
+    }
 }

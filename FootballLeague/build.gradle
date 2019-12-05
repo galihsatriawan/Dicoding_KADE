@@ -14,7 +14,6 @@ buildscript {
         okhttp = '3.10.0'
         androidActivity = '1.1.0-beta01'
         androidFragment = '1.2.0-rc01'
-        whatIfVersion = '1.0.4'
     }
     repositories {
         google()

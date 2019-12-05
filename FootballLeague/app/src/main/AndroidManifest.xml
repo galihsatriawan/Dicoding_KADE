@@ -12,9 +12,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.events.detail.DetailEventActivity"
+        <activity
+            android:name=".ui.events.favorite.FavoriteEventsActivity"
+            android:label="@string/title_activity_favorite_events"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".ui.events.EventsActivity" />
+        <activity
+            android:name=".ui.events.favorite.FavoriteEventActivity"
+            android:label="@string/title_activity_favorite_event" />
+        <activity
+            android:name=".ui.events.search.SearchEventsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.events.detail.DetailEventActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.events.EventsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.MainActivity"
             android:label="@string/app_name"

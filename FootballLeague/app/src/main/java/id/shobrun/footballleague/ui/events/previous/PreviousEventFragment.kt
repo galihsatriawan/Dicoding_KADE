@@ -1,19 +1,23 @@
 package id.shobrun.footballleague.ui.events.previous
 
+import android.app.SearchManager
+import android.content.Context
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.view.*
+import android.widget.SearchView
+import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.compose.ViewModelFragment
 import id.shobrun.footballleague.databinding.PreviousEventFragmentBinding
+import id.shobrun.footballleague.models.entity.Event
 import id.shobrun.footballleague.models.entity.League
 import id.shobrun.footballleague.ui.adapters.RecyclerEventsAdapter
+import id.shobrun.footballleague.ui.events.EventsActivity
 import id.shobrun.footballleague.ui.events.detail.DetailEventActivity
 import id.shobrun.footballleague.ui.leagues.detail.DetailLeagueActivity
 import org.jetbrains.anko.support.v4.intentFor
@@ -58,5 +62,4 @@ class PreviousEventFragment : ViewModelFragment() {
         binding.rvPreviousEvent.addItemDecoration(dividerItemDecoration)
         binding.rvPreviousEvent.adapter = eventsAdapter
     }
-
 }
