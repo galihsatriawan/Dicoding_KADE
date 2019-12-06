@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 import id.shobrun.footballleague.di.ViewModelKey
 
-import id.shobrun.footballleague.views.leagues.fragments.FootballLeaguesViewModel
+import id.shobrun.footballleague.ui.leagues.list.FootballLeaguesViewModel
 
 @Module
 abstract class LeagueFragmentViewModelModule {

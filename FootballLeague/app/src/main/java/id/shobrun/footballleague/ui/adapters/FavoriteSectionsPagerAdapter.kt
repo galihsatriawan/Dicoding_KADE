@@ -34,8 +34,6 @@ class FavoriteSectionsPagerAdapter(private val context: Context, fm: FragmentMan
             nextFrag.arguments = bundle
             nextFrag
         }
-
-
     }
 
     override fun getPageTitle(position: Int): CharSequence? {

@@ -30,7 +30,7 @@ class LeagueRepository @Inject constructor(private val webservice : LeagueApi,pr
             }
 
             override fun shouldFetch(data: League?): Boolean {
-                return data==null || data?.name.isEmpty()
+                return data==null || data.name.isEmpty()
             }
 
             override fun loadFromDb(): LiveData<League> {
@@ -57,7 +57,7 @@ class LeagueRepository @Inject constructor(private val webservice : LeagueApi,pr
 
     }
     fun getResourceLeagues() : List<League> {
-        var leagues: ArrayList<League> = ArrayList()
+        val leagues: ArrayList<League> = ArrayList()
         with(application.applicationContext){
             val id = resources.getIntArray(R.array.league_id)
             val name = resources.getStringArray(R.array.league_name)

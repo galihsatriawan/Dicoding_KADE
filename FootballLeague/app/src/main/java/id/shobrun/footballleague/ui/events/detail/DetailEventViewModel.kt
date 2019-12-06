@@ -15,13 +15,13 @@ import id.shobrun.footballleague.utils.AbsentLiveData
 import timber.log.Timber
 import javax.inject.Inject
 
-class DetailEventViewModel @Inject constructor(val repository : EventRepository, val teamRepository: TeamRepository): ViewModel(){
+class DetailEventViewModel @Inject constructor(val repository : EventRepository, private val teamRepository: TeamRepository): ViewModel(){
     companion object{
         val TAG = DetailEventViewModel::class.java.name
     }
     private val eventIdLiveData : MutableLiveData<Int> = MutableLiveData()
     val eventLiveData : LiveData<Resource<Event>>
-    var eventInDB : LiveData<Event>
+    private var eventInDB : LiveData<Event>
     val homeTeamLiveData : LiveData<Resource<Team>>
     val awayTeamLiveData : LiveData<Resource<Team>>
     val loading : LiveData<Boolean>
@@ -57,8 +57,7 @@ class DetailEventViewModel @Inject constructor(val repository : EventRepository,
             }
         }
         isFavorite = eventInDB.switchMap {
-            it.isFavorite.let {
-                Timber.d("$TAG is Favorite: $it")
+            it.isFavorite.let { it ->
                 postEventIsFavorite(it==1)
                 _isFavorite
             }
@@ -68,12 +67,12 @@ class DetailEventViewModel @Inject constructor(val repository : EventRepository,
     fun postEventId(idEvent : Int){
         eventIdLiveData.postValue(idEvent)
     }
-    fun postEventIsFavorite (state : Boolean){
+    private fun postEventIsFavorite (state : Boolean){
         _isFavorite.postValue(state)
     }
     fun onClickedFavorite(){
         eventInDB.value?.isFavorite.let{
-            var currentFavorite : Boolean = it==1
+            val currentFavorite : Boolean = it==1
             if(currentFavorite){
                 removeToFavorite()
             }else{

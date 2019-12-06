@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 class SearchEventsViewModel @Inject constructor(repository: EventRepository) :ViewModel() {
     val eventLiveData : LiveData<Resource<List<Event>>>
-    val filterLiveData : MutableLiveData<String> = MutableLiveData()
+    private val filterLiveData : MutableLiveData<String> = MutableLiveData()
 
     init {
         eventLiveData = filterLiveData.switchMap {

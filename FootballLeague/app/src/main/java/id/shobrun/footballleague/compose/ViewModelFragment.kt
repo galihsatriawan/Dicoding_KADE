@@ -16,10 +16,6 @@ open class ViewModelFragment : DaggerFragment(){
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-    }
-
     protected inline fun <reified VM : ViewModel>
             viewModel(): Lazy<VM> = viewModels { viewModelFactory }
 

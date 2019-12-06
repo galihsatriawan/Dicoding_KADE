@@ -40,7 +40,7 @@ fun bindIsError(view:LinearLayout , resource: Resource<League>?){
 fun bindBanner(view: ImageView, resource: Resource<League>?){
     view.bindResource(resource){
         Glide.with(view.context)
-            .load(it?.data?.bannerUrl ?: "")
+            .load(it.data?.bannerUrl ?: "")
             .error(R.drawable.ic_error_black_24dp)
             .into(view)
     }

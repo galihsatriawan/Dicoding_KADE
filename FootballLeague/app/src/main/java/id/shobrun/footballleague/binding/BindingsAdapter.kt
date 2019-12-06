@@ -10,7 +10,7 @@ import id.shobrun.footballleague.models.Resource
 import id.shobrun.footballleague.models.entity.Event
 import id.shobrun.footballleague.models.entity.League
 import id.shobrun.footballleague.ui.adapters.RecyclerEventsAdapter
-import id.shobrun.footballleague.views.adapters.RecyclerLeaguesAdapter
+import id.shobrun.footballleague.ui.adapters.RecyclerLeaguesAdapter
 
 @BindingAdapter("loadImage")
 fun bindLoadImage(view : ImageView, imageUrl : Any){
@@ -51,7 +51,7 @@ fun bindEvents(view : RecyclerView, resource: Resource<List<Event>>?){
     when(view.adapter){
         is RecyclerEventsAdapter ->{
             view.bindResource(resource){
-                (view.adapter as RecyclerEventsAdapter).setItems(it?.data)
+                (view.adapter as RecyclerEventsAdapter).setItems(it.data)
             }
         }
     }

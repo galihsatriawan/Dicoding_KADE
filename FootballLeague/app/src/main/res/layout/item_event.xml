@@ -36,7 +36,7 @@
                             android:layout_height="50dp"
                             android:src="@drawable/ic_home_team"
                             android:layout_gravity="center"
-                            />
+                            android:contentDescription="TODO" />
                         <TextView
                             android:id="@+id/tv_team_name_home"
                             android:layout_width="wrap_content"
@@ -58,7 +58,7 @@
                             android:id="@+id/tv_score_home"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/activity_horizontal_margin_8dp"
+                            android:layout_marginEnd="@dimen/activity_horizontal_margin_8dp"
                             style="@style/TextAppearance.AppCompat.Title"
                             android:text="@{vm.tv_home_score}"
                             tools:text="1"
@@ -69,12 +69,12 @@
                             android:layout_height="50dp"
                             android:src="@drawable/ic_trophy"
                             android:layout_gravity="center"
-                            />
+                            android:contentDescription="TODO" />
                         <TextView
                             android:id="@+id/tv_score_away"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin_8dp"
+                            android:layout_marginStart="@dimen/activity_horizontal_margin_8dp"
                             android:text="@{vm.tv_away_score}"
                             style="@style/TextAppearance.AppCompat.Title"
                             tools:text="1"
@@ -91,7 +91,7 @@
                             android:layout_height="50dp"
                             android:src="@drawable/ic_away_team"
                             android:layout_gravity="center"
-                            />
+                            android:contentDescription="TODO" />
                         <TextView
                             android:id="@+id/tv_team_name_away"
                             android:layout_width="wrap_content"

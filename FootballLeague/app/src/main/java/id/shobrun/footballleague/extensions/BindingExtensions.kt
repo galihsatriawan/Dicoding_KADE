@@ -14,7 +14,7 @@ inline fun <reified T> View.bindResource(resource: Resource<T>?, onSuccess: (Res
             Status.LOADING -> Unit
             Status.SUCCESS -> onSuccess(resource)
             Status.ERROR -> {
-                Timber.d("${resource.errorEnvelope?.status_message.toString()}")
+                Timber.d(resource.errorEnvelope?.status_message.toString())
                 snackbar(this.context.resources.getString(R.string.failed_load))
             }
         }

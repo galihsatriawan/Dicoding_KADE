@@ -34,7 +34,7 @@ class EventRepository @Inject constructor(val webservice : EventApi, val eventDa
             }
 
             override fun shouldFetch(data: Event?): Boolean {
-                return data == null || data?.eventName.isEmpty()
+                return data == null || data.eventName.isEmpty()
             }
 
             override fun loadFromDb(): LiveData<Event> {

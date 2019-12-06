@@ -50,7 +50,7 @@ class RecyclerEventsAdapter(private var items: List<Event>) :
         holder.bind(items[position])
     }
 
-    fun <T : RecyclerView.ViewHolder> T.listen(event: (position: Int) -> Unit): T {
+    private fun <T : RecyclerView.ViewHolder> T.listen(event: (position: Int) -> Unit): T {
         itemView.setOnClickListener {
             event.invoke(adapterPosition)
         }
@@ -70,19 +70,19 @@ class RecyclerEventsAdapter(private var items: List<Event>) :
 
     class EventViewModel: ViewModel(){
 
-        var _tv_home_name : MutableLiveData<String> = MutableLiveData()
+        private var _tv_home_name : MutableLiveData<String> = MutableLiveData()
         var tv_home_name : LiveData<String> = _tv_home_name
 
-        var _tv_away_name : MutableLiveData<String> = MutableLiveData()
+        private var _tv_away_name : MutableLiveData<String> = MutableLiveData()
         var tv_away_name : LiveData<String> = _tv_away_name
 
-        var _tv_home_score : MutableLiveData<String> = MutableLiveData()
+        private var _tv_home_score : MutableLiveData<String> = MutableLiveData()
         var tv_home_score : LiveData<String> = _tv_home_score
 
-        var _tv_away_score : MutableLiveData<String> = MutableLiveData()
+        private var _tv_away_score : MutableLiveData<String> = MutableLiveData()
         var tv_away_score : LiveData<String> = _tv_away_score
 
-        var _tv_event_date : MutableLiveData<String> = MutableLiveData()
+        private var _tv_event_date : MutableLiveData<String> = MutableLiveData()
         var tv_event_date : LiveData<String> = _tv_event_date
 
         fun bind(event : Event){

@@ -6,7 +6,7 @@
         <import type="android.view.View"/>
         <variable
             name="vm"
-            type="id.shobrun.footballleague.views.adapters.RecyclerLeaguesAdapter.LeagueViewModel" />
+            type="id.shobrun.footballleague.ui.adapters.RecyclerLeaguesAdapter.LeagueViewModel" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 app:loadImage="@{vm.img_league}"
-                />
+                android:contentDescription="TODO" />
 
             <TextView
                 android:id="@+id/tv_league_name"

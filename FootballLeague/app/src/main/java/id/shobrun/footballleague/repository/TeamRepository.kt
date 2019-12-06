@@ -23,7 +23,7 @@ class TeamRepository @Inject constructor(val webservice: TeamApi, val teamDao: T
             }
 
             override fun shouldFetch(data: Team?): Boolean {
-                return data == null || data?.teamName.isEmpty()
+                return data == null || data.teamName.isEmpty()
             }
 
             override fun loadFromDb(): LiveData<Team> {

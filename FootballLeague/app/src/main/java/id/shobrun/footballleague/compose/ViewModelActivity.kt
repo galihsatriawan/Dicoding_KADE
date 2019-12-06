@@ -1,5 +1,6 @@
 package id.shobrun.footballleague.compose
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
@@ -10,6 +11,7 @@ import dagger.android.AndroidInjection
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
+@SuppressLint("Registered")
 open class ViewModelActivity : DaggerAppCompatActivity(){
 
     @Inject

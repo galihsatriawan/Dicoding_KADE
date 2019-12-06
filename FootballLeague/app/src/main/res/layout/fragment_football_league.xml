@@ -7,7 +7,7 @@
         <import type="androidx.core.content.ContextCompat"/>
         <variable
             name="vm"
-            type="id.shobrun.footballleague.views.leagues.fragments.FootballLeaguesViewModel" />
+            type="id.shobrun.footballleague.ui.leagues.list.FootballLeaguesViewModel" />
     </data>
 
     <RelativeLayout

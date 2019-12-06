@@ -1,4 +1,4 @@
-package id.shobrun.footballleague.views.leagues
+package id.shobrun.footballleague.ui.leagues.detail
 
 import androidx.lifecycle.*
 import id.shobrun.footballleague.models.Resource
@@ -25,7 +25,7 @@ class DetailLeagueViewModel @Inject constructor(val repository: LeagueRepository
         }
         this.loading = leagueLiveData.switchMap {
             val mutableLiveData : MutableLiveData<Boolean> = MutableLiveData()
-            mutableLiveData.postValue(it?.status == Status.LOADING)
+            mutableLiveData.postValue(it.status == Status.LOADING)
             mutableLiveData
         }
     }

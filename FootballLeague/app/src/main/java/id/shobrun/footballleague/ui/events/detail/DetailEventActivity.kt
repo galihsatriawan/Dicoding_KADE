@@ -80,15 +80,10 @@ class DetailEventActivity : ViewModelActivity() {
     private fun setFavorite(state : Boolean){
         if(state){
             menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this,R.drawable.ic_added_to_favorite)
-            Toast.makeText(applicationContext,getString(R.string.add_success),Toast.LENGTH_SHORT)
-            Timber.d("$TAG success")
         }
 
         else{
             menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this,R.drawable.ic_add_to_favorite)
-            Toast.makeText(applicationContext,getString(R.string.remove_success),Toast.LENGTH_SHORT)
-            Timber.d("$TAG no")
-
         }
 
     }

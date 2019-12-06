@@ -48,7 +48,7 @@ internal constructor() {
                     true -> {
                         Timber.d("$TAG fetch success")
                         response.body?.let {
-                            Timber.d("$TAG data : ${it}")
+                            Timber.d("$TAG data : $it")
                             saveFetchData(it)
                             val loaded = loadFromDb()
                             result.addSource(loaded) { newData ->

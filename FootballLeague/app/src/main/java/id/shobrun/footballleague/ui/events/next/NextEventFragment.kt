@@ -22,7 +22,7 @@ import id.shobrun.footballleague.ui.leagues.detail.DetailLeagueActivity
 import org.jetbrains.anko.support.v4.intentFor
 
 class NextEventFragment : ViewModelFragment() {
-    lateinit var eventRecyclerAdapter: RecyclerEventsAdapter
+    private lateinit var eventRecyclerAdapter: RecyclerEventsAdapter
     companion object {
         fun newInstance() = NextEventFragment()
     }

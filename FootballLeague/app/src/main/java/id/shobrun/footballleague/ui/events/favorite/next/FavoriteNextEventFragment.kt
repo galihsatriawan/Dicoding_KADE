@@ -17,7 +17,7 @@ import id.shobrun.footballleague.ui.events.detail.DetailEventActivity
 import org.jetbrains.anko.support.v4.intentFor
 
 class FavoriteNextEventFragment : ViewModelFragment() {
-    lateinit var eventRecyclerAdapter: RecyclerEventsAdapter
+    private lateinit var eventRecyclerAdapter: RecyclerEventsAdapter
     companion object {
         const val EXTRA_EVENT = "extra_event"
         fun newInstance() = FavoriteNextEventFragment()

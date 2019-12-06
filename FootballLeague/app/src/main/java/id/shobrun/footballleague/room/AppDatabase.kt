@@ -17,7 +17,7 @@ abstract class AppDatabase : RoomDatabase(){
     abstract fun eventDao() : EventDao
     abstract fun teamDao() : TeamDao
     companion object{
-        const val DB_FOOTBALL = "football-db"
+        private const val DB_FOOTBALL = "football-db"
 
         const val TABLE_LEAGUE = "league_table"
         const val ID_LEAGUE = "idLeague"

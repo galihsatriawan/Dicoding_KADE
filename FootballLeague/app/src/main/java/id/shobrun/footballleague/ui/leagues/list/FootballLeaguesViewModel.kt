@@ -1,4 +1,4 @@
-package id.shobrun.footballleague.views.leagues.fragments
+package id.shobrun.footballleague.ui.leagues.list
 
 import android.util.Log
 import androidx.lifecycle.*
@@ -6,7 +6,7 @@ import id.shobrun.footballleague.models.entity.League
 import id.shobrun.footballleague.repository.LeagueRepository
 import javax.inject.Inject
 
-class FootballLeaguesViewModel @Inject constructor(private val repository: LeagueRepository) : ViewModel() {
+class FootballLeaguesViewModel @Inject constructor(repository: LeagueRepository) : ViewModel() {
     // TODO: Implement the ViewModel
     companion object{
         val TAG = FootballLeaguesViewModel.javaClass.name

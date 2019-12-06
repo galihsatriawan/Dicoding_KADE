@@ -22,7 +22,7 @@ import org.jetbrains.anko.toast
 class SearchEventsActivity : ViewModelActivity() {
     val viewModel by viewModel<SearchEventsViewModel>()
     val binding by binding<ActivitySearchEventsBinding>(R.layout.activity_search_events)
-    lateinit var eventAdapter : RecyclerEventsAdapter
+    private lateinit var eventAdapter : RecyclerEventsAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         with(binding){
@@ -47,10 +47,6 @@ class SearchEventsActivity : ViewModelActivity() {
         return super.onSupportNavigateUp()
     }
 
-    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-
-        return super.onPrepareOptionsMenu(menu)
-    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
         val inflater = menuInflater

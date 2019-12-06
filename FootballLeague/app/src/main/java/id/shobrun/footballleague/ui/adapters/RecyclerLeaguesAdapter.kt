@@ -1,4 +1,4 @@
-package id.shobrun.footballleague.views.adapters
+package id.shobrun.footballleague.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -35,7 +35,7 @@ class RecyclerLeaguesAdapter(private var items: List<League>) :
         this.items = items
         notifyDataSetChanged()
     }
-    fun expandableView(v : View){
+    private fun expandableView(v : View){
         if(v.isVisible)
             v.gone()
         else v.visible()
@@ -91,10 +91,10 @@ class RecyclerLeaguesAdapter(private var items: List<League>) :
     }
 
     class LeagueViewModel: ViewModel(){
-        var _img_league  : MutableLiveData<Int> = MutableLiveData()
+        private var _img_league  : MutableLiveData<Int> = MutableLiveData()
         var img_league : LiveData<Int> = _img_league
 
-        var _tv_league_name : MutableLiveData<String> = MutableLiveData()
+        private var _tv_league_name : MutableLiveData<String> = MutableLiveData()
         var tv_league_name : LiveData<String> = _tv_league_name
 
         fun bind(league : League){

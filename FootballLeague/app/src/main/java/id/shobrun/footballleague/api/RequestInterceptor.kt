@@ -7,7 +7,7 @@ import java.io.IOException
 /**
  * A {@see RequestInterceptor} that adds an somethings to requests
  */
-class RequestInterceptor() : Interceptor {
+class RequestInterceptor : Interceptor {
 
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {

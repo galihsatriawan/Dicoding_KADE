@@ -5,13 +5,13 @@ import timber.log.Timber
 import java.io.IOException
 
 class ApiResponse<T> {
-    val code: Int
+    private val code: Int
     val body: T?
     val message: String?
 
     val isSuccessful: Boolean
         get() = code in 200..300
-    val isFailure: Boolean
+    private val isFailure: Boolean
 
     constructor(error: Throwable) {
         this.code = 500

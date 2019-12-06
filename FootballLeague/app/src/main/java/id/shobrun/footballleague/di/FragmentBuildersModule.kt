@@ -23,7 +23,7 @@ import id.shobrun.footballleague.ui.events.favorite.next.FavoriteNextEventFragme
 import id.shobrun.footballleague.ui.events.favorite.previous.FavoritePreviousEventFragment
 import id.shobrun.footballleague.ui.events.next.NextEventFragment
 import id.shobrun.footballleague.ui.events.previous.PreviousEventFragment
-import id.shobrun.footballleague.views.leagues.fragments.FootballLeaguesFragment
+import id.shobrun.footballleague.ui.leagues.list.FootballLeaguesFragment
 
 @Module
 abstract class FragmentBuildersModule {
