@@ -27,7 +27,7 @@ class FavoriteEventsActivity : AppCompatActivity() {
             league = intent.getParcelableExtra<League>(EventsActivity.EXTRA_LEAGUE)
         }
         val sectionsPagerAdapter =
-            SectionsPagerAdapter(
+            FavoriteSectionsPagerAdapter(
                 applicationContext,
                 supportFragmentManager,
                 league
@@ -38,5 +38,10 @@ class FavoriteEventsActivity : AppCompatActivity() {
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
         simpleToolbarWithHome(toolbar,"Favorite ${league?.name ?: "Favorite Match"}")
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 }

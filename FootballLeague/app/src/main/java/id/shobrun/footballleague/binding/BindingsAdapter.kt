@@ -2,6 +2,7 @@ package id.shobrun.footballleague.binding
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import id.shobrun.footballleague.extensions.bindResource
@@ -25,6 +26,19 @@ fun bindAdapter(view : RecyclerView, items : List<League>){
         {
             if(items != null){
                 (view.adapter as RecyclerLeaguesAdapter).setItems(items)
+            }
+
+        }
+    }
+}
+
+@BindingAdapter("liveItems")
+fun bindAdapterLiveData(view : RecyclerView, items : LiveData<List<Event>>?){
+    when(view.adapter){
+        is RecyclerEventsAdapter->
+        {
+            items?.value.let {
+                (view.adapter as RecyclerEventsAdapter).setItems(it?:ArrayList())
             }
 
         }

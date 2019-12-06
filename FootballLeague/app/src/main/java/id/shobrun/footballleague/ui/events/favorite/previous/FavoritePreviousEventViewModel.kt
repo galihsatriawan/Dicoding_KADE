@@ -12,10 +12,10 @@ import javax.inject.Inject
 
 class FavoritePreviousEventViewModel @Inject constructor(repository: EventRepository): ViewModel() {
     private val leagueIdLiveData : MutableLiveData<Int> = MutableLiveData()
-    var previousEventLiveData: LiveData<Resource<List<Event>>>
+    var previousEventLiveData: LiveData<List<Event>>
     init {
         previousEventLiveData = leagueIdLiveData.switchMap {
-            leagueIdLiveData.value?.let { repository.getPreviousEvents(it)}
+            leagueIdLiveData.value?.let { repository.getAllFavoritePrevEventInDb(it)}
                 ?: AbsentLiveData.create()
         }
 

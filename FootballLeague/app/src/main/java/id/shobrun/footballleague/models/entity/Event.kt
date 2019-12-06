@@ -30,5 +30,6 @@ data class Event(
     @field:SerializedName("strTime") val timeEvent : String?,
     var idHomeTeam : Int,
     var idAwayTeam : Int,
-    var tags : String
+    var isFavorite : Int = 0,
+    var tags : String?
 ):Parcelable

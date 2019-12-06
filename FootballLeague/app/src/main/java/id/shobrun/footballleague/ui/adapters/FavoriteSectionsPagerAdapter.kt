@@ -19,7 +19,7 @@ private val TAB_TITLES_FAVORITE = arrayOf(
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
-class FavoriteSectionsPagerAdapter(private val context: Context, fm: FragmentManager,val league: League) :
+class FavoriteSectionsPagerAdapter(private val context: Context, fm: FragmentManager,val league: League?) :
     FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment {

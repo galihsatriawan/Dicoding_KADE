@@ -10,6 +10,7 @@ import id.shobrun.footballleague.models.Resource
 import id.shobrun.footballleague.models.entity.Event
 import id.shobrun.footballleague.models.network.EventSearchResponse
 import id.shobrun.footballleague.models.network.EventsResponse
+import id.shobrun.footballleague.repository.utils.IEventLocalDB
 import id.shobrun.footballleague.room.AppDatabase
 import id.shobrun.footballleague.room.EventDao
 import id.shobrun.footballleague.utils.AbsentLiveData
@@ -17,11 +18,18 @@ import org.jetbrains.anko.design.snackbar
 import timber.log.Timber
 import javax.inject.Inject
 
-class EventRepository @Inject constructor(val webservice : EventApi, val eventDao : EventDao) : Repository{
+class EventRepository @Inject constructor(val webservice : EventApi, val eventDao : EventDao) : Repository, IEventLocalDB{
+    companion object{
+        val TAG = EventRepository.javaClass.name
+    }
+    /**
+     * Network
+     */
     fun getDetailEvent(idEvent : Int) : LiveData<Resource<Event>>{
         return object : NetworkBoundRepository<Event, EventsResponse , EventResponseMapper>(){
             override fun saveFetchData(items: EventsResponse) {
                 val item = items.events[0]
+
                 eventDao.insert(item)
             }
 
@@ -52,6 +60,8 @@ class EventRepository @Inject constructor(val webservice : EventApi, val eventDa
                 val events = items.events
                 for (e in events){
                     e.tags = AppDatabase.TAG_PAST_MATCH
+                    e.isFavorite = 0
+                    Timber.d("$TAG favorite Prev: ${e.isFavorite}")
                 }
                 eventDao.insertEvents(events)
             }
@@ -83,6 +93,8 @@ class EventRepository @Inject constructor(val webservice : EventApi, val eventDa
                 val events = items.events
                 for (e in events){
                     e.tags = AppDatabase.TAG_NEXT_MATCH
+                    e.isFavorite = 0
+                    Timber.d("$TAG favorite : ${e.isFavorite}")
                 }
                 eventDao.insertEvents(events)
             }
@@ -146,5 +158,34 @@ class EventRepository @Inject constructor(val webservice : EventApi, val eventDa
                 Timber.d("$TAG fetch failed Query Event : $message")
             }
         }.asLiveData()
+    }
+
+    /**
+     * Local Database
+     */
+    override fun insertEventToDb(event: Event){
+        try {
+            eventDao.insert(event)
+        }catch (e:Throwable){
+            Timber.d("$TAG ${e.printStackTrace()}")
+        }
+
+    }
+
+    override fun getAllFavoriteNextEventInDb(idLeague: Int): LiveData<List<Event>> {
+        val events = eventDao.getFavoriteNextEvents(idLeague,1)
+        return events
+    }
+
+    override fun getAllFavoritePrevEventInDb(idLeague: Int): LiveData<List<Event>> {
+        return eventDao.getFavoritePastEvents(idLeague,1)
+    }
+
+    override fun getEventByIdInDb(idEvent: Int) : LiveData<Event>{
+        return eventDao.getEventById(idEvent)
+    }
+
+    override fun updateEventInDb(event : Event) : Int{
+        return eventDao.update(event)
     }
 }

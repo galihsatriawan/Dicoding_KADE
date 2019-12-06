@@ -25,6 +25,8 @@ abstract class AppDatabase : RoomDatabase(){
         const val TABLE_EVENT = "event_table"
         const val TAG_NEXT_MATCH = "[next_macth]"
         const val TAG_PAST_MATCH = "[past_macth]"
+        const val TAG_FAVORITE_MATCH = "[favorite_match]"
+
         const val ID_EVENT = "idEvent"
 
         const val TABLE_TEAM = "team_table"

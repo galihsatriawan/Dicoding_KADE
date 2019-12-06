@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:eventItems="@{vm.nextEventLiveData}"
+            app:liveItems="@{vm.nextEventLiveData}"
             />
     </LinearLayout>
 
