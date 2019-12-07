@@ -22,7 +22,7 @@ class FavoriteNextEventFragment : ViewModelFragment() {
         const val EXTRA_EVENT = "extra_event"
         fun newInstance() = FavoriteNextEventFragment()
     }
-
+    var league : League? = null
     private val viewModel by viewModel<FavoriteNextEventViewModel>()
     private lateinit var binding : FavoriteNextEventFragmentBinding
     override fun onCreateView(
@@ -43,7 +43,7 @@ class FavoriteNextEventFragment : ViewModelFragment() {
             )
             startActivity(detail)
         }
-        var league : League? = null
+
         if(requireArguments().getParcelable<League>(EXTRA_EVENT) != null){
             league = requireArguments().getParcelable<League>(EXTRA_EVENT)
         }
@@ -60,4 +60,8 @@ class FavoriteNextEventFragment : ViewModelFragment() {
         binding.recyclerNextEvent.adapter = eventRecyclerAdapter
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.postLeagueId(league?.idLeague?:-1)
+    }
 }

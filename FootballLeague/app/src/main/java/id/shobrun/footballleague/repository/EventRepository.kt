@@ -1,9 +1,10 @@
 package id.shobrun.footballleague.repository
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import id.shobrun.footballleague.api.ApiResponse
 import id.shobrun.footballleague.api.EventApi
+import id.shobrun.footballleague.database.MyDatabaseOpenHelper
 import id.shobrun.footballleague.mapper.EventResponseMapper
 import id.shobrun.footballleague.mapper.EventSearchResponseMapper
 import id.shobrun.footballleague.models.Resource
@@ -11,14 +12,13 @@ import id.shobrun.footballleague.models.entity.Event
 import id.shobrun.footballleague.models.network.EventSearchResponse
 import id.shobrun.footballleague.models.network.EventsResponse
 import id.shobrun.footballleague.repository.utils.IEventLocalDB
+import id.shobrun.footballleague.repository.utils.IEventSQLiteDB
 import id.shobrun.footballleague.room.AppDatabase
 import id.shobrun.footballleague.room.EventDao
-import id.shobrun.footballleague.utils.AbsentLiveData
-import org.jetbrains.anko.design.snackbar
 import timber.log.Timber
 import javax.inject.Inject
 
-class EventRepository @Inject constructor(val webservice : EventApi, val eventDao : EventDao) : Repository, IEventLocalDB{
+class EventRepository @Inject constructor(val webservice : EventApi, val eventDao : EventDao, val favoriteSqlite : MyDatabaseOpenHelper) : Repository, IEventLocalDB , IEventSQLiteDB{
     companion object{
         val TAG = EventRepository.javaClass.name
     }
@@ -34,7 +34,7 @@ class EventRepository @Inject constructor(val webservice : EventApi, val eventDa
             }
 
             override fun shouldFetch(data: Event?): Boolean {
-                return data == null || data.eventName.isEmpty()
+                return data == null
             }
 
             override fun loadFromDb(): LiveData<Event> {
@@ -188,4 +188,31 @@ class EventRepository @Inject constructor(val webservice : EventApi, val eventDa
     override fun updateEventInDb(event : Event) : Int{
         return eventDao.update(event)
     }
+
+
+
+    /**
+     * SQLite Database
+     */
+
+    override fun insertEventToSqliteDb(event: Event) {
+        favoriteSqlite.addToFavorite(event)
+    }
+
+    override fun getAllFavoriteNextEventInSqliteDb(idLeague: Int): LiveData<List<Event>> {
+        return MutableLiveData(favoriteSqlite.getNextFavorite(idLeague))
+    }
+
+    override fun getAllFavoritePrevEventInSqliteDb(idLeague: Int): LiveData<List<Event>> {
+        return MutableLiveData(favoriteSqlite.getPrevFavorite(idLeague))
+    }
+
+    override fun getEventByIdInSqliteDb(idEvent: Int): LiveData<Boolean> {
+        return MutableLiveData(favoriteSqlite.getFavorite(idEvent))
+    }
+
+    override fun deleteEventInSqliteDb(idEvent: Int) {
+        favoriteSqlite.removeFromFavorite(idEvent)
+    }
+
 }

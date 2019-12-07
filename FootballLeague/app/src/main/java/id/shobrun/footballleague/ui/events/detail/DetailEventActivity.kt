@@ -14,6 +14,7 @@ import id.shobrun.footballleague.databinding.ActivityEventDetailBinding
 import id.shobrun.footballleague.extensions.simpleToolbarWithHome
 import id.shobrun.footballleague.models.entity.Event
 import id.shobrun.footballleague.room.AppDatabase
+import id.shobrun.footballleague.utils.AbsentLiveData
 import kotlinx.android.synthetic.main.activity_event_detail.*
 import org.jetbrains.anko.design.snackbar
 import timber.log.Timber
@@ -21,7 +22,7 @@ import timber.log.Timber
 class DetailEventActivity : ViewModelActivity() {
     private var menuItem: Menu? = null
 
-
+    private var count = 0
     private val viewModel by viewModel<DetailEventViewModel>()
     private val binding by binding<ActivityEventDetailBinding>(R.layout.activity_event_detail)
     companion object{
@@ -38,7 +39,7 @@ class DetailEventActivity : ViewModelActivity() {
         var event : Event? = null
         if(intent.getParcelableExtra<Event>(EXTRA_EVENT) !=null ){
             event = intent.getParcelableExtra<Event>(EXTRA_EVENT)
-            viewModel.postEventId(event.idEvent)
+            viewModel.postEventId(event.idEvent?:-1)
         }
         simpleToolbarWithHome(toolbar,event?.eventName?:"Detail Event")
         favoriteState()
@@ -72,7 +73,7 @@ class DetailEventActivity : ViewModelActivity() {
         viewModel.isFavorite.observe(this, Observer {
             if(it!=null) runOnUiThread{
                 setFavorite(it)
-
+                count++
             }
         })
     }
@@ -80,10 +81,12 @@ class DetailEventActivity : ViewModelActivity() {
     private fun setFavorite(state : Boolean){
         if(state){
             menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this,R.drawable.ic_added_to_favorite)
+            if(count>0) progressBar.snackbar(getString(R.string.add_success))
         }
 
         else{
             menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this,R.drawable.ic_add_to_favorite)
+            if(count>0) progressBar.snackbar(getString(R.string.remove_success))
         }
 
     }

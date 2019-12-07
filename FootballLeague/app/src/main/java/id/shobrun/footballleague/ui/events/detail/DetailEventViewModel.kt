@@ -21,7 +21,7 @@ class DetailEventViewModel @Inject constructor(val repository : EventRepository,
     }
     private val eventIdLiveData : MutableLiveData<Int> = MutableLiveData()
     val eventLiveData : LiveData<Resource<Event>>
-    private var eventInDB : LiveData<Event>
+    private val eventInDB : LiveData<Boolean>
     val homeTeamLiveData : LiveData<Resource<Team>>
     val awayTeamLiveData : LiveData<Resource<Team>>
     val loading : LiveData<Boolean>
@@ -31,7 +31,12 @@ class DetailEventViewModel @Inject constructor(val repository : EventRepository,
     init {
         eventInDB = eventIdLiveData.switchMap {
             eventIdLiveData.value?.let {
-                repository.getEventByIdInDb(it)
+
+                Timber.d("$TAG insert $it")
+                val res = repository.getEventByIdInSqliteDb(it)
+
+                Timber.d("$TAG timber ${res.value}")
+                res
             }?: AbsentLiveData.create()
         }
         eventLiveData = eventIdLiveData.switchMap {
@@ -56,11 +61,21 @@ class DetailEventViewModel @Inject constructor(val repository : EventRepository,
                 teamRepository.loadTeamDetailById(it ?: -1)
             }
         }
+        /**
+         *  Room Version
+
         isFavorite = eventInDB.switchMap {
-            it.isFavorite.let { it ->
+            it.isFavorite.let {
                 postEventIsFavorite(it==1)
                 _isFavorite
             }
+        }
+         */
+
+        isFavorite = eventInDB.switchMap {
+            Timber.d("$TAG favorite event ${it}")
+            postEventIsFavorite(it)
+            _isFavorite
         }
 
     }
@@ -71,6 +86,8 @@ class DetailEventViewModel @Inject constructor(val repository : EventRepository,
         _isFavorite.postValue(state)
     }
     fun onClickedFavorite(){
+        /**
+         * Room Version
         eventInDB.value?.isFavorite.let{
             val currentFavorite : Boolean = it==1
             if(currentFavorite){
@@ -80,23 +97,31 @@ class DetailEventViewModel @Inject constructor(val repository : EventRepository,
             }
             postEventIsFavorite(!currentFavorite)
         }
+        **/
+        isFavorite.value?.let {
+            if(it) removeToFavorite()
+            else addToFavorite()
+
+            postEventIsFavorite(!it)
+        }
+
+
+
     }
     private fun addToFavorite(){
-        val event : Event? = eventInDB.value
+        val event : Event? = eventLiveData.value?.data
         event?.isFavorite = 1
         if(event!=null){
-            repository.updateEventInDb(event)
+            Timber.d("$TAG ${event.isFavorite} ${event.awayTeam}")
+            repository.insertEventToSqliteDb(event)
         }
     }
 
     private fun removeToFavorite(){
-        val event : Event? = eventInDB.value
+        val event : Event? = eventLiveData.value?.data
         event?.isFavorite = 0
         if(event!=null){
-            repository.updateEventInDb(event)
+            repository.deleteEventInSqliteDb(event.idEvent?:-1)
         }
     }
-
-
-
 }

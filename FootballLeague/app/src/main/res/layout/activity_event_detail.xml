@@ -194,6 +194,7 @@
                     </TableLayout>
                 </LinearLayout>
                 <ProgressBar
+                    android:id="@+id/progressBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="@{vm.loading ? View.VISIBLE : View.GONE}"

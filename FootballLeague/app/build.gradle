@@ -42,6 +42,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     //anko
     implementation "org.jetbrains.anko:anko:$ankoVersion"
+    implementation "org.jetbrains.anko:anko-sqlite:$ankoVersion"
     implementation "org.jetbrains.anko:anko-design:$ankoVersion"
     implementation "org.jetbrains.anko:anko-recyclerview-v7:$ankoVersion"
     implementation "org.jetbrains.anko:anko-recyclerview-v7-coroutines:$ankoVersion"
