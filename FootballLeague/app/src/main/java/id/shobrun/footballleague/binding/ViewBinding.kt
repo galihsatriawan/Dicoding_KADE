@@ -3,12 +3,13 @@ package id.shobrun.footballleague.binding
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.extensions.bindResource
+import id.shobrun.footballleague.extensions.gone
 import id.shobrun.footballleague.extensions.visible
 import id.shobrun.footballleague.models.Resource
 import id.shobrun.footballleague.models.Status
@@ -26,31 +27,35 @@ fun bindVisibilityByResource(view: View, resource: Resource<Any>?) {
         }
     }
 }
+
 @BindingAdapter("isError")
-fun bindIsError(view:LinearLayout , resource: Resource<League>?){
+fun bindIsError(view: LinearLayout, resource: Resource<League>?) {
     Timber.d("Error")
-    view.bindResource(resource){
+    view.bindResource(resource) {
         if (it.data != null) it.data.let {
             view.visible()
         }
 
     }
 }
+
 @BindingAdapter("bannerLeague")
-fun bindBanner(view: ImageView, resource: Resource<League>?){
-    view.bindResource(resource){
+fun bindBanner(view: ImageView, resource: Resource<League>?) {
+    view.bindResource(resource) {
         Glide.with(view.context)
             .load(it.data?.bannerUrl ?: "")
             .error(R.drawable.ic_error_black_24dp)
             .into(view)
     }
 }
+
 @BindingAdapter("nameLeague")
-fun bindName(view: TextView, resource: Resource<League>?){
-    view.bindResource(resource){
+fun bindName(view: TextView, resource: Resource<League>?) {
+    view.bindResource(resource) {
         view.text = it.data?.name
     }
 }
+
 @BindingAdapter("descriptionLeague")
 fun bindDescription(view: TextView, resource: Resource<League>?) {
     view.bindResource(resource) {
@@ -64,20 +69,22 @@ fun bindDescription(view: TextView, resource: Resource<League>?) {
  *
  */
 @BindingAdapter("eventName")
-fun bindEventName(view : TextView, resource: Resource<Event>?){
-    view.bindResource(resource){
+fun bindEventName(view: TextView, resource: Resource<Event>?) {
+    view.bindResource(resource) {
         view.text = it.data?.eventName
     }
 }
+
 @BindingAdapter("eventDate")
-fun bindEventDate(view : TextView, resource: Resource<Event>?){
-    view.bindResource(resource){
+fun bindEventDate(view: TextView, resource: Resource<Event>?) {
+    view.bindResource(resource) {
         view.text = it.data?.dateEvent
     }
 }
+
 @BindingAdapter("leagueNameInEvent")
-fun bindNameLeague(view: TextView, resource: Resource<Event>?){
-    view.bindResource(resource){
+fun bindNameLeague(view: TextView, resource: Resource<Event>?) {
+    view.bindResource(resource) {
         view.text = it.data?.leagueName
     }
 }
@@ -87,82 +94,151 @@ fun bindNameLeague(view: TextView, resource: Resource<Event>?){
  */
 
 @BindingAdapter("homeName")
-fun bindHomeName(view: TextView, resource: Resource<Event>?){
-    view.bindResource(resource){
+fun bindHomeName(view: TextView, resource: Resource<Event>?) {
+    view.bindResource(resource) {
         view.text = it.data?.homeTeam
     }
 }
+
 @BindingAdapter("homeScore")
-fun bindHomeScore(view: TextView, resource: Resource<Event>?){
-    view.bindResource(resource){
-        view.text = "${it.data?.homeScore?:""}"
+fun bindHomeScore(view: TextView, resource: Resource<Event>?) {
+    view.bindResource(resource) {
+        view.text = "${it.data?.homeScore ?: ""}"
     }
 }
+
 @BindingAdapter("homeGoals")
-fun bindHomeGoals(view: TextView, resource: Resource<Event>?){
-    view.bindResource(resource){
+fun bindHomeGoals(view: TextView, resource: Resource<Event>?) {
+    view.bindResource(resource) {
         view.text = it.data?.homeGoalDetails
     }
 }
+
 @BindingAdapter("homeYellowCards")
-fun bindHomeYellowCards(view: TextView, resource: Resource<Event>?){
-    view.bindResource(resource){
+fun bindHomeYellowCards(view: TextView, resource: Resource<Event>?) {
+    view.bindResource(resource) {
         view.text = it.data?.homeYellowCards
     }
 }
+
 @BindingAdapter("homeRedCards")
-fun bindHomeRedCards(view: TextView, resource: Resource<Event>?){
-    view.bindResource(resource){
+fun bindHomeRedCards(view: TextView, resource: Resource<Event>?) {
+    view.bindResource(resource) {
         view.text = it.data?.homeRedCards
     }
 }
+
 @BindingAdapter("homeBadge")
-fun bindHomeBadge(view: ImageView, resource: Resource<Team>?){
-    view.bindResource(resource){
+fun bindHomeBadge(view: ImageView, resource: Resource<Team>?) {
+    view.bindResource(resource) {
         Glide.with(view.context)
-            .load(it.data?.teamBadge?:"")
+            .load(it.data?.teamBadge ?: "")
             .into(view)
     }
 }
+
 /**
  * Away Segment
  */
 @BindingAdapter("awayName")
-fun bindAwayName(view: TextView, resource: Resource<Event>?){
-    view.bindResource(resource){
+fun bindAwayName(view: TextView, resource: Resource<Event>?) {
+    view.bindResource(resource) {
         view.text = it.data?.awayTeam
     }
 }
 
 @BindingAdapter("awayScore")
-fun bindAwayScore(view: TextView, resource: Resource<Event>?){
-    view.bindResource(resource){
-        view.text = "${it.data?.homeScore?:""}"
+fun bindAwayScore(view: TextView, resource: Resource<Event>?) {
+    view.bindResource(resource) {
+        view.text = "${it.data?.homeScore ?: ""}"
     }
 }
+
 @BindingAdapter("awayGoals")
-fun bindAwayGoals(view: TextView, resource: Resource<Event>?){
-    view.bindResource(resource){
+fun bindAwayGoals(view: TextView, resource: Resource<Event>?) {
+    view.bindResource(resource) {
         view.text = it.data?.homeGoalDetails
     }
 }
+
 @BindingAdapter("awayYellowCards")
-fun bindAwayYellowCards(view: TextView, resource: Resource<Event>?){
-    view.bindResource(resource){
+fun bindAwayYellowCards(view: TextView, resource: Resource<Event>?) {
+    view.bindResource(resource) {
         view.text = it.data?.homeYellowCards
     }
 }
+
 @BindingAdapter("awayRedCards")
-fun bindAwayRedCards(view: TextView, resource: Resource<Event>?){
-    view.bindResource(resource){
+fun bindAwayRedCards(view: TextView, resource: Resource<Event>?) {
+    view.bindResource(resource) {
         view.text = it.data?.homeRedCards
     }
 }
+
 @BindingAdapter("awayBadge")
-fun bindAwayBadge(view: ImageView, resource: Resource<Team>?){
-    view.bindResource(resource){
+fun bindAwayBadge(view: ImageView, resource: Resource<Team>?) {
+    view.bindResource(resource) {
         Glide.with(view.context)
-            .load(it.data?.teamBadge?:"")
+            .load(it.data?.teamBadge ?: "")
             .into(view)
     }
+}
+
+/*
+    Search Segment
+ */
+
+@BindingAdapter("loadingEvents")
+fun bindVisibleLoadingEvents(view: ProgressBar, resource: Resource<List<Event>>?) {
+    if (resource != null) {
+        if (resource.status == Status.LOADING) view.visible()
+        else view.gone()
+    }
+}
+
+@BindingAdapter("visibleMessage")
+fun bindVisibleMessageEvents(view: LinearLayout, resource: Resource<List<Event>>?) {
+    view.bindResource(resource) {
+        if (it?.data?.isNullOrEmpty() != false) {
+            view.visible()
+        } else {
+            view.gone()
+        }
+    }
+}
+
+@BindingAdapter("messageEvents")
+fun bindMessageEvents(view: TextView, resource: Resource<List<Event>>?) {
+    view.bindResource(resource) {
+        if (it?.status == Status.ERROR) {
+            view.text = it?.message
+        } else {
+            if (it.data.isNullOrEmpty()) {
+                view.text = view.context.getString(R.string.empty_data)
+            }
+        }
+
+    }
+}
+
+/*
+Favorite Segment
+ */
+@BindingAdapter("visibleMessageFavorite")
+fun bindVisibleMessageFavoriteEvents(view: LinearLayout, resource: List<Event>?) {
+    if (resource?.isNullOrEmpty() != false) {
+        view.visible()
+    } else {
+        view.gone()
+    }
+}
+
+@BindingAdapter("messageEventsFavorite")
+fun bindMessageEventsFavorite(view: TextView, resource: List<Event>?) {
+
+    if (resource.isNullOrEmpty()) {
+        view.text = view.context.getString(R.string.empty_data)
+    }
+
+
 }

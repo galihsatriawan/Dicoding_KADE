@@ -9,6 +9,11 @@ import id.shobrun.footballleague.extensions.simpleToolbarWithHome
 import id.shobrun.footballleague.models.entity.League
 import kotlinx.android.synthetic.main.activity_events.*
 import android.util.SparseArray
+import android.view.Menu
+import android.view.MenuItem
+import id.shobrun.footballleague.ui.events.search.SearchEventsActivity
+import org.jetbrains.anko.intentFor
+
 class EventsActivity : AppCompatActivity() {
     var league : League? = null
     companion object{
@@ -101,5 +106,23 @@ class EventsActivity : AppCompatActivity() {
             )
         }
         currentSelectItemId = actionId
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        val inflater = menuInflater
+        inflater.inflate(R.menu.options_menu,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.search ->{
+                val intSearch = intentFor<SearchEventsActivity>()
+                startActivity(intSearch)
+            }
+
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
