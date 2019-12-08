@@ -10,10 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.compose.ViewModelFragment
 import id.shobrun.footballleague.databinding.FragmentFootballLeagueBinding
-import id.shobrun.footballleague.ui.events.EventsActivity
 
 import id.shobrun.footballleague.ui.leagues.detail.DetailLeagueActivity
 import id.shobrun.footballleague.ui.adapters.RecyclerLeaguesAdapter
+import id.shobrun.footballleague.ui.events.EventsActivity
+import id.shobrun.footballleague.ui.events.EventsActivity.Companion.EXTRA_LEAGUE
 import org.jetbrains.anko.*
 import org.jetbrains.anko.support.v4.intentFor
 import timber.log.Timber
@@ -44,7 +45,7 @@ class FootballLeaguesFragment : ViewModelFragment(),AnkoLogger {
         }
         leaguesAdapter.setMatchListener { league ->
             val match = intentFor<EventsActivity>(
-                EventsActivity.EXTRA_LEAGUE to league
+                EXTRA_LEAGUE to league
             )
             startActivity(match)
         }

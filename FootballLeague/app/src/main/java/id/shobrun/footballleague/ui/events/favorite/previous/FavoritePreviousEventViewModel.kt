@@ -15,7 +15,7 @@ class FavoritePreviousEventViewModel @Inject constructor(repository: EventReposi
     var previousEventLiveData: LiveData<List<Event>>
     init {
         previousEventLiveData = leagueIdLiveData.switchMap {
-            leagueIdLiveData.value?.let { repository.getAllFavoritePrevEventInSqliteDb(it)}
+            leagueIdLiveData.value?.let { repository.getAllFavoritePrevEventInDb(it)}
                 ?: AbsentLiveData.create()
         }
 

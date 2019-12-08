@@ -12,6 +12,7 @@ import id.shobrun.footballleague.databinding.FavoritePreviousEventFragmentBindin
 import id.shobrun.footballleague.databinding.PreviousEventFragmentBinding
 import id.shobrun.footballleague.models.entity.League
 import id.shobrun.footballleague.ui.adapters.RecyclerEventsAdapter
+import id.shobrun.footballleague.ui.events.EventsActivity.Companion.EXTRA_LEAGUE
 import id.shobrun.footballleague.ui.events.detail.DetailEventActivity
 import id.shobrun.footballleague.ui.events.previous.PreviousEventViewModel
 import org.jetbrains.anko.support.v4.intentFor
@@ -19,10 +20,9 @@ import org.jetbrains.anko.support.v4.intentFor
 class FavoritePreviousEventFragment : ViewModelFragment() {
     private lateinit var eventsAdapter: RecyclerEventsAdapter
     companion object {
-        const val EXTRA_EVENT = "extra_event"
         fun newInstance() = FavoritePreviousEventFragment()
     }
-    var league : League? = null
+
     private  val viewModel by viewModel<FavoritePreviousEventViewModel>()
     private lateinit var binding : FavoritePreviousEventFragmentBinding
     override fun onCreateView(
@@ -41,9 +41,9 @@ class FavoritePreviousEventFragment : ViewModelFragment() {
             )
             startActivity(detail)
         }
-
-        if(requireArguments().getParcelable<League>(EXTRA_EVENT) != null){
-            league = requireArguments().getParcelable(EXTRA_EVENT)
+        var league : League? = null
+        if(requireArguments().getParcelable<League>(EXTRA_LEAGUE) != null){
+            league = requireArguments().getParcelable(EXTRA_LEAGUE)
         }
 
         viewModel.postLeagueId(league?.idLeague?:-1)
@@ -55,10 +55,5 @@ class FavoritePreviousEventFragment : ViewModelFragment() {
         val dividerItemDecoration = DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
         binding.rvPreviousEvent.addItemDecoration(dividerItemDecoration)
         binding.rvPreviousEvent.adapter = eventsAdapter
-    }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.postLeagueId(league?.idLeague?:-1)
     }
 }

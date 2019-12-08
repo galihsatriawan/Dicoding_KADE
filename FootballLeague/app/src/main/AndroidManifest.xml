@@ -7,24 +7,22 @@
     <application
         android:name=".BaseApplication"
         android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:fullBackupContent="@xml/backup_descriptor">
+        android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.events.favorite.FavoriteEventsActivity"
-            android:label="@string/title_activity_favorite_events"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:name=".ui.events.EventsActivity"
+            android:label="@string/title_activity_events"
+            android:theme="@style/AppTheme.NoActionBar"
+            ></activity>
         <activity
             android:name=".ui.events.search.SearchEventsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.events.detail.DetailEventActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ui.events.EventsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.MainActivity"

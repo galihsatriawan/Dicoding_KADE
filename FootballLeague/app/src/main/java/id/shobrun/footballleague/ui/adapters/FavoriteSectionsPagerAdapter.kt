@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.models.entity.League
+import id.shobrun.footballleague.ui.events.EventsActivity.Companion.EXTRA_LEAGUE
 import id.shobrun.footballleague.ui.events.favorite.next.FavoriteNextEventFragment
 import id.shobrun.footballleague.ui.events.favorite.previous.FavoritePreviousEventFragment
 
@@ -24,7 +25,7 @@ class FavoriteSectionsPagerAdapter(private val context: Context, fm: FragmentMan
 
     override fun getItem(position: Int): Fragment {
         val bundle  = Bundle()
-        bundle.putParcelable(FavoritePreviousEventFragment.EXTRA_EVENT,(league))
+        bundle.putParcelable(EXTRA_LEAGUE,(league))
         return if(position == 0 ){
             val prevFrag = FavoritePreviousEventFragment.newInstance()
             prevFrag.arguments = bundle

@@ -16,6 +16,7 @@ import id.shobrun.footballleague.compose.ViewModelFragment
 import id.shobrun.footballleague.databinding.NextEventFragmentBinding
 import id.shobrun.footballleague.models.entity.League
 import id.shobrun.footballleague.ui.adapters.RecyclerEventsAdapter
+import id.shobrun.footballleague.ui.events.EventsActivity.Companion.EXTRA_LEAGUE
 import id.shobrun.footballleague.ui.events.detail.DetailEventActivity
 import id.shobrun.footballleague.ui.events.previous.PreviousEventFragment
 import id.shobrun.footballleague.ui.leagues.detail.DetailLeagueActivity
@@ -48,8 +49,8 @@ class NextEventFragment : ViewModelFragment() {
             startActivity(detail)
         }
         var league : League? = null
-        if(requireArguments().getParcelable<League>(PreviousEventFragment.EXTRA_EVENT) != null){
-            league = requireArguments().getParcelable<League>(PreviousEventFragment.EXTRA_EVENT)
+        if(requireArguments().getParcelable<League>(EXTRA_LEAGUE) != null){
+            league = requireArguments().getParcelable<League>(EXTRA_LEAGUE)
         }
 
 

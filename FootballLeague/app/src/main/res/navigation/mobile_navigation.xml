@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_match">
+
+    <fragment
+        android:id="@+id/navigation_match"
+        android:name="id.shobrun.footballleague.ui.events.EventsFragment"
+        android:label="@string/title_match"
+        tools:layout="@layout/fragment_events" />
+
+    <fragment
+        android:id="@+id/navigation_favorite"
+        android:name="id.shobrun.footballleague.ui.events.FavoriteFragment"
+        android:label="@string/title_favorite_match"
+        tools:layout="@layout/fragment_favorite_events" />
+
+</navigation>

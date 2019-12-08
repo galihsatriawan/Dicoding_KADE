@@ -16,9 +16,10 @@ class FavoriteNextEventViewModel @Inject constructor(val repository: EventReposi
 
     private val leagueIdLiveData : MutableLiveData<Int> = MutableLiveData()
     val nextEventLiveData : LiveData<List<Event>>
+
     init {
         nextEventLiveData = leagueIdLiveData.switchMap {
-            leagueIdLiveData.value?.let { repository.getAllFavoriteNextEventInSqliteDb(it) }
+            leagueIdLiveData.value?.let { repository.getAllFavoriteNextEventInDb(it) }
                 ?: AbsentLiveData.create()
         }
     }

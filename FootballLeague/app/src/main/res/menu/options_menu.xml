@@ -4,8 +4,5 @@
     <group android:menuCategory="container">
         <item android:id="@+id/search"
             android:title="@string/search" />
-        <item android:id="@+id/favorite"
-            android:title="@string/favorite"
-            />
     </group>
 </menu>

@@ -38,7 +38,7 @@ class RecyclerEventsAdapter(private var items: List<Event>) :
         val view = EventViewHolder(itemBinding)
         view.listen { pos->
             itemListener(this.items[pos])
-            Timber.d("$TAG id = ${this.items[pos].dateEvent}")
+            Timber.d("$TAG id = ${this.items[pos].idLeague}")
         }
         return view
     }
@@ -90,7 +90,7 @@ class RecyclerEventsAdapter(private var items: List<Event>) :
             _tv_away_name.value = event.awayTeam
             _tv_home_score.value = "${event.homeScore?:"?"}"
             _tv_away_score.value = "${event.awayScore?:"?"}"
-            _tv_event_date.value = "Match : ${event.dateEvent}"
+            _tv_event_date.value = "Match Date : ${event.dateEvent}"
 
         }
     }

@@ -14,7 +14,6 @@ import id.shobrun.footballleague.databinding.ActivityEventDetailBinding
 import id.shobrun.footballleague.extensions.simpleToolbarWithHome
 import id.shobrun.footballleague.models.entity.Event
 import id.shobrun.footballleague.room.AppDatabase
-import id.shobrun.footballleague.utils.AbsentLiveData
 import kotlinx.android.synthetic.main.activity_event_detail.*
 import org.jetbrains.anko.design.snackbar
 import timber.log.Timber
@@ -39,7 +38,7 @@ class DetailEventActivity : ViewModelActivity() {
         var event : Event? = null
         if(intent.getParcelableExtra<Event>(EXTRA_EVENT) !=null ){
             event = intent.getParcelableExtra<Event>(EXTRA_EVENT)
-            viewModel.postEventId(event.idEvent?:-1)
+            viewModel.postEventId(event.idEvent)
         }
         simpleToolbarWithHome(toolbar,event?.eventName?:"Detail Event")
         favoriteState()
@@ -81,12 +80,12 @@ class DetailEventActivity : ViewModelActivity() {
     private fun setFavorite(state : Boolean){
         if(state){
             menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this,R.drawable.ic_added_to_favorite)
-            if(count>0) progressBar.snackbar(getString(R.string.add_success))
+            if(count>1) progressBar.snackbar(getString(R.string.add_success))
         }
 
         else{
             menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this,R.drawable.ic_add_to_favorite)
-            if(count>0) progressBar.snackbar(getString(R.string.remove_success))
+            if(count>1) progressBar.snackbar(getString(R.string.remove_success))
         }
 
     }

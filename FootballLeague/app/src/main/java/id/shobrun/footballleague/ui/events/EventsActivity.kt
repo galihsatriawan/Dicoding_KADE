@@ -1,80 +1,105 @@
 package id.shobrun.footballleague.ui.events
 
-import android.app.SearchManager
-import android.content.Context
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import androidx.appcompat.widget.SearchView
-import androidx.viewpager.widget.ViewPager
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.tabs.TabLayout
+import androidx.annotation.IdRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.extensions.simpleToolbarWithHome
 import id.shobrun.footballleague.models.entity.League
-import id.shobrun.footballleague.ui.adapters.SectionsPagerAdapter
-import id.shobrun.footballleague.ui.events.favorite.FavoriteEventsActivity
-import id.shobrun.footballleague.ui.events.search.SearchEventsActivity
 import kotlinx.android.synthetic.main.activity_events.*
-import org.jetbrains.anko.design.snackbar
-import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.toast
-
+import android.util.SparseArray
 class EventsActivity : AppCompatActivity() {
-    companion object {
-        const val EXTRA_LEAGUE = "extra_league"
-    }
     var league : League? = null
+    companion object{
+        val EXTRA_LEAGUE = "extra_league"
+        const val SAVED_STATE_CONTAINER_KEY = "ContainerKey"
+        const val SAVED_STATE_CURRENT_TAB_KEY = "CurrentTabKey"
+    }
+    private var savedStateSparseArray = SparseArray<Fragment.SavedState>()
+    private var currentSelectItemId = R.id.navigation_match
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_events)
-
+        if (savedInstanceState != null) {
+            savedStateSparseArray = savedInstanceState.getSparseParcelableArray(SAVED_STATE_CONTAINER_KEY)!!
+            currentSelectItemId = savedInstanceState.getInt(SAVED_STATE_CURRENT_TAB_KEY)
+        }
         if(intent.getParcelableExtra<League>(EXTRA_LEAGUE) != null){
             league = intent.getParcelableExtra<League>(EXTRA_LEAGUE)
         }
-        val sectionsPagerAdapter =
-            SectionsPagerAdapter(
-                applicationContext,
-                supportFragmentManager,
-                league
-            )
-        val viewPager: ViewPager = findViewById(R.id.view_pager)
 
-        viewPager.adapter = sectionsPagerAdapter
-        val tabs: TabLayout = findViewById(R.id.tabs)
-        tabs.setupWithViewPager(viewPager)
-        simpleToolbarWithHome(toolbar, league?.name ?: "Match")
+        val bundle = Bundle()
+        bundle.putParcelable(EXTRA_LEAGUE,league)
 
+        bottom_navigation.setOnNavigationItemSelectedListener {
+            var fragment = Fragment()
+
+            when(it.itemId){
+                R.id.navigation_match ->{
+                    fragment = EventsFragment.newInstance()
+                    fragment.arguments = bundle
+                    swapFragments(R.id.navigation_match,fragment)
+                }
+                R.id.navigation_favorite -> {
+                    fragment = FavoriteFragment.newInstance()
+                    fragment.arguments = bundle
+                    swapFragments(R.id.navigation_favorite,fragment)
+                }
+            }
+
+
+
+            true
+        }
+        bottom_navigation.selectedItemId = currentSelectItemId
+        simpleToolbarWithHome(toolbar,"${league?.name ?: "Match"}")
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState?.putSparseParcelableArray(SAVED_STATE_CONTAINER_KEY, savedStateSparseArray)
+        outState?.putInt(SAVED_STATE_CURRENT_TAB_KEY, currentSelectItemId)
     }
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return super.onSupportNavigateUp()
     }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-
-        val inflater = menuInflater
-        inflater.inflate(R.menu.options_menu,menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.search ->{
-                val intSearch = intentFor<SearchEventsActivity>()
-                startActivity(intSearch)
-            }
-            R.id.favorite ->{
-                val intFavorite = intentFor<FavoriteEventsActivity>(
-                    FavoriteEventsActivity.EXTRA_LEAGUE to league
-                )
-                startActivity(intFavorite)
+    override fun onBackPressed() {
+        supportFragmentManager.fragments.forEach { fragment ->
+            if (fragment != null && fragment.isVisible) {
+                with(fragment.childFragmentManager) {
+                    if (backStackEntryCount > 0) {
+                        popBackStack()
+                        return
+                    }
+                }
             }
         }
-        return super.onOptionsItemSelected(item)
+        super.onBackPressed()
+    }
+    private fun swapFragments(@IdRes actionId: Int, fragment: Fragment) {
+        if (supportFragmentManager.findFragmentByTag(fragment.javaClass.simpleName) == null) {
+            savedFragmentState(actionId)
+            createFragment(fragment, actionId)
+        }
     }
 
+    private fun createFragment(fragment: Fragment, actionId: Int) {
+        fragment.setInitialSavedState(savedStateSparseArray[actionId])
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.main_container, fragment, fragment.javaClass.simpleName)
+            .commit()
+    }
+
+    private fun savedFragmentState(actionId: Int) {
+        val currentFragment = supportFragmentManager.findFragmentById(R.id.main_container)
+        if (currentFragment != null) {
+            savedStateSparseArray.put(currentSelectItemId,
+                supportFragmentManager.saveFragmentInstanceState(currentFragment)
+            )
+        }
+        currentSelectItemId = actionId
+    }
 }
