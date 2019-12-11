@@ -66,6 +66,7 @@ dependencies {
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifeCycle"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifeCycle"
     androidTestImplementation "androidx.arch.core:core-testing:$androidArchVersion"
+    testImplementation "androidx.arch.core:core-testing:$androidArchVersion"
     /*
         Design View
      */
@@ -78,6 +79,7 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.squareup.okhttp3:okhttp:$okhttp"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$okhttp"
     /**
      * Dagger Dependencies
      */
@@ -87,11 +89,6 @@ dependencies {
     implementation "com.google.dagger:dagger-android:$daggerVersion"
     implementation "com.google.dagger:dagger-android-support:$daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
-
-
-    //Rx
-    implementation "io.reactivex.rxjava2:rxjava:2.1.15"
-    implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
     /*
         Image Loader
      */
@@ -119,9 +116,12 @@ dependencies {
     /**
      * Unit Test
      */
-//    testImplementation 'org.mockito:mockito-core:3.0.0'
-//    testImplementation "org.mockito:mockito-inline:3.0.0"
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    testImplementation "androidx.test:core:$androidxTest"
+    testImplementation "org.robolectric:robolectric:$robolectricVersion"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidxTest"
+    androidTestImplementation "androidx.test:rules:$androidxTestRules"
+    testImplementation "junit:junit:$junitVersion"
 }

@@ -5,7 +5,7 @@ import timber.log.Timber
 import java.io.IOException
 
 class ApiResponse<T> {
-    private val code: Int
+    val code: Int
     val body: T?
     val message: String?
 
