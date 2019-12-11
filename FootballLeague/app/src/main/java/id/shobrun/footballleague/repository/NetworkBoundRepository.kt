@@ -15,23 +15,18 @@ abstract class NetworkBoundRepository<ResultType,
         RequestType : NetworkResponseModel,
         Mapper : NetworkResponseMapper<RequestType>>
 internal constructor() {
-    companion object{
-        val TAG = NetworkBoundRepository.javaClass.name
-    }
+
     private val result: MediatorLiveData<Resource<ResultType>> = MediatorLiveData()
 
     init {
-        Log.d("NetworkBound","Injection NetworkBoundRepository")
-        result.postValue(Resource.loading(null))
+
         val loadedFromDB = this.loadFromDb()
         result.addSource(loadedFromDB) { data ->
             result.removeSource(loadedFromDB)
             if (shouldFetch(data)) {
-                Timber.d("$TAG is fetch")
                 result.postValue(Resource.loading(null))
                 fetchFromNetwork(loadedFromDB)
             } else {
-                Timber.d("$TAG is db")
                 result.addSource<ResultType>(loadedFromDB) { newData ->
                     setValue(Resource.success(newData, false))
                 }
@@ -40,19 +35,15 @@ internal constructor() {
     }
 
     private fun fetchFromNetwork(loadedFromDB: LiveData<ResultType>) {
-        Timber.d("$TAG fetch data")
         val apiResponse = fetchService()
         result.addSource(apiResponse) { response ->
             response?.let {
                 when (response.isSuccessful) {
                     true -> {
-                        Timber.d("$TAG fetch success")
                         response.body?.let {
-                            Timber.d("$TAG data : $it")
                             saveFetchData(it)
                             val loaded = loadFromDb()
                             result.addSource(loaded) { newData ->
-                                Timber.d("$TAG new Data : ${newData.toString()}")
                                 newData?.let {
                                     setValue(Resource.success(newData, mapper().onLastPage(response.body)))
                                 }
