@@ -139,7 +139,7 @@ class EventRepositoryTest {
     @Test
     fun getSearchEvent() {
         val qry = "event"
-        val qry_db = "[qry=${qry}]"
+        val qry_db = "%[qry=${qry}]%"
         val loadFromDB = MutableLiveData<List<Event>>()
         whenever(eventDao.getSearchEvent(qry_db)).thenReturn(loadFromDB)
 

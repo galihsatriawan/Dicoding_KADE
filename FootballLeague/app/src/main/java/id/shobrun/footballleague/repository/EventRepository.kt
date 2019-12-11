@@ -148,7 +148,7 @@ class EventRepository @Inject constructor(val webservice : EventApi, val eventDa
             }
 
             override fun loadFromDb(): LiveData<List<Event>> {
-                val qry = "[qry=${q}]"
+                val qry = "%[qry=${q}]%"
                 return eventDao.getSearchEvent(qry)
             }
 
