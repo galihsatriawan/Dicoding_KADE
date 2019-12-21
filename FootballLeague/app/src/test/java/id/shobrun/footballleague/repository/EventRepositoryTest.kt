@@ -3,10 +3,7 @@ package id.shobrun.footballleague.repository
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
-import com.nhaarman.mockitokotlin2.whenever
+import com.nhaarman.mockitokotlin2.*
 import id.shobrun.footballleague.api.ApiUtil.successCall
 import id.shobrun.footballleague.api.EventApi
 import id.shobrun.footballleague.models.Resource
@@ -50,11 +47,11 @@ class EventRepositoryTest {
     fun getDetailEvent() {
         val idEvent = 1
         val loadFromDB = MutableLiveData<Event>()
-        whenever(eventDao.getEventById(idEvent)).thenReturn(loadFromDB)
+        whenever(eventDao.getEventById(idEvent)).doReturn(loadFromDB)
 
         val mockResponse = EventsResponse(arrayListOf(mockEvent()))
         val call = successCall(mockResponse)
-        whenever(service.getDetailEvents(idEvent)).thenReturn(call)
+        whenever(service.getDetailEvents(idEvent)).doReturn(call)
 
         val data = repository.getDetailEvent(idEvent)
         verify(eventDao).getEventById(idEvent)
@@ -64,7 +61,7 @@ class EventRepositoryTest {
         data.observeForever(observer)
         verifyNoMoreInteractions(service)
         val updatedData = MutableLiveData<Event>()
-        whenever(eventDao.getEventById(idEvent)).thenReturn(updatedData)
+        whenever(eventDao.getEventById(idEvent)).doReturn(updatedData)
 
         loadFromDB.postValue(null)
         verify(observer).onChanged(Resource.loading(null))
@@ -80,11 +77,11 @@ class EventRepositoryTest {
     fun getPreviousEvents() {
         val idLeague = 1
         val loadFromDB = MutableLiveData<List<Event>>()
-        whenever(eventDao.getPastEvents(idLeague)).thenReturn(loadFromDB)
+        whenever(eventDao.getPastEvents(idLeague)).doReturn(loadFromDB)
 
         val mockResponse = EventsResponse(arrayListOf(mockEvent()))
         val call = successCall(mockResponse)
-        whenever(service.getPastEvents(idLeague)).thenReturn(call)
+        whenever(service.getPastEvents(idLeague)).doReturn(call)
 
         val data = repository.getPreviousEvents(idLeague)
         verify(eventDao).getPastEvents(idLeague)
@@ -94,7 +91,7 @@ class EventRepositoryTest {
         data.observeForever(observer)
         verifyNoMoreInteractions(service)
         val updatedData = MutableLiveData<List<Event>>()
-        whenever(eventDao.getPastEvents(idLeague)).thenReturn(updatedData)
+        whenever(eventDao.getPastEvents(idLeague)).doReturn(updatedData)
 
         loadFromDB.postValue(null)
         verify(observer).onChanged(Resource.loading(null))
@@ -110,11 +107,11 @@ class EventRepositoryTest {
     fun getNextEvents() {
         val idLeague = 1
         val loadFromDB = MutableLiveData<List<Event>>()
-        whenever(eventDao.getNextEvents(idLeague)).thenReturn(loadFromDB)
+        whenever(eventDao.getNextEvents(idLeague)).doReturn(loadFromDB)
 
         val mockResponse = EventsResponse(arrayListOf(mockEvent()))
         val call = successCall(mockResponse)
-        whenever(service.getNextEvents(idLeague)).thenReturn(call)
+        whenever(service.getNextEvents(idLeague)).doReturn(call)
 
         val data = repository.getNextEvents(idLeague)
         verify(eventDao).getNextEvents(idLeague)
@@ -124,7 +121,7 @@ class EventRepositoryTest {
         data.observeForever(observer)
         verifyNoMoreInteractions(service)
         val updatedData = MutableLiveData<List<Event>>()
-        whenever(eventDao.getNextEvents(idLeague)).thenReturn(updatedData)
+        whenever(eventDao.getNextEvents(idLeague)).doReturn(updatedData)
 
         loadFromDB.postValue(null)
         verify(observer).onChanged(Resource.loading(null))
@@ -141,11 +138,11 @@ class EventRepositoryTest {
         val qry = "event"
         val qry_db = "%[qry=${qry}]%"
         val loadFromDB = MutableLiveData<List<Event>>()
-        whenever(eventDao.getSearchEvent(qry_db)).thenReturn(loadFromDB)
+        whenever(eventDao.getSearchEvent(qry_db)).doReturn(loadFromDB)
 
         val mockResponse = EventSearchResponse(arrayListOf(mockEvent()))
         val call = successCall(mockResponse)
-        whenever(service.getSearchEvents(qry)).thenReturn(call)
+        whenever(service.getSearchEvents(qry)).doReturn(call)
 
         val data = repository.getSearchEvent(qry)
         verify(eventDao).getSearchEvent(qry_db)
@@ -155,7 +152,7 @@ class EventRepositoryTest {
         data.observeForever(observer)
         verifyNoMoreInteractions(service)
         val updatedData = MutableLiveData<List<Event>>()
-        whenever(eventDao.getSearchEvent(qry_db)).thenReturn(updatedData)
+        whenever(eventDao.getSearchEvent(qry_db)).doReturn(updatedData)
 
         loadFromDB.postValue(null)
         verify(observer).onChanged(Resource.loading(null))

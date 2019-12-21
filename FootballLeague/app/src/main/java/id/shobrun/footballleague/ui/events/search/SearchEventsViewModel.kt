@@ -1,9 +1,6 @@
 package id.shobrun.footballleague.ui.events.search
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.switchMap
+import androidx.lifecycle.*
 import id.shobrun.footballleague.models.Resource
 import id.shobrun.footballleague.models.entity.Event
 import id.shobrun.footballleague.repository.EventRepository
@@ -12,10 +9,11 @@ import javax.inject.Inject
 
 class SearchEventsViewModel @Inject constructor(repository: EventRepository) :ViewModel() {
     val eventLiveData : LiveData<Resource<List<Event>>>
-    private val filterLiveData : MutableLiveData<String> = MutableLiveData()
+    val filterLiveData:MutableLiveData<String> = MutableLiveData()
+
 
     init {
-        eventLiveData = filterLiveData.switchMap {
+        eventLiveData = filterLiveData.switchMap{
             filterLiveData.value?.let { repository.getSearchEvent(it) }
                 ?:AbsentLiveData.create()
         }

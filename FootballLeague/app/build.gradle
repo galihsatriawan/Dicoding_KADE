@@ -28,6 +28,7 @@ android {
     }
     testOptions {
         unitTests.includeAndroidResources true
+        unitTests.returnDefaultValues = true
     }
     kotlinOptions {
         jvmTarget = "1.8"
@@ -119,7 +120,7 @@ dependencies {
     /**
      * Unit Test
      */
-
+    testImplementation "org.mockito:mockito-inline:3.0.0"
     testImplementation "androidx.test:core:$androidxTest"
     testImplementation "org.robolectric:robolectric:$robolectricVersion"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"

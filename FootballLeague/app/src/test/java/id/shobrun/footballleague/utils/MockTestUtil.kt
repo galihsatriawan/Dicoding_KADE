@@ -11,7 +11,7 @@ class MockTestUtil {
         fun mockLeague() = League(1,"league","banner","logo",1,"desc")
         fun mockEvent() = Event(1,"event","Soccer",1,"event","event","event",
             1,1,"event","event","event","event","event","event",
-            "event","event",1,1,0,null)
+            "event","event",1,1,0,"[qry=event]")
 
         fun mockLeagueList() : List<League>{
             val leagues = ArrayList<League>()

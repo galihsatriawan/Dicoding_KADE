@@ -3,10 +3,7 @@ package id.shobrun.footballleague.repository
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
-import com.nhaarman.mockitokotlin2.whenever
+import com.nhaarman.mockitokotlin2.*
 import id.shobrun.footballleague.api.ApiUtil.successCall
 import id.shobrun.footballleague.api.TeamApi
 import id.shobrun.footballleague.models.Resource
@@ -48,11 +45,11 @@ class TeamRepositoryTest {
     fun loadTeamDetailById() {
         val idTeam = 1
         val loadFromDB = MutableLiveData<Team>()
-        whenever(teamDao.getTeamById(idTeam)).thenReturn(loadFromDB)
+        whenever(teamDao.getTeamById(idTeam)).doReturn(loadFromDB)
 
         val mockResponse = TeamsResponse(arrayListOf(mockTeam()))
         val call = successCall(mockResponse)
-        whenever(service.getTeamById(idTeam)).thenReturn(call)
+        whenever(service.getTeamById(idTeam)).doReturn(call)
 
         val data = repository.loadTeamDetailById(idTeam)
         verify(teamDao).getTeamById(idTeam)
@@ -63,7 +60,7 @@ class TeamRepositoryTest {
         verifyNoMoreInteractions(service)
 
         val updateData = MutableLiveData<Team>()
-        whenever(teamDao.getTeamById(idTeam)).thenReturn(updateData)
+        whenever(teamDao.getTeamById(idTeam)).doReturn(updateData)
 
         loadFromDB.postValue(null)
         verify(observer).onChanged(Resource.loading(null))
