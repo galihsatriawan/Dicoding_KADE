@@ -1,4 +1,4 @@
-package id.shobrun.footballleague.ui.events.next
+package id.shobrun.footballleague.ui.events.favorite.next
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
@@ -20,17 +20,13 @@ import org.junit.Test
 
 import org.junit.Assert.*
 import org.junit.Rule
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
-
-@RunWith(JUnit4::class)
-class NextEventViewModelTest {
+class FavoriteNextEventViewModelTest {
 
     @Rule
     @JvmField
     val instantExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var viewModel: NextEventViewModel
+    private lateinit var viewModel: FavoriteNextEventViewModel
     private lateinit var repository: EventRepository
     private val eventDao = mock<EventDao>()
     private val eventApi = mock<EventApi>()
@@ -38,33 +34,30 @@ class NextEventViewModelTest {
     @Before
     fun setUp() {
         repository = EventRepository(eventApi,eventDao)
-        viewModel = NextEventViewModel(repository)
+        viewModel = FavoriteNextEventViewModel(repository)
     }
 
     /**
      * Scenario
-     * Pengecekan apakah observable data berjalan dengan baik
+     * 1. Apakah Observable berjalan dengan baik
      */
     @Test
     fun getNextEventLiveData() {
         val idLeague = 1
-        val loadFromDB = MutableLiveData<List<Event>>()
-        whenever(eventDao.getNextEvents(idLeague)).doReturn(loadFromDB)
-
-        val mockResponse = EventsResponse(mockEventList())
-        val call = successCall(mockResponse)
-        whenever(eventApi.getNextEvents(idLeague)).doReturn(call)
+        val loadFromDb = MutableLiveData<List<Event>>()
+        whenever(eventDao.getFavoriteNextEvents(idLeague,1)).doReturn(loadFromDb)
 
         val data = viewModel.nextEventLiveData
-        val observer = mock<Observer<Resource<List<Event>>>>()
+        val observer = mock<Observer<List<Event>>>()
         data.observeForever(observer)
 
         viewModel.postLeagueId(idLeague)
-        verify(eventDao).getNextEvents(idLeague)
 
-        loadFromDB.postValue(mockEventList())
+        verify(eventDao).getFavoriteNextEvents(idLeague,1)
+
+        loadFromDb.postValue(mockEventList())
         verify(observer).onChanged(
-            Resource.success(mockEventList(),true)
+            mockEventList()
         )
     }
 }

@@ -164,23 +164,43 @@ class EventRepositoryTest {
 
     }
 
+    /**
+     * Scenario
+     * 1. Pengecekan method terpanggil dengan baik
+     */
+
     @Test
     fun insertEventToDb() {
+        val event = mockEvent()
+        repository.insertEventToDb(event)
+        verify(eventDao).insert(event)
     }
 
     @Test
     fun getAllFavoriteNextEventInDb() {
+        val idLeague = 1
+        repository.getAllFavoriteNextEventInDb(idLeague)
+        verify(eventDao).getFavoriteNextEvents(idLeague,1)
     }
 
     @Test
     fun getAllFavoritePrevEventInDb() {
+        val idLeague = 1
+        repository.getAllFavoritePrevEventInDb(idLeague)
+        verify(eventDao).getFavoritePastEvents(idLeague,1)
     }
 
     @Test
     fun getEventByIdInDb() {
+        val idLeague = 1
+        repository.getEventByIdInDb(idLeague)
+        verify(eventDao).getEventById(idLeague)
     }
 
     @Test
     fun updateEventInDb() {
+        val event = mockEvent()
+        repository.updateEventInDb(event)
+        verify(eventDao).update(event)
     }
 }
