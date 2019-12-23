@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.switchMap
-import id.shobrun.footballleague.models.Resource
 import id.shobrun.footballleague.models.entity.Event
 import id.shobrun.footballleague.repository.EventRepository
 import id.shobrun.footballleague.utils.AbsentLiveData

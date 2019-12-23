@@ -12,7 +12,7 @@ import org.junit.runners.JUnit4
 
 @RunWith(JUnit4::class)
 class EventApiTest : ApiAbstract<EventApi>() {
-    lateinit var service : EventApi
+    private lateinit var service : EventApi
 
     @Before
     fun initService(){

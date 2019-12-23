@@ -9,12 +9,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.compose.ViewModelFragment
 import id.shobrun.footballleague.databinding.FavoriteNextEventFragmentBinding
-import id.shobrun.footballleague.databinding.NextEventFragmentBinding
 import id.shobrun.footballleague.models.entity.League
 import id.shobrun.footballleague.ui.adapters.RecyclerEventsAdapter
 import id.shobrun.footballleague.ui.events.EventsActivity.Companion.EXTRA_LEAGUE
 import id.shobrun.footballleague.ui.events.detail.DetailEventActivity
-
 import org.jetbrains.anko.support.v4.intentFor
 
 class FavoriteNextEventFragment : ViewModelFragment() {

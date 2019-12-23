@@ -24,7 +24,7 @@ import org.junit.runners.JUnit4
 class TeamRepositoryTest {
     private val teamDao = mock<TeamDao>()
     private val service = mock<TeamApi>()
-    lateinit var repository : TeamRepository
+    private lateinit var repository : TeamRepository
     @Rule
     @JvmField
     val instantExecutorRule = InstantTaskExecutorRule()

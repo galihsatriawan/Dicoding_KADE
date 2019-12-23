@@ -2,7 +2,6 @@ package id.shobrun.footballleague.ui.events.search
 
 import android.app.SearchManager
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.widget.SearchView
@@ -16,8 +15,6 @@ import id.shobrun.footballleague.ui.adapters.RecyclerEventsAdapter
 import id.shobrun.footballleague.ui.events.detail.DetailEventActivity
 import kotlinx.android.synthetic.main.activity_event_detail.*
 import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.support.v4.intentFor
-import org.jetbrains.anko.toast
 
 class SearchEventsActivity : ViewModelActivity() {
     val viewModel by viewModel<SearchEventsViewModel>()
@@ -25,10 +22,12 @@ class SearchEventsActivity : ViewModelActivity() {
     private lateinit var eventAdapter : RecyclerEventsAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         with(binding){
             lifecycleOwner = this@SearchEventsActivity
             vm = viewModel
         }
+
         eventAdapter = RecyclerEventsAdapter(ArrayList())
         eventAdapter.setItemListener {event ->
             val detail = intentFor<DetailEventActivity>(
@@ -37,8 +36,8 @@ class SearchEventsActivity : ViewModelActivity() {
             startActivity(detail)
         }
         val dividerItemDecoration = DividerItemDecoration(applicationContext, LinearLayoutManager.VERTICAL)
-        binding.recyclerNextEvent.addItemDecoration(dividerItemDecoration)
-        binding.recyclerNextEvent.adapter = eventAdapter
+        binding.recyclerSearchEvent.addItemDecoration(dividerItemDecoration)
+        binding.recyclerSearchEvent.adapter = eventAdapter
         simpleToolbarWithHome(toolbar,"Search Event")
 
     }

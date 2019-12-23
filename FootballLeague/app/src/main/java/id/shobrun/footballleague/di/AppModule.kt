@@ -1,17 +1,9 @@
 package id.shobrun.footballleague.di
 
+
 import android.app.Application
-import androidx.room.RoomDatabase
 import dagger.Module
 import dagger.Provides
-import id.shobrun.footballleague.api.RequestInterceptor
-import id.shobrun.footballleague.room.AppDatabase
-import id.shobrun.footballleague.utils.Constants
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-
-
 import javax.inject.Named
 import javax.inject.Singleton
 

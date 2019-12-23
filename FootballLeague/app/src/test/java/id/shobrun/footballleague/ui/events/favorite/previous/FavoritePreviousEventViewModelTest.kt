@@ -27,11 +27,11 @@ class FavoritePreviousEventViewModelTest {
     @JvmField
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    val eventDao = mock<EventDao>()
-    val eventApi = mock<EventApi>()
+    private val eventDao = mock<EventDao>()
+    private val eventApi = mock<EventApi>()
 
-    lateinit var repository : EventRepository
-    lateinit var viewModel: FavoritePreviousEventViewModel
+    private lateinit var repository : EventRepository
+    private lateinit var viewModel: FavoritePreviousEventViewModel
 
     @Before
     fun setUp() {

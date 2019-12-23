@@ -23,7 +23,7 @@ import org.junit.runners.JUnit4
 
 @RunWith(JUnit4::class)
 class LeagueRepositoryTest  {
-    val application = mock<Application>()
+    private val application = mock<Application>()
     private lateinit var repository: LeagueRepository
     private val service = mock<LeagueApi>()
     private val leagueDao = mock<LeagueDao>()

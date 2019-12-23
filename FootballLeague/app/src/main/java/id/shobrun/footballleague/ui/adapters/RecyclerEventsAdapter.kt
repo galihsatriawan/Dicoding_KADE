@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
 import id.shobrun.footballleague.databinding.ItemEventBinding
 import id.shobrun.footballleague.models.entity.Event
-import id.shobrun.footballleague.models.entity.League
 import org.jetbrains.anko.AnkoLogger
 import timber.log.Timber
 

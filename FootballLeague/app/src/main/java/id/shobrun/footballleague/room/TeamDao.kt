@@ -1,7 +1,10 @@
 package id.shobrun.footballleague.room
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Update
 import id.shobrun.footballleague.models.entity.Team
 import id.shobrun.footballleague.room.AppDatabase.Companion.ID_TEAM
 import id.shobrun.footballleague.room.AppDatabase.Companion.TABLE_TEAM

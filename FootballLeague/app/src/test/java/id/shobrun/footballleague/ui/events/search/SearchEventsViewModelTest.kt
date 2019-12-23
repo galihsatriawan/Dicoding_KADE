@@ -29,8 +29,8 @@ import org.junit.runners.JUnit4
 class SearchEventsViewModelTest{
 
 
-    val eventRepository= mock<EventRepository>()
-    lateinit var viewModel: SearchEventsViewModel
+    private val eventRepository= mock<EventRepository>()
+    private lateinit var viewModel: SearchEventsViewModel
 
     @Rule
     @JvmField

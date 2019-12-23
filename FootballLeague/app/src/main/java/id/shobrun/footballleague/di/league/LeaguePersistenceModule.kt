@@ -1,6 +1,5 @@
 package id.shobrun.footballleague.di.league
 
-import android.app.Application
 import dagger.Module
 import dagger.Provides
 import id.shobrun.footballleague.room.AppDatabase

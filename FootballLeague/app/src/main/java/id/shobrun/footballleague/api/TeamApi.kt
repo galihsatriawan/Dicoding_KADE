@@ -1,7 +1,6 @@
 package id.shobrun.footballleague.api
 
 import androidx.lifecycle.LiveData
-import id.shobrun.footballleague.models.entity.Team
 import id.shobrun.footballleague.models.network.TeamsResponse
 import retrofit2.http.GET
 import retrofit2.http.Query

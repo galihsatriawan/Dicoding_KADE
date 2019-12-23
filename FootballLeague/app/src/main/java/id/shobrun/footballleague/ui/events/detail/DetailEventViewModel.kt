@@ -10,9 +10,7 @@ import id.shobrun.footballleague.models.entity.Event
 import id.shobrun.footballleague.models.entity.Team
 import id.shobrun.footballleague.repository.EventRepository
 import id.shobrun.footballleague.repository.TeamRepository
-import id.shobrun.footballleague.repository.utils.IEventLocalDB
 import id.shobrun.footballleague.utils.AbsentLiveData
-import timber.log.Timber
 import javax.inject.Inject
 
 class DetailEventViewModel @Inject constructor(val repository : EventRepository, private val teamRepository: TeamRepository): ViewModel(){

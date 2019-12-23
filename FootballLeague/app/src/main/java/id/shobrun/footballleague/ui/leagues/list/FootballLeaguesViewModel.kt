@@ -1,9 +1,11 @@
 package id.shobrun.footballleague.ui.leagues.list
 
-import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import id.shobrun.footballleague.models.entity.League
 import id.shobrun.footballleague.repository.LeagueRepository
+import timber.log.Timber
 import javax.inject.Inject
 
 class FootballLeaguesViewModel @Inject constructor(repository: LeagueRepository) : ViewModel() {
@@ -17,7 +19,7 @@ class FootballLeaguesViewModel @Inject constructor(repository: LeagueRepository)
     init {
         val mLeagues = repository.getResourceLeagues()
         _leagues.value = mLeagues
-        Log.d(TAG, "VM work"+mLeagues.size)
+        Timber.d(TAG+ " VM work"+mLeagues.size)
     }
 
 }

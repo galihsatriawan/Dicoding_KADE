@@ -5,7 +5,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
-
+apply plugin: 'kotlin-allopen'
+allOpen {
+    // allows mocking for classes w/o directly opening them for release builds
+    annotation 'id.shobrun.footballleague.testing.OpenClass'
+}
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -39,6 +43,10 @@ android {
     dataBinding {
         enabled true
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -58,17 +66,15 @@ dependencies {
     /*
         LifeCycle
      */
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifeCycle"
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycle"
     implementation 'androidx.navigation:navigation-fragment:2.0.0'
     implementation 'androidx.navigation:navigation-ui:2.0.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.0.0'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.0.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0'
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifeCycle"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifeCycle"
+    implementation "android.arch.lifecycle:runtime:1.0.0"
+    annotationProcessor "android.arch.lifecycle:common-java8:1.0.0-rc1"
     androidTestImplementation "androidx.arch.core:core-testing:$androidArchVersion"
     testImplementation "androidx.arch.core:core-testing:$androidArchVersion"
     /*
@@ -110,7 +116,7 @@ dependencies {
      */
     implementation "com.jakewharton.timber:timber:$timberVersion"
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'androidx.core:core-ktx:1.2.0-beta01'
+    implementation 'androidx.core:core-ktx:1.2.0-rc01'
     implementation "androidx.activity:activity:$androidActivity"
     implementation "androidx.activity:activity-ktx:$androidActivity"
     implementation "androidx.fragment:fragment:$androidFragment"
@@ -120,10 +126,16 @@ dependencies {
     /**
      * Unit Test
      */
-    testImplementation "org.mockito:mockito-inline:3.0.0"
+
     testImplementation "androidx.test:core:$androidxTest"
     testImplementation "org.robolectric:robolectric:$robolectricVersion"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
+
+    testImplementation "org.mockito:mockito-inline:$mockito"
+    testImplementation "org.mockito:mockito-core:$mockito" // For instrumentation tests on Android devices and emulators
+    androidTestImplementation "com.linkedin.dexmaker:dexmaker-mockito:$dexMakerVersion"
+
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidxTest"
     androidTestImplementation "androidx.test:rules:$androidxTestRules"

@@ -3,20 +3,15 @@ package id.shobrun.footballleague.ui.events.detail
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
-import com.google.android.material.snackbar.Snackbar
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.compose.ViewModelActivity
 import id.shobrun.footballleague.databinding.ActivityEventDetailBinding
 import id.shobrun.footballleague.extensions.simpleToolbarWithHome
 import id.shobrun.footballleague.models.entity.Event
-import id.shobrun.footballleague.room.AppDatabase
 import kotlinx.android.synthetic.main.activity_event_detail.*
 import org.jetbrains.anko.design.snackbar
-import timber.log.Timber
 
 class DetailEventActivity : ViewModelActivity() {
     private var menuItem: Menu? = null
@@ -32,6 +27,7 @@ class DetailEventActivity : ViewModelActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         with(binding){
+
             lifecycleOwner = this@DetailEventActivity
             vm = viewModel
         }

@@ -1,6 +1,5 @@
 package id.shobrun.footballleague.repository
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import id.shobrun.footballleague.api.ApiResponse
 import id.shobrun.footballleague.api.EventApi
@@ -13,8 +12,6 @@ import id.shobrun.footballleague.models.network.EventsResponse
 import id.shobrun.footballleague.repository.utils.IEventLocalDB
 import id.shobrun.footballleague.room.AppDatabase
 import id.shobrun.footballleague.room.EventDao
-import id.shobrun.footballleague.utils.AbsentLiveData
-import org.jetbrains.anko.design.snackbar
 import timber.log.Timber
 import javax.inject.Inject
 

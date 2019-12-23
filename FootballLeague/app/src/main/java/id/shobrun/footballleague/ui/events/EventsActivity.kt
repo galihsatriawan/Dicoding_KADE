@@ -1,23 +1,23 @@
 package id.shobrun.footballleague.ui.events
 
 import android.os.Bundle
+import android.util.SparseArray
+import android.view.Menu
+import android.view.MenuItem
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.extensions.simpleToolbarWithHome
 import id.shobrun.footballleague.models.entity.League
-import kotlinx.android.synthetic.main.activity_events.*
-import android.util.SparseArray
-import android.view.Menu
-import android.view.MenuItem
 import id.shobrun.footballleague.ui.events.search.SearchEventsActivity
+import kotlinx.android.synthetic.main.activity_events.*
 import org.jetbrains.anko.intentFor
 
 class EventsActivity : AppCompatActivity() {
     var league : League? = null
     companion object{
-        val EXTRA_LEAGUE = "extra_league"
+        const val EXTRA_LEAGUE = "extra_league"
         const val SAVED_STATE_CONTAINER_KEY = "ContainerKey"
         const val SAVED_STATE_CURRENT_TAB_KEY = "CurrentTabKey"
     }
@@ -64,8 +64,8 @@ class EventsActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState?.putSparseParcelableArray(SAVED_STATE_CONTAINER_KEY, savedStateSparseArray)
-        outState?.putInt(SAVED_STATE_CURRENT_TAB_KEY, currentSelectItemId)
+        outState.putSparseParcelableArray(SAVED_STATE_CONTAINER_KEY, savedStateSparseArray)
+        outState.putInt(SAVED_STATE_CURRENT_TAB_KEY, currentSelectItemId)
     }
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()

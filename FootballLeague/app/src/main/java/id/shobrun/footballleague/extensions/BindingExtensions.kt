@@ -5,7 +5,6 @@ import id.shobrun.footballleague.R
 import id.shobrun.footballleague.models.Resource
 import id.shobrun.footballleague.models.Status
 import org.jetbrains.anko.design.snackbar
-import org.jetbrains.anko.toast
 import timber.log.Timber
 
 inline fun <reified T> View.bindResource(resource: Resource<T>?, onSuccess: (Resource<T>) -> Unit) {

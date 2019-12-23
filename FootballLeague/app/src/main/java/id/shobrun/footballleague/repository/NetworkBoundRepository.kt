@@ -1,6 +1,5 @@
 package id.shobrun.footballleague.repository
 
-import android.util.Log
 import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
@@ -9,7 +8,6 @@ import id.shobrun.footballleague.api.ApiResponse
 import id.shobrun.footballleague.mapper.NetworkResponseMapper
 import id.shobrun.footballleague.models.NetworkResponseModel
 import id.shobrun.footballleague.models.Resource
-import timber.log.Timber
 
 abstract class NetworkBoundRepository<ResultType,
         RequestType : NetworkResponseModel,

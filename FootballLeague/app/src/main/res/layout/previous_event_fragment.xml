@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:visibility="gone"
+            android:indeterminate="true"
             loadingEvents="@{vm.previousEventLiveData}"
             />
         <LinearLayout
@@ -32,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_error_black_24dp"
-                />
+                android:contentDescription="TODO" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -199,7 +199,7 @@ fun bindVisibleLoadingEvents(view: ProgressBar, resource: Resource<List<Event>>?
 @BindingAdapter("visibleMessage")
 fun bindVisibleMessageEvents(view: LinearLayout, resource: Resource<List<Event>>?) {
     view.bindResource(resource) {
-        if (it?.data?.isNullOrEmpty() != false) {
+        if (it.data?.isNullOrEmpty() != false) {
             view.visible()
         } else {
             view.gone()
@@ -210,8 +210,8 @@ fun bindVisibleMessageEvents(view: LinearLayout, resource: Resource<List<Event>>
 @BindingAdapter("messageEvents")
 fun bindMessageEvents(view: TextView, resource: Resource<List<Event>>?) {
     view.bindResource(resource) {
-        if (it?.status == Status.ERROR) {
-            view.text = it?.message
+        if (it.status == Status.ERROR) {
+            view.text = it.message
         } else {
             if (it.data.isNullOrEmpty()) {
                 view.text = view.context.getString(R.string.empty_data)

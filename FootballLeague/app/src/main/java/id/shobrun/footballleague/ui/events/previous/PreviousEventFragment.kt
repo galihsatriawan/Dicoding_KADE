@@ -1,10 +1,11 @@
 package id.shobrun.footballleague.ui.events.previous
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.compose.ViewModelFragment
 import id.shobrun.footballleague.databinding.PreviousEventFragmentBinding

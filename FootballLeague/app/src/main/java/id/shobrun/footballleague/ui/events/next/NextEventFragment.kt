@@ -1,16 +1,11 @@
 package id.shobrun.footballleague.ui.events.next
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import dagger.android.support.DaggerFragment
-
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.compose.ViewModelFragment
 import id.shobrun.footballleague.databinding.NextEventFragmentBinding
@@ -18,8 +13,6 @@ import id.shobrun.footballleague.models.entity.League
 import id.shobrun.footballleague.ui.adapters.RecyclerEventsAdapter
 import id.shobrun.footballleague.ui.events.EventsActivity.Companion.EXTRA_LEAGUE
 import id.shobrun.footballleague.ui.events.detail.DetailEventActivity
-import id.shobrun.footballleague.ui.events.previous.PreviousEventFragment
-import id.shobrun.footballleague.ui.leagues.detail.DetailLeagueActivity
 import org.jetbrains.anko.support.v4.intentFor
 
 class NextEventFragment : ViewModelFragment() {
