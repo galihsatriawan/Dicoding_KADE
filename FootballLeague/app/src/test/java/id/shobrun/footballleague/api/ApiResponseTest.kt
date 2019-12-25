@@ -1,7 +1,5 @@
 package id.shobrun.footballleague.api
 
-import org.junit.Assert.*
-
 
 import org.hamcrest.CoreMatchers
 import org.hamcrest.CoreMatchers.`is`

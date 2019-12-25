@@ -1,7 +1,6 @@
 package id.shobrun.footballleague.api
 
 import id.shobrun.footballleague.utils.LiveDataTestUtil
-import org.hamcrest.CoreMatchers
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.containsString

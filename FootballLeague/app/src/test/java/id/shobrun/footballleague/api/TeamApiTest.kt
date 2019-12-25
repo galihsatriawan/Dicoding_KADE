@@ -1,10 +1,10 @@
 package id.shobrun.footballleague.api
 
 import id.shobrun.footballleague.utils.LiveDataTestUtil
+import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
 import org.junit.Test
-import org.hamcrest.CoreMatchers.`is`
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 

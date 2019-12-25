@@ -7,7 +7,6 @@ import android.view.Menu
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import id.shobrun.footballleague.AppExecutors
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.compose.ViewModelActivity
 import id.shobrun.footballleague.databinding.ActivitySearchEventsBinding

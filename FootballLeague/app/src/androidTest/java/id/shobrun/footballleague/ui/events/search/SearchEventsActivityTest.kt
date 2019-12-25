@@ -1,46 +1,23 @@
 package id.shobrun.footballleague.ui.events.search
 
 
-import android.app.PendingIntent.getActivity
-import android.os.Bundle
 import android.view.KeyEvent
-import android.widget.ProgressBar
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.core.content.ContextCompat
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.IdlingRegistry
-import androidx.test.espresso.IdlingResource
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
-import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
-import androidx.test.filters.MediumTest
 import androidx.test.rule.ActivityTestRule
 import id.shobrun.footballleague.R
-import id.shobrun.footballleague.models.Resource
-import id.shobrun.footballleague.models.Status
-import id.shobrun.footballleague.models.entity.Event
-import id.shobrun.footballleague.repository.EventRepository
-import id.shobrun.footballleague.repository.Repository
 import id.shobrun.footballleague.utils.*
-import org.hamcrest.CoreMatchers.*
+import org.hamcrest.CoreMatchers.allOf
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.ArgumentMatchers
-import org.mockito.InjectMocks
-import org.mockito.Mock
-import org.mockito.Mockito
-import org.mockito.Mockito.*
-import org.mockito.junit.MockitoJUnit
-import org.mockito.junit.MockitoRule
 
 
 @RunWith(AndroidJUnit4::class)

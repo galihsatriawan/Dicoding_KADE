@@ -12,11 +12,9 @@ import id.shobrun.footballleague.models.network.TeamsResponse
 import id.shobrun.footballleague.room.TeamDao
 import id.shobrun.footballleague.utils.InstantAppExecutors
 import id.shobrun.footballleague.utils.MockTestUtil.Companion.mockTeam
-import org.junit.Test
-
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 

@@ -14,9 +14,9 @@ import id.shobrun.footballleague.repository.utils.IEventLocalDB
 import id.shobrun.footballleague.room.AppDatabase
 import id.shobrun.footballleague.room.EventDao
 import id.shobrun.footballleague.testing.OpenForTesting
-import id.shobrun.footballleague.utils.EspressoIdlingResource
 import timber.log.Timber
 import javax.inject.Inject
+
 @OpenForTesting
 class EventRepository @Inject constructor(var appExecutors: AppExecutors, val webservice : EventApi, val eventDao : EventDao) : Repository, IEventLocalDB{
     companion object{

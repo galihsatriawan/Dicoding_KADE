@@ -1,27 +1,16 @@
 package id.shobrun.footballleague.ui.events.search
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.nhaarman.mockitokotlin2.*
-import id.shobrun.footballleague.api.ApiUtil
-import id.shobrun.footballleague.api.EventApi
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.verify
 import id.shobrun.footballleague.models.Resource
 import id.shobrun.footballleague.models.entity.Event
-import id.shobrun.footballleague.models.network.EventSearchResponse
-import id.shobrun.footballleague.models.network.EventsResponse
 import id.shobrun.footballleague.repository.EventRepository
-import id.shobrun.footballleague.room.EventDao
-import id.shobrun.footballleague.ui.events.previous.PreviousEventViewModel
-import id.shobrun.footballleague.utils.LiveDataTestUtil.getValue
-import id.shobrun.footballleague.utils.MockTestUtil
 import junit.framework.Assert.assertNotNull
-import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.MatcherAssert.assertThat
-import org.junit.Test
-
 import org.junit.Before
 import org.junit.Rule
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 

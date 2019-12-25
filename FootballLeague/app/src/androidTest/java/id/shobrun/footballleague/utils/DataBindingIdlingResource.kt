@@ -4,15 +4,9 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.FragmentActivity
-import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.IdlingResource
-import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.rule.ActivityTestRule
-import id.shobrun.footballleague.databinding.ActivitySearchEventsBinding
-import id.shobrun.footballleague.ui.events.search.SearchEventsActivity
-import org.jetbrains.anko.view
 import java.util.*
-import kotlin.collections.ArrayList
 
 /**
  * An espresso idling resource implementation that reports idle status for all data binding

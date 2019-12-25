@@ -1,12 +1,12 @@
 package id.shobrun.footballleague.utils
 
 import android.content.res.Resources
-import androidx.recyclerview.widget.RecyclerView
 import android.view.View
-
+import androidx.recyclerview.widget.RecyclerView
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.TypeSafeMatcher
+
 class RecyclerViewMatcher(private val recyclerViewId: Int) {
 
     fun atPosition(position: Int): Matcher<View> {
