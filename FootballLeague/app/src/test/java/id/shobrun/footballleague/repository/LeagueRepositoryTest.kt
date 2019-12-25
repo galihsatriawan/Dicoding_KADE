@@ -15,6 +15,7 @@ import id.shobrun.footballleague.api.ApiUtil.successCall
 import id.shobrun.footballleague.models.Resource
 import id.shobrun.footballleague.models.entity.League
 import id.shobrun.footballleague.models.network.LeaguesResponse
+import id.shobrun.footballleague.utils.InstantAppExecutors
 import id.shobrun.footballleague.utils.MockTestUtil.Companion.mockLeague
 import org.junit.Rule
 import org.junit.runner.RunWith
@@ -32,7 +33,7 @@ class LeagueRepositoryTest  {
     val instantExecutorRule = InstantTaskExecutorRule()
     @Before
     fun setUp() {
-        this.repository = LeagueRepository(service,leagueDao, application)
+        this.repository = LeagueRepository(InstantAppExecutors(), service,leagueDao, application)
     }
     /**
      * Scenario

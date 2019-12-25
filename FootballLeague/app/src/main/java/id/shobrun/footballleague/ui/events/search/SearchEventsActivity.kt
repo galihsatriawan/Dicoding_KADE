@@ -7,16 +7,20 @@ import android.view.Menu
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import id.shobrun.footballleague.AppExecutors
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.compose.ViewModelActivity
 import id.shobrun.footballleague.databinding.ActivitySearchEventsBinding
 import id.shobrun.footballleague.extensions.simpleToolbarWithHome
+import id.shobrun.footballleague.testing.OpenForTesting
 import id.shobrun.footballleague.ui.adapters.RecyclerEventsAdapter
 import id.shobrun.footballleague.ui.events.detail.DetailEventActivity
 import kotlinx.android.synthetic.main.activity_event_detail.*
 import org.jetbrains.anko.intentFor
 
+@OpenForTesting
 class SearchEventsActivity : ViewModelActivity() {
+
     val viewModel by viewModel<SearchEventsViewModel>()
     val binding by binding<ActivitySearchEventsBinding>(R.layout.activity_search_events)
     private lateinit var eventAdapter : RecyclerEventsAdapter
@@ -69,7 +73,7 @@ class SearchEventsActivity : ViewModelActivity() {
             Gunakan method ini untuk merespon tiap perubahan huruf pada searchView
              */
             override fun onQueryTextChange(newText: String): Boolean {
-                viewModel.postFilter(newText)
+//                viewModel.postFilter(newText)
                 return false
             }
         })

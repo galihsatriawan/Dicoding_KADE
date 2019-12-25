@@ -12,6 +12,7 @@ import id.shobrun.footballleague.models.entity.League
 import id.shobrun.footballleague.models.network.LeaguesResponse
 import id.shobrun.footballleague.repository.LeagueRepository
 import id.shobrun.footballleague.room.LeagueDao
+import id.shobrun.footballleague.utils.InstantAppExecutors
 import id.shobrun.footballleague.utils.MockTestUtil.Companion.mockLeague
 import org.junit.Before
 import org.junit.Test
@@ -36,7 +37,7 @@ class DetailLeagueViewModelTest {
 
     @Before
     fun setUp() {
-        leagueRepository = LeagueRepository(leagueApi,leagueDao,application)
+        leagueRepository = LeagueRepository(InstantAppExecutors(), leagueApi,leagueDao,application)
         viewModel = DetailLeagueViewModel(leagueRepository)
     }
 

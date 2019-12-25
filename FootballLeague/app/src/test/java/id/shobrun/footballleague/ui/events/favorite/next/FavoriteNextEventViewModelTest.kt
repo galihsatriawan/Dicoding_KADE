@@ -14,6 +14,7 @@ import id.shobrun.footballleague.models.entity.Event
 import id.shobrun.footballleague.models.network.EventsResponse
 import id.shobrun.footballleague.repository.EventRepository
 import id.shobrun.footballleague.room.EventDao
+import id.shobrun.footballleague.utils.InstantAppExecutors
 import id.shobrun.footballleague.utils.MockTestUtil.Companion.mockEventList
 import org.junit.Before
 import org.junit.Test
@@ -33,7 +34,7 @@ class FavoriteNextEventViewModelTest {
 
     @Before
     fun setUp() {
-        repository = EventRepository(eventApi,eventDao)
+        repository = EventRepository(InstantAppExecutors(), eventApi,eventDao)
         viewModel = FavoriteNextEventViewModel(repository)
     }
 

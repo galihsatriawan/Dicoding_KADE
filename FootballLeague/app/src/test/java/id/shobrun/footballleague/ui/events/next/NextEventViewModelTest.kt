@@ -7,6 +7,7 @@ import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
+import id.shobrun.footballleague.AppExecutors
 import id.shobrun.footballleague.api.ApiUtil.successCall
 import id.shobrun.footballleague.api.EventApi
 import id.shobrun.footballleague.models.Resource
@@ -14,6 +15,7 @@ import id.shobrun.footballleague.models.entity.Event
 import id.shobrun.footballleague.models.network.EventsResponse
 import id.shobrun.footballleague.repository.EventRepository
 import id.shobrun.footballleague.room.EventDao
+import id.shobrun.footballleague.utils.InstantAppExecutors
 import id.shobrun.footballleague.utils.MockTestUtil.Companion.mockEventList
 import org.junit.Before
 import org.junit.Test
@@ -37,7 +39,7 @@ class NextEventViewModelTest {
 
     @Before
     fun setUp() {
-        repository = EventRepository(eventApi,eventDao)
+        repository = EventRepository(InstantAppExecutors(),eventApi,eventDao)
         viewModel = NextEventViewModel(repository)
     }
 

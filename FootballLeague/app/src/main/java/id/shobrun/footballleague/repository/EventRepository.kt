@@ -1,6 +1,7 @@
 package id.shobrun.footballleague.repository
 
 import androidx.lifecycle.LiveData
+import id.shobrun.footballleague.AppExecutors
 import id.shobrun.footballleague.api.ApiResponse
 import id.shobrun.footballleague.api.EventApi
 import id.shobrun.footballleague.mapper.EventResponseMapper
@@ -12,10 +13,12 @@ import id.shobrun.footballleague.models.network.EventsResponse
 import id.shobrun.footballleague.repository.utils.IEventLocalDB
 import id.shobrun.footballleague.room.AppDatabase
 import id.shobrun.footballleague.room.EventDao
+import id.shobrun.footballleague.testing.OpenForTesting
+import id.shobrun.footballleague.utils.EspressoIdlingResource
 import timber.log.Timber
 import javax.inject.Inject
-
-class EventRepository @Inject constructor(val webservice : EventApi, val eventDao : EventDao) : Repository, IEventLocalDB{
+@OpenForTesting
+class EventRepository @Inject constructor(var appExecutors: AppExecutors, val webservice : EventApi, val eventDao : EventDao) : Repository, IEventLocalDB{
     companion object{
         val TAG = EventRepository.javaClass.name
     }
@@ -23,7 +26,8 @@ class EventRepository @Inject constructor(val webservice : EventApi, val eventDa
      * Network
      */
     fun getDetailEvent(idEvent : Int) : LiveData<Resource<Event>>{
-        return object : NetworkBoundRepository<Event, EventsResponse , EventResponseMapper>(){
+
+        return object : NetworkBoundRepository<Event, EventsResponse , EventResponseMapper>(appExecutors){
             override fun saveFetchData(items: EventsResponse) {
                 val item = items.events[0]
 
@@ -52,7 +56,7 @@ class EventRepository @Inject constructor(val webservice : EventApi, val eventDa
         }.asLiveData()
     }
     fun getPreviousEvents(idLeague: Int) : LiveData<Resource<List<Event>>>{
-        return object : NetworkBoundRepository<List<Event>,EventsResponse , EventResponseMapper>(){
+        return object : NetworkBoundRepository<List<Event>,EventsResponse , EventResponseMapper>(appExecutors){
             override fun saveFetchData(items: EventsResponse) {
                 val events = items.events
                 if(events!=null){
@@ -88,7 +92,8 @@ class EventRepository @Inject constructor(val webservice : EventApi, val eventDa
         }.asLiveData()
     }
     fun getNextEvents(idLeague : Int) : LiveData<Resource<List<Event>>>{
-        return object : NetworkBoundRepository<List<Event>, EventsResponse, EventResponseMapper>(){
+
+        return object : NetworkBoundRepository<List<Event>, EventsResponse, EventResponseMapper>(appExecutors){
             override fun saveFetchData(items: EventsResponse) {
                 val events = items.events
                 if(events!=null){
@@ -125,42 +130,51 @@ class EventRepository @Inject constructor(val webservice : EventApi, val eventDa
         }.asLiveData()
     }
     fun getSearchEvent(q : String) : LiveData<Resource<List<Event>>>{
-        return object : NetworkBoundRepository<List<Event>, EventSearchResponse, EventSearchResponseMapper>(){
-            override fun saveFetchData(items: EventSearchResponse) {
-                val events = items.event
-                val eventSoccer : ArrayList<Event> = ArrayList()
-                if(!events.isNullOrEmpty()){
-                    for(e in events){
-                        e.tags = "[qry=$q]"
-                        if(e.sportCategory.equals("Soccer"))
-                            eventSoccer.add(e)
+
+        try{
+            EspressoIdlingResource.increment()
+            Timber.d("$TAG Increment")
+            return object : NetworkBoundRepository<List<Event>, EventSearchResponse, EventSearchResponseMapper>(appExecutors){
+                override fun saveFetchData(items: EventSearchResponse) {
+                    val events = items.event
+                    val eventSoccer : ArrayList<Event> = ArrayList()
+                    if(!events.isNullOrEmpty()){
+                        for(e in events){
+                            e.tags = "[qry=$q]"
+                            if(e.sportCategory.equals("Soccer"))
+                                eventSoccer.add(e)
+                        }
+                        eventDao.insertEvents(eventSoccer)
                     }
-                    eventDao.insertEvents(eventSoccer)
                 }
 
-            }
+                override fun shouldFetch(data: List<Event>?): Boolean {
+                    return data?.isNullOrEmpty()?:true
+                }
 
-            override fun shouldFetch(data: List<Event>?): Boolean {
-                return data?.isNullOrEmpty()?:true
-            }
+                override fun loadFromDb(): LiveData<List<Event>> {
+                    val qry = "%[qry=${q}]%"
+                    return eventDao.getSearchEvent(qry)
+                }
 
-            override fun loadFromDb(): LiveData<List<Event>> {
-                val qry = "%[qry=${q}]%"
-                return eventDao.getSearchEvent(qry)
-            }
+                override fun fetchService(): LiveData<ApiResponse<EventSearchResponse>> {
+                    return webservice.getSearchEvents(q)
+                }
 
-            override fun fetchService(): LiveData<ApiResponse<EventSearchResponse>> {
-                return webservice.getSearchEvents(q)
-            }
+                override fun mapper(): EventSearchResponseMapper {
+                    return EventSearchResponseMapper()
+                }
 
-            override fun mapper(): EventSearchResponseMapper {
-                return EventSearchResponseMapper()
+                override fun onFetchFailed(message: String?) {
+                    Timber.d("$TAG fetch failed Query Event : $message")
+                }
+            }.asLiveData()
+        }finally {
+            if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+                EspressoIdlingResource.decrement()
             }
-
-            override fun onFetchFailed(message: String?) {
-                Timber.d("$TAG fetch failed Query Event : $message")
-            }
-        }.asLiveData()
+            Timber.d("$TAG Decrement")
+        }
     }
 
     /**

@@ -19,6 +19,7 @@ import id.shobrun.footballleague.repository.LeagueRepository
 import id.shobrun.footballleague.room.EventDao
 import id.shobrun.footballleague.room.LeagueDao
 import id.shobrun.footballleague.ui.leagues.detail.DetailLeagueViewModel
+import id.shobrun.footballleague.utils.InstantAppExecutors
 import id.shobrun.footballleague.utils.MockTestUtil.Companion.mockEventList
 import org.junit.Test
 
@@ -42,7 +43,7 @@ class PreviousEventViewModelTest {
 
     @Before
     fun setUp() {
-        eventRepository = EventRepository(eventApi,eventDao)
+        eventRepository = EventRepository(InstantAppExecutors(), eventApi,eventDao)
         viewModel = PreviousEventViewModel(eventRepository)
     }
     /**

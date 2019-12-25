@@ -19,13 +19,13 @@
             android:fitsSystemWindows="true"
             android:theme="@style/AppTheme.AppBarOverlay"
             >
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="pin"
-                    app:popupTheme="@style/AppTheme.PopupOverlay"
-                    />
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                />
         </com.google.android.material.appbar.AppBarLayout>
         <ProgressBar
             android:id="@+id/progressBar"

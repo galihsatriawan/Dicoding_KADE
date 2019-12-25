@@ -12,7 +12,7 @@ import id.shobrun.footballleague.utils.AbsentLiveData
 import javax.inject.Inject
 
 @OpenForTesting
-class SearchEventsViewModel @Inject constructor(repository: EventRepository) :ViewModel() {
+class SearchEventsViewModel @Inject constructor(val repository: EventRepository) :ViewModel() {
     val eventLiveData : LiveData<Resource<List<Event>>>
     val filterLiveData:MutableLiveData<String> = MutableLiveData()
 

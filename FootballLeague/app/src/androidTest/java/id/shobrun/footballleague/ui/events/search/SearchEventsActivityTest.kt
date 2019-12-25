@@ -2,46 +2,74 @@ package id.shobrun.footballleague.ui.events.search
 
 
 import android.app.PendingIntent.getActivity
+import android.os.Bundle
 import android.view.KeyEvent
 import android.widget.ProgressBar
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.IdlingRegistry
+import androidx.test.espresso.IdlingResource
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.LargeTest
+import androidx.test.filters.MediumTest
 import androidx.test.rule.ActivityTestRule
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.models.Resource
+import id.shobrun.footballleague.models.Status
 import id.shobrun.footballleague.models.entity.Event
-import id.shobrun.footballleague.utils.RecyclerViewMatcher
-import id.shobrun.footballleague.utils.ViewModelUtil
-import org.hamcrest.CoreMatchers.allOf
-import org.hamcrest.CoreMatchers.not
+import id.shobrun.footballleague.repository.EventRepository
+import id.shobrun.footballleague.repository.Repository
+import id.shobrun.footballleague.utils.*
+import org.hamcrest.CoreMatchers.*
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.spy
+import org.mockito.ArgumentMatchers
+import org.mockito.InjectMocks
+import org.mockito.Mock
+import org.mockito.Mockito
+import org.mockito.Mockito.*
+import org.mockito.junit.MockitoJUnit
+import org.mockito.junit.MockitoRule
 
 
 @RunWith(AndroidJUnit4::class)
+@LargeTest
 class SearchEventsActivityTest {
     @Rule
     @JvmField
-    var mActivityTestRule = ActivityTestRule(SearchEventsActivity::class.java)
-    private lateinit var viewModel: SearchEventsViewModel
-    private var result = MutableLiveData<Resource<List<Event>>>()
-    private lateinit var searchEventsActivity: SearchEventsActivity
+    var mActivityTestRule = ActivityTestRule(SearchEventsActivity::class.java,true,true)
 
+    @Rule
+    @JvmField
+    val executorRule  = TaskExecutorWithIdlingResourceRule()
+
+    @Rule
+    @JvmField
+    val countingAppExecutors = CountingAppExecutorsRule()
+
+    @Rule
+    @JvmField
+    val dataBindingIdlingResource = DataBindingIdlingResourceRule(mActivityTestRule)
+
+    lateinit var viewModel: SearchEventsViewModel
     @Before
     fun setUp() {
-        viewModel = spy(SearchEventsViewModel::class.java)
-        searchEventsActivity = mActivityTestRule.activity
-        searchEventsActivity.viewModelFactory = ViewModelUtil.createFor(viewModel)
-        `when`(viewModel.eventLiveData).thenReturn(result)
+        viewModel = mActivityTestRule.activity.viewModel
+//        viewModel.repository.appExecutors = countingAppExecutors.appExecutors
+        IdlingRegistry.getInstance().register(EspressoIdlingResource.idlingresource)
+        EspressoTestUtil.disableProgressBarAnimations(mActivityTestRule)
+
     }
 
     /**
@@ -53,7 +81,7 @@ class SearchEventsActivityTest {
 
     @Test
     fun search(){
-        val qry = "porto"
+        val qry = "barcelona"
         onView(allOf(withId(R.id.action_search), withEffectiveVisibility(Visibility.VISIBLE))).perform(
             click()
         )
@@ -63,7 +91,6 @@ class SearchEventsActivityTest {
                 pressKey(KeyEvent.KEYCODE_ENTER)
             )
         onView(listMatcher().atPosition(0)).check(matches(isDisplayed()))
-
     }
 
     /**
@@ -73,12 +100,24 @@ class SearchEventsActivityTest {
      */
     @Test
     fun message(){
-        mActivityTestRule.activity.viewModel.postFilter("basketball")
-        Thread.sleep(1000)
+        val qry = "kosong"
+        onView(allOf(withId(R.id.action_search), withEffectiveVisibility(Visibility.VISIBLE))).perform(
+            click()
+        )
+        onView(withId(R.id.search_src_text))
+            .perform(
+                typeText(qry),
+                pressKey(KeyEvent.KEYCODE_ENTER)
+            )
         onView(withId(R.id.container_message)).check(matches(isDisplayed()))
     }
 
     private fun listMatcher(): RecyclerViewMatcher{
         return RecyclerViewMatcher(R.id.recycler_search_event)
     }
+    @After
+    fun tearDown(){
+        IdlingRegistry.getInstance().unregister(EspressoIdlingResource.idlingresource)
+    }
+
 }

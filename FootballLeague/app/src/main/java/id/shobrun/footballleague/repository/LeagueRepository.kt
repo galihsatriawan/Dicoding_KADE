@@ -3,6 +3,7 @@ package id.shobrun.footballleague.repository
 
 import android.app.Application
 import androidx.lifecycle.LiveData
+import id.shobrun.footballleague.AppExecutors
 
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.api.ApiResponse
@@ -18,12 +19,12 @@ import javax.inject.Singleton
 
 
 @Singleton
-class LeagueRepository @Inject constructor(private val webservice : LeagueApi,private val leagueDao : LeagueDao, private val application: Application) : Repository{
+class LeagueRepository @Inject constructor(private val appExecutors: AppExecutors,private val webservice : LeagueApi,private val leagueDao : LeagueDao, private val application: Application) : Repository{
     companion object{
         val TAG = LeagueRepository.javaClass.name
     }
     fun loadLeagueDetail(id : Int) : LiveData<Resource<League>> {
-        return object : NetworkBoundRepository< League,LeaguesResponse,LeagueDetailResponseMapper>(){
+        return object : NetworkBoundRepository< League,LeaguesResponse,LeagueDetailResponseMapper>(appExecutors){
             override fun saveFetchData(items: LeaguesResponse) {
                 leagueDao.insert(items.leagues[0])
 

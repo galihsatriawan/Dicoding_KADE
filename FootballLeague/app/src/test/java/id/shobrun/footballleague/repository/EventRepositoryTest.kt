@@ -11,6 +11,7 @@ import id.shobrun.footballleague.models.entity.Event
 import id.shobrun.footballleague.models.network.EventSearchResponse
 import id.shobrun.footballleague.models.network.EventsResponse
 import id.shobrun.footballleague.room.EventDao
+import id.shobrun.footballleague.utils.InstantAppExecutors
 import id.shobrun.footballleague.utils.MockTestUtil.Companion.mockEvent
 import org.junit.Test
 
@@ -32,7 +33,7 @@ class EventRepositoryTest {
 
     @Before
     fun init(){
-        repository = EventRepository(service,eventDao)
+        repository = EventRepository(InstantAppExecutors(),service,eventDao)
     }
 
     /**

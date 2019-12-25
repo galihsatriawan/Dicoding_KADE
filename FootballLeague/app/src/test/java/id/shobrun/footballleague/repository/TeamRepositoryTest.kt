@@ -10,6 +10,7 @@ import id.shobrun.footballleague.models.Resource
 import id.shobrun.footballleague.models.entity.Team
 import id.shobrun.footballleague.models.network.TeamsResponse
 import id.shobrun.footballleague.room.TeamDao
+import id.shobrun.footballleague.utils.InstantAppExecutors
 import id.shobrun.footballleague.utils.MockTestUtil.Companion.mockTeam
 import org.junit.Test
 
@@ -31,7 +32,7 @@ class TeamRepositoryTest {
 
     @Before
     fun init(){
-        this.repository = TeamRepository(service,teamDao)
+        this.repository = TeamRepository(InstantAppExecutors(), service,teamDao)
     }
     /**
      * Scenario

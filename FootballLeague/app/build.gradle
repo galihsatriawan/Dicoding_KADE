@@ -131,12 +131,14 @@ dependencies {
     testImplementation "org.robolectric:robolectric:$robolectricVersion"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
 
+
     testImplementation "org.mockito:mockito-inline:$mockito"
     testImplementation "org.mockito:mockito-core:$mockito" // For instrumentation tests on Android devices and emulators
     androidTestImplementation "com.linkedin.dexmaker:dexmaker-mockito:$dexMakerVersion"
 
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidxTest"
     androidTestImplementation "androidx.test:rules:$androidxTestRules"
     testImplementation "junit:junit:$junitVersion"
