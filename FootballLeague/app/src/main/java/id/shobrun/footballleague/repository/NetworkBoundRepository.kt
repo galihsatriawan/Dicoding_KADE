@@ -14,7 +14,7 @@ import id.shobrun.footballleague.models.Resource
 abstract class NetworkBoundRepository<ResultType,
         RequestType : NetworkResponseModel,
         Mapper : NetworkResponseMapper<RequestType>>
-internal constructor(private val appExecutors: AppExecutors) {
+@MainThread constructor(private val appExecutors: AppExecutors) {
 
     private val result: MediatorLiveData<Resource<ResultType>> = MediatorLiveData()
 

@@ -46,28 +46,28 @@ import org.mockito.junit.MockitoRule
 @RunWith(AndroidJUnit4::class)
 @LargeTest
 class SearchEventsActivityTest {
-    @Rule
-    @JvmField
+    @get:Rule
     var mActivityTestRule = ActivityTestRule(SearchEventsActivity::class.java,true,true)
 
-    @Rule
-    @JvmField
+    @get:Rule
+    var instantTaskExecutorRule = InstantTaskExecutorRule()
+
+    @get:Rule
     val executorRule  = TaskExecutorWithIdlingResourceRule()
 
-    @Rule
-    @JvmField
+    @get:Rule
     val countingAppExecutors = CountingAppExecutorsRule()
 
-    @Rule
-    @JvmField
+    @get:Rule
     val dataBindingIdlingResource = DataBindingIdlingResourceRule(mActivityTestRule)
 
     lateinit var viewModel: SearchEventsViewModel
+
     @Before
     fun setUp() {
         viewModel = mActivityTestRule.activity.viewModel
-//        viewModel.repository.appExecutors = countingAppExecutors.appExecutors
-        IdlingRegistry.getInstance().register(EspressoIdlingResource.idlingresource)
+        viewModel.repository.appExecutors = countingAppExecutors.appExecutors
+
         EspressoTestUtil.disableProgressBarAnimations(mActivityTestRule)
 
     }
@@ -81,7 +81,7 @@ class SearchEventsActivityTest {
 
     @Test
     fun search(){
-        val qry = "barcelona"
+        val qry = "city"
         onView(allOf(withId(R.id.action_search), withEffectiveVisibility(Visibility.VISIBLE))).perform(
             click()
         )
@@ -117,7 +117,7 @@ class SearchEventsActivityTest {
     }
     @After
     fun tearDown(){
-        IdlingRegistry.getInstance().unregister(EspressoIdlingResource.idlingresource)
+
     }
 
 }

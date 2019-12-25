@@ -132,7 +132,7 @@ class EventRepository @Inject constructor(var appExecutors: AppExecutors, val we
     fun getSearchEvent(q : String) : LiveData<Resource<List<Event>>>{
 
         try{
-            EspressoIdlingResource.increment()
+//            EspressoIdlingResource.increment()
             Timber.d("$TAG Increment")
             return object : NetworkBoundRepository<List<Event>, EventSearchResponse, EventSearchResponseMapper>(appExecutors){
                 override fun saveFetchData(items: EventSearchResponse) {
@@ -170,9 +170,9 @@ class EventRepository @Inject constructor(var appExecutors: AppExecutors, val we
                 }
             }.asLiveData()
         }finally {
-            if (!EspressoIdlingResource.idlingresource.isIdleNow) {
-                EspressoIdlingResource.decrement()
-            }
+//            if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+//                EspressoIdlingResource.decrement()
+//            }
             Timber.d("$TAG Decrement")
         }
     }
