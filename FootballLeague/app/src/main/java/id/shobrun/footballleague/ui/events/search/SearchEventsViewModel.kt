@@ -9,22 +9,26 @@ import id.shobrun.footballleague.models.entity.Event
 import id.shobrun.footballleague.repository.EventRepository
 import id.shobrun.footballleague.testing.OpenForTesting
 import id.shobrun.footballleague.utils.AbsentLiveData
+import id.shobrun.footballleague.utils.wrapEspressoIdlingResource
 import javax.inject.Inject
 
 @OpenForTesting
-class SearchEventsViewModel @Inject constructor(val repository: EventRepository) :ViewModel() {
-    val eventLiveData : LiveData<Resource<List<Event>>>
-    val filterLiveData:MutableLiveData<String> = MutableLiveData()
+class SearchEventsViewModel @Inject constructor(val repository: EventRepository) : ViewModel() {
+    val eventLiveData: LiveData<Resource<List<Event>>>
+    val filterLiveData: MutableLiveData<String> = MutableLiveData()
 
 
     init {
-        eventLiveData = filterLiveData.switchMap{
-            filterLiveData.value?.let { repository.getSearchEvent(it) }
-                ?:AbsentLiveData.create()
+        eventLiveData =
+            filterLiveData.switchMap {
+                filterLiveData.value?.let { wrapEspressoIdlingResource {repository.getSearchEvent(it) }}
+                    ?: AbsentLiveData.create()
         }
     }
 
-    fun postFilter(qry : String){
-        this.filterLiveData.postValue(qry)
+    fun postFilter(qry: String) {
+        wrapEspressoIdlingResource {
+            this.filterLiveData.postValue(qry)
+        }
     }
 }

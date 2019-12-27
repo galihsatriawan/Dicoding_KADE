@@ -14,20 +14,27 @@ import id.shobrun.footballleague.repository.utils.IEventLocalDB
 import id.shobrun.footballleague.room.AppDatabase
 import id.shobrun.footballleague.room.EventDao
 import id.shobrun.footballleague.testing.OpenForTesting
+import id.shobrun.footballleague.utils.wrapEspressoIdlingResource
 import timber.log.Timber
 import javax.inject.Inject
 
 @OpenForTesting
-class EventRepository @Inject constructor(var appExecutors: AppExecutors, val webservice : EventApi, val eventDao : EventDao) : Repository, IEventLocalDB{
-    companion object{
+class EventRepository @Inject constructor(
+    var appExecutors: AppExecutors,
+    val webservice: EventApi,
+    val eventDao: EventDao
+) : Repository, IEventLocalDB {
+    companion object {
         val TAG = EventRepository.javaClass.name
     }
+
     /**
      * Network
      */
-    fun getDetailEvent(idEvent : Int) : LiveData<Resource<Event>>{
+    fun getDetailEvent(idEvent: Int): LiveData<Resource<Event>> {
 
-        return object : NetworkBoundRepository<Event, EventsResponse , EventResponseMapper>(appExecutors){
+        return object :
+            NetworkBoundRepository<Event, EventsResponse, EventResponseMapper>(appExecutors) {
             override fun saveFetchData(items: EventsResponse) {
                 val item = items.events[0]
 
@@ -55,12 +62,14 @@ class EventRepository @Inject constructor(var appExecutors: AppExecutors, val we
             }
         }.asLiveData()
     }
-    fun getPreviousEvents(idLeague: Int) : LiveData<Resource<List<Event>>>{
-        return object : NetworkBoundRepository<List<Event>,EventsResponse , EventResponseMapper>(appExecutors){
+
+    fun getPreviousEvents(idLeague: Int): LiveData<Resource<List<Event>>> {
+        return object :
+            NetworkBoundRepository<List<Event>, EventsResponse, EventResponseMapper>(appExecutors) {
             override fun saveFetchData(items: EventsResponse) {
                 val events = items.events
-                if(events!=null){
-                    for (e in events){
+                if (events != null) {
+                    for (e in events) {
                         e.tags = AppDatabase.TAG_PAST_MATCH
                         e.isFavorite = 0
                         Timber.d("$TAG favorite Prev: ${e.isFavorite}")
@@ -71,7 +80,7 @@ class EventRepository @Inject constructor(var appExecutors: AppExecutors, val we
             }
 
             override fun shouldFetch(data: List<Event>?): Boolean {
-                return data?.isNullOrEmpty()?: true
+                return data?.isNullOrEmpty() ?: true
             }
 
             override fun loadFromDb(): LiveData<List<Event>> {
@@ -91,13 +100,15 @@ class EventRepository @Inject constructor(var appExecutors: AppExecutors, val we
             }
         }.asLiveData()
     }
-    fun getNextEvents(idLeague : Int) : LiveData<Resource<List<Event>>>{
 
-        return object : NetworkBoundRepository<List<Event>, EventsResponse, EventResponseMapper>(appExecutors){
+    fun getNextEvents(idLeague: Int): LiveData<Resource<List<Event>>> {
+
+        return object :
+            NetworkBoundRepository<List<Event>, EventsResponse, EventResponseMapper>(appExecutors) {
             override fun saveFetchData(items: EventsResponse) {
                 val events = items.events
-                if(events!=null){
-                    for (e in events){
+                if (events != null) {
+                    for (e in events) {
                         e.tags = AppDatabase.TAG_NEXT_MATCH
                         e.isFavorite = 0
                         Timber.d("$TAG favorite : ${e.isFavorite}")
@@ -108,7 +119,7 @@ class EventRepository @Inject constructor(var appExecutors: AppExecutors, val we
             }
 
             override fun shouldFetch(data: List<Event>?): Boolean {
-                return data?.isNullOrEmpty()?: true
+                return data?.isNullOrEmpty() ?: true
             }
 
             override fun loadFromDb(): LiveData<List<Event>> {
@@ -129,19 +140,20 @@ class EventRepository @Inject constructor(var appExecutors: AppExecutors, val we
 
         }.asLiveData()
     }
-    fun getSearchEvent(q : String) : LiveData<Resource<List<Event>>>{
 
-        try{
-//            EspressoIdlingResource.increment()
-            Timber.d("$TAG Increment")
-            return object : NetworkBoundRepository<List<Event>, EventSearchResponse, EventSearchResponseMapper>(appExecutors){
+    fun getSearchEvent(q: String): LiveData<Resource<List<Event>>> {
+        wrapEspressoIdlingResource {
+            return object :
+                NetworkBoundRepository<List<Event>, EventSearchResponse, EventSearchResponseMapper>(
+                    appExecutors
+                ) {
                 override fun saveFetchData(items: EventSearchResponse) {
                     val events = items.event
-                    val eventSoccer : ArrayList<Event> = ArrayList()
-                    if(!events.isNullOrEmpty()){
-                        for(e in events){
+                    val eventSoccer: ArrayList<Event> = ArrayList()
+                    if (!events.isNullOrEmpty()) {
+                        for (e in events) {
                             e.tags = "[qry=$q]"
-                            if(e.sportCategory.equals("Soccer"))
+                            if (e.sportCategory.equals("Soccer"))
                                 eventSoccer.add(e)
                         }
                         eventDao.insertEvents(eventSoccer)
@@ -149,7 +161,7 @@ class EventRepository @Inject constructor(var appExecutors: AppExecutors, val we
                 }
 
                 override fun shouldFetch(data: List<Event>?): Boolean {
-                    return data?.isNullOrEmpty()?:true
+                    return data?.isNullOrEmpty() ?: true
                 }
 
                 override fun loadFromDb(): LiveData<List<Event>> {
@@ -169,40 +181,35 @@ class EventRepository @Inject constructor(var appExecutors: AppExecutors, val we
                     Timber.d("$TAG fetch failed Query Event : $message")
                 }
             }.asLiveData()
-        }finally {
-//            if (!EspressoIdlingResource.idlingresource.isIdleNow) {
-//                EspressoIdlingResource.decrement()
-//            }
-            Timber.d("$TAG Decrement")
         }
     }
 
     /**
      * Local Database
      */
-    override fun insertEventToDb(event: Event){
+    override fun insertEventToDb(event: Event) {
         try {
             eventDao.insert(event)
-        }catch (e:Throwable){
+        } catch (e: Throwable) {
             Timber.d("$TAG ${e.printStackTrace()}")
         }
 
     }
 
     override fun getAllFavoriteNextEventInDb(idLeague: Int): LiveData<List<Event>> {
-        val events = eventDao.getFavoriteNextEvents(idLeague,1)
+        val events = eventDao.getFavoriteNextEvents(idLeague, 1)
         return events
     }
 
     override fun getAllFavoritePrevEventInDb(idLeague: Int): LiveData<List<Event>> {
-        return eventDao.getFavoritePastEvents(idLeague,1)
+        return eventDao.getFavoritePastEvents(idLeague, 1)
     }
 
-    override fun getEventByIdInDb(idEvent: Int) : LiveData<Event>{
+    override fun getEventByIdInDb(idEvent: Int): LiveData<Event> {
         return eventDao.getEventById(idEvent)
     }
 
-    override fun updateEventInDb(event : Event) : Int{
+    override fun updateEventInDb(event: Event): Int {
         return eventDao.update(event)
     }
 }
