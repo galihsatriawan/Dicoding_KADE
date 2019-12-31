@@ -34,6 +34,20 @@ class FootballLeaguesFragment : ViewModelFragment(),AnkoLogger {
         savedInstanceState: Bundle?
     ): View? {
         binding = binding(inflater,R.layout.fragment_football_league,container)
+
+        with(binding){
+            lifecycleOwner = this@FootballLeaguesFragment
+            vm = viewModel
+        }
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initRecycler()
+    }
+    private fun initRecycler(){
         leaguesAdapter = RecyclerLeaguesAdapter(ArrayList())
         leaguesAdapter.setDetailListener { league ->
             val detail = intentFor<DetailLeagueActivity>(
@@ -47,17 +61,6 @@ class FootballLeaguesFragment : ViewModelFragment(),AnkoLogger {
             )
             startActivity(match)
         }
-
-        with(binding){
-            lifecycleOwner = this@FootballLeaguesFragment
-            vm = viewModel
-        }
-
-        return binding.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         val dividerItemDecoration = DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
         binding.rvLeagues.addItemDecoration(dividerItemDecoration)
         binding.rvLeagues.adapter = leaguesAdapter

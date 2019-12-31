@@ -50,6 +50,7 @@ android {
 }
 
 dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     //anko
@@ -66,23 +67,21 @@ dependencies {
     /*
         LifeCycle
      */
-    implementation "androidx.legacy:legacy-support-v4:1.0.0"
-    implementation 'androidx.navigation:navigation-fragment:2.0.0'
-    implementation 'androidx.navigation:navigation-ui:2.0.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0'
-    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifeCycle"
+    implementation "androidx.legacy:legacy-support-v4:$legacyVersion"
+    implementation "androidx.navigation:navigation-fragment:$navigation"
+    implementation "androidx.navigation:navigation-ui:$navigation"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifeCycleVM"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycleVM"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifeCycle"
-    implementation "android.arch.lifecycle:runtime:1.0.0"
-    annotationProcessor "android.arch.lifecycle:common-java8:1.0.0-rc1"
+    implementation "android.arch.lifecycle:runtime:$archLifeCycle"
+    annotationProcessor "android.arch.lifecycle:common-java8:$archLifeCycle"
     androidTestImplementation "androidx.arch.core:core-testing:$androidArchVersion"
     testImplementation "androidx.arch.core:core-testing:$androidArchVersion"
     /*
         Design View
      */
-    implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'de.hdodenhof:circleimageview:3.0.1'
-    implementation 'com.google.android.material:material:1.2.0-alpha01'
+    implementation "de.hdodenhof:circleimageview:$circleImgVersion"
+    implementation "com.google.android.material:material:$googleMaterial"
     // Network library
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
@@ -102,7 +101,7 @@ dependencies {
     /*
         Image Loader
      */
-    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
     /**
      * Room
      */
@@ -115,8 +114,8 @@ dependencies {
      * Tools
      */
     implementation "com.jakewharton.timber:timber:$timberVersion"
-    implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'androidx.core:core-ktx:1.2.0-rc01'
+    implementation "com.google.code.gson:gson:$gsonVersion"
+    implementation "androidx.core:core-ktx:$coreKtx"
     implementation "androidx.activity:activity:$androidActivity"
     implementation "androidx.activity:activity-ktx:$androidActivity"
     implementation "androidx.fragment:fragment:$androidFragment"
@@ -138,7 +137,7 @@ dependencies {
 
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
-    implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
+    implementation "androidx.test.espresso:espresso-idling-resource:$espressoIdlingVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidxTest"
     androidTestImplementation "androidx.test:rules:$androidxTestRules"
     testImplementation "junit:junit:$junitVersion"

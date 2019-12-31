@@ -33,6 +33,24 @@ class NextEventFragment : ViewModelFragment() {
             lifecycleOwner = this@NextEventFragment
             vm = viewModel
         }
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initRecycler()
+
+        var league : League? = null
+        if(requireArguments().getParcelable<League>(EXTRA_LEAGUE) != null){
+            league = requireArguments().getParcelable<League>(EXTRA_LEAGUE)
+        }
+
+
+        viewModel.postLeagueId(league?.idLeague?:-1)
+    }
+
+    private fun initRecycler(){
 
         eventRecyclerAdapter = RecyclerEventsAdapter(ArrayList())
         eventRecyclerAdapter.setItemListener {event ->
@@ -41,18 +59,7 @@ class NextEventFragment : ViewModelFragment() {
             )
             startActivity(detail)
         }
-        var league : League? = null
-        if(requireArguments().getParcelable<League>(EXTRA_LEAGUE) != null){
-            league = requireArguments().getParcelable<League>(EXTRA_LEAGUE)
-        }
 
-
-        viewModel.postLeagueId(league?.idLeague?:-1)
-        return binding.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         val dividerItemDecoration = DividerItemDecoration(requireContext(),LinearLayoutManager.VERTICAL)
         binding.recyclerNextEvent.addItemDecoration(dividerItemDecoration)
         binding.recyclerNextEvent.adapter = eventRecyclerAdapter

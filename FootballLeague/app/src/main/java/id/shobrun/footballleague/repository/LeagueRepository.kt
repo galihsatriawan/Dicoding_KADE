@@ -8,7 +8,6 @@ import id.shobrun.footballleague.AppExecutors
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.api.ApiResponse
 import id.shobrun.footballleague.api.LeagueApi
-import id.shobrun.footballleague.mapper.LeagueDetailResponseMapper
 import id.shobrun.footballleague.models.Resource
 import id.shobrun.footballleague.models.entity.League
 import id.shobrun.footballleague.models.network.LeaguesResponse
@@ -24,7 +23,7 @@ class LeagueRepository @Inject constructor(private val appExecutors: AppExecutor
         val TAG = LeagueRepository.javaClass.name
     }
     fun loadLeagueDetail(id : Int) : LiveData<Resource<League>> {
-        return object : NetworkBoundRepository< League,LeaguesResponse,LeagueDetailResponseMapper>(appExecutors){
+        return object : NetworkBoundRepository< League,LeaguesResponse>(appExecutors){
             override fun saveFetchData(items: LeaguesResponse) {
                 leagueDao.insert(items.leagues[0])
 
@@ -43,10 +42,6 @@ class LeagueRepository @Inject constructor(private val appExecutors: AppExecutor
             override fun fetchService(): LiveData<ApiResponse<LeaguesResponse>> {
                 Timber.d("$TAG id Fetch : $id")
                 return webservice.getLeagueById(id)
-            }
-
-            override fun mapper(): LeagueDetailResponseMapper {
-                return LeagueDetailResponseMapper()
             }
 
             override fun onFetchFailed(message: String?) {

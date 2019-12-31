@@ -33,6 +33,23 @@ class PreviousEventFragment : ViewModelFragment() {
             lifecycleOwner = this@PreviousEventFragment
             vm = viewModel
         }
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initRecycler()
+
+        var league : League? = null
+        if(requireArguments().getParcelable<League>(EXTRA_LEAGUE) != null){
+            league = requireArguments().getParcelable(EXTRA_LEAGUE)
+        }
+
+        viewModel.postLeagueId(league?.idLeague?:-1)
+    }
+    private fun initRecycler(){
         eventsAdapter = RecyclerEventsAdapter(ArrayList())
         eventsAdapter.setItemListener { event ->
             val detail = intentFor<DetailEventActivity>(
@@ -40,17 +57,6 @@ class PreviousEventFragment : ViewModelFragment() {
             )
             startActivity(detail)
         }
-        var league : League? = null
-        if(requireArguments().getParcelable<League>(EXTRA_LEAGUE) != null){
-            league = requireArguments().getParcelable(EXTRA_LEAGUE)
-        }
-
-        viewModel.postLeagueId(league?.idLeague?:-1)
-        return binding.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         val dividerItemDecoration = DividerItemDecoration(requireContext(),LinearLayoutManager.VERTICAL)
         binding.rvPreviousEvent.addItemDecoration(dividerItemDecoration)
         binding.rvPreviousEvent.adapter = eventsAdapter

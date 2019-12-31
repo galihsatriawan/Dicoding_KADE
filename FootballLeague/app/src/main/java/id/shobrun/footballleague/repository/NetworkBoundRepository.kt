@@ -6,14 +6,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import id.shobrun.footballleague.AppExecutors
 import id.shobrun.footballleague.api.ApiResponse
-import id.shobrun.footballleague.mapper.NetworkResponseMapper
 import id.shobrun.footballleague.models.NetworkResponseModel
 import id.shobrun.footballleague.models.Resource
 
 
 abstract class NetworkBoundRepository<ResultType,
-        RequestType : NetworkResponseModel,
-        Mapper : NetworkResponseMapper<RequestType>>
+        RequestType : NetworkResponseModel>
 @MainThread constructor(private val appExecutors: AppExecutors) {
 
     private val result: MediatorLiveData<Resource<ResultType>> = MediatorLiveData()
@@ -28,7 +26,7 @@ abstract class NetworkBoundRepository<ResultType,
                 fetchFromNetwork(loadedFromDB)
             } else {
                 result.addSource<ResultType>(loadedFromDB) { newData ->
-                    setValue(Resource.success(newData, false))
+                    setValue(Resource.success(newData))
                 }
             }
         }
@@ -51,7 +49,7 @@ abstract class NetworkBoundRepository<ResultType,
                                         val loaded = loadFromDb()
                                         result.addSource(loaded) { newData ->
                                             newData?.let {
-                                                setValue(Resource.success(newData, mapper().onLastPage(response.body)))
+                                                setValue(Resource.success(newData))
                                             }
                                         }
                                     }
@@ -64,7 +62,7 @@ abstract class NetworkBoundRepository<ResultType,
                                 // reload from disk whatever we had
                                 result.addSource(loadFromDb()) { newData ->
                                     newData?.let {
-                                        setValue(Resource.success(newData,true))
+                                        setValue(Resource.success(newData))
                                     }
                                 }
                             }
@@ -104,9 +102,6 @@ abstract class NetworkBoundRepository<ResultType,
 
     @MainThread
     protected abstract fun fetchService(): LiveData<ApiResponse<RequestType>>
-
-    @MainThread
-    protected abstract fun mapper(): Mapper
 
     @MainThread
     protected abstract fun onFetchFailed(message: String?)

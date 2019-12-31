@@ -4,8 +4,6 @@ import androidx.lifecycle.LiveData
 import id.shobrun.footballleague.AppExecutors
 import id.shobrun.footballleague.api.ApiResponse
 import id.shobrun.footballleague.api.EventApi
-import id.shobrun.footballleague.mapper.EventResponseMapper
-import id.shobrun.footballleague.mapper.EventSearchResponseMapper
 import id.shobrun.footballleague.models.Resource
 import id.shobrun.footballleague.models.entity.Event
 import id.shobrun.footballleague.models.network.EventSearchResponse
@@ -34,7 +32,7 @@ class EventRepository @Inject constructor(
     fun getDetailEvent(idEvent: Int): LiveData<Resource<Event>> {
 
         return object :
-            NetworkBoundRepository<Event, EventsResponse, EventResponseMapper>(appExecutors) {
+            NetworkBoundRepository<Event, EventsResponse>(appExecutors) {
             override fun saveFetchData(items: EventsResponse) {
                 val item = items.events[0]
 
@@ -53,9 +51,6 @@ class EventRepository @Inject constructor(
                 return webservice.getDetailEvents(idEvent)
             }
 
-            override fun mapper(): EventResponseMapper {
-                return EventResponseMapper()
-            }
 
             override fun onFetchFailed(message: String?) {
                 Timber.d("$TAG Fetch Detail Event Failed : $message")
@@ -65,7 +60,7 @@ class EventRepository @Inject constructor(
 
     fun getPreviousEvents(idLeague: Int): LiveData<Resource<List<Event>>> {
         return object :
-            NetworkBoundRepository<List<Event>, EventsResponse, EventResponseMapper>(appExecutors) {
+            NetworkBoundRepository<List<Event>, EventsResponse>(appExecutors) {
             override fun saveFetchData(items: EventsResponse) {
                 val events = items.events
                 if (events != null) {
@@ -91,10 +86,6 @@ class EventRepository @Inject constructor(
                 return webservice.getPastEvents(idLeague)
             }
 
-            override fun mapper(): EventResponseMapper {
-                return EventResponseMapper()
-            }
-
             override fun onFetchFailed(message: String?) {
                 Timber.d("$TAG fetch Past Event Failed : $message")
             }
@@ -104,7 +95,7 @@ class EventRepository @Inject constructor(
     fun getNextEvents(idLeague: Int): LiveData<Resource<List<Event>>> {
 
         return object :
-            NetworkBoundRepository<List<Event>, EventsResponse, EventResponseMapper>(appExecutors) {
+            NetworkBoundRepository<List<Event>, EventsResponse>(appExecutors) {
             override fun saveFetchData(items: EventsResponse) {
                 val events = items.events
                 if (events != null) {
@@ -130,9 +121,6 @@ class EventRepository @Inject constructor(
                 return webservice.getNextEvents(idLeague)
             }
 
-            override fun mapper(): EventResponseMapper {
-                return EventResponseMapper()
-            }
 
             override fun onFetchFailed(message: String?) {
                 Timber.d("$TAG Fetch failed $message")
@@ -144,7 +132,7 @@ class EventRepository @Inject constructor(
     fun getSearchEvent(q: String): LiveData<Resource<List<Event>>> {
         wrapEspressoIdlingResource {
             return object :
-                NetworkBoundRepository<List<Event>, EventSearchResponse, EventSearchResponseMapper>(
+                NetworkBoundRepository<List<Event>, EventSearchResponse>(
                     appExecutors
                 ) {
                 override fun saveFetchData(items: EventSearchResponse) {
@@ -171,10 +159,6 @@ class EventRepository @Inject constructor(
 
                 override fun fetchService(): LiveData<ApiResponse<EventSearchResponse>> {
                     return webservice.getSearchEvents(q)
-                }
-
-                override fun mapper(): EventSearchResponseMapper {
-                    return EventSearchResponseMapper()
                 }
 
                 override fun onFetchFailed(message: String?) {
