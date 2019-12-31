@@ -10,13 +10,14 @@ import id.shobrun.footballleague.models.entity.League
 import id.shobrun.footballleague.models.entity.Team
 import id.shobrun.footballleague.utils.DateConverter
 
-@Database(entities = [League::class, Event::class, Team::class],version = 3, exportSchema = false)
+@Database(entities = [League::class, Event::class, Team::class], version = 3, exportSchema = false)
 @TypeConverters(DateConverter::class)
-abstract class AppDatabase : RoomDatabase(){
-    abstract fun leagueDao() : LeagueDao
-    abstract fun eventDao() : EventDao
-    abstract fun teamDao() : TeamDao
-    companion object{
+abstract class AppDatabase : RoomDatabase() {
+    abstract fun leagueDao(): LeagueDao
+    abstract fun eventDao(): EventDao
+    abstract fun teamDao(): TeamDao
+
+    companion object {
         private const val DB_FOOTBALL = "football-db"
 
         const val TABLE_LEAGUE = "league_table"
@@ -39,16 +40,17 @@ abstract class AppDatabase : RoomDatabase(){
         fun getInstance(context: Context): AppDatabase {
             return instance
                 ?: synchronized(this) {
-                instance
-                    ?: buildDatabase(
-                        context
-                    ).also { instance = it }
-            }
+                    instance
+                        ?: buildDatabase(
+                            context
+                        ).also { instance = it }
+                }
         }
 
         // Create and pre-populate the database.
         private fun buildDatabase(context: Context): AppDatabase {
-            return Room.databaseBuilder(context, AppDatabase::class.java,
+            return Room.databaseBuilder(
+                context, AppDatabase::class.java,
                 DB_FOOTBALL
             ).allowMainThreadQueries()
                 .fallbackToDestructiveMigration()

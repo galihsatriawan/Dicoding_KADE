@@ -10,7 +10,7 @@ import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
 @SuppressLint("Registered")
-open class ViewModelActivity : DaggerAppCompatActivity(){
+open class ViewModelActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory

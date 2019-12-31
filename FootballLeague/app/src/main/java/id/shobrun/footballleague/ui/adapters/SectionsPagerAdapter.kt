@@ -24,13 +24,13 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager, va
     FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment {
-        val bundle  = Bundle()
-        bundle.putParcelable(EXTRA_LEAGUE,(league))
-        return if(position == 0 ){
+        val bundle = Bundle()
+        bundle.putParcelable(EXTRA_LEAGUE, (league))
+        return if (position == 0) {
             val prevFrag = PreviousEventFragment.newInstance()
             prevFrag.arguments = bundle
             prevFrag
-        } else{
+        } else {
             val nextFrag = NextEventFragment.newInstance()
             nextFrag.arguments = bundle
             nextFrag

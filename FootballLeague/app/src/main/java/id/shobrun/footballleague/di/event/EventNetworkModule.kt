@@ -8,7 +8,7 @@ import retrofit2.Retrofit
 @Module
 class EventNetworkModule {
     @Provides
-    fun provideEventApi(retrofit: Retrofit) : EventApi{
-     return retrofit.create(EventApi::class.java)
+    fun provideEventApi(retrofit: Retrofit): EventApi {
+        return retrofit.create(EventApi::class.java)
     }
 }

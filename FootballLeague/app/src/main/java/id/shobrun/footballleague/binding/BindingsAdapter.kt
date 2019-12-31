@@ -13,18 +13,17 @@ import id.shobrun.footballleague.ui.adapters.RecyclerEventsAdapter
 import id.shobrun.footballleague.ui.adapters.RecyclerLeaguesAdapter
 
 @BindingAdapter("loadImage")
-fun bindLoadImage(view : ImageView, imageUrl : Any){
+fun bindLoadImage(view: ImageView, imageUrl: Any) {
     Glide.with(view.context)
         .load(imageUrl)
         .into(view)
 }
 
 @BindingAdapter("items")
-fun bindAdapter(view : RecyclerView, items : List<League>){
-    when(view.adapter){
-        is RecyclerLeaguesAdapter ->
-        {
-            if(items != null){
+fun bindAdapter(view: RecyclerView, items: List<League>) {
+    when (view.adapter) {
+        is RecyclerLeaguesAdapter -> {
+            if (items != null) {
                 (view.adapter as RecyclerLeaguesAdapter).setItems(items)
             }
 
@@ -33,12 +32,11 @@ fun bindAdapter(view : RecyclerView, items : List<League>){
 }
 
 @BindingAdapter("liveItems")
-fun bindAdapterLiveData(view : RecyclerView, items : LiveData<List<Event>>?){
-    when(view.adapter){
-        is RecyclerEventsAdapter->
-        {
+fun bindAdapterLiveData(view: RecyclerView, items: LiveData<List<Event>>?) {
+    when (view.adapter) {
+        is RecyclerEventsAdapter -> {
             items?.value.let {
-                (view.adapter as RecyclerEventsAdapter).setItems(it?:ArrayList())
+                (view.adapter as RecyclerEventsAdapter).setItems(it ?: ArrayList())
             }
 
         }
@@ -47,10 +45,10 @@ fun bindAdapterLiveData(view : RecyclerView, items : LiveData<List<Event>>?){
 
 
 @BindingAdapter("eventItems")
-fun bindEvents(view : RecyclerView, resource: Resource<List<Event>>?){
-    when(view.adapter){
-        is RecyclerEventsAdapter ->{
-            view.bindResource(resource){
+fun bindEvents(view: RecyclerView, resource: Resource<List<Event>>?) {
+    when (view.adapter) {
+        is RecyclerEventsAdapter -> {
+            view.bindResource(resource) {
                 (view.adapter as RecyclerEventsAdapter).setItems(it.data)
             }
         }

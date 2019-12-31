@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-open class ViewModelFragment : DaggerFragment(){
+open class ViewModelFragment : DaggerFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 

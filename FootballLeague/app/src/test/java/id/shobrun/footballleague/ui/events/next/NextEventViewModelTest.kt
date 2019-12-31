@@ -36,7 +36,7 @@ class NextEventViewModelTest {
 
     @Before
     fun setUp() {
-        repository = EventRepository(InstantAppExecutors(),eventApi,eventDao)
+        repository = EventRepository(InstantAppExecutors(), eventApi, eventDao)
         viewModel = NextEventViewModel(repository)
     }
 
@@ -63,7 +63,7 @@ class NextEventViewModelTest {
 
         loadFromDB.postValue(mockEventList())
         verify(observer).onChanged(
-            Resource.success(mockEventList(),true)
+            Resource.success(mockEventList(), true)
         )
     }
 }

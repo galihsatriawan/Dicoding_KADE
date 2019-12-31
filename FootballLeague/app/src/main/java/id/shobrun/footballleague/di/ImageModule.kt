@@ -15,7 +15,7 @@ import javax.inject.Singleton
 class ImageModule {
     @Singleton
     @Provides
-    fun provideRequestOptions() : RequestOptions{
+    fun provideRequestOptions(): RequestOptions {
         return RequestOptions().placeholder(R.drawable.white_background)
             .error(R.drawable.white_background)
     }
@@ -23,13 +23,16 @@ class ImageModule {
     // In this method, the value of requestOptions will be found automatically from Module that provide it
     @Singleton
     @Provides
-    fun provideRequestManager(application: Application, requestOptions: RequestOptions) : RequestManager{
+    fun provideRequestManager(
+        application: Application,
+        requestOptions: RequestOptions
+    ): RequestManager {
         return Glide.with(application)
             .setDefaultRequestOptions(requestOptions)
     }
 
     @Provides
-    fun provideLogo(application: Application):Drawable{
-        return ContextCompat.getDrawable(application,R.drawable.logo) as Drawable
+    fun provideLogo(application: Application): Drawable {
+        return ContextCompat.getDrawable(application, R.drawable.logo) as Drawable
     }
 }

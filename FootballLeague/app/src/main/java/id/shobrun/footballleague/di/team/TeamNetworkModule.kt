@@ -8,7 +8,7 @@ import retrofit2.Retrofit
 @Module
 class TeamNetworkModule {
     @Provides
-    fun provideTeamApi(retrofit: Retrofit) : TeamApi{
+    fun provideTeamApi(retrofit: Retrofit): TeamApi {
         return retrofit.create(TeamApi::class.java)
     }
 }

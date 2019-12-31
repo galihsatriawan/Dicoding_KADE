@@ -12,6 +12,6 @@ abstract class SearchEventViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(SearchEventsViewModel::class)
-    abstract fun provideSearchEventsViewModel(searchEventsViewModel: SearchEventsViewModel) : ViewModel
+    abstract fun provideSearchEventsViewModel(searchEventsViewModel: SearchEventsViewModel): ViewModel
 
 }

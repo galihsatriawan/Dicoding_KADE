@@ -12,5 +12,5 @@ abstract class FavoritePrevEventViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(FavoritePreviousEventViewModel::class)
-    abstract fun bindFavoritePrevEventViewModel(favoritePreviousEventViewModel: FavoritePreviousEventViewModel) : ViewModel
+    abstract fun bindFavoritePrevEventViewModel(favoritePreviousEventViewModel: FavoritePreviousEventViewModel): ViewModel
 }

@@ -132,7 +132,8 @@ dependencies {
 
 
     testImplementation "org.mockito:mockito-inline:$mockito"
-    testImplementation "org.mockito:mockito-core:$mockito" // For instrumentation tests on Android devices and emulators
+    testImplementation "org.mockito:mockito-core:$mockito"
+    // For instrumentation tests on Android devices and emulators
     androidTestImplementation "com.linkedin.dexmaker:dexmaker-mockito:$dexMakerVersion"
 
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"

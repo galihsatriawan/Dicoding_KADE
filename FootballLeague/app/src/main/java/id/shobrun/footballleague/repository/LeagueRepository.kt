@@ -18,19 +18,25 @@ import javax.inject.Singleton
 
 
 @Singleton
-class LeagueRepository @Inject constructor(private val appExecutors: AppExecutors,private val webservice : LeagueApi,private val leagueDao : LeagueDao, private val application: Application) : Repository{
-    companion object{
+class LeagueRepository @Inject constructor(
+    private val appExecutors: AppExecutors,
+    private val webservice: LeagueApi,
+    private val leagueDao: LeagueDao,
+    private val application: Application
+) : Repository {
+    companion object {
         val TAG = LeagueRepository.javaClass.name
     }
-    fun loadLeagueDetail(id : Int) : LiveData<Resource<League>> {
-        return object : NetworkBoundRepository< League,LeaguesResponse>(appExecutors){
+
+    fun loadLeagueDetail(id: Int): LiveData<Resource<League>> {
+        return object : NetworkBoundRepository<League, LeaguesResponse>(appExecutors) {
             override fun saveFetchData(items: LeaguesResponse) {
                 leagueDao.insert(items.leagues[0])
 
             }
 
             override fun shouldFetch(data: League?): Boolean {
-                return data==null || data.name.isEmpty()
+                return data == null || data.name.isEmpty()
             }
 
             override fun loadFromDb(): LiveData<League> {
@@ -52,14 +58,15 @@ class LeagueRepository @Inject constructor(private val appExecutors: AppExecutor
 
 
     }
-    fun getResourceLeagues() : List<League> {
+
+    fun getResourceLeagues(): List<League> {
         val leagues: ArrayList<League> = ArrayList()
-        with(application.applicationContext){
+        with(application.applicationContext) {
             val id = resources.getIntArray(R.array.league_id)
             val name = resources.getStringArray(R.array.league_name)
             val image = resources.obtainTypedArray(R.array.league_banner)
             val desc = resources.getStringArray(R.array.league_desc)
-            for(i in name.indices){
+            for (i in name.indices) {
                 leagues.add(
                     League(
                         id[i],

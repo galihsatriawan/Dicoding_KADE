@@ -13,5 +13,5 @@ abstract class LeagueFragmentViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(FootballLeaguesViewModel::class)
-    abstract fun bindLeaguesViewModel(footballLeaguesViewModel: FootballLeaguesViewModel) : ViewModel
+    abstract fun bindLeaguesViewModel(footballLeaguesViewModel: FootballLeaguesViewModel): ViewModel
 }

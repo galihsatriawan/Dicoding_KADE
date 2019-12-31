@@ -10,7 +10,11 @@ import id.shobrun.footballleague.room.EventDao
 @Module
 class EventRepositoryModule {
     @Provides
-    fun provideEventRepository(appExecutors: AppExecutors,service : EventApi, local : EventDao) : EventRepository{
-        return EventRepository(appExecutors,service,local)
+    fun provideEventRepository(
+        appExecutors: AppExecutors,
+        service: EventApi,
+        local: EventDao
+    ): EventRepository {
+        return EventRepository(appExecutors, service, local)
     }
 }

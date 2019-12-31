@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    >
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
+
         <variable
             name="vm"
             type="id.shobrun.footballleague.ui.events.detail.DetailEventViewModel" />
     </data>
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".ui.events.detail.DetailEventActivity"
-        >
+        tools:context=".ui.events.detail.DetailEventActivity">
+
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_bar_height_detail_event"
-            android:fitsSystemWindows="true"
-            android:theme="@style/AppTheme.AppBarOverlay"
             android:background="@android:color/transparent"
-            >
+            android:fitsSystemWindows="true"
+            android:theme="@style/AppTheme.AppBarOverlay">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/toolbar_layout"
@@ -32,28 +34,32 @@
                 app:contentScrim="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:toolbarId="@+id/toolbar">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_home_team"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:contentDescription="TODO" />
+                        android:contentDescription="TODO"
+                        android:src="@drawable/ic_home_team" />
+
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_fifa"
-                        android:contentDescription="TODO" />
+                        android:contentDescription="TODO"
+                        android:src="@drawable/ic_fifa" />
+
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_away_team"
                         android:layout_marginStart="@dimen/activity_horizontal_margin"
-                        android:contentDescription="TODO" />
+                        android:contentDescription="TODO"
+                        android:src="@drawable/ic_away_team" />
                 </LinearLayout>
 
                 <androidx.appcompat.widget.Toolbar
@@ -61,8 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"
-                    app:popupTheme="@style/AppTheme.PopupOverlay"
-                    />
+                    app:popupTheme="@style/AppTheme.PopupOverlay" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
@@ -71,227 +76,232 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <TextView
                     android:id="@+id/tv_event_name"
+                    style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     app:eventName="@{vm.eventLiveData}"
-                    tools:text="@string/title_match"
-                    style="@style/TextAppearance.AppCompat.Title"
-                    />
+                    tools:text="@string/title_match" />
+
                 <LinearLayout
                     android:id="@+id/container_board_event"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_event_name"
-                    android:padding="@dimen/activity_horizontal_margin_8dp"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="@dimen/activity_horizontal_margin_8dp">
+
                     <TableLayout
-                        android:layout_height="match_parent"
                         android:layout_width="match_parent"
-                        >
+                        android:layout_height="match_parent">
+
                         <TableRow>
+
                             <LinearLayout
                                 android:layout_width="0dp"
-                                android:orientation="vertical"
                                 android:layout_weight="1"
-                                >
+                                android:orientation="vertical">
+
                                 <ImageView
                                     android:id="@+id/img_team_home"
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
-                                    tools:src="@drawable/ic_home_team"
                                     android:layout_gravity="center"
-                                    app:homeBadge = "@{vm.homeTeamLiveData}"
-                                    android:contentDescription="TODO" />
+                                    android:contentDescription="TODO"
+                                    app:homeBadge="@{vm.homeTeamLiveData}"
+                                    tools:src="@drawable/ic_home_team" />
+
                                 <TextView
                                     android:id="@+id/tv_team_name_home"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    tools:text = "@string/title_match"
                                     app:homeName="@{vm.eventLiveData}"
-                                    />
+                                    tools:text="@string/title_match" />
 
                             </LinearLayout>
+
                             <LinearLayout
-                                android:orientation="horizontal"
-                                android:layout_weight="1"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
+                                android:layout_weight="1"
                                 android:gravity="center"
-                                >
+                                android:orientation="horizontal">
+
                                 <TextView
                                     android:id="@+id/tv_score_home"
+                                    style="@style/TextAppearance.AppCompat.Title"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginEnd="@dimen/activity_horizontal_margin_8dp"
-                                    style="@style/TextAppearance.AppCompat.Title"
                                     app:homeScore="@{vm.eventLiveData}"
-                                    tools:text="1"
-                                    />
+                                    tools:text="1" />
+
                                 <ImageView
                                     android:id="@+id/img_trophy"
                                     android:layout_width="30dp"
                                     android:layout_height="50dp"
-                                    android:src="@drawable/ic_trophy"
                                     android:layout_gravity="center"
-                                    android:contentDescription="TODO" />
+                                    android:contentDescription="TODO"
+                                    android:src="@drawable/ic_trophy" />
+
                                 <TextView
                                     android:id="@+id/tv_score_away"
+                                    style="@style/TextAppearance.AppCompat.Title"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="@dimen/activity_horizontal_margin_8dp"
                                     app:awayScore="@{vm.eventLiveData}"
-                                    style="@style/TextAppearance.AppCompat.Title"
-                                    tools:text="1"
-                                    />
+                                    tools:text="1" />
                             </LinearLayout>
+
                             <LinearLayout
-                                android:orientation="vertical"
-                                android:layout_weight="1"
                                 android:layout_width="0dp"
-                                >
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
                                 <ImageView
                                     android:id="@+id/img_team_away"
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
-                                    tools:src="@drawable/ic_away_team"
                                     android:layout_gravity="center"
-                                    app:awayBadge = "@{vm.awayTeamLiveData}"
-                                    android:contentDescription="TODO" />
+                                    android:contentDescription="TODO"
+                                    app:awayBadge="@{vm.awayTeamLiveData}"
+                                    tools:src="@drawable/ic_away_team" />
+
                                 <TextView
                                     android:id="@+id/tv_team_name_away"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    tools:text = "@string/title_match"
                                     app:awayName="@{vm.eventLiveData}"
-                                    />
+                                    tools:text="@string/title_match" />
                             </LinearLayout>
                         </TableRow>
-                        <TableRow
-                            android:weightSum="1"
-                            >
+
+                        <TableRow android:weightSum="1">
+
                             <TextView
                                 android:id="@+id/tv_event_date"
+                                style="@style/TextAppearance.AppCompat.Caption"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_span="3"
                                 android:layout_weight="1"
                                 android:gravity="center_horizontal"
                                 android:textStyle="italic"
-                                style="@style/TextAppearance.AppCompat.Caption"
                                 app:eventDate="@{vm.eventLiveData}"
-                                tools:text = "Match time : 12-12-2019"
-                                />
+                                tools:text="Match time : 12-12-2019" />
                         </TableRow>
                     </TableLayout>
                 </LinearLayout>
+
                 <ProgressBar
                     android:id="@+id/progressBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="@{vm.loading ? View.VISIBLE : View.GONE}"
                     android:layout_centerInParent="true"
-                    />
+                    android:visibility="@{vm.loading ? View.VISIBLE : View.GONE}" />
+
                 <TextView
                     android:id="@+id/title_summary"
-                    android:layout_below="@id/container_board_event"
+                    style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/container_board_event"
                     android:gravity="center"
-                    style="@style/TextAppearance.AppCompat.Title"
-                    android:text="@string/title_summary"
-                    />
+                    android:text="@string/title_summary" />
+
                 <TableLayout
                     android:id="@+id/table_summary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/title_summary"
-                    android:layout_margin="@dimen/activity_horizontal_margin_8dp"
-                    >
+                    android:layout_margin="@dimen/activity_horizontal_margin_8dp">
+
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:weightSum="@dimen/table_weight_board_event_sum"
                         android:layout_marginBottom="@dimen/activity_vertical_margin"
-                        >
+                        android:weightSum="@dimen/table_weight_board_event_sum">
+
                         <TextView
-                            android:gravity="center"
-                            android:width="0dp"
                             android:layout_weight="@dimen/table_weight_1"
-                            tools:text = "@string/title_match"
+                            android:width="0dp"
+                            android:gravity="center"
                             app:homeGoals="@{vm.eventLiveData}"
-                            />
+                            tools:text="@string/title_match" />
+
                         <TextView
-                            android:gravity="center"
-                            android:width="0dp"
-                            android:layout_weight="@dimen/table_weight_1"
-                            android:text="@string/title_goal_details"
-                            />
-                        <TextView
-                            android:gravity="center"
                             android:layout_weight="@dimen/table_weight_1"
                             android:width="0dp"
-                            tools:text="@string/title_match"
+                            android:gravity="center"
+                            android:text="@string/title_goal_details" />
+
+                        <TextView
+                            android:layout_weight="@dimen/table_weight_1"
+                            android:width="0dp"
+                            android:gravity="center"
                             app:awayGoals="@{vm.eventLiveData}"
-                            />
+                            tools:text="@string/title_match" />
                     </TableRow>
+
                     <TableRow
-                        android:weightSum="@dimen/table_weight_board_event_sum"
                         android:layout_marginBottom="@dimen/activity_vertical_margin"
-                        >
+                        android:weightSum="@dimen/table_weight_board_event_sum">
+
                         <TextView
-                            android:gravity="center"
                             android:layout_weight="@dimen/table_weight_1"
                             android:width="0dp"
-                            tools:text="@string/title_match"
+                            android:gravity="center"
                             app:homeYellowCards="@{vm.eventLiveData}"
-                            />
+                            tools:text="@string/title_match" />
+
                         <TextView
-                            android:gravity="center"
                             android:layout_weight="@dimen/table_weight_1"
                             android:width="0dp"
-                            android:text="@string/title_yellow_cards"
-                            />
-                        <TextView
                             android:gravity="center"
+                            android:text="@string/title_yellow_cards" />
+
+                        <TextView
                             android:layout_weight="@dimen/table_weight_1"
                             android:width="0dp"
-                            tools:text="@string/title_match"
+                            android:gravity="center"
                             app:awayYellowCards="@{vm.eventLiveData}"
-                            />
+                            tools:text="@string/title_match" />
                     </TableRow>
+
                     <TableRow
-                        android:weightSum="@dimen/table_weight_board_event_sum"
                         android:layout_marginBottom="@dimen/activity_vertical_margin"
-                        >
+                        android:weightSum="@dimen/table_weight_board_event_sum">
+
                         <TextView
-                            android:gravity="center"
                             android:layout_weight="@dimen/table_weight_1"
                             android:width="0dp"
-                            tools:text="@string/title_match"
+                            android:gravity="center"
                             app:homeRedCards="@{vm.eventLiveData}"
-                            />
+                            tools:text="@string/title_match" />
+
                         <TextView
-                            android:gravity="center"
                             android:layout_weight="@dimen/table_weight_1"
                             android:width="0dp"
-                            android:text="@string/title_red_cards"
-                            />
-                        <TextView
                             android:gravity="center"
+                            android:text="@string/title_red_cards" />
+
+                        <TextView
                             android:layout_weight="@dimen/table_weight_1"
                             android:width="0dp"
-                            tools:text="@string/title_match"
+                            android:gravity="center"
                             app:awayRedCards="@{vm.eventLiveData}"
-                            />
+                            tools:text="@string/title_match" />
                     </TableRow>
 
                 </TableLayout>

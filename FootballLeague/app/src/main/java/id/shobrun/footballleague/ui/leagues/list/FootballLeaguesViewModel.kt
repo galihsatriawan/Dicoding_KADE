@@ -10,16 +10,17 @@ import javax.inject.Inject
 
 class FootballLeaguesViewModel @Inject constructor(repository: LeagueRepository) : ViewModel() {
     // TODO: Implement the ViewModel
-    companion object{
+    companion object {
         val TAG = FootballLeaguesViewModel.javaClass.name
     }
 
     private var _leagues = MutableLiveData<List<League>>()
-    var leagues:LiveData<List<League>> = _leagues
+    var leagues: LiveData<List<League>> = _leagues
+
     init {
         val mLeagues = repository.getResourceLeagues()
         _leagues.value = mLeagues
-        Timber.d(TAG+ " VM work"+mLeagues.size)
+        Timber.d(TAG + " VM work" + mLeagues.size)
     }
 
 }

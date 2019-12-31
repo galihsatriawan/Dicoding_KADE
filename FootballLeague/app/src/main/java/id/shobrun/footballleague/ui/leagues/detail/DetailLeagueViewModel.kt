@@ -12,28 +12,29 @@ import id.shobrun.footballleague.utils.AbsentLiveData
 import javax.inject.Inject
 
 
-class DetailLeagueViewModel @Inject constructor(val repository: LeagueRepository) : ViewModel(){
-    companion object{
+class DetailLeagueViewModel @Inject constructor(val repository: LeagueRepository) : ViewModel() {
+    companion object {
         val TAG = this.javaClass.name
     }
+
     private val leagueIdLiveData: MutableLiveData<Int> = MutableLiveData()
-    val loading : LiveData<Boolean>
-    val leagueLiveData : LiveData<Resource<League>>
+    val loading: LiveData<Boolean>
+    val leagueLiveData: LiveData<Resource<League>>
 
     init {
         this.leagueLiveData = leagueIdLiveData.switchMap {
             this.leagueIdLiveData.value?.let {
                 repository.loadLeagueDetail(it)
-            }?: AbsentLiveData.create()
+            } ?: AbsentLiveData.create()
         }
         this.loading = leagueLiveData.switchMap {
-            val mutableLiveData : MutableLiveData<Boolean> = MutableLiveData()
+            val mutableLiveData: MutableLiveData<Boolean> = MutableLiveData()
             mutableLiveData.postValue(it.status == Status.LOADING)
             mutableLiveData
         }
     }
 
-    fun postLeagueId(id : Int){
+    fun postLeagueId(id: Int) {
         leagueIdLiveData.postValue(id)
     }
 }

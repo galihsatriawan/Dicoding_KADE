@@ -20,17 +20,21 @@ private val TAB_TITLES_FAVORITE = arrayOf(
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
-class FavoriteSectionsPagerAdapter(private val context: Context, fm: FragmentManager,val league: League?) :
+class FavoriteSectionsPagerAdapter(
+    private val context: Context,
+    fm: FragmentManager,
+    val league: League?
+) :
     FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment {
-        val bundle  = Bundle()
-        bundle.putParcelable(EXTRA_LEAGUE,(league))
-        return if(position == 0 ){
+        val bundle = Bundle()
+        bundle.putParcelable(EXTRA_LEAGUE, (league))
+        return if (position == 0) {
             val prevFrag = FavoritePreviousEventFragment.newInstance()
             prevFrag.arguments = bundle
             prevFrag
-        } else{
+        } else {
             val nextFrag = FavoriteNextEventFragment.newInstance()
             nextFrag.arguments = bundle
             nextFrag

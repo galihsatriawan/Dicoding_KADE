@@ -10,5 +10,6 @@ import id.shobrun.footballleague.room.TeamDao
 @Module
 class TeamRepositoryModule {
     @Provides
-    fun provideTeamRepository(appExecutors: AppExecutors,teamApi: TeamApi,teamDao: TeamDao) = TeamRepository(appExecutors,teamApi,teamDao)
+    fun provideTeamRepository(appExecutors: AppExecutors, teamApi: TeamApi, teamDao: TeamDao) =
+        TeamRepository(appExecutors, teamApi, teamDao)
 }

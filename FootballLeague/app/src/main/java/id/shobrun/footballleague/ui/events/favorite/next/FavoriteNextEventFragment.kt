@@ -17,19 +17,20 @@ import org.jetbrains.anko.support.v4.intentFor
 
 class FavoriteNextEventFragment : ViewModelFragment() {
     private lateinit var eventRecyclerAdapter: RecyclerEventsAdapter
+
     companion object {
         fun newInstance() = FavoriteNextEventFragment()
     }
 
     private val viewModel by viewModel<FavoriteNextEventViewModel>()
-    private lateinit var binding : FavoriteNextEventFragmentBinding
+    private lateinit var binding: FavoriteNextEventFragmentBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = binding(inflater, R.layout.favorite_next_event_fragment,container)
+        binding = binding(inflater, R.layout.favorite_next_event_fragment, container)
 
-        with(binding){
+        with(binding) {
             lifecycleOwner = this@FavoriteNextEventFragment
             vm = viewModel
         }
@@ -41,17 +42,18 @@ class FavoriteNextEventFragment : ViewModelFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecycler()
-        var league : League? = null
-        if(requireArguments().getParcelable<League>(EXTRA_LEAGUE) != null){
+        var league: League? = null
+        if (requireArguments().getParcelable<League>(EXTRA_LEAGUE) != null) {
             league = requireArguments().getParcelable<League>(EXTRA_LEAGUE)
         }
 
 
-        viewModel.postLeagueId(league?.idLeague?:-1)
+        viewModel.postLeagueId(league?.idLeague ?: -1)
     }
-    private fun initRecycler(){
+
+    private fun initRecycler() {
         eventRecyclerAdapter = RecyclerEventsAdapter(ArrayList())
-        eventRecyclerAdapter.setItemListener {event ->
+        eventRecyclerAdapter.setItemListener { event ->
             val detail = intentFor<DetailEventActivity>(
                 DetailEventActivity.EXTRA_EVENT to event
             )
@@ -60,7 +62,8 @@ class FavoriteNextEventFragment : ViewModelFragment() {
         /**
          * Decoration
          */
-        val dividerItemDecoration = DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
+        val dividerItemDecoration =
+            DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
         binding.recyclerNextEvent.addItemDecoration(dividerItemDecoration)
         binding.recyclerNextEvent.adapter = eventRecyclerAdapter
     }

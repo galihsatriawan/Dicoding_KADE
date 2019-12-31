@@ -10,10 +10,10 @@ import org.junit.runners.JUnit4
 
 @RunWith(JUnit4::class)
 class TeamApiTest : ApiAbstract<TeamApi>() {
-    private lateinit var service : TeamApi
+    private lateinit var service: TeamApi
 
     @Before
-    fun initService(){
+    fun initService() {
         this.service = createService(TeamApi::class.java)
     }
 
@@ -23,12 +23,12 @@ class TeamApiTest : ApiAbstract<TeamApi>() {
      * 2. Check the id team, team name, team short name
      */
     @Test
-    fun getTeamDetail(){
+    fun getTeamDetail() {
         enqueueResponse("/team_detail.json")
         val idTeam = 133604
-        val response =  LiveDataTestUtil.getValue(service.getTeamById(idTeam))
-        assertThat(response.body?.teams?.get(0)?.idTeam,`is`(idTeam))
-        assertThat(response.body?.teams?.get(0)?.teamName,`is`("Arsenal"))
-        assertThat(response.body?.teams?.get(0)?.teamShortName,`is`("Ars"))
+        val response = LiveDataTestUtil.getValue(service.getTeamById(idTeam))
+        assertThat(response.body?.teams?.get(0)?.idTeam, `is`(idTeam))
+        assertThat(response.body?.teams?.get(0)?.teamName, `is`("Arsenal"))
+        assertThat(response.body?.teams?.get(0)?.teamShortName, `is`("Ars"))
     }
 }

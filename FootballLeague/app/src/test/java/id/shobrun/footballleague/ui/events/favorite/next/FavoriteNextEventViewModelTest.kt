@@ -30,7 +30,7 @@ class FavoriteNextEventViewModelTest {
 
     @Before
     fun setUp() {
-        repository = EventRepository(InstantAppExecutors(), eventApi,eventDao)
+        repository = EventRepository(InstantAppExecutors(), eventApi, eventDao)
         viewModel = FavoriteNextEventViewModel(repository)
     }
 
@@ -42,7 +42,7 @@ class FavoriteNextEventViewModelTest {
     fun getNextEventLiveData() {
         val idLeague = 1
         val loadFromDb = MutableLiveData<List<Event>>()
-        whenever(eventDao.getFavoriteNextEvents(idLeague,1)).doReturn(loadFromDb)
+        whenever(eventDao.getFavoriteNextEvents(idLeague, 1)).doReturn(loadFromDb)
 
         val data = viewModel.nextEventLiveData
         val observer = mock<Observer<List<Event>>>()
@@ -50,7 +50,7 @@ class FavoriteNextEventViewModelTest {
 
         viewModel.postLeagueId(idLeague)
 
-        verify(eventDao).getFavoriteNextEvents(idLeague,1)
+        verify(eventDao).getFavoriteNextEvents(idLeague, 1)
 
         loadFromDb.postValue(mockEventList())
         verify(observer).onChanged(

@@ -29,12 +29,12 @@ class FavoritePreviousEventViewModelTest {
     private val eventDao = mock<EventDao>()
     private val eventApi = mock<EventApi>()
 
-    private lateinit var repository : EventRepository
+    private lateinit var repository: EventRepository
     private lateinit var viewModel: FavoritePreviousEventViewModel
 
     @Before
     fun setUp() {
-        repository = EventRepository(InstantAppExecutors(), eventApi,eventDao)
+        repository = EventRepository(InstantAppExecutors(), eventApi, eventDao)
         viewModel = FavoritePreviousEventViewModel(repository)
     }
 
@@ -46,7 +46,7 @@ class FavoritePreviousEventViewModelTest {
     fun getPreviousEventLiveData() {
         val idLeague = 1
         val loadFromDb = MutableLiveData<List<Event>>()
-        whenever(eventDao.getFavoritePastEvents(idLeague,1)).doReturn(loadFromDb)
+        whenever(eventDao.getFavoritePastEvents(idLeague, 1)).doReturn(loadFromDb)
 
         val data = viewModel.previousEventLiveData
         val observer = mock<Observer<List<Event>>>()
@@ -54,7 +54,7 @@ class FavoritePreviousEventViewModelTest {
 
         viewModel.postLeagueId(idLeague)
 
-        verify(eventDao).getFavoritePastEvents(idLeague,1)
+        verify(eventDao).getFavoritePastEvents(idLeague, 1)
 
         loadFromDb.postValue(mockEventList())
         verify(observer).onChanged(

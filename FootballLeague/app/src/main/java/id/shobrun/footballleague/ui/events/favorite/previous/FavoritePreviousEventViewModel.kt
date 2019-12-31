@@ -9,18 +9,20 @@ import id.shobrun.footballleague.repository.EventRepository
 import id.shobrun.footballleague.utils.AbsentLiveData
 import javax.inject.Inject
 
-class FavoritePreviousEventViewModel @Inject constructor(repository: EventRepository): ViewModel() {
-    private val leagueIdLiveData : MutableLiveData<Int> = MutableLiveData()
+class FavoritePreviousEventViewModel @Inject constructor(repository: EventRepository) :
+    ViewModel() {
+    private val leagueIdLiveData: MutableLiveData<Int> = MutableLiveData()
     var previousEventLiveData: LiveData<List<Event>>
+
     init {
         previousEventLiveData = leagueIdLiveData.switchMap {
-            leagueIdLiveData.value?.let { repository.getAllFavoritePrevEventInDb(it)}
+            leagueIdLiveData.value?.let { repository.getAllFavoritePrevEventInDb(it) }
                 ?: AbsentLiveData.create()
         }
 
     }
 
-    fun postLeagueId(idLeague : Int){
+    fun postLeagueId(idLeague: Int) {
         this.leagueIdLiveData.postValue(idLeague)
     }
 }

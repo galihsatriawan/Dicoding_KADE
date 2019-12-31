@@ -38,11 +38,11 @@ abstract class NetworkBoundRepository<ResultType,
             response?.let {
                 when (response.isSuccessful) {
                     true -> {
-                        if(response.body != null){
+                        if (response.body != null) {
                             response.body?.let {
-                                appExecutors.diskIO().execute{
+                                appExecutors.diskIO().execute {
                                     saveFetchData(it)
-                                    appExecutors.mainThread().execute{
+                                    appExecutors.mainThread().execute {
                                         // we specially request a new live data,
                                         // otherwise we will get immediately last cached value,
                                         // which may not be updated with latest results received from network.
@@ -57,8 +57,8 @@ abstract class NetworkBoundRepository<ResultType,
                                 }
 
                             }
-                        }else{
-                            appExecutors.mainThread().execute{
+                        } else {
+                            appExecutors.mainThread().execute {
                                 // reload from disk whatever we had
                                 result.addSource(loadFromDb()) { newData ->
                                     newData?.let {

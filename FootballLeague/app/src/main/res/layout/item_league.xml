@@ -1,39 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
+
         <variable
             name="vm"
             type="id.shobrun.footballleague.ui.adapters.RecyclerLeaguesAdapter.LeagueViewModel" />
     </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/activity_horizontal_margin"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="@dimen/activity_horizontal_margin">
 
             <ImageView
                 android:id="@+id/img_league"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                app:loadImage="@{vm.img_league}"
-                android:contentDescription="TODO" />
+                android:contentDescription="TODO"
+                app:loadImage="@{vm.img_league}" />
 
             <TextView
                 android:id="@+id/tv_league_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
                 android:layout_gravity="center_vertical"
-                android:text="@{vm.tv_league_name}"
-                />
+                android:layout_margin="10dp"
+                android:text="@{vm.tv_league_name}" />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/container_btn_league"
             android:layout_width="match_parent"
@@ -41,22 +45,22 @@
             android:orientation="horizontal"
             android:visibility="gone"
             android:weightSum="2">
+
             <Button
                 android:id="@+id/btn_detail_league"
-                android:layout_height="wrap_content"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="@string/detail_league"
                 style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
-                />
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/detail_league" />
+
             <Button
                 android:id="@+id/btn_view_events"
+                style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/events"
-                style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
-                />
+                android:text="@string/events" />
         </LinearLayout>
     </LinearLayout>
 

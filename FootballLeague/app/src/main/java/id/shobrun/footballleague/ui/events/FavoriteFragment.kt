@@ -17,10 +17,11 @@ import id.shobrun.footballleague.ui.events.EventsActivity.Companion.EXTRA_LEAGUE
  * A simple [Fragment] subclass.
  */
 class FavoriteFragment : Fragment() {
-    companion object{
+    companion object {
         fun newInstance() = FavoriteFragment()
     }
-    var league : League? = null
+
+    var league: League? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,7 +29,7 @@ class FavoriteFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_favorite_events, container, false)
 
-        if(requireArguments().getParcelable<League>(EXTRA_LEAGUE) != null){
+        if (requireArguments().getParcelable<League>(EXTRA_LEAGUE) != null) {
             league = requireArguments().getParcelable(EXTRA_LEAGUE)
         }
 

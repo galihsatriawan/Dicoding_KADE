@@ -5,5 +5,5 @@ import id.shobrun.footballleague.models.entity.League
 
 
 data class LeaguesResponse(
-    val leagues : List<League>
+    val leagues: List<League>
 ) : NetworkResponseModel

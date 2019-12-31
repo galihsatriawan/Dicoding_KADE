@@ -1,4 +1,5 @@
 package id.shobrun.footballleague.testing
+
 /**
  * This annotation allows us to open some classes for mocking purposes while they are final in
  * release builds.

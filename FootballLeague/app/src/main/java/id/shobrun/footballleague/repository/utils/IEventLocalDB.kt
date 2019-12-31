@@ -9,11 +9,11 @@ interface IEventLocalDB {
      */
     fun insertEventToDb(event: Event)
 
-    fun getAllFavoriteNextEventInDb(idLeague:Int) : LiveData<List<Event>>
+    fun getAllFavoriteNextEventInDb(idLeague: Int): LiveData<List<Event>>
 
-    fun getAllFavoritePrevEventInDb(idLeague:Int) : LiveData<List<Event>>
+    fun getAllFavoritePrevEventInDb(idLeague: Int): LiveData<List<Event>>
 
-    fun getEventByIdInDb(idEvent: Int) : LiveData<Event>
+    fun getEventByIdInDb(idEvent: Int): LiveData<Event>
 
-    fun updateEventInDb(event : Event) : Int
+    fun updateEventInDb(event: Event): Int
 }

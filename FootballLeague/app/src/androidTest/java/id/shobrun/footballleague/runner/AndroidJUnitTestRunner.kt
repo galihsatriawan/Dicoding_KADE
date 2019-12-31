@@ -6,8 +6,12 @@ import androidx.test.runner.AndroidJUnitRunner
 import id.shobrun.footballleague.TestBaseApplication
 
 @Suppress("unused")
-class AndroidJUnitTestRunner : AndroidJUnitRunner(){
-    @Throws(InstantiationException::class, IllegalAccessException::class, ClassNotFoundException::class)
+class AndroidJUnitTestRunner : AndroidJUnitRunner() {
+    @Throws(
+        InstantiationException::class,
+        IllegalAccessException::class,
+        ClassNotFoundException::class
+    )
     override fun newApplication(cl: ClassLoader, className: String, context: Context): Application {
         return super.newApplication(cl, TestBaseApplication::class.java.name, context)
     }

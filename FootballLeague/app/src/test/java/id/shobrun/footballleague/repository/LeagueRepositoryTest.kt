@@ -21,7 +21,7 @@ import org.junit.runners.JUnit4
 
 
 @RunWith(JUnit4::class)
-class LeagueRepositoryTest  {
+class LeagueRepositoryTest {
     private val application = mock<Application>()
     private lateinit var repository: LeagueRepository
     private val service = mock<LeagueApi>()
@@ -29,10 +29,12 @@ class LeagueRepositoryTest  {
     @Rule
     @JvmField
     val instantExecutorRule = InstantTaskExecutorRule()
+
     @Before
     fun setUp() {
-        this.repository = LeagueRepository(InstantAppExecutors(), service,leagueDao, application)
+        this.repository = LeagueRepository(InstantAppExecutors(), service, leagueDao, application)
     }
+
     /**
      * Scenario
      * 1. Data Detail League pertama diambil dari DB
@@ -69,7 +71,7 @@ class LeagueRepositoryTest  {
         verify(leagueDao).insert(mockResponse.leagues[0])
 
         updateData.postValue(mockResponse.leagues[0])
-        verify(observer).onChanged(Resource.success(mockResponse.leagues[0],true))
+        verify(observer).onChanged(Resource.success(mockResponse.leagues[0], true))
 
     }
 }

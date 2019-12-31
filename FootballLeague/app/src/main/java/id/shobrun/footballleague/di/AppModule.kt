@@ -12,11 +12,12 @@ class AppModule {
 
     @Singleton
     @Provides
-    internal fun someString():String = "test"
+    internal fun someString(): String = "test"
 
     // Can access application from App Component so the return is false (is not null)
     @Singleton
-    @Provides @Named("isAppNull")
-    internal fun getApp(application: Application) : Boolean = application==null
+    @Provides
+    @Named("isAppNull")
+    internal fun getApp(application: Application): Boolean = application == null
 
 }

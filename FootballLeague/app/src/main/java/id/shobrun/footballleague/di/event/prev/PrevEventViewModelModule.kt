@@ -12,5 +12,5 @@ abstract class PrevEventViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(PreviousEventViewModel::class)
-    abstract fun bindPreviousEventViewModel(previousEventViewModel: PreviousEventViewModel) : ViewModel
+    abstract fun bindPreviousEventViewModel(previousEventViewModel: PreviousEventViewModel): ViewModel
 }

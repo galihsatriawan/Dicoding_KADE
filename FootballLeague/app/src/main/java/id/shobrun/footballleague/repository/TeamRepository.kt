@@ -11,12 +11,17 @@ import id.shobrun.footballleague.room.TeamDao
 import timber.log.Timber
 import javax.inject.Inject
 
-class TeamRepository @Inject constructor(val appExecutors: AppExecutors,val webservice: TeamApi, val teamDao: TeamDao) :Repository{
-    companion object{
+class TeamRepository @Inject constructor(
+    val appExecutors: AppExecutors,
+    val webservice: TeamApi,
+    val teamDao: TeamDao
+) : Repository {
+    companion object {
         val TAG = TeamRepository.javaClass.name
     }
-    fun loadTeamDetailById(idTeam : Int) : LiveData<Resource<Team>> {
-        return object : NetworkBoundRepository<Team,TeamsResponse>(appExecutors){
+
+    fun loadTeamDetailById(idTeam: Int): LiveData<Resource<Team>> {
+        return object : NetworkBoundRepository<Team, TeamsResponse>(appExecutors) {
             override fun saveFetchData(items: TeamsResponse) {
                 val team = items.teams[0]
                 teamDao.insert(team)

@@ -22,7 +22,7 @@ import org.junit.runners.JUnit4
 @RunWith(JUnit4::class)
 class EventRepositoryTest {
     private lateinit var repository: EventRepository
-    private val eventDao  = mock<EventDao>()
+    private val eventDao = mock<EventDao>()
     private val service = mock<EventApi>()
 
     @Rule
@@ -30,8 +30,8 @@ class EventRepositoryTest {
     val instantExecutorRule = InstantTaskExecutorRule()
 
     @Before
-    fun init(){
-        repository = EventRepository(InstantAppExecutors(),service,eventDao)
+    fun init() {
+        repository = EventRepository(InstantAppExecutors(), service, eventDao)
     }
 
     /**
@@ -68,7 +68,7 @@ class EventRepositoryTest {
         verify(eventDao).insert(mockResponse.events[0])
 
         updatedData.postValue(mockResponse.events[0])
-        verify(observer).onChanged(Resource.success(mockResponse.events[0],true))
+        verify(observer).onChanged(Resource.success(mockResponse.events[0], true))
 
     }
 
@@ -98,7 +98,7 @@ class EventRepositoryTest {
         verify(eventDao).insertEvents(mockResponse.events)
 
         updatedData.postValue(mockResponse.events)
-        verify(observer).onChanged(Resource.success(mockResponse.events,true))
+        verify(observer).onChanged(Resource.success(mockResponse.events, true))
 
     }
 
@@ -128,7 +128,7 @@ class EventRepositoryTest {
         verify(eventDao).insertEvents(mockResponse.events)
 
         updatedData.postValue(mockResponse.events)
-        verify(observer).onChanged(Resource.success(mockResponse.events,true))
+        verify(observer).onChanged(Resource.success(mockResponse.events, true))
 
     }
 
@@ -159,7 +159,7 @@ class EventRepositoryTest {
         verify(eventDao).insertEvents(mockResponse.event)
 
         updatedData.postValue(mockResponse.event)
-        verify(observer).onChanged(Resource.success(mockResponse.event,true))
+        verify(observer).onChanged(Resource.success(mockResponse.event, true))
 
     }
 
@@ -179,14 +179,14 @@ class EventRepositoryTest {
     fun getAllFavoriteNextEventInDb() {
         val idLeague = 1
         repository.getAllFavoriteNextEventInDb(idLeague)
-        verify(eventDao).getFavoriteNextEvents(idLeague,1)
+        verify(eventDao).getFavoriteNextEvents(idLeague, 1)
     }
 
     @Test
     fun getAllFavoritePrevEventInDb() {
         val idLeague = 1
         repository.getAllFavoritePrevEventInDb(idLeague)
-        verify(eventDao).getFavoritePastEvents(idLeague,1)
+        verify(eventDao).getFavoritePastEvents(idLeague, 1)
     }
 
     @Test

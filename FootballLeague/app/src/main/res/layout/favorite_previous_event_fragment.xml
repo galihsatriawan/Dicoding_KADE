@@ -1,44 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.events.previous.PreviousEventFragment">
+
     <data>
+
         <variable
             name="vm"
             type="id.shobrun.footballleague.ui.events.favorite.previous.FavoritePreviousEventViewModel" />
     </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <LinearLayout
+            visibleMessageFavorite="@{vm.previousEventLiveData}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="gone"
-            visibleMessageFavorite="@{vm.previousEventLiveData}"
-            >
+            android:visibility="gone">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_error_black_24dp"
-                android:contentDescription="TODO" />
+                android:contentDescription="TODO"
+                android:src="@drawable/ic_error_black_24dp" />
+
             <TextView
+                messageEventsFavorite="@{vm.previousEventLiveData}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                messageEventsFavorite="@{vm.previousEventLiveData}"
-                tools:text ="@string/failed_load"
-                />
+                tools:text="@string/failed_load" />
         </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_previous_event"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:liveItems="@{vm.previousEventLiveData}"
-            />
+            app:liveItems="@{vm.previousEventLiveData}" />
     </LinearLayout>
 
 </layout>

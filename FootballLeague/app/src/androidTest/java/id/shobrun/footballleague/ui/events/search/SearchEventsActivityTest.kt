@@ -11,7 +11,6 @@ import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.filters.LargeTest
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
 import id.shobrun.footballleague.R
@@ -30,13 +29,13 @@ import java.util.concurrent.TimeUnit
 @RunWith(AndroidJUnit4::class)
 class SearchEventsActivityTest {
     @get:Rule
-    var mActivityTestRule = ActivityTestRule(SearchEventsActivity::class.java,true,true)
+    var mActivityTestRule = ActivityTestRule(SearchEventsActivity::class.java, true, true)
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @get:Rule
-    val executorRule  = TaskExecutorWithIdlingResourceRule()
+    val executorRule = TaskExecutorWithIdlingResourceRule()
 
     @get:Rule
     val countingAppExecutors = CountingAppExecutorsRule()
@@ -65,9 +64,14 @@ class SearchEventsActivityTest {
      */
 
     @Test
-    fun search(){
+    fun search() {
         val qry = "porto"
-        onView(allOf(withId(R.id.action_search), withEffectiveVisibility(Visibility.VISIBLE))).perform(
+        onView(
+            allOf(
+                withId(R.id.action_search),
+                withEffectiveVisibility(Visibility.VISIBLE)
+            )
+        ).perform(
             click()
         )
         onView(withId(R.id.search_src_text))
@@ -75,7 +79,8 @@ class SearchEventsActivityTest {
                 typeText(qry),
                 pressKey(KeyEvent.KEYCODE_ENTER)
             )
-        val recyclerView = mActivityTestRule.activity.findViewById<RecyclerView>(R.id.recycler_search_event)
+        val recyclerView =
+            mActivityTestRule.activity.findViewById<RecyclerView>(R.id.recycler_search_event)
         waitForAdapterChange(recyclerView)
         onView(listMatcher().atPosition(0)).check(matches(isDisplayed()))
     }
@@ -86,9 +91,14 @@ class SearchEventsActivityTest {
      * 2. cek apakah container message di tampilkan
      */
     @Test
-    fun message(){
+    fun message() {
         val qry = "sip kosong"
-        onView(allOf(withId(R.id.action_search), withEffectiveVisibility(Visibility.VISIBLE))).perform(
+        onView(
+            allOf(
+                withId(R.id.action_search),
+                withEffectiveVisibility(Visibility.VISIBLE)
+            )
+        ).perform(
             click()
         )
         onView(withId(R.id.search_src_text))
@@ -96,18 +106,21 @@ class SearchEventsActivityTest {
                 typeText(qry),
                 pressKey(KeyEvent.KEYCODE_ENTER)
             )
-        val recyclerView = mActivityTestRule.activity.findViewById<RecyclerView>(R.id.recycler_search_event)
+        val recyclerView =
+            mActivityTestRule.activity.findViewById<RecyclerView>(R.id.recycler_search_event)
         waitForAdapterChange(recyclerView)
         onView(withId(R.id.container_message)).check(matches(isDisplayed()))
     }
 
-    private fun listMatcher(): RecyclerViewMatcher{
+    private fun listMatcher(): RecyclerViewMatcher {
         return RecyclerViewMatcher(R.id.recycler_search_event)
     }
+
     @After
-    fun tearDown(){
+    fun tearDown() {
         IdlingRegistry.getInstance().unregister(EspressoIdlingResource.countingIdlingResource)
     }
+
     private fun waitForAdapterChange(recyclerView: RecyclerView) {
         val latch = CountDownLatch(1)
         InstrumentationRegistry.getInstrumentation().runOnMainSync {

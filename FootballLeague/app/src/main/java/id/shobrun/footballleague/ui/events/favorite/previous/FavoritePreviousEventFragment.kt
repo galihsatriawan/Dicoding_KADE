@@ -17,18 +17,19 @@ import org.jetbrains.anko.support.v4.intentFor
 
 class FavoritePreviousEventFragment : ViewModelFragment() {
     private lateinit var eventsAdapter: RecyclerEventsAdapter
+
     companion object {
         fun newInstance() = FavoritePreviousEventFragment()
     }
 
-    private  val viewModel by viewModel<FavoritePreviousEventViewModel>()
-    private lateinit var binding : FavoritePreviousEventFragmentBinding
+    private val viewModel by viewModel<FavoritePreviousEventViewModel>()
+    private lateinit var binding: FavoritePreviousEventFragmentBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = binding(inflater, R.layout.favorite_previous_event_fragment,container)
-        with(binding){
+        binding = binding(inflater, R.layout.favorite_previous_event_fragment, container)
+        with(binding) {
             lifecycleOwner = this@FavoritePreviousEventFragment
             vm = viewModel
         }
@@ -47,15 +48,16 @@ class FavoritePreviousEventFragment : ViewModelFragment() {
 
         initRecycler()
 
-        var league : League? = null
-        if(requireArguments().getParcelable<League>(EXTRA_LEAGUE) != null){
+        var league: League? = null
+        if (requireArguments().getParcelable<League>(EXTRA_LEAGUE) != null) {
             league = requireArguments().getParcelable(EXTRA_LEAGUE)
         }
 
-        viewModel.postLeagueId(league?.idLeague?:-1)
+        viewModel.postLeagueId(league?.idLeague ?: -1)
 
     }
-    private fun initRecycler(){
+
+    private fun initRecycler() {
         eventsAdapter = RecyclerEventsAdapter(ArrayList())
         eventsAdapter.setItemListener { event ->
             val detail = intentFor<DetailEventActivity>(
@@ -66,7 +68,8 @@ class FavoritePreviousEventFragment : ViewModelFragment() {
         /**
          * Decoration
          */
-        val dividerItemDecoration = DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
+        val dividerItemDecoration =
+            DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
         binding.rvPreviousEvent.addItemDecoration(dividerItemDecoration)
         binding.rvPreviousEvent.adapter = eventsAdapter
     }

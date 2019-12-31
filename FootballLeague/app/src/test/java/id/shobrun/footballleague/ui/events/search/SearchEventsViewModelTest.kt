@@ -15,10 +15,10 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
 @RunWith(JUnit4::class)
-class SearchEventsViewModelTest{
+class SearchEventsViewModelTest {
 
 
-    private val eventRepository= mock<EventRepository>()
+    private val eventRepository = mock<EventRepository>()
     private lateinit var viewModel: SearchEventsViewModel
 
     @Rule
@@ -29,6 +29,7 @@ class SearchEventsViewModelTest{
     fun setUp() {
         viewModel = SearchEventsViewModel(eventRepository)
     }
+
     /**
      * Scenario
      * Pengecekan apakah method search pada repository terpanggil dengan baik

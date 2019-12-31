@@ -8,5 +8,5 @@ import id.shobrun.footballleague.factory.AppViewModelsFactory
 @Module
 abstract class ViewModelsFactoryModule {
     @Binds
-    internal abstract fun bindViewModelFactory(factory:AppViewModelsFactory) : ViewModelProvider.Factory
+    internal abstract fun bindViewModelFactory(factory: AppViewModelsFactory): ViewModelProvider.Factory
 }

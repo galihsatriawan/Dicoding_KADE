@@ -14,8 +14,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         val mClubFragment = FootballLeaguesFragment.getInstance()
-        supportFragmentManager.commitNow(allowStateLoss = true){
-            add(R.id.frame_container,mClubFragment, FootballLeaguesFragment::class.java.simpleName)
+        supportFragmentManager.commitNow(allowStateLoss = true) {
+            add(R.id.frame_container, mClubFragment, FootballLeaguesFragment::class.java.simpleName)
         }
     }
 }

@@ -13,8 +13,8 @@ import javax.inject.Inject
 class NextEventViewModel @Inject constructor(val repository: EventRepository) : ViewModel() {
     // TODO: Implement the ViewModel
 
-    private val leagueIdLiveData : MutableLiveData<Int> = MutableLiveData()
-    val nextEventLiveData : LiveData<Resource<List<Event>>>
+    private val leagueIdLiveData: MutableLiveData<Int> = MutableLiveData()
+    val nextEventLiveData: LiveData<Resource<List<Event>>>
 
     init {
         nextEventLiveData = leagueIdLiveData.switchMap {
@@ -22,7 +22,8 @@ class NextEventViewModel @Inject constructor(val repository: EventRepository) : 
                 ?: AbsentLiveData.create()
         }
     }
-    fun postLeagueId(idLeague : Int){
+
+    fun postLeagueId(idLeague: Int) {
         leagueIdLiveData.postValue(idLeague)
     }
 

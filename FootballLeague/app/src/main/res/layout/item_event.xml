@@ -1,122 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
+
         <variable
             name="vm"
             type="id.shobrun.footballleague.ui.adapters.RecyclerEventsAdapter.EventViewModel" />
     </data>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/activity_horizontal_margin_8dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="@dimen/activity_horizontal_margin_8dp">
+
             <TableLayout
-                android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                >
+                android:layout_height="match_parent">
+
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:weightSum="3"
-                    >
+                    android:weightSum="3">
+
                     <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_weight="1"
                         android:layout_width="0dp"
-                        >
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
                         <ImageView
                             android:id="@+id/img_team_home"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:src="@drawable/ic_home_team"
                             android:layout_gravity="center"
-                            android:contentDescription="TODO" />
+                            android:contentDescription="TODO"
+                            android:src="@drawable/ic_home_team" />
+
                         <TextView
                             android:id="@+id/tv_team_name_home"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            tools:text = "@string/title_match"
                             android:text="@{vm.tv_home_name}"
-                            />
+                            tools:text="@string/title_match" />
 
                     </LinearLayout>
+
                     <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
                         android:layout_width="0dp"
-                        >
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
                         <TextView
                             android:id="@+id/tv_score_home"
+                            style="@style/TextAppearance.AppCompat.Title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/activity_horizontal_margin_8dp"
-                            style="@style/TextAppearance.AppCompat.Title"
                             android:text="@{vm.tv_home_score}"
-                            tools:text="1"
-                            />
+                            tools:text="1" />
+
                         <ImageView
                             android:id="@+id/img_trophy"
                             android:layout_width="30dp"
                             android:layout_height="50dp"
-                            android:src="@drawable/ic_trophy"
                             android:layout_gravity="center"
-                            android:contentDescription="TODO" />
+                            android:contentDescription="TODO"
+                            android:src="@drawable/ic_trophy" />
+
                         <TextView
                             android:id="@+id/tv_score_away"
+                            style="@style/TextAppearance.AppCompat.Title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/activity_horizontal_margin_8dp"
                             android:text="@{vm.tv_away_score}"
-                            style="@style/TextAppearance.AppCompat.Title"
-                            tools:text="1"
-                            />
+                            tools:text="1" />
                     </LinearLayout>
+
                     <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_weight="1"
                         android:layout_width="0dp"
-                        >
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
                         <ImageView
                             android:id="@+id/img_team_away"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:src="@drawable/ic_away_team"
                             android:layout_gravity="center"
-                            android:contentDescription="TODO" />
+                            android:contentDescription="TODO"
+                            android:src="@drawable/ic_away_team" />
+
                         <TextView
                             android:id="@+id/tv_team_name_away"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            tools:text = "@string/title_match"
                             android:text="@{vm.tv_away_name}"
-                            />
+                            tools:text="@string/title_match" />
                     </LinearLayout>
                 </TableRow>
-                <TableRow
-                    android:weightSum="1"
-                    >
+
+                <TableRow android:weightSum="1">
+
                     <TextView
                         android:id="@+id/tv_event_date"
+                        style="@style/TextAppearance.AppCompat.Caption"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_span="3"
                         android:layout_weight="1"
                         android:gravity="center_horizontal"
-                        android:textStyle="italic"
-                        style="@style/TextAppearance.AppCompat.Caption"
                         android:text="@{vm.tv_event_date}"
-                        tools:text = "Match time : 12-12-2019"
-                        />
+                        android:textStyle="italic"
+                        tools:text="Match time : 12-12-2019" />
                 </TableRow>
             </TableLayout>
         </LinearLayout>

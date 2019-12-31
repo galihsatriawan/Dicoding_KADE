@@ -19,10 +19,11 @@ import org.jetbrains.anko.support.v4.intentFor
 import timber.log.Timber
 
 
-class FootballLeaguesFragment : ViewModelFragment(),AnkoLogger {
+class FootballLeaguesFragment : ViewModelFragment(), AnkoLogger {
 
     private lateinit var leaguesAdapter: RecyclerLeaguesAdapter
-    private lateinit var binding : FragmentFootballLeagueBinding
+    private lateinit var binding: FragmentFootballLeagueBinding
+
     companion object {
         val TAG = FootballLeaguesFragment.javaClass.name
         fun getInstance() = FootballLeaguesFragment()
@@ -33,9 +34,9 @@ class FootballLeaguesFragment : ViewModelFragment(),AnkoLogger {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = binding(inflater,R.layout.fragment_football_league,container)
+        binding = binding(inflater, R.layout.fragment_football_league, container)
 
-        with(binding){
+        with(binding) {
             lifecycleOwner = this@FootballLeaguesFragment
             vm = viewModel
         }
@@ -47,11 +48,13 @@ class FootballLeaguesFragment : ViewModelFragment(),AnkoLogger {
         super.onViewCreated(view, savedInstanceState)
         initRecycler()
     }
-    private fun initRecycler(){
+
+    private fun initRecycler() {
         leaguesAdapter = RecyclerLeaguesAdapter(ArrayList())
         leaguesAdapter.setDetailListener { league ->
             val detail = intentFor<DetailLeagueActivity>(
-                DetailLeagueActivity.EXTRA_LEAGUE to league)
+                DetailLeagueActivity.EXTRA_LEAGUE to league
+            )
             Timber.d("$TAG id = ${league.idLeague}")
             startActivity(detail)
         }
@@ -61,7 +64,8 @@ class FootballLeaguesFragment : ViewModelFragment(),AnkoLogger {
             )
             startActivity(match)
         }
-        val dividerItemDecoration = DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
+        val dividerItemDecoration =
+            DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
         binding.rvLeagues.addItemDecoration(dividerItemDecoration)
         binding.rvLeagues.adapter = leaguesAdapter
     }

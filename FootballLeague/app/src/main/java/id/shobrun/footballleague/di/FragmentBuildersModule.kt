@@ -29,49 +29,59 @@ import id.shobrun.footballleague.ui.leagues.list.FootballLeaguesFragment
 abstract class FragmentBuildersModule {
 
     @LeagueScope
-    @ContributesAndroidInjector(modules = [
-        LeagueFragmentModule::class,
-        LeagueFragmentViewModelModule::class,
-        LeagueRepositoryModule::class,
-        LeagueNetworkModule::class,
-        LeaguePersistenceModule::class])
-    abstract fun injectLeagueFragment() : FootballLeaguesFragment
+    @ContributesAndroidInjector(
+        modules = [
+            LeagueFragmentModule::class,
+            LeagueFragmentViewModelModule::class,
+            LeagueRepositoryModule::class,
+            LeagueNetworkModule::class,
+            LeaguePersistenceModule::class]
+    )
+    abstract fun injectLeagueFragment(): FootballLeaguesFragment
 
-    @ContributesAndroidInjector(modules = [
-        NextEventFragmentModule::class,
-        NextEventViewModelModule::class,
-        EventRepositoryModule::class,
-        EventNetworkModule::class,
-        EventPersistenceModule::class
-    ])
-    abstract fun injectNextEventFragment() : NextEventFragment
+    @ContributesAndroidInjector(
+        modules = [
+            NextEventFragmentModule::class,
+            NextEventViewModelModule::class,
+            EventRepositoryModule::class,
+            EventNetworkModule::class,
+            EventPersistenceModule::class
+        ]
+    )
+    abstract fun injectNextEventFragment(): NextEventFragment
 
-    @ContributesAndroidInjector(modules = [
-        PrevEventFragmentModule::class,
-        PrevEventViewModelModule::class,
-        EventRepositoryModule::class,
-        EventNetworkModule::class,
-        EventPersistenceModule::class
-    ])
-    abstract fun injectPrevEventFragment() : PreviousEventFragment
+    @ContributesAndroidInjector(
+        modules = [
+            PrevEventFragmentModule::class,
+            PrevEventViewModelModule::class,
+            EventRepositoryModule::class,
+            EventNetworkModule::class,
+            EventPersistenceModule::class
+        ]
+    )
+    abstract fun injectPrevEventFragment(): PreviousEventFragment
 
-    @ContributesAndroidInjector(modules = [
-        FavoritePrevEventModule::class,
-        FavoritePrevEventViewModelModule::class,
-        EventRepositoryModule::class,
-        EventNetworkModule::class,
-        EventPersistenceModule::class
-    ])
-    abstract fun injectFavoritePrevEventFragment (): FavoritePreviousEventFragment
+    @ContributesAndroidInjector(
+        modules = [
+            FavoritePrevEventModule::class,
+            FavoritePrevEventViewModelModule::class,
+            EventRepositoryModule::class,
+            EventNetworkModule::class,
+            EventPersistenceModule::class
+        ]
+    )
+    abstract fun injectFavoritePrevEventFragment(): FavoritePreviousEventFragment
 
-    @ContributesAndroidInjector(modules = [
-        FavoriteNextEventModule::class,
-        FavoriteNextEventViewModelModule::class,
-        EventRepositoryModule::class,
-        EventNetworkModule::class,
-        EventPersistenceModule::class
-    ])
-    abstract fun injectFavoriteNextEventFragment (): FavoriteNextEventFragment
+    @ContributesAndroidInjector(
+        modules = [
+            FavoriteNextEventModule::class,
+            FavoriteNextEventViewModelModule::class,
+            EventRepositoryModule::class,
+            EventNetworkModule::class,
+            EventPersistenceModule::class
+        ]
+    )
+    abstract fun injectFavoriteNextEventFragment(): FavoriteNextEventFragment
 
 
 }

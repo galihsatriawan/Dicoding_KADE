@@ -6,8 +6,8 @@ import id.shobrun.footballleague.di.AppComponent
 import id.shobrun.footballleague.di.DaggerAppComponent
 import timber.log.Timber
 
-class BaseApplication: DaggerApplication(){
-    private val component : AppComponent by lazy {
+class BaseApplication : DaggerApplication() {
+    private val component: AppComponent by lazy {
         DaggerAppComponent.builder()
             .application(this)
             .build()
@@ -15,10 +15,11 @@ class BaseApplication: DaggerApplication(){
 
     override fun onCreate() {
         super.onCreate()
-        if(BuildConfig.DEBUG){
+        if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
     }
+
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
         return component
     }

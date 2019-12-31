@@ -11,7 +11,12 @@ import id.shobrun.footballleague.room.LeagueDao
 @Module
 class LeagueRepositoryModule {
     @Provides
-    fun provideInstanceRepository(appExecutors: AppExecutors,service : LeagueApi, local : LeagueDao, application: Application) : LeagueRepository {
-        return LeagueRepository(appExecutors,service,local,application)
+    fun provideInstanceRepository(
+        appExecutors: AppExecutors,
+        service: LeagueApi,
+        local: LeagueDao,
+        application: Application
+    ): LeagueRepository {
+        return LeagueRepository(appExecutors, service, local, application)
     }
 }

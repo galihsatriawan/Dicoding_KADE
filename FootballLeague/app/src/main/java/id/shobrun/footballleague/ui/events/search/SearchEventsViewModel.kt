@@ -21,9 +21,15 @@ class SearchEventsViewModel @Inject constructor(val repository: EventRepository)
     init {
         eventLiveData =
             filterLiveData.switchMap {
-                filterLiveData.value?.let { wrapEspressoIdlingResource {repository.getSearchEvent(it) }}
+                filterLiveData.value?.let {
+                    wrapEspressoIdlingResource {
+                        repository.getSearchEvent(
+                            it
+                        )
+                    }
+                }
                     ?: AbsentLiveData.create()
-        }
+            }
     }
 
     fun postFilter(qry: String) {

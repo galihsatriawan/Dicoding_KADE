@@ -15,12 +15,14 @@ import kotlinx.android.synthetic.main.activity_events.*
 import org.jetbrains.anko.intentFor
 
 class EventsActivity : AppCompatActivity() {
-    var league : League? = null
-    companion object{
+    var league: League? = null
+
+    companion object {
         const val EXTRA_LEAGUE = "extra_league"
         const val SAVED_STATE_CONTAINER_KEY = "ContainerKey"
         const val SAVED_STATE_CURRENT_TAB_KEY = "CurrentTabKey"
     }
+
     private var savedStateSparseArray = SparseArray<Fragment.SavedState>()
     private var currentSelectItemId = R.id.navigation_match
 
@@ -28,29 +30,30 @@ class EventsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_events)
         if (savedInstanceState != null) {
-            savedStateSparseArray = savedInstanceState.getSparseParcelableArray(SAVED_STATE_CONTAINER_KEY)!!
+            savedStateSparseArray =
+                savedInstanceState.getSparseParcelableArray(SAVED_STATE_CONTAINER_KEY)!!
             currentSelectItemId = savedInstanceState.getInt(SAVED_STATE_CURRENT_TAB_KEY)
         }
-        if(intent.getParcelableExtra<League>(EXTRA_LEAGUE) != null){
+        if (intent.getParcelableExtra<League>(EXTRA_LEAGUE) != null) {
             league = intent.getParcelableExtra<League>(EXTRA_LEAGUE)
         }
 
         val bundle = Bundle()
-        bundle.putParcelable(EXTRA_LEAGUE,league)
+        bundle.putParcelable(EXTRA_LEAGUE, league)
 
         bottom_navigation.setOnNavigationItemSelectedListener {
             var fragment = Fragment()
 
-            when(it.itemId){
-                R.id.navigation_match ->{
+            when (it.itemId) {
+                R.id.navigation_match -> {
                     fragment = EventsFragment.newInstance()
                     fragment.arguments = bundle
-                    swapFragments(R.id.navigation_match,fragment)
+                    swapFragments(R.id.navigation_match, fragment)
                 }
                 R.id.navigation_favorite -> {
                     fragment = FavoriteFragment.newInstance()
                     fragment.arguments = bundle
-                    swapFragments(R.id.navigation_favorite,fragment)
+                    swapFragments(R.id.navigation_favorite, fragment)
                 }
             }
 
@@ -59,7 +62,7 @@ class EventsActivity : AppCompatActivity() {
             true
         }
         bottom_navigation.selectedItemId = currentSelectItemId
-        simpleToolbarWithHome(toolbar,"${league?.name ?: "Match"}")
+        simpleToolbarWithHome(toolbar, "${league?.name ?: "Match"}")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -67,10 +70,12 @@ class EventsActivity : AppCompatActivity() {
         outState.putSparseParcelableArray(SAVED_STATE_CONTAINER_KEY, savedStateSparseArray)
         outState.putInt(SAVED_STATE_CURRENT_TAB_KEY, currentSelectItemId)
     }
+
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return super.onSupportNavigateUp()
     }
+
     override fun onBackPressed() {
         supportFragmentManager.fragments.forEach { fragment ->
             if (fragment != null && fragment.isVisible) {
@@ -84,6 +89,7 @@ class EventsActivity : AppCompatActivity() {
         }
         super.onBackPressed()
     }
+
     private fun swapFragments(@IdRes actionId: Int, fragment: Fragment) {
         if (supportFragmentManager.findFragmentByTag(fragment.javaClass.simpleName) == null) {
             savedFragmentState(actionId)
@@ -101,7 +107,8 @@ class EventsActivity : AppCompatActivity() {
     private fun savedFragmentState(actionId: Int) {
         val currentFragment = supportFragmentManager.findFragmentById(R.id.main_container)
         if (currentFragment != null) {
-            savedStateSparseArray.put(currentSelectItemId,
+            savedStateSparseArray.put(
+                currentSelectItemId,
                 supportFragmentManager.saveFragmentInstanceState(currentFragment)
             )
         }
@@ -111,13 +118,13 @@ class EventsActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
         val inflater = menuInflater
-        inflater.inflate(R.menu.options_menu,menu)
+        inflater.inflate(R.menu.options_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.search ->{
+        when (item.itemId) {
+            R.id.search -> {
                 val intSearch = intentFor<SearchEventsActivity>()
                 startActivity(intSearch)
             }

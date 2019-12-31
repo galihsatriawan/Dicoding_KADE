@@ -23,15 +23,16 @@ import org.junit.runners.JUnit4
 class TeamRepositoryTest {
     private val teamDao = mock<TeamDao>()
     private val service = mock<TeamApi>()
-    private lateinit var repository : TeamRepository
+    private lateinit var repository: TeamRepository
     @Rule
     @JvmField
     val instantExecutorRule = InstantTaskExecutorRule()
 
     @Before
-    fun init(){
-        this.repository = TeamRepository(InstantAppExecutors(), service,teamDao)
+    fun init() {
+        this.repository = TeamRepository(InstantAppExecutors(), service, teamDao)
     }
+
     /**
      * Scenario
      * 1. Data Detail Team pertama diambil dari DB
@@ -67,7 +68,7 @@ class TeamRepositoryTest {
         verify(teamDao).insert(mockResponse.teams[0])
 
         updateData.postValue(mockResponse.teams[0])
-        verify(observer).onChanged(Resource.success(mockResponse.teams[0],true))
+        verify(observer).onChanged(Resource.success(mockResponse.teams[0], true))
 
     }
 }

@@ -14,9 +14,10 @@ import timber.log.Timber
 
 class RecyclerEventsAdapter(private var items: List<Event>) :
     RecyclerView.Adapter<RecyclerEventsAdapter.EventViewHolder>(), AnkoLogger {
-    companion object{
+    companion object {
         val TAG = RecyclerEventsAdapter.javaClass.name
     }
+
     private lateinit var itemListener: (Event) -> Unit
     fun setItemListener(listener: (Event) -> Unit) {
         this.itemListener = listener
@@ -24,18 +25,18 @@ class RecyclerEventsAdapter(private var items: List<Event>) :
 
     fun setItems(items: List<Event>?) {
         Timber.d("$TAG set Item Recycler Event")
-        if(items!=null){
+        if (items != null) {
             this.items = items
             notifyDataSetChanged()
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : EventViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val itemBinding = ItemEventBinding.inflate(layoutInflater,parent,false)
+        val itemBinding = ItemEventBinding.inflate(layoutInflater, parent, false)
 
         val view = EventViewHolder(itemBinding)
-        view.listen { pos->
+        view.listen { pos ->
             itemListener(this.items[pos])
             Timber.d("$TAG id = ${this.items[pos].idLeague}")
         }
@@ -55,6 +56,7 @@ class RecyclerEventsAdapter(private var items: List<Event>) :
         }
         return this
     }
+
     class EventViewHolder(private val binding: ItemEventBinding) :
         RecyclerView.ViewHolder(binding.root), AnkoLogger {
         private val viewModel = EventViewModel()
@@ -67,28 +69,28 @@ class RecyclerEventsAdapter(private var items: List<Event>) :
         }
     }
 
-    class EventViewModel: ViewModel(){
+    class EventViewModel : ViewModel() {
 
-        private var _tv_home_name : MutableLiveData<String> = MutableLiveData()
-        var tv_home_name : LiveData<String> = _tv_home_name
+        private var _tv_home_name: MutableLiveData<String> = MutableLiveData()
+        var tv_home_name: LiveData<String> = _tv_home_name
 
-        private var _tv_away_name : MutableLiveData<String> = MutableLiveData()
-        var tv_away_name : LiveData<String> = _tv_away_name
+        private var _tv_away_name: MutableLiveData<String> = MutableLiveData()
+        var tv_away_name: LiveData<String> = _tv_away_name
 
-        private var _tv_home_score : MutableLiveData<String> = MutableLiveData()
-        var tv_home_score : LiveData<String> = _tv_home_score
+        private var _tv_home_score: MutableLiveData<String> = MutableLiveData()
+        var tv_home_score: LiveData<String> = _tv_home_score
 
-        private var _tv_away_score : MutableLiveData<String> = MutableLiveData()
-        var tv_away_score : LiveData<String> = _tv_away_score
+        private var _tv_away_score: MutableLiveData<String> = MutableLiveData()
+        var tv_away_score: LiveData<String> = _tv_away_score
 
-        private var _tv_event_date : MutableLiveData<String> = MutableLiveData()
-        var tv_event_date : LiveData<String> = _tv_event_date
+        private var _tv_event_date: MutableLiveData<String> = MutableLiveData()
+        var tv_event_date: LiveData<String> = _tv_event_date
 
-        fun bind(event : Event){
+        fun bind(event: Event) {
             _tv_home_name.value = event.homeTeam
             _tv_away_name.value = event.awayTeam
-            _tv_home_score.value = "${event.homeScore?:"?"}"
-            _tv_away_score.value = "${event.awayScore?:"?"}"
+            _tv_home_score.value = "${event.homeScore ?: "?"}"
+            _tv_away_score.value = "${event.awayScore ?: "?"}"
             _tv_event_date.value = "Match Date : ${event.dateEvent}"
 
         }

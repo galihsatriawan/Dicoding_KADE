@@ -27,32 +27,38 @@ abstract class ActivityBuildersModule {
     // Create Simple SubComponent
 
     @DetailLeagueScope
-    @ContributesAndroidInjector (modules = [
-        DetailLeagueModule::class,
-        DetailLeagueViewModelModule::class,
-        LeagueRepositoryModule::class,
-        LeagueNetworkModule::class,
-        LeaguePersistenceModule::class])
-    abstract fun detailLeagueActivity (): DetailLeagueActivity
+    @ContributesAndroidInjector(
+        modules = [
+            DetailLeagueModule::class,
+            DetailLeagueViewModelModule::class,
+            LeagueRepositoryModule::class,
+            LeagueNetworkModule::class,
+            LeaguePersistenceModule::class]
+    )
+    abstract fun detailLeagueActivity(): DetailLeagueActivity
 
-    @ContributesAndroidInjector (modules = [
-        DetailEventModule::class,
-        DetailEventViewModelModule::class,
-        EventRepositoryModule::class,
-        EventNetworkModule::class,
-        EventPersistenceModule::class,
-        TeamNetworkModule::class,
-        TeamPersistenceModule::class,
-        TeamRepositoryModule::class
-    ])
-    abstract fun detailEventActivity() : DetailEventActivity
+    @ContributesAndroidInjector(
+        modules = [
+            DetailEventModule::class,
+            DetailEventViewModelModule::class,
+            EventRepositoryModule::class,
+            EventNetworkModule::class,
+            EventPersistenceModule::class,
+            TeamNetworkModule::class,
+            TeamPersistenceModule::class,
+            TeamRepositoryModule::class
+        ]
+    )
+    abstract fun detailEventActivity(): DetailEventActivity
 
-    @ContributesAndroidInjector(modules =[
-        SearchEventModule::class,
-        SearchEventViewModelModule::class,
-        EventRepositoryModule::class,
-        EventNetworkModule::class,
-        EventPersistenceModule::class
-    ])
-    abstract fun searchEventActivity() : SearchEventsActivity
+    @ContributesAndroidInjector(
+        modules = [
+            SearchEventModule::class,
+            SearchEventViewModelModule::class,
+            EventRepositoryModule::class,
+            EventNetworkModule::class,
+            EventPersistenceModule::class
+        ]
+    )
+    abstract fun searchEventActivity(): SearchEventsActivity
 }

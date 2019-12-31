@@ -16,8 +16,7 @@
         <activity
             android:name=".ui.events.EventsActivity"
             android:label="@string/title_activity_events"
-            android:theme="@style/AppTheme.NoActionBar"
-            ></activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".ui.events.search.SearchEventsActivity"
             android:theme="@style/AppTheme.NoActionBar" />

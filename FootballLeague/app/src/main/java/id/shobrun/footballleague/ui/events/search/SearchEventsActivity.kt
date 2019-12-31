@@ -22,28 +22,30 @@ class SearchEventsActivity : ViewModelActivity() {
 
     val viewModel by viewModel<SearchEventsViewModel>()
     val binding by binding<ActivitySearchEventsBinding>(R.layout.activity_search_events)
-    private lateinit var eventAdapter : RecyclerEventsAdapter
+    private lateinit var eventAdapter: RecyclerEventsAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        with(binding){
+        with(binding) {
             lifecycleOwner = this@SearchEventsActivity
             vm = viewModel
         }
 
         eventAdapter = RecyclerEventsAdapter(ArrayList())
-        eventAdapter.setItemListener {event ->
+        eventAdapter.setItemListener { event ->
             val detail = intentFor<DetailEventActivity>(
                 DetailEventActivity.EXTRA_EVENT to event
             )
             startActivity(detail)
         }
-        val dividerItemDecoration = DividerItemDecoration(applicationContext, LinearLayoutManager.VERTICAL)
+        val dividerItemDecoration =
+            DividerItemDecoration(applicationContext, LinearLayoutManager.VERTICAL)
         binding.recyclerSearchEvent.addItemDecoration(dividerItemDecoration)
         binding.recyclerSearchEvent.adapter = eventAdapter
-        simpleToolbarWithHome(toolbar,"Search Event")
+        simpleToolbarWithHome(toolbar, "Search Event")
 
     }
+
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return super.onSupportNavigateUp()

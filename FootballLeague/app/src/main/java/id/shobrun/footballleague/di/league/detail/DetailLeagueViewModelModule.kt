@@ -12,5 +12,5 @@ abstract class DetailLeagueViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(DetailLeagueViewModel::class)
-    abstract fun bindDetailLeagueViewModel(viewModel: DetailLeagueViewModel) : ViewModel
+    abstract fun bindDetailLeagueViewModel(viewModel: DetailLeagueViewModel): ViewModel
 }

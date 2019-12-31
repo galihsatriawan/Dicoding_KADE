@@ -8,7 +8,12 @@ import id.shobrun.footballleague.models.network.ErrorEnvelope
  * A generic class that holds a value with its loading status.
  * @param <T>
 </T> */
-@Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE", "LiftReturnOrAssignment", "RedundantOverride", "SpellCheckingInspection")
+@Suppress(
+    "PARAMETER_NAME_CHANGED_ON_OVERRIDE",
+    "LiftReturnOrAssignment",
+    "RedundantOverride",
+    "SpellCheckingInspection"
+)
 data class Resource<out T>(val status: Status, val data: T?, val message: String?) {
 
     var errorEnvelope: ErrorEnvelope? = null
@@ -37,6 +42,7 @@ data class Resource<out T>(val status: Status, val data: T?, val message: String
             return Resource(status = Status.LOADING, data = data, message = null)
         }
     }
+
     override fun equals(o: Any?): Boolean {
         if (this === o) {
             return true

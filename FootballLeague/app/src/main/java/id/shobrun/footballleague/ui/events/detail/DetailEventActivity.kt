@@ -19,26 +19,28 @@ class DetailEventActivity : ViewModelActivity() {
     private var count = 0
     private val viewModel by viewModel<DetailEventViewModel>()
     private val binding by binding<ActivityEventDetailBinding>(R.layout.activity_event_detail)
-    companion object{
+
+    companion object {
         val TAG = DetailEventActivity.javaClass.name
         const val EXTRA_EVENT = "extra_event"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        with(binding){
+        with(binding) {
 
             lifecycleOwner = this@DetailEventActivity
             vm = viewModel
         }
-        var event : Event? = null
-        if(intent.getParcelableExtra<Event>(EXTRA_EVENT) !=null ){
+        var event: Event? = null
+        if (intent.getParcelableExtra<Event>(EXTRA_EVENT) != null) {
             event = intent.getParcelableExtra<Event>(EXTRA_EVENT)
             viewModel.postEventId(event.idEvent)
         }
-        simpleToolbarWithHome(toolbar,event?.eventName?:"Detail Event")
+        simpleToolbarWithHome(toolbar, event?.eventName ?: "Detail Event")
         favoriteState()
     }
+
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return super.onSupportNavigateUp()
@@ -46,14 +48,14 @@ class DetailEventActivity : ViewModelActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
-        inflater.inflate(R.menu.menu_detail_league,menu)
+        inflater.inflate(R.menu.menu_detail_league, menu)
         menuItem = menu
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId){
-            R.id.add_to_favorite ->{
+        return when (item.itemId) {
+            R.id.add_to_favorite -> {
                 viewModel.onClickedFavorite()
 
                 true
@@ -63,25 +65,24 @@ class DetailEventActivity : ViewModelActivity() {
     }
 
 
-
-    private fun favoriteState(){
+    private fun favoriteState() {
         viewModel.isFavorite.observe(this, Observer {
-            if(it!=null) runOnUiThread{
+            if (it != null) runOnUiThread {
                 setFavorite(it)
                 count++
             }
         })
     }
 
-    private fun setFavorite(state : Boolean){
-        if(state){
-            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this,R.drawable.ic_added_to_favorite)
-            if(count>1) progressBar.snackbar(getString(R.string.add_success))
-        }
-
-        else{
-            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this,R.drawable.ic_add_to_favorite)
-            if(count>1) progressBar.snackbar(getString(R.string.remove_success))
+    private fun setFavorite(state: Boolean) {
+        if (state) {
+            menuItem?.getItem(0)?.icon =
+                ContextCompat.getDrawable(this, R.drawable.ic_added_to_favorite)
+            if (count > 1) progressBar.snackbar(getString(R.string.add_success))
+        } else {
+            menuItem?.getItem(0)?.icon =
+                ContextCompat.getDrawable(this, R.drawable.ic_add_to_favorite)
+            if (count > 1) progressBar.snackbar(getString(R.string.remove_success))
         }
 
     }

@@ -38,7 +38,8 @@ class DetailLeagueViewModelTest {
 
     @Before
     fun setUp() {
-        leagueRepository = LeagueRepository(InstantAppExecutors(), leagueApi,leagueDao,application)
+        leagueRepository =
+            LeagueRepository(InstantAppExecutors(), leagueApi, leagueDao, application)
         viewModel = DetailLeagueViewModel(leagueRepository)
     }
 
@@ -66,7 +67,7 @@ class DetailLeagueViewModelTest {
         val mockLeague = mockLeague()
         loadFromDB.postValue(mockLeague)
         verify(observer).onChanged(
-            Resource.success(viewModel.leagueLiveData.value?.data,true)
+            Resource.success(viewModel.leagueLiveData.value?.data, true)
         )
     }
 }

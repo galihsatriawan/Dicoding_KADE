@@ -13,7 +13,8 @@ class DetailLeagueActivity : ViewModelActivity() {
 
     private val vm by viewModel<DetailLeagueViewModel>()
     private val binding by binding<ActivityDetailLeagueBinding>(R.layout.activity_detail_league)
-    companion object{
+
+    companion object {
         const val EXTRA_LEAGUE = "extra_league"
         val TAG = DetailLeagueActivity.javaClass.name
     }
@@ -28,12 +29,12 @@ class DetailLeagueActivity : ViewModelActivity() {
             vm.postLeagueId(league.idLeague)
         }
 
-        with(binding){
+        with(binding) {
             lifecycleOwner = this@DetailLeagueActivity
             viewModel = vm
         }
 
-        simpleToolbarWithHome(toolbar,(league?.name ?: "Detail League" ))
+        simpleToolbarWithHome(toolbar, (league?.name ?: "Detail League"))
 
     }
 

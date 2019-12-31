@@ -10,9 +10,9 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 @Entity(tableName = TABLE_TEAM)
 data class Team(
-    @PrimaryKey val idTeam : Int,
-    @field:SerializedName("strTeam") var teamName : String,
-    @field:SerializedName("strTeamShort") var teamShortName : String?,
-    @field:SerializedName("strTeamBadge") var teamBadge : String?
+    @PrimaryKey val idTeam: Int,
+    @field:SerializedName("strTeam") var teamName: String,
+    @field:SerializedName("strTeamShort") var teamShortName: String?,
+    @field:SerializedName("strTeamBadge") var teamBadge: String?
 
-):Parcelable
+) : Parcelable

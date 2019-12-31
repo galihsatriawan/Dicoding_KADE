@@ -36,9 +36,10 @@ class PreviousEventViewModelTest {
 
     @Before
     fun setUp() {
-        eventRepository = EventRepository(InstantAppExecutors(), eventApi,eventDao)
+        eventRepository = EventRepository(InstantAppExecutors(), eventApi, eventDao)
         viewModel = PreviousEventViewModel(eventRepository)
     }
+
     /**
      * Scenario
      * Pengecekan apakah observable data berjalan dengan baik
@@ -63,7 +64,7 @@ class PreviousEventViewModelTest {
 
         loadFromDB.postValue(mockEventList())
         verify(observer).onChanged(
-            Resource.success(viewModel.previousEventLiveData.value?.data,true)
+            Resource.success(viewModel.previousEventLiveData.value?.data, true)
         )
     }
 }

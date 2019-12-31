@@ -2,67 +2,72 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="vm"
             type="id.shobrun.footballleague.ui.events.search.SearchEventsViewModel" />
     </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
         android:orientation="vertical">
+
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
-            android:theme="@style/AppTheme.AppBarOverlay"
-            >
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="pin"
-                    app:popupTheme="@style/AppTheme.PopupOverlay"
-                    />
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
         </com.google.android.material.appbar.AppBarLayout>
+
         <ProgressBar
             android:id="@+id/progressBar"
-            android:indeterminate="true"
+            loadingEvents="@{vm.eventLiveData}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="gone"
-            loadingEvents="@{vm.eventLiveData}"/>
+            android:indeterminate="true"
+            android:visibility="gone" />
+
         <LinearLayout
             android:id="@+id/container_message"
+            visibleMessage="@{vm.eventLiveData}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="gone"
-            visibleMessage="@{vm.eventLiveData}"
-            >
+            android:visibility="gone">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_error_black_24dp"
-                android:contentDescription="TODO" />
+                android:contentDescription="TODO"
+                android:src="@drawable/ic_error_black_24dp" />
+
             <TextView
+                messageEvents="@{vm.eventLiveData}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                messageEvents="@{vm.eventLiveData}"
-                tools:text ="@string/failed_load"
-                />
+                tools:text="@string/failed_load" />
         </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_search_event"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:eventItems="@{vm.eventLiveData}"
-            />
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </LinearLayout>
 
 </layout>

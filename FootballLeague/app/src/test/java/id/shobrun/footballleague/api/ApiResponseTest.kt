@@ -25,10 +25,11 @@ class ApiResponseTest {
         val exception = Exception("foo")
         val apiResponse = ApiResponse<String>(exception)
         assertThat(apiResponse.isSuccessful, `is`(false))
-        assertThat(apiResponse.body,CoreMatchers.nullValue())
+        assertThat(apiResponse.body, CoreMatchers.nullValue())
         assertThat(apiResponse.code, `is`(500))
         assertThat(apiResponse.message, `is`("foo"))
     }
+
     /**
      * Success (When success get data)
      * 1. ApiResponse Is Successful

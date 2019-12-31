@@ -1,7 +1,6 @@
 package id.shobrun.footballleague.utils
 
 
-
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 

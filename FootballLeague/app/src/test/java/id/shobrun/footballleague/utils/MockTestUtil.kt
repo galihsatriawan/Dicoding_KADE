@@ -6,14 +6,16 @@ import id.shobrun.footballleague.models.entity.Team
 
 
 class MockTestUtil {
-    companion object{
-        fun mockTeam() = Team(1,"team","team","badge")
-        fun mockLeague() = League(1,"league","banner","logo",1,"desc")
-        fun mockEvent() = Event(1,"event","Soccer",1,"event","event","event",
-            1,1,"event","event","event","event","event","event",
-            "event","event",1,1,1,"[qry=event]")
+    companion object {
+        fun mockTeam() = Team(1, "team", "team", "badge")
+        fun mockLeague() = League(1, "league", "banner", "logo", 1, "desc")
+        fun mockEvent() = Event(
+            1, "event", "Soccer", 1, "event", "event", "event",
+            1, 1, "event", "event", "event", "event", "event", "event",
+            "event", "event", 1, 1, 1, "[qry=event]"
+        )
 
-        fun mockLeagueList() : List<League>{
+        fun mockLeagueList(): List<League> {
             val leagues = ArrayList<League>()
             leagues.add(mockLeague())
             leagues.add(mockLeague())
@@ -21,7 +23,7 @@ class MockTestUtil {
             return leagues
         }
 
-        fun mockEventList(): List<Event>{
+        fun mockEventList(): List<Event> {
             val events = ArrayList<Event>()
             events.add(mockEvent())
             events.add(mockEvent())
