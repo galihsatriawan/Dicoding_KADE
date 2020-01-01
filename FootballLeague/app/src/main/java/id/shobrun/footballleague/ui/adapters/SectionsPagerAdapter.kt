@@ -15,7 +15,9 @@ import id.shobrun.footballleague.ui.leagues.team.TeamsFragment
 
 private val TAB_TITLES = arrayOf(
     R.string.tab_previous,
-    R.string.tab_next
+    R.string.tab_next,
+    R.string.tab_standing,
+    R.string.tab_team
 )
 
 /**
@@ -59,7 +61,7 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager, va
     }
 
     override fun getCount(): Int {
-        // Show 2 total pages.
+        // Show 4 total pages.
         return 4
     }
 }

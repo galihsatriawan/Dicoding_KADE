@@ -18,9 +18,12 @@ import id.shobrun.footballleague.di.league.detail.DetailLeagueViewModelModule
 import id.shobrun.footballleague.di.team.TeamNetworkModule
 import id.shobrun.footballleague.di.team.TeamPersistenceModule
 import id.shobrun.footballleague.di.team.TeamRepositoryModule
+import id.shobrun.footballleague.di.team.detail.DetailTeamModule
+import id.shobrun.footballleague.di.team.detail.DetailTeamViewModelModule
 import id.shobrun.footballleague.ui.events.detail.DetailEventActivity
 import id.shobrun.footballleague.ui.events.search.SearchEventsActivity
 import id.shobrun.footballleague.ui.leagues.detail.DetailLeagueActivity
+import id.shobrun.footballleague.ui.leagues.team.detail.DetailTeamActivity
 
 @Module
 abstract class ActivityBuildersModule {
@@ -50,6 +53,18 @@ abstract class ActivityBuildersModule {
         ]
     )
     abstract fun detailEventActivity(): DetailEventActivity
+
+
+    @ContributesAndroidInjector(
+        modules = [
+            DetailTeamModule::class,
+            DetailTeamViewModelModule::class,
+            TeamNetworkModule::class,
+            TeamPersistenceModule::class,
+            TeamRepositoryModule::class
+        ]
+    )
+    abstract fun detailTeamActivity(): DetailTeamActivity
 
     @ContributesAndroidInjector(
         modules = [

@@ -102,6 +102,7 @@ Sky Sports currently show live League One matches with highlights shown on BBC O
     <string name="title_match">Match</string>
     <string name="tab_previous">Previous Match</string>
     <string name="tab_next">Next Match</string>
+    <string name="tab_team">Team</string>
     <string name="events">MATCH</string>
     <string name="title_goal_details">Goals</string>
     <string name="title_summary">Summary</string>
@@ -118,6 +119,8 @@ Sky Sports currently show live League One matches with highlights shown on BBC O
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="empty_data">No data found</string>
+    <string name="Team">Team</string>
+    <string name="tab_standing">Standing</string>
 
 
 </resources>

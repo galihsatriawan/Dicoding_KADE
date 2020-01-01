@@ -19,6 +19,12 @@ import id.shobrun.footballleague.di.league.LeagueRepositoryModule
 import id.shobrun.footballleague.di.league.list.LeagueFragmentModule
 import id.shobrun.footballleague.di.league.list.LeagueFragmentViewModelModule
 import id.shobrun.footballleague.di.league.list.LeagueScope
+import id.shobrun.footballleague.di.team.TeamNetworkModule
+import id.shobrun.footballleague.di.team.TeamPersistenceModule
+import id.shobrun.footballleague.di.team.TeamRepositoryModule
+import id.shobrun.footballleague.di.team.favorite.FavoriteTeamModule
+import id.shobrun.footballleague.di.team.list.TeamsFragmentModule
+import id.shobrun.footballleague.di.team.list.TeamsFragmentViewModelModule
 import id.shobrun.footballleague.di.teamrecord.TeamRecordNetworkModule
 import id.shobrun.footballleague.di.teamrecord.TeamRecordPersistenceModule
 import id.shobrun.footballleague.di.teamrecord.TeamRecordRepositoryModule
@@ -31,6 +37,9 @@ import id.shobrun.footballleague.ui.events.next.NextEventFragment
 import id.shobrun.footballleague.ui.events.previous.PreviousEventFragment
 import id.shobrun.footballleague.ui.leagues.list.FootballLeaguesFragment
 import id.shobrun.footballleague.ui.leagues.standing.StandingFragment
+import id.shobrun.footballleague.ui.leagues.team.TeamsFragment
+import id.shobrun.footballleague.ui.leagues.team.favorite.FavoriteTeamsFragment
+import id.shobrun.footballleague.ui.leagues.team.favorite.FavoriteTeamsViewModel
 
 @Module
 abstract class FragmentBuildersModule {
@@ -92,6 +101,28 @@ abstract class FragmentBuildersModule {
 
     @ContributesAndroidInjector(
         modules = [
+            FavoriteTeamModule::class,
+            FavoriteTeamsViewModel::class,
+            TeamRepositoryModule::class,
+            TeamNetworkModule::class,
+            TeamPersistenceModule::class
+        ]
+    )
+    abstract fun injectFavoriteTeamFragment() : FavoriteTeamsFragment
+
+    @ContributesAndroidInjector(
+        modules = [
+            TeamsFragmentModule::class,
+            TeamsFragmentViewModelModule::class,
+            TeamRepositoryModule::class,
+            TeamNetworkModule::class,
+            TeamPersistenceModule::class
+        ]
+    )
+    abstract fun injectTeamsFragment() : TeamsFragment
+
+    @ContributesAndroidInjector(
+        modules = [
             StandingFragmentModule::class,
             StandingViewModelModule::class,
             TeamRecordRepositoryModule::class,
@@ -100,5 +131,6 @@ abstract class FragmentBuildersModule {
         ]
     )
     abstract fun injectStandingFragment() : StandingFragment
+
 
 }
