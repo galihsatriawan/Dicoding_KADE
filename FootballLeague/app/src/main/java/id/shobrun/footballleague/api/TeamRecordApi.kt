@@ -7,5 +7,5 @@ import retrofit2.http.Query
 
 interface TeamRecordApi {
     @GET("lookuptable.php")
-    fun getStandingLeague(@Query("id") leagueId: Int) : LiveData<ApiResponse<TeamRecordsResponse>>
+    fun getStandingLeague(@Query("l") idLeague: Int) : LiveData<ApiResponse<TeamRecordsResponse>>
 }

@@ -8,14 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 
 import id.shobrun.footballleague.R
+import id.shobrun.footballleague.compose.ViewModelFragment
 
-class TeamsFragment : Fragment() {
+class TeamsFragment : ViewModelFragment() {
 
     companion object {
         fun newInstance() = TeamsFragment()
     }
 
-    private lateinit var viewModel: TeamsViewModel
+    private val viewModel by viewModel<TeamsViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +27,6 @@ class TeamsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(TeamsViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

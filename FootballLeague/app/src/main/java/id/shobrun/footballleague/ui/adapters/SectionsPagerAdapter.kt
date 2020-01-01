@@ -10,6 +10,8 @@ import id.shobrun.footballleague.models.entity.League
 import id.shobrun.footballleague.ui.events.EventsActivity.Companion.EXTRA_LEAGUE
 import id.shobrun.footballleague.ui.events.next.NextEventFragment
 import id.shobrun.footballleague.ui.events.previous.PreviousEventFragment
+import id.shobrun.footballleague.ui.leagues.standing.StandingFragment
+import id.shobrun.footballleague.ui.leagues.team.TeamsFragment
 
 private val TAB_TITLES = arrayOf(
     R.string.tab_previous,
@@ -26,14 +28,27 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager, va
     override fun getItem(position: Int): Fragment {
         val bundle = Bundle()
         bundle.putParcelable(EXTRA_LEAGUE, (league))
-        return if (position == 0) {
-            val prevFrag = PreviousEventFragment.newInstance()
-            prevFrag.arguments = bundle
-            prevFrag
-        } else {
-            val nextFrag = NextEventFragment.newInstance()
-            nextFrag.arguments = bundle
-            nextFrag
+        return when(position){
+            0-> {
+                val prevFrag = PreviousEventFragment.newInstance()
+                prevFrag.arguments = bundle
+                prevFrag
+            }
+            1 ->{
+                val nextFrag = NextEventFragment.newInstance()
+                nextFrag.arguments = bundle
+                nextFrag
+            }
+            2 -> {
+                val standing = StandingFragment.newInstance()
+                standing.arguments = bundle
+                standing
+            }
+            else -> {
+                val teams = TeamsFragment.newInstance()
+                teams.arguments = bundle
+                teams
+            }
         }
 
 
@@ -45,6 +60,6 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager, va
 
     override fun getCount(): Int {
         // Show 2 total pages.
-        return 2
+        return 4
     }
 }

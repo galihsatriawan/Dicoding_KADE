@@ -40,6 +40,5 @@ class TeamRecordRepository @Inject constructor(val appExecutors: AppExecutors, v
         override fun onFetchFailed(message: String?) {
             Timber.d("$TAG $message")
         }
-
-    }
+    }.asLiveData()
 }

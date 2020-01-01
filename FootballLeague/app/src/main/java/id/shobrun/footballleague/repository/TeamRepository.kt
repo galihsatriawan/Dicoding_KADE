@@ -19,6 +19,55 @@ class TeamRepository @Inject constructor(
     companion object {
         val TAG = TeamRepository.javaClass.name
     }
+    fun loadListTeamByLeagueId(idLeague: Int) = object : NetworkBoundRepository<List<Team>,TeamsResponse>(appExecutors){
+        override fun saveFetchData(items: TeamsResponse) {
+            val teams = items.teams
+            if(teams!=null){
+                localDB.inserts(teams)
+            }
+        }
+
+        override fun shouldFetch(data: List<Team>?): Boolean {
+            return data.isNullOrEmpty()
+        }
+
+        override fun loadFromDb(): LiveData<List<Team>> {
+            return localDB.getAllTeamsByLeagueId(idLeague)
+        }
+
+        override fun fetchService(): LiveData<ApiResponse<TeamsResponse>> {
+            return apiService.getTeamsByLeagueId(idLeague)
+        }
+
+        override fun onFetchFailed(message: String?) {
+            Timber.d("$TAG $message")
+        }
+    }.asLiveData()
+
+    fun loadSearchTeams(qry: String) = object :  NetworkBoundRepository<List<Team>,TeamsResponse>(appExecutors) {
+        override fun saveFetchData(items: TeamsResponse) {
+            val teams = items.teams
+            if(items!=null){
+                localDB.inserts(teams)
+            }
+        }
+
+        override fun shouldFetch(data: List<Team>?): Boolean {
+            return data.isNullOrEmpty()
+        }
+
+        override fun loadFromDb(): LiveData<List<Team>> {
+            return localDB.getSearchTeams(qry)
+        }
+
+        override fun fetchService(): LiveData<ApiResponse<TeamsResponse>> {
+            return apiService.getSearchTeam(qry)
+        }
+
+        override fun onFetchFailed(message: String?) {
+            Timber.d("$TAG $message")
+        }
+    }.asLiveData()
 
     fun loadTeamDetailById(idTeam: Int): LiveData<Resource<Team>> {
         return object : NetworkBoundRepository<Team, TeamsResponse>(appExecutors) {

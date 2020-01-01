@@ -13,6 +13,6 @@ data class Team(
     @PrimaryKey val idTeam: Int,
     @field:SerializedName("strTeam") var teamName: String,
     @field:SerializedName("strTeamShort") var teamShortName: String?,
-    @field:SerializedName("strTeamBadge") var teamBadge: String?
-
+    @field:SerializedName("strTeamBadge") var teamBadge: String?,
+    var tags : String?
 ) : Parcelable
