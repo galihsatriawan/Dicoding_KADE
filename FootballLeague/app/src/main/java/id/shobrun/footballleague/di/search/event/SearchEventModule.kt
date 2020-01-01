@@ -1,4 +1,4 @@
-package id.shobrun.footballleague.di.event.search
+package id.shobrun.footballleague.di.search.event
 
 import dagger.Module
 

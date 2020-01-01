@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.extensions.simpleToolbarWithHome
 import id.shobrun.footballleague.models.entity.League
-import id.shobrun.footballleague.ui.events.search.SearchEventsActivity
+import id.shobrun.footballleague.ui.search.SearchEventsActivity
 import kotlinx.android.synthetic.main.activity_events.*
 import org.jetbrains.anko.intentFor
 

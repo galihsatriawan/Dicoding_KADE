@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="id.shobrun.footballleague.ui.events.search.SearchEventsViewModel" />
+            type="id.shobrun.footballleague.ui.search.event.SearchEventsViewModel" />
     </data>
 
     <LinearLayout

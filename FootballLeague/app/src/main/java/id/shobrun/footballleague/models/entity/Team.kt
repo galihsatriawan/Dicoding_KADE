@@ -11,6 +11,7 @@ import kotlinx.android.parcel.Parcelize
 @Entity(tableName = TABLE_TEAM)
 data class Team(
     @PrimaryKey val idTeam: Int,
+    val idLeague : Int?,
     @field:SerializedName("strTeam") var teamName: String,
     @field:SerializedName("strTeamShort") var teamShortName: String?,
     @field:SerializedName("strTeamBadge") var teamBadge: String?,

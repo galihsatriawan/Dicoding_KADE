@@ -1,4 +1,4 @@
-package id.shobrun.footballleague.ui.events.search
+package id.shobrun.footballleague.ui.search
 
 import android.app.SearchManager
 import android.content.Context
@@ -14,6 +14,7 @@ import id.shobrun.footballleague.extensions.simpleToolbarWithHome
 import id.shobrun.footballleague.testing.OpenForTesting
 import id.shobrun.footballleague.ui.adapters.RecyclerEventsAdapter
 import id.shobrun.footballleague.ui.events.detail.DetailEventActivity
+import id.shobrun.footballleague.ui.search.event.SearchEventsViewModel
 import kotlinx.android.synthetic.main.activity_event_detail.*
 import org.jetbrains.anko.intentFor
 

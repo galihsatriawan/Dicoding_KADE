@@ -7,6 +7,7 @@ import com.nhaarman.mockitokotlin2.verify
 import id.shobrun.footballleague.models.Resource
 import id.shobrun.footballleague.models.entity.Event
 import id.shobrun.footballleague.repository.EventRepository
+import id.shobrun.footballleague.ui.search.event.SearchEventsViewModel
 import junit.framework.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
@@ -27,7 +28,10 @@ class SearchEventsViewModelTest {
 
     @Before
     fun setUp() {
-        viewModel = SearchEventsViewModel(eventRepository)
+        viewModel =
+            SearchEventsViewModel(
+                eventRepository
+            )
     }
 
     /**

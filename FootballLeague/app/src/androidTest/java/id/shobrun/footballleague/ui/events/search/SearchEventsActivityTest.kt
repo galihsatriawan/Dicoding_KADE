@@ -14,6 +14,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
 import id.shobrun.footballleague.R
+import id.shobrun.footballleague.ui.search.SearchEventsActivity
+import id.shobrun.footballleague.ui.search.event.SearchEventsViewModel
 import id.shobrun.footballleague.utils.*
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.allOf

@@ -1,4 +1,4 @@
-package id.shobrun.footballleague.ui.events.search
+package id.shobrun.footballleague.ui.search.event
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

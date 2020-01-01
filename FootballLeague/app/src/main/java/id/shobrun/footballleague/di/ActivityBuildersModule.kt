@@ -7,8 +7,8 @@ import id.shobrun.footballleague.di.event.EventPersistenceModule
 import id.shobrun.footballleague.di.event.EventRepositoryModule
 import id.shobrun.footballleague.di.event.detail.DetailEventModule
 import id.shobrun.footballleague.di.event.detail.DetailEventViewModelModule
-import id.shobrun.footballleague.di.event.search.SearchEventModule
-import id.shobrun.footballleague.di.event.search.SearchEventViewModelModule
+import id.shobrun.footballleague.di.search.event.SearchEventModule
+import id.shobrun.footballleague.di.search.event.SearchEventViewModelModule
 import id.shobrun.footballleague.di.league.LeagueNetworkModule
 import id.shobrun.footballleague.di.league.LeaguePersistenceModule
 import id.shobrun.footballleague.di.league.LeagueRepositoryModule
@@ -21,7 +21,7 @@ import id.shobrun.footballleague.di.team.TeamRepositoryModule
 import id.shobrun.footballleague.di.team.detail.DetailTeamModule
 import id.shobrun.footballleague.di.team.detail.DetailTeamViewModelModule
 import id.shobrun.footballleague.ui.events.detail.DetailEventActivity
-import id.shobrun.footballleague.ui.events.search.SearchEventsActivity
+import id.shobrun.footballleague.ui.search.SearchEventsActivity
 import id.shobrun.footballleague.ui.leagues.detail.DetailLeagueActivity
 import id.shobrun.footballleague.ui.leagues.team.detail.DetailTeamActivity
 
