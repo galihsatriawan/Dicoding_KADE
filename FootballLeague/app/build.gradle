@@ -74,6 +74,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycleVM"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifeCycle"
     implementation "android.arch.lifecycle:runtime:$archLifeCycle"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0'
     annotationProcessor "android.arch.lifecycle:common-java8:$archLifeCycle"
     androidTestImplementation "androidx.arch.core:core-testing:$androidArchVersion"
     testImplementation "androidx.arch.core:core-testing:$androidArchVersion"

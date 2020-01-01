@@ -13,8 +13,8 @@ import javax.inject.Inject
 
 class TeamRepository @Inject constructor(
     val appExecutors: AppExecutors,
-    val webservice: TeamApi,
-    val teamDao: TeamDao
+    val apiService: TeamApi,
+    val localDB: TeamDao
 ) : Repository {
     companion object {
         val TAG = TeamRepository.javaClass.name
@@ -24,7 +24,7 @@ class TeamRepository @Inject constructor(
         return object : NetworkBoundRepository<Team, TeamsResponse>(appExecutors) {
             override fun saveFetchData(items: TeamsResponse) {
                 val team = items.teams[0]
-                teamDao.insert(team)
+                localDB.insert(team)
             }
 
             override fun shouldFetch(data: Team?): Boolean {
@@ -32,11 +32,11 @@ class TeamRepository @Inject constructor(
             }
 
             override fun loadFromDb(): LiveData<Team> {
-                return teamDao.getTeamById(idTeam)
+                return localDB.getTeamById(idTeam)
             }
 
             override fun fetchService(): LiveData<ApiResponse<TeamsResponse>> {
-                return webservice.getTeamById(idTeam)
+                return apiService.getTeamById(idTeam)
             }
 
             override fun onFetchFailed(message: String?) {

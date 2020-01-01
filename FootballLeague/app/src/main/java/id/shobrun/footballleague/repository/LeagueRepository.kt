@@ -20,18 +20,17 @@ import javax.inject.Singleton
 @Singleton
 class LeagueRepository @Inject constructor(
     private val appExecutors: AppExecutors,
-    private val webservice: LeagueApi,
-    private val leagueDao: LeagueDao,
+    private val apiService: LeagueApi,
+    private val localDB: LeagueDao,
     private val application: Application
 ) : Repository {
     companion object {
         val TAG = LeagueRepository.javaClass.name
     }
-
     fun loadLeagueDetail(id: Int): LiveData<Resource<League>> {
         return object : NetworkBoundRepository<League, LeaguesResponse>(appExecutors) {
             override fun saveFetchData(items: LeaguesResponse) {
-                leagueDao.insert(items.leagues[0])
+                localDB.insert(items.leagues[0])
 
             }
 
@@ -40,14 +39,14 @@ class LeagueRepository @Inject constructor(
             }
 
             override fun loadFromDb(): LiveData<League> {
-                val league = leagueDao.getLeagueById(id)
+                val league = localDB.getLeagueById(id)
 
                 return (league)
             }
 
             override fun fetchService(): LiveData<ApiResponse<LeaguesResponse>> {
                 Timber.d("$TAG id Fetch : $id")
-                return webservice.getLeagueById(id)
+                return apiService.getLeagueById(id)
             }
 
             override fun onFetchFailed(message: String?) {

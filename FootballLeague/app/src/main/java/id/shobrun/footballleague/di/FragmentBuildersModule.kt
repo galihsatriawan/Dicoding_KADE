@@ -19,11 +19,18 @@ import id.shobrun.footballleague.di.league.LeagueRepositoryModule
 import id.shobrun.footballleague.di.league.list.LeagueFragmentModule
 import id.shobrun.footballleague.di.league.list.LeagueFragmentViewModelModule
 import id.shobrun.footballleague.di.league.list.LeagueScope
+import id.shobrun.footballleague.di.teamrecord.TeamRecordNetworkModule
+import id.shobrun.footballleague.di.teamrecord.TeamRecordPersistenceModule
+import id.shobrun.footballleague.di.teamrecord.TeamRecordRepositoryModule
+import id.shobrun.footballleague.di.teamrecord.standing.StandingFragmentModule
+import id.shobrun.footballleague.di.teamrecord.standing.StandingViewModelModule
+import id.shobrun.footballleague.repository.TeamRecordRepository
 import id.shobrun.footballleague.ui.events.favorite.next.FavoriteNextEventFragment
 import id.shobrun.footballleague.ui.events.favorite.previous.FavoritePreviousEventFragment
 import id.shobrun.footballleague.ui.events.next.NextEventFragment
 import id.shobrun.footballleague.ui.events.previous.PreviousEventFragment
 import id.shobrun.footballleague.ui.leagues.list.FootballLeaguesFragment
+import id.shobrun.footballleague.ui.leagues.standing.StandingFragment
 
 @Module
 abstract class FragmentBuildersModule {
@@ -83,5 +90,15 @@ abstract class FragmentBuildersModule {
     )
     abstract fun injectFavoriteNextEventFragment(): FavoriteNextEventFragment
 
+    @ContributesAndroidInjector(
+        modules = [
+            StandingFragmentModule::class,
+            StandingViewModelModule::class,
+            TeamRecordRepositoryModule::class,
+            TeamRecordNetworkModule::class,
+            TeamRecordPersistenceModule::class
+        ]
+    )
+    abstract fun injectStandingFragment() : StandingFragment
 
 }

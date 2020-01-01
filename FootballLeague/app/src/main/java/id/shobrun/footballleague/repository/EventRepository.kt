@@ -19,8 +19,8 @@ import javax.inject.Inject
 @OpenForTesting
 class EventRepository @Inject constructor(
     var appExecutors: AppExecutors,
-    val webservice: EventApi,
-    val eventDao: EventDao
+    val apiService: EventApi,
+    val localDB: EventDao
 ) : Repository, IEventLocalDB {
     companion object {
         val TAG = EventRepository.javaClass.name
@@ -36,7 +36,7 @@ class EventRepository @Inject constructor(
             override fun saveFetchData(items: EventsResponse) {
                 val item = items.events[0]
 
-                eventDao.insert(item)
+                localDB.insert(item)
             }
 
             override fun shouldFetch(data: Event?): Boolean {
@@ -44,11 +44,11 @@ class EventRepository @Inject constructor(
             }
 
             override fun loadFromDb(): LiveData<Event> {
-                return eventDao.getEventById(idEvent)
+                return localDB.getEventById(idEvent)
             }
 
             override fun fetchService(): LiveData<ApiResponse<EventsResponse>> {
-                return webservice.getDetailEvents(idEvent)
+                return apiService.getDetailEvents(idEvent)
             }
 
 
@@ -69,7 +69,7 @@ class EventRepository @Inject constructor(
                         e.isFavorite = 0
                         Timber.d("$TAG favorite Prev: ${e.isFavorite}")
                     }
-                    eventDao.insertEvents(events)
+                    localDB.insertEvents(events)
                 }
 
             }
@@ -79,11 +79,11 @@ class EventRepository @Inject constructor(
             }
 
             override fun loadFromDb(): LiveData<List<Event>> {
-                return eventDao.getPastEvents(idLeague)
+                return localDB.getPastEvents(idLeague)
             }
 
             override fun fetchService(): LiveData<ApiResponse<EventsResponse>> {
-                return webservice.getPastEvents(idLeague)
+                return apiService.getPastEvents(idLeague)
             }
 
             override fun onFetchFailed(message: String?) {
@@ -104,7 +104,7 @@ class EventRepository @Inject constructor(
                         e.isFavorite = 0
                         Timber.d("$TAG favorite : ${e.isFavorite}")
                     }
-                    eventDao.insertEvents(events)
+                    localDB.insertEvents(events)
                 }
 
             }
@@ -114,11 +114,11 @@ class EventRepository @Inject constructor(
             }
 
             override fun loadFromDb(): LiveData<List<Event>> {
-                return eventDao.getNextEvents(idLeague)
+                return localDB.getNextEvents(idLeague)
             }
 
             override fun fetchService(): LiveData<ApiResponse<EventsResponse>> {
-                return webservice.getNextEvents(idLeague)
+                return apiService.getNextEvents(idLeague)
             }
 
 
@@ -144,7 +144,7 @@ class EventRepository @Inject constructor(
                             if (e.sportCategory.equals("Soccer"))
                                 eventSoccer.add(e)
                         }
-                        eventDao.insertEvents(eventSoccer)
+                        localDB.insertEvents(eventSoccer)
                     }
                 }
 
@@ -154,11 +154,11 @@ class EventRepository @Inject constructor(
 
                 override fun loadFromDb(): LiveData<List<Event>> {
                     val qry = "%[qry=${q}]%"
-                    return eventDao.getSearchEvent(qry)
+                    return localDB.getSearchEvent(qry)
                 }
 
                 override fun fetchService(): LiveData<ApiResponse<EventSearchResponse>> {
-                    return webservice.getSearchEvents(q)
+                    return apiService.getSearchEvents(q)
                 }
 
                 override fun onFetchFailed(message: String?) {
@@ -173,7 +173,7 @@ class EventRepository @Inject constructor(
      */
     override fun insertEventToDb(event: Event) {
         try {
-            eventDao.insert(event)
+            localDB.insert(event)
         } catch (e: Throwable) {
             Timber.d("$TAG ${e.printStackTrace()}")
         }
@@ -181,19 +181,19 @@ class EventRepository @Inject constructor(
     }
 
     override fun getAllFavoriteNextEventInDb(idLeague: Int): LiveData<List<Event>> {
-        val events = eventDao.getFavoriteNextEvents(idLeague, 1)
+        val events = localDB.getFavoriteNextEvents(idLeague, 1)
         return events
     }
 
     override fun getAllFavoritePrevEventInDb(idLeague: Int): LiveData<List<Event>> {
-        return eventDao.getFavoritePastEvents(idLeague, 1)
+        return localDB.getFavoritePastEvents(idLeague, 1)
     }
 
     override fun getEventByIdInDb(idEvent: Int): LiveData<Event> {
-        return eventDao.getEventById(idEvent)
+        return localDB.getEventById(idEvent)
     }
 
     override fun updateEventInDb(event: Event): Int {
-        return eventDao.update(event)
+        return localDB.update(event)
     }
 }
