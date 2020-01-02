@@ -28,26 +28,27 @@ xmlns:tools="http://schemas.android.com/tools">
             android:layout_gravity="center_vertical"
             loadImage="@{vm.tv_team_badge}"
             />
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="295dp"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/activity_horizontal_margin_8dp"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                tools:text="@string/title_team"
                 android:text="@{vm.tv_team_name}"
-                />
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                tools:text="@string/title_team" />
+
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                tools:text="@string/desc_team"
+                android:lines="2"
                 android:text="@{vm.tv_team_desc}"
-                />
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                tools:text="@string/desc_team" />
         </LinearLayout>
     </LinearLayout>
     <ImageView
@@ -57,7 +58,7 @@ xmlns:tools="http://schemas.android.com/tools">
         android:layout_marginRight="@dimen/activity_horizontal_margin_8dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/ic_arrow_back_white_24dp"
+        android:src="@drawable/ic_chevron_right_black_24dp"
         />
 </RelativeLayout>
 

@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.extensions.simpleToolbarWithHome
 import id.shobrun.footballleague.models.entity.League
-import id.shobrun.footballleague.ui.search.SearchEventsActivity
+import id.shobrun.footballleague.ui.search.SearchActivity
 import kotlinx.android.synthetic.main.activity_events.*
 import org.jetbrains.anko.intentFor
 
@@ -125,7 +125,7 @@ class EventsActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.search -> {
-                val intSearch = intentFor<SearchEventsActivity>()
+                val intSearch = intentFor<SearchActivity>()
                 startActivity(intSearch)
             }
 

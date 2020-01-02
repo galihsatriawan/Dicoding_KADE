@@ -48,7 +48,7 @@ class TeamRepository @Inject constructor(
     fun loadSearchTeams(qry: String) = object :  NetworkBoundRepository<List<Team>,TeamsResponse>(appExecutors) {
         override fun saveFetchData(items: TeamsResponse) {
             val teams = items.teams
-            if(items!=null){
+            if(teams!=null){
                 localDB.inserts(teams)
             }
         }

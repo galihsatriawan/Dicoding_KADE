@@ -14,7 +14,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
 import id.shobrun.footballleague.R
-import id.shobrun.footballleague.ui.search.SearchEventsActivity
+import id.shobrun.footballleague.ui.search.SearchActivity
 import id.shobrun.footballleague.ui.search.event.SearchEventsViewModel
 import id.shobrun.footballleague.utils.*
 import org.hamcrest.CoreMatchers.`is`
@@ -29,9 +29,9 @@ import java.util.concurrent.TimeUnit
 
 
 @RunWith(AndroidJUnit4::class)
-class SearchEventsActivityTest {
+class SearchActivityTest {
     @get:Rule
-    var mActivityTestRule = ActivityTestRule(SearchEventsActivity::class.java, true, true)
+    var mActivityTestRule = ActivityTestRule(SearchActivity::class.java, true, true)
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -51,7 +51,7 @@ class SearchEventsActivityTest {
 
     @Before
     fun setUp() {
-        viewModel = mActivityTestRule.activity.viewModel
+//        viewModel = mActivityTestRule.activity.viewModel
         viewModel.repository.appExecutors = countingAppExecutors.appExecutors
         IdlingRegistry.getInstance().register(EspressoIdlingResource.countingIdlingResource)
         EspressoTestUtil.disableProgressBarAnimations(mActivityTestRule)

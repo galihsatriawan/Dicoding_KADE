@@ -1,10 +1,7 @@
 package id.shobrun.footballleague.room
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import id.shobrun.footballleague.models.entity.Team
 import id.shobrun.footballleague.room.AppDatabase.Companion.ID_LEAGUE
 import id.shobrun.footballleague.room.AppDatabase.Companion.ID_TEAM
@@ -24,9 +21,9 @@ interface TeamDao {
     @Query("SELECT * FROM $TABLE_TEAM WHERE isFavorite = :favorite")
     fun getAllFavoriteTeam(favorite: Int) : LiveData<List<Team>>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(team: Team)
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun inserts(teams: List<Team>)
     @Update
     fun update(team: Team): Int

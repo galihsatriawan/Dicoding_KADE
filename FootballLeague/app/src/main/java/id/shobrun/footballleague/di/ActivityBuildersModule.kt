@@ -21,7 +21,7 @@ import id.shobrun.footballleague.di.team.TeamRepositoryModule
 import id.shobrun.footballleague.di.team.detail.DetailTeamModule
 import id.shobrun.footballleague.di.team.detail.DetailTeamViewModelModule
 import id.shobrun.footballleague.ui.events.detail.DetailEventActivity
-import id.shobrun.footballleague.ui.search.SearchEventsActivity
+import id.shobrun.footballleague.ui.search.SearchActivity
 import id.shobrun.footballleague.ui.leagues.detail.DetailLeagueActivity
 import id.shobrun.footballleague.ui.leagues.team.detail.DetailTeamActivity
 
@@ -75,5 +75,5 @@ abstract class ActivityBuildersModule {
             EventPersistenceModule::class
         ]
     )
-    abstract fun searchEventActivity(): SearchEventsActivity
+    abstract fun searchEventActivity(): SearchActivity
 }

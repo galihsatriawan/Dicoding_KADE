@@ -22,7 +22,7 @@
             android:label="@string/title_activity_events"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.search.SearchEventsActivity"
+            android:name=".ui.search.SearchActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.events.detail.DetailEventActivity"
