@@ -7,15 +7,16 @@ import id.shobrun.footballleague.api.TeamApi
 import id.shobrun.footballleague.models.Resource
 import id.shobrun.footballleague.models.entity.Team
 import id.shobrun.footballleague.models.network.TeamsResponse
+import id.shobrun.footballleague.repository.utils.ITeamLocalDB
 import id.shobrun.footballleague.room.TeamDao
 import timber.log.Timber
 import javax.inject.Inject
 
 class TeamRepository @Inject constructor(
-    val appExecutors: AppExecutors,
-    val apiService: TeamApi,
-    val localDB: TeamDao
-) : Repository {
+    private val appExecutors: AppExecutors,
+    private val apiService: TeamApi,
+    private val localDB: TeamDao
+) : Repository, ITeamLocalDB {
     companion object {
         val TAG = TeamRepository.javaClass.name
     }
@@ -92,5 +93,21 @@ class TeamRepository @Inject constructor(
                 Timber.d("$TAG fetch failed team $message")
             }
         }.asLiveData()
+    }
+
+    override fun insertTeamInDB(team: Team) {
+        localDB.insert(team)
+    }
+
+    override fun getAllFavoriteTeams(): LiveData<List<Team>> {
+        return localDB.getAllFavoriteTeam(1)
+    }
+
+    override fun getTeamById(idTeam: Int): LiveData<Team> {
+        return localDB.getTeamById(idTeam)
+    }
+
+    override fun updateTeamInDB(team: Team): Int {
+        return localDB.update(team)
     }
 }

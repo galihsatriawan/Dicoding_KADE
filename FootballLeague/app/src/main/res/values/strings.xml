@@ -103,7 +103,7 @@ Sky Sports currently show live League One matches with highlights shown on BBC O
     <string name="tab_previous">Previous Match</string>
     <string name="tab_next">Next Match</string>
     <string name="tab_team">Team</string>
-    <string name="events">MATCH</string>
+    <string name="events">Match</string>
     <string name="title_goal_details">Goals</string>
     <string name="title_summary">Summary</string>
     <string name="title_yellow_cards">Yellow Cards</string>
@@ -112,7 +112,7 @@ Sky Sports currently show live League One matches with highlights shown on BBC O
     <string name="search_hint">Search</string>
     <string name="favorite">Favorite</string>
     <string name="remove_success">Event was removed from favorites</string>
-    <string name="add_success">The Event was added from favorites</string>
+    <string name="add_success">The Event was added to favorites</string>
     <string name="failed_load">Failed to load data</string>
     <string name="title_activity_events">Events Activity</string>
     <string name="title_favorite">Favorite</string>
@@ -124,6 +124,13 @@ Sky Sports currently show live League One matches with highlights shown on BBC O
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_team">Team</string>
+    <string name="desc_team">Description</string>
+    <string name="add_team_success">Team was added to favorites</string>
+    <string name="remove_team_success">Team was removed from favorites</string>
+    <string name="title_description">Description</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="title_stadium">Stadium</string>
 
 
 </resources>

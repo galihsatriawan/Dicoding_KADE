@@ -66,7 +66,7 @@
             android:id="@+id/recycler_search_event"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:eventItems="@{vm.eventLiveData}"
+            app:resourceItems="@{vm.eventLiveData}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </LinearLayout>
 

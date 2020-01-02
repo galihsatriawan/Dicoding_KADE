@@ -50,7 +50,7 @@
             android:id="@+id/rv_previous_event"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:eventItems="@{vm.previousEventLiveData}"
+            app:resourceItems="@{vm.previousEventLiveData}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </LinearLayout>
 

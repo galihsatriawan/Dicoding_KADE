@@ -7,7 +7,7 @@ import id.shobrun.footballleague.room.AppDatabase.Companion.ID_LEAGUE
 import id.shobrun.footballleague.room.AppDatabase.Companion.ID_TEAM_RECORD
 import id.shobrun.footballleague.room.AppDatabase.Companion.TABLE_TEAM_RECORD
 
-
+@Dao
 interface TeamRecordDao{
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun inserts(teamRecord : List<TeamRecord>)

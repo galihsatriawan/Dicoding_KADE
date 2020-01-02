@@ -17,7 +17,7 @@ buildscript {
         espressoVersion = '3.1.1'
         espressoIdlingVersion = '3.2.0'
         gsonVersion = "2.8.6"
-        googleMaterial = "1.2.0-alpha03"
+        materialVersion = "1.2.0-alpha03"
         glideVersion = '4.10.0'
         gradleVersion = "3.5.2"
         junitVersion = '4.12'

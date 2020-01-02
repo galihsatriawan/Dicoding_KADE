@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools">
+
+<data>
+
+    <import type="android.view.View" />
+
+    <variable
+        name="vm"
+        type="id.shobrun.footballleague.ui.adapters.RecyclerTeamsAdapter.TeamViewModel" />
+</data>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="90dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_toLeftOf="@+id/arrow"
+        >
+        <ImageView
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            tools:src="@drawable/ic_match"
+            android:layout_gravity="center_vertical"
+            loadImage="@{vm.tv_team_badge}"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/activity_horizontal_margin_8dp"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                tools:text="@string/title_team"
+                android:text="@{vm.tv_team_name}"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                tools:text="@string/desc_team"
+                android:text="@{vm.tv_team_desc}"
+                />
+        </LinearLayout>
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/arrow"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="@dimen/activity_horizontal_margin_8dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_arrow_back_white_24dp"
+        />
+</RelativeLayout>
+
+</layout>

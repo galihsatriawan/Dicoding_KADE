@@ -8,9 +8,10 @@ import androidx.room.TypeConverters
 import id.shobrun.footballleague.models.entity.Event
 import id.shobrun.footballleague.models.entity.League
 import id.shobrun.footballleague.models.entity.Team
+import id.shobrun.footballleague.models.entity.TeamRecord
 import id.shobrun.footballleague.utils.DateConverter
 
-@Database(entities = [League::class, Event::class, Team::class], version = 4, exportSchema = false)
+@Database(entities = [League::class, Event::class, Team::class, TeamRecord::class], version = 5, exportSchema = false)
 @TypeConverters(DateConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun leagueDao(): LeagueDao

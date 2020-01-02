@@ -8,4 +8,5 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="table_weight_board_event_sum">3</dimen>
     <dimen name="table_weight_1">1</dimen>
+    <dimen name="activity_vertical_margin_8dp">8dp</dimen>
 </resources>

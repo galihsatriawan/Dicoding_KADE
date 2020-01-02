@@ -9,8 +9,11 @@ import id.shobrun.footballleague.extensions.bindResource
 import id.shobrun.footballleague.models.Resource
 import id.shobrun.footballleague.models.entity.Event
 import id.shobrun.footballleague.models.entity.League
+import id.shobrun.footballleague.models.entity.Team
 import id.shobrun.footballleague.ui.adapters.RecyclerEventsAdapter
 import id.shobrun.footballleague.ui.adapters.RecyclerLeaguesAdapter
+import id.shobrun.footballleague.ui.adapters.RecyclerTeamsAdapter
+import id.shobrun.footballleague.utils.AbsentLiveData
 
 @BindingAdapter("loadImage")
 fun bindLoadImage(view: ImageView, imageUrl: Any) {
@@ -32,27 +35,41 @@ fun bindAdapter(view: RecyclerView, items: List<League>) {
 }
 
 @BindingAdapter("liveItems")
-fun bindAdapterLiveData(view: RecyclerView, items: LiveData<List<Event>>?) {
+fun <T> bindAdapterLiveData(view: RecyclerView, items: LiveData<List<T>>?) {
     when (view.adapter) {
         is RecyclerEventsAdapter -> {
             items?.value.let {
-                (view.adapter as RecyclerEventsAdapter).setItems(it ?: ArrayList())
+                val data = it as List<Event>?
+                (view.adapter as RecyclerEventsAdapter).setItems(data ?: ArrayList())
             }
-
+        }
+        is RecyclerTeamsAdapter ->{
+            items?.value.let {
+                val data = it as List<Team>?
+                (view.adapter as RecyclerTeamsAdapter).setItems(data ?: ArrayList())
+            }
         }
     }
 }
 
 
-@BindingAdapter("eventItems")
-fun bindEvents(view: RecyclerView, resource: Resource<List<Event>>?) {
+@BindingAdapter("resourceItems")
+fun<T> bindEvents(view: RecyclerView, resource: Resource<List<T>>?) {
     when (view.adapter) {
         is RecyclerEventsAdapter -> {
             view.bindResource(resource) {
-                (view.adapter as RecyclerEventsAdapter).setItems(it.data)
+                val data = it.data as List<Event>?
+                (view.adapter as RecyclerEventsAdapter).setItems(data)
+            }
+        }
+        is RecyclerTeamsAdapter ->{
+            view.bindResource(resource){
+                val data = it.data as List<Team>?
+                (view.adapter as RecyclerTeamsAdapter).setItems(data)
             }
         }
     }
 }
+
 
 

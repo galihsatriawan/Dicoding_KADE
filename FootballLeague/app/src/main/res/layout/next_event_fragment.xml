@@ -49,7 +49,7 @@
             android:id="@+id/recycler_next_event"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:eventItems="@{vm.nextEventLiveData}"
+            app:resourceItems="@{vm.nextEventLiveData}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </LinearLayout>
 

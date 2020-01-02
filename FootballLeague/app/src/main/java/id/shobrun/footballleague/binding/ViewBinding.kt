@@ -29,7 +29,7 @@ fun bindVisibilityByResource(view: View, resource: Resource<Any>?) {
 }
 
 @BindingAdapter("isError")
-fun bindIsError(view: LinearLayout, resource: Resource<League>?) {
+fun bindIsError(view: LinearLayout, resource: Resource<Any>?) {
     Timber.d("Error")
     view.bindResource(resource) {
         if (it.data != null) it.data.let {
@@ -197,7 +197,7 @@ fun bindVisibleLoadingEvents(view: ProgressBar, resource: Resource<List<Event>>?
 }
 
 @BindingAdapter("visibleMessage")
-fun bindVisibleMessageEvents(view: LinearLayout, resource: Resource<List<Event>>?) {
+fun bindVisibleMessage(view: LinearLayout, resource: Resource<List<Any>>?) {
     view.bindResource(resource) {
         if (it.data?.isNullOrEmpty() != false) {
             view.visible()
@@ -208,7 +208,7 @@ fun bindVisibleMessageEvents(view: LinearLayout, resource: Resource<List<Event>>
 }
 
 @BindingAdapter("messageEvents")
-fun bindMessageEvents(view: TextView, resource: Resource<List<Event>>?) {
+fun bindMessage(view: TextView, resource: Resource<List<Any>>?) {
     view.bindResource(resource) {
         if (it.status == Status.ERROR) {
             view.text = it.message
@@ -225,7 +225,7 @@ fun bindMessageEvents(view: TextView, resource: Resource<List<Event>>?) {
 Favorite Segment
  */
 @BindingAdapter("visibleMessageFavorite")
-fun bindVisibleMessageFavoriteEvents(view: LinearLayout, resource: List<Event>?) {
+fun bindVisibleMessageFavorite(view: LinearLayout, resource: List<Any>?) {
     if (resource?.isNullOrEmpty() != false) {
         view.visible()
     } else {
@@ -234,11 +234,55 @@ fun bindVisibleMessageFavoriteEvents(view: LinearLayout, resource: List<Event>?)
 }
 
 @BindingAdapter("messageEventsFavorite")
-fun bindMessageEventsFavorite(view: TextView, resource: List<Event>?) {
+fun<T> bindMessageFavorite(view: TextView, resource: List<Any>?) {
 
     if (resource.isNullOrEmpty()) {
         view.text = view.context.getString(R.string.empty_data)
     }
+}
+/**
+ * Detail Team
+ */
+@BindingAdapter("logoTeam")
+fun bindLogoTeam(view: ImageView, resource: Resource<Team>?){
+    view.bindResource(resource) {
+        Glide.with(view.context)
+            .load(it.data?.teamBadge?:"")
+            .error(R.drawable.ic_error_black_24dp)
+            .into(view)
+    }
+}
+@BindingAdapter("nameTeam")
+fun bindNameTeam(view: TextView, resource: Resource<Team>?){
+    view.bindResource(resource){
+        view.text = "${it?.data?.teamName ?:""}"
+    }
+}
+@BindingAdapter("alternateNameTeam")
+fun bindAlternateNameTeam(view: TextView, resource: Resource<Team>?){
+    view.bindResource(resource){
+        view.text = "${it?.data?.alternateName ?:""}"
+    }
+}
 
-
+@BindingAdapter("descriptionTeam")
+fun bindDescriptionTeam(view: TextView, resource: Resource<Team>?){
+    view.bindResource(resource){
+        view.text = "${it?.data?.descriptionEN?:""}"
+    }
+}
+@BindingAdapter("imgStadiumTeam")
+fun bindImgStadiumTeam(view: ImageView, resource: Resource<Team>?){
+    view.bindResource(resource) {
+        Glide.with(view.context)
+            .load(it.data?.imgStadium?:"")
+            .error(R.drawable.ic_error_black_24dp)
+            .into(view)
+    }
+}
+@BindingAdapter("nameStadium")
+fun bindNameStadium(view: TextView, resource: Resource<Team>?){
+    view.bindResource(resource){
+        view.text = "${it?.data?.stadiumName?:""}"
+    }
 }
