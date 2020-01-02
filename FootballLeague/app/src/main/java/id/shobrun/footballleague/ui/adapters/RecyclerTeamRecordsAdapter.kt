@@ -26,7 +26,8 @@ class RecyclerTeamRecordsAdapter(private var teamRecords: List<TeamRecord>) : Re
     }
     fun setItems(items: List<TeamRecord>?){
         if(items!=null){
-            this.teamRecords = items
+
+            this.teamRecords = items.sortedBy { it.rank }
             notifyDataSetChanged()
         }
     }

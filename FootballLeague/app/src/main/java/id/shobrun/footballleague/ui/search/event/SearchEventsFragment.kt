@@ -84,7 +84,7 @@ class SearchEventsFragment : ViewModelFragment() {
             Gunakan method ini untuk merespon tiap perubahan huruf pada searchView
              */
             override fun onQueryTextChange(newText: String): Boolean {
-                viewModel.postFilter(newText)
+//                viewModel.postFilter(newText)
                 return false
             }
         })

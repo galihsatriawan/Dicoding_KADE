@@ -14,7 +14,9 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
 import id.shobrun.footballleague.R
-import id.shobrun.footballleague.ui.search.SearchActivity
+import id.shobrun.footballleague.repository.EventRepository
+import id.shobrun.footballleague.testing.SingleFragmentActivity
+import id.shobrun.footballleague.ui.search.event.SearchEventsFragment
 import id.shobrun.footballleague.ui.search.event.SearchEventsViewModel
 import id.shobrun.footballleague.utils.*
 import org.hamcrest.CoreMatchers.`is`
@@ -24,14 +26,15 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.Mockito.mock
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 
 
 @RunWith(AndroidJUnit4::class)
-class SearchActivityTest {
+class SearchFragmentTest {
     @get:Rule
-    var mActivityTestRule = ActivityTestRule(SearchActivity::class.java, true, true)
+    var mActivityTestRule = ActivityTestRule(SingleFragmentActivity::class.java, true, true)
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -47,13 +50,19 @@ class SearchActivityTest {
     @get:Rule
     val dataBindingIdlingResource = DataBindingIdlingResourceRule(mActivityTestRule)
 
-    lateinit var viewModel: SearchEventsViewModel
+    var viewModel: SearchEventsViewModel = mock(SearchEventsViewModel::class.java)
 
+    var searchFragment = SearchEventsFragment()
+    var repository = mock(EventRepository::class.java)
     @Before
     fun setUp() {
-//        viewModel = mActivityTestRule.activity.viewModel
-        viewModel.repository.appExecutors = countingAppExecutors.appExecutors
         IdlingRegistry.getInstance().register(EspressoIdlingResource.countingIdlingResource)
+        viewModel.repository = repository
+        repository.appExecutors = countingAppExecutors.appExecutors
+        searchFragment.viewModelFactory = ViewModelUtil.createFor(viewModel)
+
+        mActivityTestRule.activity.setFragment(searchFragment)
+
         EspressoTestUtil.disableProgressBarAnimations(mActivityTestRule)
 
     }
@@ -82,7 +91,7 @@ class SearchActivityTest {
                 pressKey(KeyEvent.KEYCODE_ENTER)
             )
         val recyclerView =
-            mActivityTestRule.activity.findViewById<RecyclerView>(R.id.recycler_search_event)
+            searchFragment.requireView().findViewById<RecyclerView>(R.id.recycler_search_event)
         waitForAdapterChange(recyclerView)
         onView(listMatcher().atPosition(0)).check(matches(isDisplayed()))
     }
@@ -109,7 +118,7 @@ class SearchActivityTest {
                 pressKey(KeyEvent.KEYCODE_ENTER)
             )
         val recyclerView =
-            mActivityTestRule.activity.findViewById<RecyclerView>(R.id.recycler_search_event)
+            searchFragment.requireView().findViewById<RecyclerView>(R.id.recycler_search_event)
         waitForAdapterChange(recyclerView)
         onView(withId(R.id.container_message)).check(matches(isDisplayed()))
     }

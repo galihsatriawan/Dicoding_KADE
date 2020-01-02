@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="id.shobrun.footballleague">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -41,6 +42,9 @@
             android:name=".ui.leagues.detail.DetailLeagueActivity"
             android:label="@string/title_activity_detail_league"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity tools:ignore="GoogleAppIndexingWarning"
+            android:name=".testing.SingleFragmentActivity"/>
     </application>
 
 </manifest>
