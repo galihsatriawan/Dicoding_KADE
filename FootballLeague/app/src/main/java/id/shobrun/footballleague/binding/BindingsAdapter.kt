@@ -10,8 +10,10 @@ import id.shobrun.footballleague.models.Resource
 import id.shobrun.footballleague.models.entity.Event
 import id.shobrun.footballleague.models.entity.League
 import id.shobrun.footballleague.models.entity.Team
+import id.shobrun.footballleague.models.entity.TeamRecord
 import id.shobrun.footballleague.ui.adapters.RecyclerEventsAdapter
 import id.shobrun.footballleague.ui.adapters.RecyclerLeaguesAdapter
+import id.shobrun.footballleague.ui.adapters.RecyclerTeamRecordsAdapter
 import id.shobrun.footballleague.ui.adapters.RecyclerTeamsAdapter
 import id.shobrun.footballleague.utils.AbsentLiveData
 import timber.log.Timber
@@ -69,6 +71,12 @@ fun<T> bindEvents(view: RecyclerView, resource: Resource<List<T>>?) {
             view.bindResource(resource){
                 val data = it.data as List<Team>?
                 (view.adapter as RecyclerTeamsAdapter).setItems(data)
+            }
+        }
+        is RecyclerTeamRecordsAdapter ->{
+            view.bindResource(resource){
+                val data = it.data as List<TeamRecord>?
+                (view.adapter as RecyclerTeamRecordsAdapter).setItems(data)
             }
         }
     }

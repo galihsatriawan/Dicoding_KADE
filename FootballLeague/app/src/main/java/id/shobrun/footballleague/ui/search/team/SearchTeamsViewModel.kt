@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 class SearchTeamsViewModel @Inject constructor(repository: TeamRepository) : ViewModel() {
     val teamLiveData: LiveData<Resource<List<Team>>>
-    val filterLiveData: MutableLiveData<String> = MutableLiveData()
+    private val filterLiveData: MutableLiveData<String> = MutableLiveData()
 
 
     init {
@@ -21,9 +21,7 @@ class SearchTeamsViewModel @Inject constructor(repository: TeamRepository) : Vie
             filterLiveData.switchMap {
                 filterLiveData.value?.let {
                     wrapEspressoIdlingResource {
-                        repository.loadSearchTeams(
-                            it
-                        )
+                        repository.loadSearchTeams(it)
                     }
                 } ?: AbsentLiveData.create()
             }

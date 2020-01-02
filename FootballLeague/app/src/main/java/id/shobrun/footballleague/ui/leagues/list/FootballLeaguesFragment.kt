@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.compose.ViewModelFragment
 import id.shobrun.footballleague.databinding.FragmentFootballLeagueBinding
@@ -64,9 +66,10 @@ class FootballLeaguesFragment : ViewModelFragment(), AnkoLogger {
             )
             startActivity(match)
         }
-        val dividerItemDecoration =
-            DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
-        binding.rvLeagues.addItemDecoration(dividerItemDecoration)
+//        val dividerItemDecoration =
+//            DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
+//        binding.rvLeagues.addItemDecoration(dividerItemDecoration)
+        binding.rvLeagues.layoutManager = GridLayoutManager(requireContext(),2)
         binding.rvLeagues.adapter = leaguesAdapter
     }
 

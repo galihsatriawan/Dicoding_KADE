@@ -7,6 +7,7 @@ import android.view.MenuItem
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.extensions.simpleToolbarWithHome
 import id.shobrun.footballleague.models.entity.League
@@ -36,6 +37,10 @@ class EventsActivity : AppCompatActivity() {
         }
         if (intent.getParcelableExtra<League>(EXTRA_LEAGUE) != null) {
             league = intent.getParcelableExtra<League>(EXTRA_LEAGUE)
+            Glide.with(this)
+                .load(league?.banner?:"")
+                .into(logoLeague)
+            titleLeague.text = league?.name?:"League"
         }
 
         val bundle = Bundle()
@@ -62,7 +67,7 @@ class EventsActivity : AppCompatActivity() {
             true
         }
         bottom_navigation.selectedItemId = currentSelectItemId
-        simpleToolbarWithHome(toolbar, "${league?.name ?: "Match"}")
+        simpleToolbarWithHome(toolbar, "")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

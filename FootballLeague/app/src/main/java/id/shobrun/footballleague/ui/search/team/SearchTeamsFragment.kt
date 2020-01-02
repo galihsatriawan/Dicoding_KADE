@@ -46,22 +46,20 @@ class SearchTeamsFragment : ViewModelFragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initRecycler()
-
-        val dividerItemDecoration =
-            DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
-        binding.recyclerSearchTeam.addItemDecoration(dividerItemDecoration)
-        binding.recyclerSearchTeam.adapter = teamAdapter
     }
     private fun initRecycler(){
         teamAdapter = RecyclerTeamsAdapter(ArrayList())
         teamAdapter.setItemListener { team ->
             val detail = intentFor<DetailTeamActivity>(
-                DetailEventActivity.EXTRA_EVENT to team
+                DetailTeamActivity.EXTRA_TEAM to team
             )
             startActivity(detail)
         }
+        val dividerItemDecoration =
+            DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
+        binding.rvTeams.addItemDecoration(dividerItemDecoration)
+        binding.rvTeams.adapter = teamAdapter
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)

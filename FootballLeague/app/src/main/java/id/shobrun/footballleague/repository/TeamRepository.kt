@@ -49,6 +49,10 @@ class TeamRepository @Inject constructor(
         override fun saveFetchData(items: TeamsResponse) {
             val teams = items.teams
             if(teams!=null){
+                Timber.d("$TAG ${teams.size}")
+                for(t in teams){
+                    t.tags = "[q=${qry}]"
+                }
                 localDB.inserts(teams)
             }
         }
@@ -58,11 +62,13 @@ class TeamRepository @Inject constructor(
         }
 
         override fun loadFromDb(): LiveData<List<Team>> {
-            return localDB.getSearchTeams(qry)
+            return localDB.getSearchTeams("[qry={$qry}]")
         }
 
         override fun fetchService(): LiveData<ApiResponse<TeamsResponse>> {
-            return apiService.getSearchTeam(qry)
+            val teams = apiService.getSearchTeam(qry)
+            Timber.d("$TAG ${teams?.value?.body?.teams?.size}")
+            return teams
         }
 
         override fun onFetchFailed(message: String?) {

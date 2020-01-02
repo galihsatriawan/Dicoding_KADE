@@ -2,7 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
     <data>
         <variable
             name="vm"
@@ -11,8 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/white"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
         <ProgressBar
             android:id="@+id/progressBar"
@@ -22,9 +20,7 @@
             android:layout_gravity="center"
             android:indeterminate="true"
             android:visibility="gone" />
-
         <LinearLayout
-            android:id="@+id/container_message"
             visibleMessage="@{vm.teamLiveData}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -46,11 +42,12 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_search_team"
+            android:id="@+id/rv_teams"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:resourceItems="@{vm.teamLiveData}"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_team"
+            app:resourceItems="@{vm.teamLiveData}" />
     </LinearLayout>
 
 </layout>

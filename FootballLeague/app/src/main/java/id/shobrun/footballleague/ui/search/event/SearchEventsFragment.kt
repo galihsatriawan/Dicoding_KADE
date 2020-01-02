@@ -47,13 +47,7 @@ class SearchEventsFragment : ViewModelFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initRecycler()
-
-        val dividerItemDecoration =
-            DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
-        binding.recyclerSearchEvent.addItemDecoration(dividerItemDecoration)
-        binding.recyclerSearchEvent.adapter = eventAdapter
     }
     private fun initRecycler(){
         eventAdapter = RecyclerEventsAdapter(ArrayList())
@@ -63,6 +57,10 @@ class SearchEventsFragment : ViewModelFragment() {
             )
             startActivity(detail)
         }
+        val dividerItemDecoration =
+            DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
+        binding.recyclerSearchEvent.addItemDecoration(dividerItemDecoration)
+        binding.recyclerSearchEvent.adapter = eventAdapter
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)

@@ -39,9 +39,9 @@ class RecyclerLeaguesAdapter(private var items: List<League>) :
     }
 
     private fun expandableView(v: View) {
-        if (v.isVisible)
-            v.gone()
-        else v.visible()
+//        if (v.isVisible)
+//            v.gone()
+//        else v.visible()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LeagueViewHolder {

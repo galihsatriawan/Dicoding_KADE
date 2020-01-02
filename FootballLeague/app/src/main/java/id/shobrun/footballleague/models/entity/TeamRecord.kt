@@ -11,10 +11,9 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 @Entity(tableName = TABLE_TEAM_RECORD)
 data class TeamRecord(
-    @PrimaryKey
-    var idTeamRecord : Int,
     var idLeague : Int?,
     @SerializedName("name") var teamName: String?,
+    @PrimaryKey
     @SerializedName("teamid")var idTeam : Int?,
     var played : Int,
     @SerializedName("goalsfor")var goalsFor : Int?,
@@ -23,6 +22,7 @@ data class TeamRecord(
     var win : Int?,
     var draw : Int?,
     var loss : Int?,
-    var total : Int?
+    var total : Int?,
+    var rank : Int?
 
 ):Parcelable

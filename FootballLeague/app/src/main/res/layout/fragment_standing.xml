@@ -1,13 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.leagues.standing.StandingFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
+    <data>
+        <variable
+            name="vm"
+            type="id.shobrun.footballleague.ui.leagues.standing.StandingViewModel" />
+    </data>
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        tools:context=".ui.leagues.standing.StandingFragment">
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-</FrameLayout>
+                    <TextView
+                        android:id="@+id/tvRank"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="top"
+                        android:text="@string/rank"
+                        android:gravity="center"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/imgTeam"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="@dimen/activity_vertical_margin_8dp"
+                        android:src="@drawable/ic_away_team"
+                        android:layout_gravity="center" />
+
+                    <TextView
+                        android:id="@+id/tvTeamName"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="top"
+                        android:text="@string/title_team"
+                        android:gravity="center"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvPlayed"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="top"
+                        android:text="@string/played"
+                        android:gravity="center"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvWin"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="top"
+                        android:text="@string/win"
+                        android:gravity="center"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvDraw"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="top"
+                        android:text="@string/draw"
+                        android:gravity="center"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvLost"
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="top"
+                        android:text="@string/lose"
+                        android:gravity="center"
+                        android:textSize="14sp" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:background="@color/colorAccent"/>
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    resourceListLoading="@{vm.standingLiveData}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:indeterminate="true"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/container_message"
+                    visibleMessage="@{vm.standingLiveData}"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="TODO"
+                        android:src="@drawable/ic_error_black_24dp" />
+
+                    <TextView
+                        messageEvents="@{vm.standingLiveData}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="@string/failed_load" />
+                </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvTeamRecords"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    resourceItems="@{vm.standingLiveData}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_team_record"/>
+            </LinearLayout>
+        </HorizontalScrollView>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

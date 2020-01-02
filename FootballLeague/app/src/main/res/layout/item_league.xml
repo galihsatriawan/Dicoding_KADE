@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -10,58 +11,73 @@
             name="vm"
             type="id.shobrun.footballleague.ui.adapters.RecyclerLeaguesAdapter.LeagueViewModel" />
     </data>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
 
+        android:layout_margin="@dimen/activity_horizontal_margin_8dp"
+        app:cardCornerRadius="4dp"
+        >
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="@dimen/activity_horizontal_margin">
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/img_league"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:contentDescription="TODO"
-                app:loadImage="@{vm.img_league}" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:padding="@dimen/activity_horizontal_margin_8dp">
 
-            <TextView
-                android:id="@+id/tv_league_name"
+                <ImageView
+                    android:id="@+id/img_league"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    tools:src="@drawable/ic_away_team"
+                    android:contentDescription="TODO"
+                    app:loadImage="@{vm.img_league}" />
+
+                <TextView
+                    android:id="@+id/tv_league_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:textSize="16dp"
+                    tools:text="@string/title_league"
+                    android:text="@{vm.tv_league_name}" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/container_btn_league"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="10dp"
-                android:text="@{vm.tv_league_name}" />
+                android:orientation="horizontal"
+                android:visibility="visible"
+                android:weightSum="2">
+
+                <Button
+                    android:id="@+id/btn_detail_league"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:textSize="12dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAllCaps="true"
+                    android:text="@string/detail" />
+
+                <Button
+                    android:id="@+id/btn_view_events"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="12dp"
+                    android:textAllCaps="true"
+                    android:text="@string/events" />
+            </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/container_btn_league"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            android:weightSum="2">
-
-            <Button
-                android:id="@+id/btn_detail_league"
-                style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/detail_league" />
-
-            <Button
-                android:id="@+id/btn_view_events"
-                style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/events" />
-        </LinearLayout>
-    </LinearLayout>
-
+    </androidx.cardview.widget.CardView>
 </layout>
