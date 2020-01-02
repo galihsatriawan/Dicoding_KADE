@@ -182,6 +182,7 @@ class EventRepository @Inject constructor(
 
     override fun getAllFavoriteNextEventInDb(idLeague: Int): LiveData<List<Event>> {
         val events = localDB.getFavoriteNextEvents(idLeague, 1)
+        Timber.d("$TAG ${events.value?.size}")
         return events
     }
 

@@ -18,7 +18,7 @@ interface TeamDao {
     @Query("SELECT * FROM $TABLE_TEAM WHERE $ID_TEAM = :idTeam")
     fun getTeamById(idTeam: Int): LiveData<Team>
 
-    @Query("SELECT * FROM $TABLE_TEAM WHERE tags like :qry")
+    @Query("SELECT * FROM $TABLE_TEAM WHERE tags LIKE :qry")
     fun getSearchTeams(qry: String) : LiveData<List<Team>>
 
     @Query("SELECT * FROM $TABLE_TEAM WHERE isFavorite = :favorite")

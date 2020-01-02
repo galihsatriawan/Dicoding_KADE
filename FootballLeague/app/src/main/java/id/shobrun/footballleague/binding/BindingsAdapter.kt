@@ -14,6 +14,7 @@ import id.shobrun.footballleague.ui.adapters.RecyclerEventsAdapter
 import id.shobrun.footballleague.ui.adapters.RecyclerLeaguesAdapter
 import id.shobrun.footballleague.ui.adapters.RecyclerTeamsAdapter
 import id.shobrun.footballleague.utils.AbsentLiveData
+import timber.log.Timber
 
 @BindingAdapter("loadImage")
 fun bindLoadImage(view: ImageView, imageUrl: Any) {
@@ -40,13 +41,15 @@ fun <T> bindAdapterLiveData(view: RecyclerView, items: LiveData<List<T>>?) {
         is RecyclerEventsAdapter -> {
             items?.value.let {
                 val data = it as List<Event>?
-                (view.adapter as RecyclerEventsAdapter).setItems(data ?: ArrayList())
+                Timber.d("ViewBinding LiveItems Event${data?.size}")
+                (view.adapter as RecyclerEventsAdapter).setItems(data)
             }
         }
         is RecyclerTeamsAdapter ->{
             items?.value.let {
                 val data = it as List<Team>?
-                (view.adapter as RecyclerTeamsAdapter).setItems(data ?: ArrayList())
+                Timber.d("ViewBinding LiveItems Team${data?.size}")
+                (view.adapter as RecyclerTeamsAdapter).setItems(data)
             }
         }
     }

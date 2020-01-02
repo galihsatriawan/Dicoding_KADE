@@ -20,7 +20,7 @@ interface EventDao {
     @Query("SELECT * FROM $TABLE_EVENT WHERE tags LIKE '%$TAG_NEXT_MATCH%' AND $ID_LEAGUE = :idLeague AND isFavorite=:favorite")
     fun getFavoriteNextEvents(idLeague: Int, favorite: Int): LiveData<List<Event>>
 
-    @Query("SELECT * FROM $TABLE_EVENT WHERE tags = '%$TAG_PAST_MATCH%' AND $ID_LEAGUE = :idLeague AND isFavorite=:favorite")
+    @Query("SELECT * FROM $TABLE_EVENT WHERE tags LIKE '%$TAG_PAST_MATCH%' AND $ID_LEAGUE = :idLeague AND isFavorite=:favorite")
     fun getFavoritePastEvents(idLeague: Int, favorite: Int): LiveData<List<Event>>
 
     @Query("SELECT * FROM $TABLE_EVENT WHERE tags LIKE :qry ")

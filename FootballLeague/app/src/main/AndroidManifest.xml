@@ -13,8 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.leagues.team.detail.DetailTeamActivity"></activity>
-        <activity android:name=".ui.leagues.player.detail.DetailPlayerActivity" />
+        <activity android:name=".ui.leagues.team.detail.DetailTeamActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            ></activity>
+
         <activity
             android:name=".ui.events.EventsActivity"
             android:label="@string/title_activity_events"

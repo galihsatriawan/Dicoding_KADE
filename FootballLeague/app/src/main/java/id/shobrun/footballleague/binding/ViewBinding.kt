@@ -188,8 +188,8 @@ fun bindAwayBadge(view: ImageView, resource: Resource<Team>?) {
     Search Segment
  */
 
-@BindingAdapter("loadingEvents")
-fun bindVisibleLoadingEvents(view: ProgressBar, resource: Resource<List<Event>>?) {
+@BindingAdapter("resourceListLoading")
+fun <T> bindVisibleLoadingEvents(view: ProgressBar, resource: Resource<List<T>>?) {
     if (resource != null) {
         if (resource.status == Status.LOADING) view.visible()
         else view.gone()
@@ -225,7 +225,7 @@ fun bindMessage(view: TextView, resource: Resource<List<Any>>?) {
 Favorite Segment
  */
 @BindingAdapter("visibleMessageFavorite")
-fun bindVisibleMessageFavorite(view: LinearLayout, resource: List<Any>?) {
+fun <T> bindVisibleMessageFavorite(view: LinearLayout, resource: List<T>?) {
     if (resource?.isNullOrEmpty() != false) {
         view.visible()
     } else {
@@ -234,7 +234,7 @@ fun bindVisibleMessageFavorite(view: LinearLayout, resource: List<Any>?) {
 }
 
 @BindingAdapter("messageEventsFavorite")
-fun<T> bindMessageFavorite(view: TextView, resource: List<Any>?) {
+fun <T> bindMessageFavorite(view: TextView, resource: List<T>?) {
 
     if (resource.isNullOrEmpty()) {
         view.text = view.context.getString(R.string.empty_data)

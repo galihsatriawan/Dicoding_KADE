@@ -27,6 +27,6 @@ data class Team(
     @SerializedName("strDescriptionEN") var descriptionEN: String?,
     @SerializedName("strCountry") var teamCountry: String?,
     @SerializedName("strTeamJersey") var teamJersey: String?,
-    var isFavorite: Int=0,
+    var isFavorite: Int= 0,
     var tags : String?
 ) : Parcelable
