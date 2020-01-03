@@ -83,6 +83,7 @@ dependencies {
      */
     implementation "de.hdodenhof:circleimageview:$circleImgVersion"
     api "com.google.android.material:material:$materialVersion"
+    implementation "com.balysv:material-ripple:$materialRipple"
     // Network library
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"

@@ -13,21 +13,24 @@ import javax.inject.Inject
 
 class StandingViewModel @Inject constructor(repository: TeamRecordRepository) : ViewModel() {
     // TODO: Implement the ViewModel
-    companion object{
+    companion object {
         val TAG = this.javaClass.name
     }
-    private val idLeague= MutableLiveData<Int>()
-    val standingLiveData : LiveData<Resource<List<TeamRecord>>>
+
+    private val idLeague = MutableLiveData<Int>()
+    val standingLiveData: LiveData<Resource<List<TeamRecord>>>
     private val season = 1920
+
     init {
         standingLiveData = idLeague.switchMap {
             idLeague.value?.let {
                 Timber.d("$TAG get team records")
-                repository.getTeamRecordsByIdLeague(it,season)
-            }?:AbsentLiveData.create()
+                repository.getTeamRecordsByIdLeague(it, season)
+            } ?: AbsentLiveData.create()
         }
     }
-    fun postLeagueId(id: Int){
+
+    fun postLeagueId(id: Int) {
         idLeague.value = id
     }
 }

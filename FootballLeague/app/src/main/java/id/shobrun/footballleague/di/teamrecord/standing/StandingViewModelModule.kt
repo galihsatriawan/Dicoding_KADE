@@ -8,7 +8,7 @@ import id.shobrun.footballleague.di.ViewModelKey
 import id.shobrun.footballleague.ui.leagues.standing.StandingViewModel
 
 @Module
-abstract class StandingViewModelModule{
+abstract class StandingViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(StandingViewModel::class)

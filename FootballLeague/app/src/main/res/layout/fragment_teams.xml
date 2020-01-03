@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <ProgressBar
             android:id="@+id/progressBar"
             resourceListLoading="@{vm.teamsLiveData}"
@@ -22,6 +23,7 @@
             android:layout_gravity="center"
             android:indeterminate="true"
             android:visibility="gone" />
+
         <LinearLayout
             visibleMessage="@{vm.teamsLiveData}"
             android:layout_width="match_parent"
@@ -33,7 +35,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="TODO"
+                android:contentDescription="@string/txt_content_description"
                 android:src="@drawable/ic_error_black_24dp" />
 
             <TextView

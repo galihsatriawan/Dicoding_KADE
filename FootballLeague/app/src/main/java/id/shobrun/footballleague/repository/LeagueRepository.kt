@@ -27,6 +27,7 @@ class LeagueRepository @Inject constructor(
     companion object {
         val TAG = LeagueRepository.javaClass.name
     }
+
     fun loadLeagueDetail(id: Int): LiveData<Resource<League>> {
         return object : NetworkBoundRepository<League, LeaguesResponse>(appExecutors) {
             override fun saveFetchData(items: LeaguesResponse) {

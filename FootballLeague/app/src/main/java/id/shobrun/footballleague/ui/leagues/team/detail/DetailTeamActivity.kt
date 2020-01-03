@@ -1,6 +1,5 @@
 package id.shobrun.footballleague.ui.leagues.team.detail
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -18,26 +17,29 @@ class DetailTeamActivity : ViewModelActivity() {
     private var menuItem: Menu? = null
 
     private var count = 0
-    companion object{
+
+    companion object {
         const val EXTRA_TEAM = "extra_team"
     }
+
     private val viewModel by viewModel<DetailTeamViewModel>()
     private val binding by binding<ActivityDetailTeamBinding>(R.layout.activity_detail_team)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        with(binding){
+        with(binding) {
             lifecycleOwner = this@DetailTeamActivity
             vm = viewModel
         }
         var team: Team? = null
         if (intent.getParcelableExtra<Team>(EXTRA_TEAM) != null) {
-            team= intent.getParcelableExtra<Team>(EXTRA_TEAM)
+            team = intent.getParcelableExtra<Team>(EXTRA_TEAM)
             viewModel.postTeamId(team.idTeam)
 
         }
-        simpleToolbarWithHome(toolbar, team?.teamName?: "Detail Team")
+        simpleToolbarWithHome(toolbar, team?.teamName ?: "Detail Team")
         favoriteState()
     }
+
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return super.onSupportNavigateUp()

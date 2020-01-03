@@ -11,12 +11,13 @@
             name="vm"
             type="id.shobrun.footballleague.ui.adapters.RecyclerLeaguesAdapter.LeagueViewModel" />
     </data>
+
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/activity_horizontal_margin_8dp"
-        app:cardCornerRadius="4dp"
-        >
+        app:cardCornerRadius="4dp">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,9 +25,9 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
+                android:layout_height="140dp"
                 android:layout_gravity="center"
+                android:orientation="vertical"
                 android:padding="@dimen/activity_horizontal_margin_8dp">
 
                 <ImageView
@@ -34,21 +35,22 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
-                    tools:src="@drawable/ic_away_team"
-                    android:contentDescription="TODO"
-                    app:loadImage="@{vm.img_league}" />
+                    android:contentDescription="@string/txt_content_description"
+                    app:loadImage="@{vm.img_league}"
+                    tools:src="@drawable/ic_away_team" />
 
                 <TextView
                     android:id="@+id/tv_league_name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="8dp"
-                    android:textSize="16dp"
-                    tools:text="@string/title_league"
-                    android:text="@{vm.tv_league_name}" />
+                    android:lines="2"
+                    android:text="@{vm.tv_league_name}"
+                    android:textSize="14sp"
+                    android:textAlignment="center"
+                    tools:text="@string/lorem_ipsum" />
             </LinearLayout>
-
             <LinearLayout
                 android:id="@+id/container_btn_league"
                 android:layout_width="wrap_content"
@@ -56,26 +58,27 @@
                 android:orientation="horizontal"
                 android:visibility="visible"
                 android:weightSum="2">
-
                 <Button
                     android:id="@+id/btn_detail_league"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:textSize="12dp"
+                    android:background="@android:color/transparent"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:text="@string/detail"
                     android:textAllCaps="true"
-                    android:text="@string/detail" />
-
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14sp"
+                    />
                 <Button
                     android:id="@+id/btn_view_events"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:background="@android:color/transparent"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="12dp"
+                    android:text="@string/events"
                     android:textAllCaps="true"
-                    android:text="@string/events" />
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

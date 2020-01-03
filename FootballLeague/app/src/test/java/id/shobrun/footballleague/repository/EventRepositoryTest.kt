@@ -68,7 +68,7 @@ class EventRepositoryTest {
         verify(eventDao).insert(mockResponse.events[0])
 
         updatedData.postValue(mockResponse.events[0])
-        verify(observer).onChanged(Resource.success(mockResponse.events[0], true))
+        verify(observer).onChanged(Resource.success(mockResponse.events[0]))
 
     }
 
@@ -98,7 +98,7 @@ class EventRepositoryTest {
         verify(eventDao).insertEvents(mockResponse.events)
 
         updatedData.postValue(mockResponse.events)
-        verify(observer).onChanged(Resource.success(mockResponse.events, true))
+        verify(observer).onChanged(Resource.success(mockResponse.events))
 
     }
 
@@ -128,7 +128,7 @@ class EventRepositoryTest {
         verify(eventDao).insertEvents(mockResponse.events)
 
         updatedData.postValue(mockResponse.events)
-        verify(observer).onChanged(Resource.success(mockResponse.events, true))
+        verify(observer).onChanged(Resource.success(mockResponse.events))
 
     }
 
@@ -159,7 +159,7 @@ class EventRepositoryTest {
         verify(eventDao).insertEvents(mockResponse.event)
 
         updatedData.postValue(mockResponse.event)
-        verify(observer).onChanged(Resource.success(mockResponse.event, true))
+        verify(observer).onChanged(Resource.success(mockResponse.event))
 
     }
 

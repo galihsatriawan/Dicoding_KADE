@@ -10,21 +10,23 @@ import id.shobrun.footballleague.room.AppDatabase.Companion.TABLE_TEAM
 @Dao
 interface TeamDao {
     @Query("SELECT * FROM $TABLE_TEAM WHERE $ID_LEAGUE = :idLeague")
-    fun getAllTeamsByLeagueId(idLeague : Int): LiveData<List<Team>>
+    fun getAllTeamsByLeagueId(idLeague: Int): LiveData<List<Team>>
 
     @Query("SELECT * FROM $TABLE_TEAM WHERE $ID_TEAM = :idTeam")
     fun getTeamById(idTeam: Int): LiveData<Team>
 
     @Query("SELECT * FROM $TABLE_TEAM WHERE tags LIKE :qry")
-    fun getSearchTeams(qry: String) : LiveData<List<Team>>
+    fun getSearchTeams(qry: String): LiveData<List<Team>>
 
     @Query("SELECT * FROM $TABLE_TEAM WHERE isFavorite = :favorite")
-    fun getAllFavoriteTeam(favorite: Int) : LiveData<List<Team>>
+    fun getAllFavoriteTeam(favorite: Int): LiveData<List<Team>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(team: Team)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun inserts(teams: List<Team>)
+
     @Update
     fun update(team: Team): Int
 

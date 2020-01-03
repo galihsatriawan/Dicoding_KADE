@@ -67,7 +67,7 @@ class DetailLeagueViewModelTest {
         val mockLeague = mockLeague()
         loadFromDB.postValue(mockLeague)
         verify(observer).onChanged(
-            Resource.success(viewModel.leagueLiveData.value?.data, true)
+            Resource.success(viewModel.leagueLiveData.value?.data)
         )
     }
 }

@@ -67,6 +67,6 @@ class EventApiTest : ApiAbstract<EventApi>() {
         enqueueResponse("/event_search.json")
         val query = "sunderland"
         val response = LiveDataTestUtil.getValue(service.getSearchEvents(query))
-        assertThat(response.body?.event?.get(0)?.eventName?.toLowerCase(), `containsString`(query))
+        assertThat(response.body?.event?.get(0)?.eventName?.toLowerCase(), containsString(query))
     }
 }

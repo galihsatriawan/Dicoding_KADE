@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
+
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
@@ -21,27 +22,27 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
+                android:layout_height="match_parent">
+
                 <ImageView
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:id="@+id/logoLeague"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    tools:src="@drawable/ic_away_team"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:contentDescription="@string/txt_content_description"
 
-                    />
+                    tools:src="@drawable/ic_away_team" />
+
                 <TextView
                     android:id="@+id/titleLeague"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="@string/title_league"
                     android:layout_below="@+id/logoLeague"
                     android:layout_centerHorizontal="true"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
                     android:textColor="@android:color/black"
-                    />
+                    tools:text="@string/title_league" />
             </RelativeLayout>
 
             <androidx.appcompat.widget.Toolbar

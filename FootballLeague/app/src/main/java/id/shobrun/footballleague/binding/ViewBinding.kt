@@ -240,49 +240,54 @@ fun <T> bindMessageFavorite(view: TextView, resource: List<T>?) {
         view.text = view.context.getString(R.string.empty_data)
     }
 }
+
 /**
  * Detail Team
  */
 @BindingAdapter("logoTeam")
-fun bindLogoTeam(view: ImageView, resource: Resource<Team>?){
+fun bindLogoTeam(view: ImageView, resource: Resource<Team>?) {
     view.bindResource(resource) {
         Glide.with(view.context)
-            .load(it.data?.teamBadge?:"")
+            .load(it.data?.teamBadge ?: "")
             .error(R.drawable.ic_error_black_24dp)
             .into(view)
     }
 }
+
 @BindingAdapter("nameTeam")
-fun bindNameTeam(view: TextView, resource: Resource<Team>?){
-    view.bindResource(resource){
-        view.text = "${it?.data?.teamName ?:""}"
+fun bindNameTeam(view: TextView, resource: Resource<Team>?) {
+    view.bindResource(resource) {
+        view.text = "${it?.data?.teamName ?: ""}"
     }
 }
+
 @BindingAdapter("alternateNameTeam")
-fun bindAlternateNameTeam(view: TextView, resource: Resource<Team>?){
-    view.bindResource(resource){
-        view.text = "${it?.data?.alternateName ?:""}"
+fun bindAlternateNameTeam(view: TextView, resource: Resource<Team>?) {
+    view.bindResource(resource) {
+        view.text = "${it?.data?.alternateName ?: ""}"
     }
 }
 
 @BindingAdapter("descriptionTeam")
-fun bindDescriptionTeam(view: TextView, resource: Resource<Team>?){
-    view.bindResource(resource){
-        view.text = "${it?.data?.descriptionEN?:""}"
+fun bindDescriptionTeam(view: TextView, resource: Resource<Team>?) {
+    view.bindResource(resource) {
+        view.text = "${it?.data?.descriptionEN ?: ""}"
     }
 }
+
 @BindingAdapter("imgStadiumTeam")
-fun bindImgStadiumTeam(view: ImageView, resource: Resource<Team>?){
+fun bindImgStadiumTeam(view: ImageView, resource: Resource<Team>?) {
     view.bindResource(resource) {
         Glide.with(view.context)
-            .load(it.data?.imgStadium?:"")
+            .load(it.data?.imgStadium ?: "")
             .error(R.drawable.ic_error_black_24dp)
             .into(view)
     }
 }
+
 @BindingAdapter("nameStadium")
-fun bindNameStadium(view: TextView, resource: Resource<Team>?){
-    view.bindResource(resource){
-        view.text = "${it?.data?.stadiumName?:""}"
+fun bindNameStadium(view: TextView, resource: Resource<Team>?) {
+    view.bindResource(resource) {
+        view.text = "${it?.data?.stadiumName ?: ""}"
     }
 }

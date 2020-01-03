@@ -12,5 +12,5 @@ abstract class TeamsFragmentViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(TeamsViewModel::class)
-    abstract fun bindTeamsViewModel(viewModel: TeamsViewModel) : ViewModel
+    abstract fun bindTeamsViewModel(viewModel: TeamsViewModel): ViewModel
 }

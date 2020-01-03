@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit
 
 /**
  * A Junit rule that registers an espresso idling resource which counts all tasks that are submitted
- * via [AppExecutors].
+ * via AppExecutors.
  */
 class CountingAppExecutorsRule : TestWatcher() {
     // give it a unique id to workaround an espresso bug where you cannot register/unregister

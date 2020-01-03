@@ -38,9 +38,9 @@ class EventsActivity : AppCompatActivity() {
         if (intent.getParcelableExtra<League>(EXTRA_LEAGUE) != null) {
             league = intent.getParcelableExtra<League>(EXTRA_LEAGUE)
             Glide.with(this)
-                .load(league?.banner?:"")
+                .load(league?.banner ?: "")
                 .into(logoLeague)
-            titleLeague.text = league?.name?:"League"
+            titleLeague.text = league?.name ?: "League"
         }
 
         val bundle = Bundle()

@@ -45,20 +45,20 @@
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:contentDescription="TODO"
+                        android:contentDescription="@string/txt_content_description"
                         android:src="@drawable/ic_home_team" />
 
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:contentDescription="TODO"
+                        android:contentDescription="@string/txt_content_description"
                         android:src="@drawable/ic_fifa" />
 
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/activity_horizontal_margin"
-                        android:contentDescription="TODO"
+                        android:contentDescription="@string/txt_content_description"
                         android:src="@drawable/ic_away_team" />
                 </LinearLayout>
 
@@ -115,7 +115,7 @@
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
                                     android:layout_gravity="center"
-                                    android:contentDescription="TODO"
+                                    android:contentDescription="@string/txt_content_description"
                                     app:homeBadge="@{vm.homeTeamLiveData}"
                                     tools:src="@drawable/ic_home_team" />
 
@@ -150,7 +150,7 @@
                                     android:layout_width="30dp"
                                     android:layout_height="50dp"
                                     android:layout_gravity="center"
-                                    android:contentDescription="TODO"
+                                    android:contentDescription="@string/txt_content_description"
                                     android:src="@drawable/ic_trophy" />
 
                                 <TextView
@@ -173,7 +173,7 @@
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
                                     android:layout_gravity="center"
-                                    android:contentDescription="TODO"
+                                    android:contentDescription="@string/txt_content_description"
                                     app:awayBadge="@{vm.awayTeamLiveData}"
                                     tools:src="@drawable/ic_away_team" />
 

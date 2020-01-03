@@ -25,13 +25,14 @@ buildscript {
         legacyVersion = '1.0.0'
         lifeCycle = "2.2.0-rc03"
         lifeCycleVM = "2.1.0"
+        materialRipple = "1.0.2"
         mockito = "3.1.0"
         mockitoKotlinVersion = '2.0.0-RC1'
         mockWebServerVersion = '3.9.0'
         navigation = '2.1.0'
         retrofitVersion = "2.6.1"
         robolectricVersion = '4.3'
-        roomVersion = "2.2.0"
+        roomVersion = "2.2.3"
         timberVersion = '4.7.1'
         okhttp = '3.10.0'
     }

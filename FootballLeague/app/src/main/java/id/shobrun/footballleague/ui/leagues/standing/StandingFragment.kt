@@ -1,13 +1,9 @@
 package id.shobrun.footballleague.ui.leagues.standing
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import dagger.android.support.DaggerFragment
-
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.compose.ViewModelFragment
 import id.shobrun.footballleague.databinding.FragmentStandingBinding
@@ -22,17 +18,18 @@ class StandingFragment : ViewModelFragment() {
         fun newInstance() = StandingFragment()
         val TAG = this.javaClass.name
     }
-    var league : League? = null
+
+    var league: League? = null
     private val viewModel by viewModel<StandingViewModel>()
-    private lateinit var binding : FragmentStandingBinding
+    private lateinit var binding: FragmentStandingBinding
     private lateinit var teamRecordsAdapter: RecyclerTeamRecordsAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = binding(inflater,R.layout.fragment_standing,container)
-        with(binding){
-            lifecycleOwner= this@StandingFragment
+        binding = binding(inflater, R.layout.fragment_standing, container)
+        with(binding) {
+            lifecycleOwner = this@StandingFragment
             vm = viewModel
         }
 
@@ -42,13 +39,14 @@ class StandingFragment : ViewModelFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecycler()
-        if(requireArguments().getParcelable<League>(EXTRA_LEAGUE)!=null){
+        if (requireArguments().getParcelable<League>(EXTRA_LEAGUE) != null) {
             league = requireArguments().getParcelable(EXTRA_LEAGUE)
             Timber.d("$TAG ${league?.idLeague}")
         }
-        viewModel.postLeagueId(league?.idLeague?:-1)
+        viewModel.postLeagueId(league?.idLeague ?: -1)
     }
-    private fun initRecycler(){
+
+    private fun initRecycler() {
         teamRecordsAdapter = RecyclerTeamRecordsAdapter(ArrayList())
         binding.rvTeamRecords.adapter = teamRecordsAdapter
     }

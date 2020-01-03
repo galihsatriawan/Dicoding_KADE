@@ -37,37 +37,38 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
+                    android:layout_height="match_parent">
+
                     <ImageView
                         android:id="@+id/logoTeam"
+                        logoTeam="@{vm.teamLiveData}"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-                        tools:src="@drawable/ic_away_team"
                         android:layout_centerHorizontal="true"
-                        logoTeam="@{vm.teamLiveData}"
+                        android:contentDescription="@string/txt_content_description"
 
-                        />
+                        tools:src="@drawable/ic_away_team" />
+
                     <TextView
                         android:id="@+id/titleTeam"
+                        nameTeam="@{vm.teamLiveData}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        nameTeam="@{vm.teamLiveData}"
-                        tools:text="@string/title_team"
                         android:layout_below="@+id/logoTeam"
                         android:layout_centerHorizontal="true"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
                         android:textColor="@android:color/black"
-                        />
+                        tools:text="@string/title_team" />
+
                     <TextView
+                        alternateNameTeam="@{vm.teamLiveData}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        alternateNameTeam="@{vm.teamLiveData}"
-                        tools:text="@string/title_team"
                         android:layout_below="@+id/titleTeam"
                         android:layout_centerHorizontal="true"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                         android:textColor="@android:color/darker_gray"
+                        tools:text="@string/title_team"
 
                         />
                 </RelativeLayout>
@@ -104,51 +105,54 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:text="@string/title_description" />
+
                 <TextView
                     android:id="@+id/content_decription"
+                    descriptionTeam="@{vm.teamLiveData}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/title_description"
-                    android:layout_marginTop="@dimen/activity_vertical_margin_8dp"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_vertical_margin_8dp"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    descriptionTeam="@{vm.teamLiveData}"
-                    tools:text="@string/lorem_ipsum"
-                    />
+                    tools:text="@string/lorem_ipsum" />
+
                 <TextView
                     android:id="@+id/title_stadium"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:layout_below="@+id/content_decription"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:text="@string/title_stadium" />
+
                 <ImageView
                     android:id="@+id/imgStadium"
+                    imgStadiumTeam="@{vm.teamLiveData}"
                     android:layout_width="match_parent"
                     android:layout_height="170dp"
-                    android:layout_marginTop="@dimen/activity_vertical_margin_8dp"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:layout_below="@+id/title_stadium"
-                    tools:src="@drawable/ic_away_team"
-                    imgStadiumTeam="@{vm.teamLiveData}"
-                    />
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_vertical_margin_8dp"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:contentDescription="@string/txt_content_description"
+                    tools:src="@drawable/ic_away_team" />
+
                 <TextView
                     android:id="@+id/name_stadium"
                     style="@style/TextAppearance.AppCompat.Medium"
+                    nameStadium="@{vm.teamLiveData}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/imgStadium"
-                    android:layout_marginTop="@dimen/activity_vertical_margin_8dp"
                     android:layout_centerHorizontal="true"
-                    nameStadium="@{vm.teamLiveData}"
-                    tools:text="@string/title_team"/>
+                    android:layout_marginTop="@dimen/activity_vertical_margin_8dp"
+                    tools:text="@string/title_team" />
             </RelativeLayout>
 
 

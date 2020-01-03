@@ -71,7 +71,7 @@ class LeagueRepositoryTest {
         verify(leagueDao).insert(mockResponse.leagues[0])
 
         updateData.postValue(mockResponse.leagues[0])
-        verify(observer).onChanged(Resource.success(mockResponse.leagues[0], true))
+        verify(observer).onChanged(Resource.success(mockResponse.leagues[0]))
 
     }
 }

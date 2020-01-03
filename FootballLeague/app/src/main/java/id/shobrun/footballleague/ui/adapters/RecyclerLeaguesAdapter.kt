@@ -3,14 +3,11 @@ package id.shobrun.footballleague.ui.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
 import id.shobrun.footballleague.databinding.ItemLeagueBinding
-import id.shobrun.footballleague.extensions.gone
-import id.shobrun.footballleague.extensions.visible
 import id.shobrun.footballleague.models.entity.League
 import kotlinx.android.synthetic.main.item_league.view.*
 import org.jetbrains.anko.AnkoLogger

@@ -12,16 +12,17 @@ import javax.inject.Inject
 
 class TeamsViewModel @Inject constructor(private val repository: TeamRepository) : ViewModel() {
     private val leagueId = MutableLiveData<Int>()
-    val teamsLiveData : LiveData<Resource<List<Team>>>
+    val teamsLiveData: LiveData<Resource<List<Team>>>
 
     init {
-        teamsLiveData= leagueId.switchMap {
+        teamsLiveData = leagueId.switchMap {
             leagueId.value?.let {
                 repository.loadListTeamByLeagueId(it)
-            }?: AbsentLiveData.create()
+            } ?: AbsentLiveData.create()
         }
     }
-    fun postLeagueId(id: Int){
-        leagueId.value= id
+
+    fun postLeagueId(id: Int) {
+        leagueId.value = id
     }
 }

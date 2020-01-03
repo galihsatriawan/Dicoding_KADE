@@ -82,7 +82,7 @@ class RecyclerTeamsAdapter(private var items: List<Team>) :
         fun bind(team: Team) {
             _tv_team_name.value = team.teamName
             _tv_team_badge.value = team.teamBadge
-            _tv_team_desc.value = "${team.descriptionEN?.subSequence(0,30)} [Read more...]"
+            _tv_team_desc.value = "${team.descriptionEN?.subSequence(0, 30)} [Read more...]"
         }
     }
 }

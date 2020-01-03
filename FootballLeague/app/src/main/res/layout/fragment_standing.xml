@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="vm"
             type="id.shobrun.footballleague.ui.leagues.standing.StandingViewModel" />
     </data>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.leagues.standing.StandingFragment">
+
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -29,25 +34,25 @@
                         android:layout_width="35dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="top"
-                        android:text="@string/rank"
                         android:gravity="center"
+                        android:text="@string/rank"
                         android:textSize="14sp" />
 
                     <ImageView
                         android:id="@+id/imgTeam"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
+                        android:layout_gravity="center"
                         android:layout_margin="@dimen/activity_vertical_margin_8dp"
-                        android:src="@drawable/ic_away_team"
-                        android:layout_gravity="center" />
+                        android:src="@drawable/ic_away_team" />
 
                     <TextView
                         android:id="@+id/tvTeamName"
                         android:layout_width="100dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="top"
-                        android:text="@string/title_team"
                         android:gravity="center"
+                        android:text="@string/title_team"
                         android:textSize="14sp" />
 
                     <TextView
@@ -55,8 +60,8 @@
                         android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="top"
-                        android:text="@string/played"
                         android:gravity="center"
+                        android:text="@string/played"
                         android:textSize="14sp" />
 
                     <TextView
@@ -64,8 +69,8 @@
                         android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="top"
-                        android:text="@string/win"
                         android:gravity="center"
+                        android:text="@string/win"
                         android:textSize="14sp" />
 
                     <TextView
@@ -73,8 +78,8 @@
                         android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="top"
-                        android:text="@string/draw"
                         android:gravity="center"
+                        android:text="@string/draw"
                         android:textSize="14sp" />
 
                     <TextView
@@ -82,14 +87,16 @@
                         android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="top"
-                        android:text="@string/lose"
                         android:gravity="center"
+                        android:text="@string/lose"
                         android:textSize="14sp" />
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="4dp"
-                    android:background="@color/colorAccent"/>
+                    android:background="@color/colorAccent" />
+
                 <ProgressBar
                     android:id="@+id/progressBar"
                     resourceListLoading="@{vm.standingLiveData}"
@@ -111,7 +118,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:contentDescription="TODO"
+                        android:contentDescription="@string/txt_content_description"
                         android:src="@drawable/ic_error_black_24dp" />
 
                     <TextView
@@ -120,13 +127,14 @@
                         android:layout_height="wrap_content"
                         tools:text="@string/failed_load" />
                 </LinearLayout>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvTeamRecords"
+                    resourceItems="@{vm.standingLiveData}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    resourceItems="@{vm.standingLiveData}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_team_record"/>
+                    tools:listitem="@layout/item_team_record" />
             </LinearLayout>
         </HorizontalScrollView>
 

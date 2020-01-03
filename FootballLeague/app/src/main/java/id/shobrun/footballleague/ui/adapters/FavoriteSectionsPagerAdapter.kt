@@ -32,13 +32,13 @@ class FavoriteSectionsPagerAdapter(
     override fun getItem(position: Int): Fragment {
         val bundle = Bundle()
         bundle.putParcelable(EXTRA_LEAGUE, (league))
-        return when(position){
+        return when (position) {
             0 -> {
                 val prevFrag = FavoritePreviousEventFragment.newInstance()
                 prevFrag.arguments = bundle
-                prevFrag    
+                prevFrag
             }
-            1 ->{
+            1 -> {
                 val nextFrag = FavoriteNextEventFragment.newInstance()
                 nextFrag.arguments = bundle
                 nextFrag

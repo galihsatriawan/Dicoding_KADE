@@ -1,14 +1,11 @@
 package id.shobrun.footballleague.ui.leagues.team
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import id.shobrun.footballleague.R
 import id.shobrun.footballleague.compose.ViewModelFragment
 import id.shobrun.footballleague.databinding.FragmentTeamsBinding
@@ -25,19 +22,20 @@ class TeamsFragment : ViewModelFragment() {
     }
 
     private val viewModel by viewModel<TeamsViewModel>()
-    private lateinit var binding : FragmentTeamsBinding
+    private lateinit var binding: FragmentTeamsBinding
     private lateinit var teamsAdapter: RecyclerTeamsAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = binding(inflater,R.layout.fragment_teams,container)
-        with(binding){
+        binding = binding(inflater, R.layout.fragment_teams, container)
+        with(binding) {
             lifecycleOwner = this@TeamsFragment
             vm = viewModel
         }
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

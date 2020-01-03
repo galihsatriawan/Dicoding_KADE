@@ -64,7 +64,7 @@ class PreviousEventViewModelTest {
 
         loadFromDB.postValue(mockEventList())
         verify(observer).onChanged(
-            Resource.success(viewModel.previousEventLiveData.value?.data, true)
+            Resource.success(viewModel.previousEventLiveData.value?.data)
         )
     }
 }

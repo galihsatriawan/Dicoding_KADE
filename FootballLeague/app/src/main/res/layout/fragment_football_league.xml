@@ -25,6 +25,6 @@
             android:scrollbars="vertical"
             app:items="@{vm.leagues}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            tools:listitem="@layout/item_league"/>
+            tools:listitem="@layout/item_league" />
     </RelativeLayout>
 </layout>

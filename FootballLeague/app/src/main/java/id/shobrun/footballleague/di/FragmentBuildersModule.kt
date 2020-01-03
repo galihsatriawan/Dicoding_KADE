@@ -35,7 +35,6 @@ import id.shobrun.footballleague.di.teamrecord.TeamRecordPersistenceModule
 import id.shobrun.footballleague.di.teamrecord.TeamRecordRepositoryModule
 import id.shobrun.footballleague.di.teamrecord.standing.StandingFragmentModule
 import id.shobrun.footballleague.di.teamrecord.standing.StandingViewModelModule
-import id.shobrun.footballleague.repository.TeamRecordRepository
 import id.shobrun.footballleague.ui.events.favorite.next.FavoriteNextEventFragment
 import id.shobrun.footballleague.ui.events.favorite.previous.FavoritePreviousEventFragment
 import id.shobrun.footballleague.ui.events.next.NextEventFragment
@@ -44,7 +43,6 @@ import id.shobrun.footballleague.ui.leagues.list.FootballLeaguesFragment
 import id.shobrun.footballleague.ui.leagues.standing.StandingFragment
 import id.shobrun.footballleague.ui.leagues.team.TeamsFragment
 import id.shobrun.footballleague.ui.leagues.team.favorite.FavoriteTeamsFragment
-import id.shobrun.footballleague.ui.leagues.team.favorite.FavoriteTeamsViewModel
 import id.shobrun.footballleague.ui.search.event.SearchEventsFragment
 import id.shobrun.footballleague.ui.search.team.SearchTeamsFragment
 
@@ -115,7 +113,7 @@ abstract class FragmentBuildersModule {
             TeamPersistenceModule::class
         ]
     )
-    abstract fun injectFavoriteTeamFragment() : FavoriteTeamsFragment
+    abstract fun injectFavoriteTeamFragment(): FavoriteTeamsFragment
 
     @ContributesAndroidInjector(
         modules = [
@@ -126,7 +124,7 @@ abstract class FragmentBuildersModule {
             TeamPersistenceModule::class
         ]
     )
-    abstract fun injectTeamsFragment() : TeamsFragment
+    abstract fun injectTeamsFragment(): TeamsFragment
 
     @ContributesAndroidInjector(
         modules = [
@@ -137,7 +135,7 @@ abstract class FragmentBuildersModule {
             TeamRecordPersistenceModule::class
         ]
     )
-    abstract fun injectStandingFragment() : StandingFragment
+    abstract fun injectStandingFragment(): StandingFragment
 
     @ContributesAndroidInjector(
         modules = [
@@ -148,7 +146,7 @@ abstract class FragmentBuildersModule {
             TeamPersistenceModule::class
         ]
     )
-    abstract fun injectSearchTeamsFragment() : SearchTeamsFragment
+    abstract fun injectSearchTeamsFragment(): SearchTeamsFragment
 
     @ContributesAndroidInjector(
         modules = [
@@ -159,6 +157,6 @@ abstract class FragmentBuildersModule {
             EventPersistenceModule::class
         ]
     )
-    abstract fun injectSearchEventsFragment() : SearchEventsFragment
+    abstract fun injectSearchEventsFragment(): SearchEventsFragment
 
 }

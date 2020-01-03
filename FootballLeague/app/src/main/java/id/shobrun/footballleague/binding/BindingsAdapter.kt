@@ -15,7 +15,6 @@ import id.shobrun.footballleague.ui.adapters.RecyclerEventsAdapter
 import id.shobrun.footballleague.ui.adapters.RecyclerLeaguesAdapter
 import id.shobrun.footballleague.ui.adapters.RecyclerTeamRecordsAdapter
 import id.shobrun.footballleague.ui.adapters.RecyclerTeamsAdapter
-import id.shobrun.footballleague.utils.AbsentLiveData
 import timber.log.Timber
 
 @BindingAdapter("loadImage")
@@ -47,7 +46,7 @@ fun <T> bindAdapterLiveData(view: RecyclerView, items: LiveData<List<T>>?) {
                 (view.adapter as RecyclerEventsAdapter).setItems(data)
             }
         }
-        is RecyclerTeamsAdapter ->{
+        is RecyclerTeamsAdapter -> {
             items?.value.let {
                 val data = it as List<Team>?
                 Timber.d("ViewBinding LiveItems Team${data?.size}")
@@ -59,7 +58,7 @@ fun <T> bindAdapterLiveData(view: RecyclerView, items: LiveData<List<T>>?) {
 
 
 @BindingAdapter("resourceItems")
-fun<T> bindEvents(view: RecyclerView, resource: Resource<List<T>>?) {
+fun <T> bindEvents(view: RecyclerView, resource: Resource<List<T>>?) {
     when (view.adapter) {
         is RecyclerEventsAdapter -> {
             view.bindResource(resource) {
@@ -67,14 +66,14 @@ fun<T> bindEvents(view: RecyclerView, resource: Resource<List<T>>?) {
                 (view.adapter as RecyclerEventsAdapter).setItems(data)
             }
         }
-        is RecyclerTeamsAdapter ->{
-            view.bindResource(resource){
+        is RecyclerTeamsAdapter -> {
+            view.bindResource(resource) {
                 val data = it.data as List<Team>?
                 (view.adapter as RecyclerTeamsAdapter).setItems(data)
             }
         }
-        is RecyclerTeamRecordsAdapter ->{
-            view.bindResource(resource){
+        is RecyclerTeamRecordsAdapter -> {
+            view.bindResource(resource) {
                 val data = it.data as List<TeamRecord>?
                 (view.adapter as RecyclerTeamRecordsAdapter).setItems(data)
             }

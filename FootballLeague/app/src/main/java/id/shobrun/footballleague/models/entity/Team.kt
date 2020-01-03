@@ -11,11 +11,11 @@ import kotlinx.android.parcel.Parcelize
 @Entity(tableName = TABLE_TEAM)
 data class Team(
     @PrimaryKey val idTeam: Int,
-    val idLeague : Int?,
+    val idLeague: Int?,
     @SerializedName("strTeam") var teamName: String,
     @SerializedName("strTeamShort") var teamShortName: String?,
     @SerializedName("strTeamBadge") var teamBadge: String?,
-    @SerializedName("strAlternate")var alternateName : String?,
+    @SerializedName("strAlternate") var alternateName: String?,
     @SerializedName("intFormedYear") var formedYear: Int?,
     @SerializedName("strSport") var categorySport: String?,
     @SerializedName("strLeague") var leagueName: String?,
@@ -27,6 +27,6 @@ data class Team(
     @SerializedName("strDescriptionEN") var descriptionEN: String?,
     @SerializedName("strCountry") var teamCountry: String?,
     @SerializedName("strTeamJersey") var teamJersey: String?,
-    var isFavorite: Int= 0,
-    var tags : String?
+    var isFavorite: Int = 0,
+    var tags: String?
 ) : Parcelable

@@ -17,7 +17,7 @@ class SearchTeamsViewModel @Inject constructor(repository: TeamRepository) : Vie
 
 
     init {
-        teamLiveData=
+        teamLiveData =
             filterLiveData.switchMap {
                 filterLiveData.value?.let {
                     wrapEspressoIdlingResource {

@@ -68,7 +68,7 @@ class TeamRepositoryTest {
         verify(teamDao).insert(mockResponse.teams[0])
 
         updateData.postValue(mockResponse.teams[0])
-        verify(observer).onChanged(Resource.success(mockResponse.teams[0], true))
+        verify(observer).onChanged(Resource.success(mockResponse.teams[0]))
 
     }
 }

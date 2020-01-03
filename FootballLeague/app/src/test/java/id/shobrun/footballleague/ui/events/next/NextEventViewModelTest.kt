@@ -63,7 +63,7 @@ class NextEventViewModelTest {
 
         loadFromDB.postValue(mockEventList())
         verify(observer).onChanged(
-            Resource.success(mockEventList(), true)
+            Resource.success(mockEventList())
         )
     }
 }

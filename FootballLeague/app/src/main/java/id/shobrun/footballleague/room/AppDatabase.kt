@@ -11,13 +11,17 @@ import id.shobrun.footballleague.models.entity.Team
 import id.shobrun.footballleague.models.entity.TeamRecord
 import id.shobrun.footballleague.utils.DateConverter
 
-@Database(entities = [League::class, Event::class, Team::class, TeamRecord::class], version = 7, exportSchema = false)
+@Database(
+    entities = [League::class, Event::class, Team::class, TeamRecord::class],
+    version = 8,
+    exportSchema = false
+)
 @TypeConverters(DateConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun leagueDao(): LeagueDao
     abstract fun eventDao(): EventDao
     abstract fun teamDao(): TeamDao
-    abstract fun teamRecordDao() : TeamRecordDao
+    abstract fun teamRecordDao(): TeamRecordDao
 
     companion object {
         private const val DB_FOOTBALL = "football-db"

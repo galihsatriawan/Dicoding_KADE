@@ -11,8 +11,8 @@ interface TeamApi {
     fun getTeamById(@Query("id") idTeam: Int): LiveData<ApiResponse<TeamsResponse>>
 
     @GET("searchteams.php")
-    fun getSearchTeam(@Query("t") qry : String) : LiveData<ApiResponse<TeamsResponse>>
+    fun getSearchTeam(@Query("t") qry: String): LiveData<ApiResponse<TeamsResponse>>
 
     @GET("lookup_all_teams.php")
-    fun getTeamsByLeagueId(@Query("id") idLeague : Int) : LiveData<ApiResponse<TeamsResponse>>
+    fun getTeamsByLeagueId(@Query("id") idLeague: Int): LiveData<ApiResponse<TeamsResponse>>
 }

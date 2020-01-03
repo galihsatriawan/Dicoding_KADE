@@ -2,7 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="vm"
             type="id.shobrun.footballleague.ui.search.team.SearchTeamsViewModel" />
@@ -12,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <ProgressBar
             android:id="@+id/progressBar"
             resourceListLoading="@{vm.teamLiveData}"
@@ -20,6 +23,7 @@
             android:layout_gravity="center"
             android:indeterminate="true"
             android:visibility="gone" />
+
         <LinearLayout
             visibleMessage="@{vm.teamLiveData}"
             android:layout_width="match_parent"
@@ -31,7 +35,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="TODO"
+                android:contentDescription="@string/txt_content_description"
                 android:src="@drawable/ic_error_black_24dp" />
 
             <TextView
@@ -46,8 +50,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_team"
-            app:resourceItems="@{vm.teamLiveData}" />
+            app:resourceItems="@{vm.teamLiveData}"
+            tools:listitem="@layout/item_team" />
     </LinearLayout>
 
 </layout>

@@ -20,61 +20,68 @@ class TeamRepository @Inject constructor(
     companion object {
         val TAG = TeamRepository.javaClass.name
     }
-    fun loadListTeamByLeagueId(idLeague: Int) = object : NetworkBoundRepository<List<Team>,TeamsResponse>(appExecutors){
-        override fun saveFetchData(items: TeamsResponse) {
-            val teams = items.teams
-            if(teams!=null){
-                localDB.inserts(teams)
-            }
-        }
 
-        override fun shouldFetch(data: List<Team>?): Boolean {
-            return data.isNullOrEmpty()
-        }
-
-        override fun loadFromDb(): LiveData<List<Team>> {
-            return localDB.getAllTeamsByLeagueId(idLeague)
-        }
-
-        override fun fetchService(): LiveData<ApiResponse<TeamsResponse>> {
-            return apiService.getTeamsByLeagueId(idLeague)
-        }
-
-        override fun onFetchFailed(message: String?) {
-            Timber.d("$TAG $message")
-        }
-    }.asLiveData()
-
-    fun loadSearchTeams(qry: String) = object :  NetworkBoundRepository<List<Team>,TeamsResponse>(appExecutors) {
-        override fun saveFetchData(items: TeamsResponse) {
-            val teams = items.teams
-            if(teams!=null){
-                Timber.d("$TAG ${teams.size}")
-                for(t in teams){
-                    t.tags = "[q=${qry}]"
+    fun loadListTeamByLeagueId(idLeague: Int) =
+        object : NetworkBoundRepository<List<Team>, TeamsResponse>(appExecutors) {
+            override fun saveFetchData(items: TeamsResponse) {
+                val teams = items.teams
+                if (teams != null) {
+                    localDB.inserts(teams)
                 }
-                localDB.inserts(teams)
             }
-        }
 
-        override fun shouldFetch(data: List<Team>?): Boolean {
-            return data.isNullOrEmpty()
-        }
+            override fun shouldFetch(data: List<Team>?): Boolean {
+                return data.isNullOrEmpty()
+            }
 
-        override fun loadFromDb(): LiveData<List<Team>> {
-            return localDB.getSearchTeams("[qry={$qry}]")
-        }
+            override fun loadFromDb(): LiveData<List<Team>> {
+                return localDB.getAllTeamsByLeagueId(idLeague)
+            }
 
-        override fun fetchService(): LiveData<ApiResponse<TeamsResponse>> {
-            val teams = apiService.getSearchTeam(qry)
-            Timber.d("$TAG ${teams?.value?.body?.teams?.size}")
-            return teams
-        }
+            override fun fetchService(): LiveData<ApiResponse<TeamsResponse>> {
+                return apiService.getTeamsByLeagueId(idLeague)
+            }
 
-        override fun onFetchFailed(message: String?) {
-            Timber.d("$TAG $message")
-        }
-    }.asLiveData()
+            override fun onFetchFailed(message: String?) {
+                Timber.d("$TAG $message")
+            }
+        }.asLiveData()
+
+    fun loadSearchTeams(qry: String) =
+        object : NetworkBoundRepository<List<Team>, TeamsResponse>(appExecutors) {
+            override fun saveFetchData(items: TeamsResponse) {
+                val teams = items.teams
+                if (teams != null) {
+                    var data = ArrayList<Team>()
+                    Timber.d("$TAG Save Fetch :${teams.size}")
+                    for (t in teams) {
+                        t.tags = "[qry=$qry]"
+                        if(t.categorySport.equals("Soccer")) data.add(t)
+                    }
+                    localDB.inserts(data)
+                }
+            }
+
+            override fun shouldFetch(data: List<Team>?): Boolean {
+                return data.isNullOrEmpty()
+            }
+
+            override fun loadFromDb(): LiveData<List<Team>> {
+                val data = localDB.getSearchTeams("%[qry=$qry]%")
+                Timber.d("$TAG DB :${data.value?.size}")
+                return data
+            }
+
+            override fun fetchService(): LiveData<ApiResponse<TeamsResponse>> {
+                val teams = apiService.getSearchTeam(qry)
+                Timber.d("$TAG Fetch :${teams?.value?.body?.teams?.size}")
+                return teams
+            }
+
+            override fun onFetchFailed(message: String?) {
+                Timber.d("$TAG $message")
+            }
+        }.asLiveData()
 
     fun loadTeamDetailById(idTeam: Int): LiveData<Resource<Team>> {
         return object : NetworkBoundRepository<Team, TeamsResponse>(appExecutors) {

@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Football League</string>
-    <string name="detail_league">Detail League</string>
     <!--  Data League   -->
     <integer-array name="league_id">
         <item>4328</item>
@@ -119,11 +118,9 @@ Sky Sports currently show live League One matches with highlights shown on BBC O
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="empty_data">No data found</string>
-    <string name="Team">Team</string>
     <string name="tab_standing">Standing</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_team">Team</string>
     <string name="desc_team">Description</string>
     <string name="add_team_success">Team was added to favorites</string>
@@ -132,7 +129,6 @@ Sky Sports currently show live League One matches with highlights shown on BBC O
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
     <string name="title_stadium">Stadium</string>
     <string name="tab_event">Event</string>
-    <string name="_10">10</string>
     <string name="rank">Rank</string>
     <string name="played">Played</string>
     <string name="win">Win</string>
@@ -140,6 +136,7 @@ Sky Sports currently show live League One matches with highlights shown on BBC O
     <string name="lose">Lose</string>
     <string name="title_league">League</string>
     <string name="detail">Detail</string>
+    <string name="txt_content_description">Image</string>
 
 
 </resources>

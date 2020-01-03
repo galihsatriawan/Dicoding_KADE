@@ -26,7 +26,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="TODO"
+                android:contentDescription="@string/txt_content_description"
                 android:src="@drawable/ic_error_black_24dp" />
 
             <TextView

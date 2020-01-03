@@ -7,7 +7,12 @@ import id.shobrun.footballleague.models.entity.Team
 
 class MockTestUtil {
     companion object {
-        fun mockTeam() = Team(1, "team", "team", "badge")
+        fun mockTeam() = Team(
+            1, 1, "team", "team", "badge", "team", 1992, "soccer",
+            "team", "team", "team", "team", "team", 21, "team", "team"
+            , "team", 0, ""
+        )
+
         fun mockLeague() = League(1, "league", "banner", "logo", 1, "desc")
         fun mockEvent() = Event(
             1, "event", "Soccer", 1, "event", "event", "event",

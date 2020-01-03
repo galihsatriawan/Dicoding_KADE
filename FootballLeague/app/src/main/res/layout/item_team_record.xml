@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="vm"
             type="id.shobrun.footballleague.ui.adapters.RecyclerTeamRecordsAdapter.TeamRecordViewModel" />
@@ -18,67 +19,68 @@
             android:layout_width="35dp"
             android:layout_height="match_parent"
             android:layout_gravity="top"
-            tools:text="@string/rank"
-            android:text="@{vm.tv_rank}"
             android:gravity="center"
-            android:textSize="14sp" />
+            android:text="@{vm.tv_rank}"
+            android:textSize="14sp"
+            tools:text="@string/rank" />
 
         <ImageView
             android:id="@+id/imgTeam"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_gravity="center"
             android:layout_margin="@dimen/activity_vertical_margin_8dp"
-            android:src="@drawable/ic_home_team"
-            android:layout_gravity="center" />
+            android:contentDescription="@string/txt_content_description"
+            android:src="@drawable/ic_home_team" />
 
         <TextView
             android:id="@+id/tvTeamName"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_gravity="top"
-            tools:text="@string/title_team"
-            android:text="@{vm.tv_name_team}"
             android:gravity="center"
-            android:textSize="14sp" />
+            android:text="@{vm.tv_name_team}"
+            android:textSize="14sp"
+            tools:text="@string/title_team" />
 
         <TextView
             android:id="@+id/tvPlayed"
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:layout_gravity="top"
-            tools:text="@string/played"
-            android:text="@{vm.tv_played}"
             android:gravity="center"
-            android:textSize="14sp" />
+            android:text="@{vm.tv_played}"
+            android:textSize="14sp"
+            tools:text="@string/played" />
 
         <TextView
             android:id="@+id/tvWin"
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:layout_gravity="top"
-            tools:text="@string/win"
-            android:text="@{vm.tv_win}"
             android:gravity="center"
-            android:textSize="14sp" />
+            android:text="@{vm.tv_win}"
+            android:textSize="14sp"
+            tools:text="@string/win" />
 
         <TextView
             android:id="@+id/tvDraw"
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:layout_gravity="top"
-            tools:text="@string/draw"
-            android:text="@{vm.tv_draw}"
             android:gravity="center"
-            android:textSize="14sp" />
+            android:text="@{vm.tv_draw}"
+            android:textSize="14sp"
+            tools:text="@string/draw" />
 
         <TextView
             android:id="@+id/tvLost"
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:layout_gravity="top"
-            tools:text="@string/lose"
-            android:text="@{vm.tv_lose}"
             android:gravity="center"
-            android:textSize="14sp" />
+            android:text="@{vm.tv_lose}"
+            android:textSize="14sp"
+            tools:text="@string/lose" />
     </LinearLayout>
 </layout>

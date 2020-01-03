@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <import type="android.view.View" />
+
         <variable
             name="vm"
             type="id.shobrun.footballleague.ui.adapters.RecyclerEventsAdapter.EventViewModel" />
@@ -37,7 +40,7 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_gravity="center"
-                            android:contentDescription="TODO"
+                            android:contentDescription="@string/txt_content_description"
                             android:src="@drawable/ic_home_team" />
 
                         <TextView
@@ -71,7 +74,7 @@
                             android:layout_width="30dp"
                             android:layout_height="50dp"
                             android:layout_gravity="center"
-                            android:contentDescription="TODO"
+                            android:contentDescription="@string/txt_content_description"
                             android:src="@drawable/ic_trophy" />
 
                         <TextView
@@ -94,7 +97,7 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_gravity="center"
-                            android:contentDescription="TODO"
+                            android:contentDescription="@string/txt_content_description"
                             android:src="@drawable/ic_away_team" />
 
                         <TextView

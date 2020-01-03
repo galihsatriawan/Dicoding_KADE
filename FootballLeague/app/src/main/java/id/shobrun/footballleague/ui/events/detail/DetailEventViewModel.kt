@@ -60,7 +60,7 @@ class DetailEventViewModel @Inject constructor(
             }
         }
         isFavorite = eventInDB.switchMap {
-            it.isFavorite.let { it ->
+            it.isFavorite.let {
                 postEventIsFavorite(it == 1)
                 _isFavorite
             }
